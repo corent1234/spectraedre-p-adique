@@ -1,0 +1,141 @@
+\partie{1}{vendredi 16 juin 15:00}{Polyèdres convexes $p$-adiques }
+\begin{notation}
+	Pour tout élément $x$ de $ \Qp$ on note $x\ge 0$ et on dit que $x$ est \textit{positif} si $\val(x) \ge 0$ c'est à dire si $x \in \Zp$. On induit à partir de cette notation les définitons de $x\le 0$, $x>0$ et $x<0$.
+
+	Similairement, pour toute matrice $M$ à coefficient dans $\Qp$ on note $M\ge 0$ et on dit que $M$ est \textit{positive} si tous les coefficients de $M$  sont positifs, c'est à dire si $M \in M_n\left( \Zp \right) $ . On infère également les notation $M\le 0$, $M>0$ et $M<0$.     
+\end{notation}
+
+\begin{remarque}
+	On évitera la notation $x\ge y$ qui pourrait laisser penser de manière trompeuse que $x\ge y \Rightarrow x-y\ge 0$\footnote{Par exemple, $\ldots11,11 \ge \ldots00,01 $ mais $\ldots11,11 - \ldots00,01 = \ldots 11,1 < 0$}.
+\end{remarque}
+\section{Polyèdres convexes \texorpdfstring{$p$}{p}-adiques}
+\subsection{Matrices symétriques positive} 
+
+\begin{definition}
+	On note $\P_n\left( \Qp \right) $ l'ensemble des matrices symétriques dont tous les mineurs principaux ont une valuation positive.
+\end{definition} 
+
+\begin{rappel}
+	
+Un élément de $ \Qp$ a une valuation positive si et seulement si il est élément de $\Zp$. 
+\end{rappel}
+
+\begin{propriete}
+	
+	$\P_n\left( \Qp \right) = \{ M \in S_n\left( \Qp \right)$ | les\- min\-eurs\- prin\-ci\-paux\- de\- $M$ \-sont \-à \-va\-leur \-dans\- $\Zp \} $.
+\end{propriete}
+
+	\textit{Preuve :} découle directement du rappel précédent. 
+	\medskip
+
+
+\begin{prop}
+	 \[
+		 \Pn = S_n\left( \Zp \right) 
+	.\]  
+\end{prop}
+
+\begin{remarque}
+	On remarque alors que l'ensemble $\P_n$ correspond aux matrices symétriques à coefficients positifs.   
+\end{remarque}
+	\textit{Preuve :}
+
+ Le déterminant étant une fonction polynomiale en les coefficients de la matrice, toute matrice de à coefficient dans $\Zp$ a un déterminant à valeur dans $\Zp$. D'où, par la propriété 2, $S_n\left( \Zp \right) \subset \Pn $.
+
+ L'inclusion réciproque se montre par récurrence. On note pour tout $n \in \mathbf{N}$ $\mathcal{H}_n :  \Pn \subset  S_n(\Zp )$.
+
+ 
+ On notera $ \Delta_{i_1,\ldots,i_n}\left( M \right) $ le mineur principal de $M$ composé des lignes et des colonnes d'indices $i_1,\ldots,i_n \in \left\{ 1,\ldots,n \right\} $ pour tout matrice $M$. On notera d'ailleurs simplement  $ \Delta_{i_1,\ldots,i_n}$ lorsque le contexte est explicite.
+
+ Les cas $n=0$ et $n=1$ se démontrent sans difficultés aucunes. Montrons le cas $n=2$ qui servira par la suite.
+
+ Soit $M \in \P_2\left( \Qp \right) $, $M$ s'écrit $M = \begin{pmatrix} \alpha & \gamma \\ \gamma & \beta \end{pmatrix}$, avec $\alpha, \beta, \gamma \in \Qp^3$.
+
+
+
+ On sait alors que $ \alpha = \Delta_1$ et $ \beta = \Delta_j$ sont des entiers $p$-adiques, il suffit de montrer que $\gamma$ en est également un. Pour ce faire supposons que $ \val (\gamma) < 0$, on a alors $\val ( \gamma^2) = 2 \val\left( \gamma \right) < \val\left( \alpha \beta \right) $ et on en déduit $ \val \left( \Delta_{1,2} \right)= \min\left( \val\left( \alpha \beta \right),2~ \val \left( \gamma \right) \right) = 2 \val\left( \gamma \right) <0 $ ce qui contredit la positivité de $\Delta_{1,2}$ et est donc absurde. On conclut alors que $ \gamma \in \Zp$ et $M \in  S_n\left( \Zp \right) $. On a montré $\mathcal{H}_2$. 
+
+ Soit $n \in \mathbf{N}$ tel que la propriété $\mathcal{H}_n $ soit vérifiée et $M$ une matrice de $\Pn$. 
+
+ $M$ s'écrit 
+ \[
+ M= \left(\begin{array}{ccc|c}
+  &      &     &   \beta_1  \\
+  &  M'  &     &\vdots\\
+  &      &     &   \beta_n  \\
+\hline
+\beta_1 &\cdots&  \alpha_n  & \alpha_{n+1}
+\end{array} \right)
+\]
+avec $M' \in S_n\left( \Qp \right) $ et $\beta_1,\ldots, \beta_n, \alpha_{n+1} \in \Qp$.
+
+On note $ \alpha_1,\ldots, \alpha_n$ les coefficients diagonaux de $M'$ qui sont des entiers $p$-adique par hypothèse de récurrence. 
+
+
+ Par définition $ \alpha_{n+1} = \Delta_{n+1}$ est un entier $p$-adique. Puis on se ramène au cas $n=2$ en utilisant le fait que pour i=1,\ldots, n, $\Delta_{i,n+1} = \begin{vmatrix} \alpha_{i} & \beta_{i}\\ \beta_{i} & \alpha_{n+1} \end{vmatrix} $ et on en déduit que $\beta_{i} \in \Zp$ pour $i=1,\ldots,n$. On conclut en appliquant l'hypothèse de récurrence à $M'$.
+
+
+\hfill \ensuremath{\Box}
+
+\begin{remarque}
+	
+	La preuve de la proposition précédente montre qu'il suffit en réalité que les mineurs principaux de taille au plus $2$ aient une valuation positive (ou soient éléments de $\Zp$) ce qui correspond à la définition de matrice semi-définie positive sur le semi-corps tropical développée par . Ce n'est toutefois pas la définition qui sera choisie ici, pour des raisons développées en partie \hyperlink{subsection.1.2}{1.2}.
+\end{remarque}
+
+\begin{propriete}
+	$\Pn$ est un anneau.
+\end{propriete}
+
+\textit{Preuve :} Par la propriété précédente $\Pn = S_n \left( \Zp \right)$ comme intersection des anneaux $M_n \left( \Qp \right)$ et $S_n\left( \Qp \right) $.
+\begin{propriete}
+	L'ensemble $\Pn$ est :
+	\begin{enumerate}[label=\roman*.]
+	\item ouvert
+	\item fermé
+	\item borné
+	\item compact
+	\item convexe au sens de Monna[nsvqkbdbvujezvbqevb]
+
+\end{enumerate}
+\end{propriete}
+\textit{Preuve :}
+$i.$ et $ii.$ se déduisent du fait que $\Zp$ soit ouvert et fermé dans $\Qp$, $ii.$ découle directement du fait que $\|M\|_\infty = \sup |M_{i,j}|_p \le 1$ et $iv.$ se déduit de $ii.$ et $iii.$.
+Quand à $v.$ c'est une conséquence directe de la convexité de $\Zp$ et $S_n\left( \Qp \right) $.
+\subsection{Polyèdres convexes \texorpdfstring{$p$}{p}-adiques} 
+
+\begin{definition}
+	
+On définit un polyèdre convexe $P$ comme l'intersection de $\Pn$ avec un hyperplan affine $\mathcal{L} $ de $S_n\left( \Qp \right) $. 
+\end{definition}
+
+Soit $P$ un polyèdre convexe et $\mathcal{L} $ un plan affine tel que $P = \Pn \cap \mathcal{L}$, et dont on note $s$ la dimension de l'espace vectoriel associé. On dispose de donc de $s +1 $ matrices $M^0,M^1,\ldots, M^s$ telles que $\mathcal{L} = M^0 + \text{Vect}\left( M^1,\ldots,M^s \right)$. Le polyèdre $P$ s'écrit alors $P = \left\{ M^0 + x_1 M^1 + \ldots + x_s M^s \ge 0 \right\}$. On identifie alors souvent $P$ avec $\left\{ \left( x_1,\ldots,x_s \right) \in \Qp^s |M^0 + x_1 M^1 + \ldots + x_s M^s \ge 0 \right\}$ ce qui permet d'écrire qu'un vecteur $x_1,\ldots,x_s$ de $\Qp^s$ est élément de $P$ si et seulement si il vérifie :
+ 
+	\begin{equation}
+	\label{eq:1} 
+\forall i,j ~  M^0_{i,j} + x_1 M^1_{i,j} + \ldots + M^s_{i,j} \ge 0
+	\end{equation}
+
+On peut alors réécrire l'inégalité matricielle en  $P = \left\{ x \in \Qp^s \-| Ax + b \ge 0 \right\} $ avec 
+\[A = \begin{pmatrix} M^1_{1,1} & \ldots & M^s_{1,1} \\
+\vdots & & \vdots \\
+M^1_{n,n} & \ldots & M^s_{1,1}\\ \end{pmatrix} \in M_{n^2,s}\left( \Qp \right) \text{ et } 
+b = \begin{pmatrix} M^0_{1,1} \\
+\vdots\\
+M^0_{n,n} \end{pmatrix} \in M_{n^2, 1}\left( \Qp \right) 
+.\]  
+\begin{remarque}
+	On peut réduire de moitié la tailles des matrices $A$ et $b$ en considérant que les coefficients diagonaux et supradigonaux des $M^i$ pour $i = 0,1,\ldots,n$. Ce qui permet de se ramener à des matrices équivalente\footnote{puisque les inéquations de \ref{eq:1} impliquant le couple $(i,j)$ $i>j$ sont redondantes avec les équations impliquant $(j,i)$}  avec $\frac{n(n+1)}{2}$ lignes.  
+\end{remarque}
+
+En mettant sous cette forme le polyèdre on reconnait alors aisément que le problème de minimiser une application linéaire sur un polyèdre correspond exactement à résoudre le problème de la \textit{Programmation linéaire}.
+
+\begin{remarque}
+	On se ramène au cas quelconque du problème de la \textit{Programmation linéaire} (taille quelconque et non seulement avec un nombre de ligne en $\frac{n(n+1)}{2}$ ou $n^2$) en annulant des coefficients $M^k_{i,j}$ pour tout $i=1,\ldots,n$.   
+\end{remarque}
+
+\begin{propriete}
+	Un polyèdre $p$-adique convexe est convexe au sens de Monna $[la so\bigcup_{\bigcup_{u\bigcup_{uu\bigcup_{uu\bigcup_{uu\bigcup_{uuu\bigcup_{uuuu\bigcup_{uuuuu\bigcup_{uurce} } } } } } } } }]$ 
+\end{propriete}
+
+\textit{Preuve :} Provient immédiatement du fait qu'un polyèdre s'écrit comme intersection d'ensemble convexe.
+
