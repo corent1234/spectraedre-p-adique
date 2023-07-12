@@ -7,7 +7,11 @@
 \usepackage{graphicx}
 \usepackage{float}
 %\usepackage{booktabs}
-\usepackage{fontenc}
+%\usepackage{fontenc}
+
+\usepackage{xlop}%pour poser des additions
+%\usepackage[ruled,lined,french]{algorithm2e}%pour faire du pseudo-code
+%\include{algo.tex}%pour faire du pseudo code qui marhce ? 
 
 \usepackage{hyperref}
 \hypersetup{
@@ -94,9 +98,9 @@
 \usepackage{mdframed}
 \mdfsetup{skipabove=1em,skipbelow=0em}
 \theoremstyle{definition}
-\newmdtheoremenv[nobreak=true]{définition}{Définition}
-\newmdtheoremenv[nobreak=true]{propriete}{Propriété}
 \newmdtheoremenv[nobreak=true]{consequence}{Conséquence}
+\newmdtheoremenv[nobreak=true]{propriete}{Propriété}
+\newmdtheoremenv[nobreak=true]{proprietes}{Propriétés}
 \newmdtheoremenv[nobreak=true]{lemme}{Lemme}
 \newmdtheoremenv[nobreak=true]{proposition}{Proposition}
 \newmdtheoremenv[nobreak=true]{theoreme}{Théorème}
@@ -108,6 +112,7 @@
 \newmdtheoremenv{conjecture}{Conjecture}
 \newtheorem*{rappel}{Rappel}
 \newtheorem*{remarque}{Remarque}
+\newtheorem*{remarques}{Remarques}
 \newtheorem*{notation}{Notation}
 \newtheorem*{observation}{Observation}
 \newtheorem*{exo}{Exercice}
@@ -119,7 +124,7 @@
 \newtheorem*{ex}{Exemple}
 \newtheorem*{vraag}{Vraag}
 
-\newmdtheoremenv[nobreak=true]{definition}{Definition}
+\newmdtheoremenv[nobreak=true]{definition}{Définition}
 \newtheorem*{eg}{Example}
 %\newtheorem*{notation}{Notation}
 \newtheorem*{previouslyseen}{As previously seen}
@@ -208,9 +213,9 @@
 % RO: right odd
 % CE, CO: center even, center odd
 % My name for when I print my lecture notes to use for an open book exam.
-% \fancyhead[LE,RO]{Gilles Castel}
+\fancyhead[LE,RO]{Corentin Cornou}
 
-\fancyhead[RO,LE]{\@partie} % Right odd,  Left even
+\fancyhead[RO,LE]{\leftmark} % Right odd,  Left even
 \fancyhead[RE,LO]{}          % Right even, Left odd
 
 \fancyfoot[RO,LE]{\thepage}  % Right odd,  Left even
@@ -273,8 +278,11 @@
 % %http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
 \pdfsuppresswarningpagegroup=1
 
-
+\usepackage{csquotes}
+\usepackage[style=alphabetic, sorting=ynt]{biblatex}
 \usepackage{enumitem}
 % My name
 \author{Corentin Cornou} 
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}

@@ -1,0 +1,142 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{ynt/global//global/global}
+    \entry{monna_mo58_1958}{article}{}
+      \name{author}{1}{}{%
+        {{hash=5f3326b5a23f5ed273c5d4e99b26d7c1}{%
+           family={Monna},
+           familyi={M\bibinitperiod},
+           given={A.F.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {fr}%
+      }
+      \strng{namehash}{5f3326b5a23f5ed273c5d4e99b26d7c1}
+      \strng{fullhash}{5f3326b5a23f5ed273c5d4e99b26d7c1}
+      \strng{bibnamehash}{5f3326b5a23f5ed273c5d4e99b26d7c1}
+      \strng{authorbibnamehash}{5f3326b5a23f5ed273c5d4e99b26d7c1}
+      \strng{authornamehash}{5f3326b5a23f5ed273c5d4e99b26d7c1}
+      \strng{authorfullhash}{5f3326b5a23f5ed273c5d4e99b26d7c1}
+      \field{labelalpha}{Mon58}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{13857258}
+      \field{journaltitle}{Indagationes Mathematicae (Proceedings)}
+      \field{title}{Mo58}
+      \field{volume}{61}
+      \field{year}{1958}
+      \field{pages}{528\bibrangedash 539}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/S1385-7258(58)50076-6
+      \endverb
+      \verb{file}
+      \verb Monna - 1958 - Ensembles convexes dans les espaces vectoriels sur.pdf:C\:\\Users\\coren\\Zotero\\storage\\8YYT2BDR\\Monna - 1958 - Ensembles convexes dans les espaces vectoriels sur.pdf:application/pdf
+      \endverb
+    \endentry
+    \entry{caruso_computations_2017}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=7267b9ba428088e425170cc559876a36}{%
+           family={Caruso},
+           familyi={C\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{7267b9ba428088e425170cc559876a36}
+      \strng{fullhash}{7267b9ba428088e425170cc559876a36}
+      \strng{bibnamehash}{7267b9ba428088e425170cc559876a36}
+      \strng{authorbibnamehash}{7267b9ba428088e425170cc559876a36}
+      \strng{authornamehash}{7267b9ba428088e425170cc559876a36}
+      \strng{authorfullhash}{7267b9ba428088e425170cc559876a36}
+      \field{labelalpha}{Car17}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This document contains the notes of a lecture I gave at the "Journ{\textbackslash}'ees Nationales du Calcul Formel" (JNCF) on January 2017. The aim of the lecture was to discuss low-level algorithmics for p-adic numbers. It is divided into two main parts: first, we present various implementations of p-adic numbers and compare them and second, we introduce a general framework for studying precision issues and apply it in several concrete situations.}
+      \field{month}{1}
+      \field{note}{arXiv:1701.06794 [cs, math]}
+      \field{title}{Computations with p-adic numbers}
+      \field{year}{2017}
+      \verb{doi}
+      \verb 10.48550/arXiv.1701.06794
+      \endverb
+      \keyw{Computer Science - Symbolic Computation,Mathematics - Number Theory,Mathematics - Numerical Analysis}
+    \endentry
+    \entry{allamigeon_tropical_2020}{article}{}
+      \name{author}{3}{}{%
+        {{hash=b1e817e9d1bd389b0f93e61c06f14889}{%
+           family={Allamigeon},
+           familyi={A\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod}}}%
+        {{hash=244b75eea383ffd94ca64f4b3b1537ee}{%
+           family={Gaubert},
+           familyi={G\bibinitperiod},
+           given={Stéphane},
+           giveni={S\bibinitperiod}}}%
+        {{hash=9c6c4d6c82304ad1a7e97957856b8db5}{%
+           family={Skomra},
+           familyi={S\bibinitperiod},
+           given={Mateusz},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{2a454cd29b9c88ed54a6aec94d2045da}
+      \strng{fullhash}{2a454cd29b9c88ed54a6aec94d2045da}
+      \strng{bibnamehash}{2a454cd29b9c88ed54a6aec94d2045da}
+      \strng{authorbibnamehash}{2a454cd29b9c88ed54a6aec94d2045da}
+      \strng{authornamehash}{2a454cd29b9c88ed54a6aec94d2045da}
+      \strng{authorfullhash}{2a454cd29b9c88ed54a6aec94d2045da}
+      \field{labelalpha}{AGS20}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We introduce tropical spectrahedra, defined as the images by the nonarchimedean valuation of spectrahedra over the field of real Puiseux series. We provide an explicit polyhedral characterization of generic tropical spectrahedra, involving principal tropical minors of size at most 2. One of the key ingredients is Denef-Pas quantifier elimination result over valued fields. We obtain from this that the nonarchimedean valuation maps semialgebraic sets to semilinear sets that are closed. We also prove that, under a regularity assumption, the image by the valuation of a basic semialgebraic set is obtained by tropicalizing the inequalities which define it.}
+      \field{annotation}{Comment: v1: 23 pages, 3 figures; v2: 25 pages, 4 figures, stronger results in Section 4 + new example + minor revisions; v3: 31 pages, 4 figures, new theorem in Section 5 + more discussion in Sections 2 and 4}
+      \field{issn}{0179-5376, 1432-0444}
+      \field{journaltitle}{Discrete \& Computational Geometry}
+      \field{month}{4}
+      \field{note}{arXiv:1610.06746 [math]}
+      \field{number}{3}
+      \field{title}{Tropical spectrahedra}
+      \field{volume}{63}
+      \field{year}{2020}
+      \field{pages}{507\bibrangedash 548}
+      \range{pages}{42}
+      \verb{doi}
+      \verb 10.1007/s00454-020-00176-1
+      \endverb
+      \verb{file}
+      \verb arXiv.org Snapshot:C\:\\Users\\coren\\Zotero\\storage\\A6WH3WVC\\1610.html:text/html;Full Text PDF:C\:\\Users\\coren\\Zotero\\storage\\GPNV9JHQ\\Allamigeon et al. - 2020 - Tropical spectrahedra.pdf:application/pdf
+      \endverb
+      \keyw{14T05 (Primary),90C22,14P10,12J25 (Secondary),Mathematics - Algebraic Geometry,Mathematics - Combinatorics,Mathematics - Optimization and Control}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

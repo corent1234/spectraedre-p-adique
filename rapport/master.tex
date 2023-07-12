@@ -1,14 +1,21 @@
 \documentclass[twoside,a4paper]{article}
+
 \input{preamble.tex}
-\title{Résultats}
+\addbibresource{bibstage.bib}
+
+\title{Rapport de stage L3
+
+\large Sous la supervision de Tristan Vaccon et Simone Naldi} 
 \begin{document}
     \maketitle
     \tableofcontents
-    % start lectures
+    \input{padic.tex} 
     \input{polyhedra.tex}
+    
     \input{spectrahedra.tex} 
-\input{convexemple.tex}
 
-    % end lectures
+    \printbibliography
+    \input{annexe.tex}     
 
-    \end{document}
+%    \input{proglin.tex} 
+\end{document}

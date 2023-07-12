@@ -1,0 +1,13 @@
+*Makefile
+
+# I'm starting to feel a personnal hatred against LaTeX
+*.bcf
+*.out
+*.toc
+*.blg
+*.fdb_latexmk
+*.run.xml
+*.aux
+*.fls
+*.synctex.gz
+*.log
