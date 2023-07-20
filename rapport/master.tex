@@ -6,16 +6,26 @@
 \title{Rapport de stage L3
 
 \large Sous la supervision de Tristan Vaccon et Simone Naldi} 
+
+\newcommand{\sage}{SageMath} 
+\newcommand\emp{\textit}   
 \begin{document}
-    \maketitle
+\include{algo.tex} 
+
+
+\maketitle
     \tableofcontents
-    \input{padic.tex} 
+    %Les principales sections du rapport 
+    \input{realspectrahedra.tex} 
+    \input{padic.tex}
     \input{polyhedra.tex}
-    
     \input{spectrahedra.tex} 
 
     \printbibliography
-    \input{annexe.tex}     
 
-%    \input{proglin.tex} 
+    %Appendice
+    \appendix
+    \input{complpadic.tex} 
+    \input{smith.tex}     
+    \input{proglin.tex} 
 \end{document}

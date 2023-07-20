@@ -4,18 +4,19 @@
 \newcommand\Mats{Matrices semi-définies positives }
 
 
-\section{Spectraèdre \texorpdfstring{$p$}{p}-adiques } 
+\section{Spectraèdres \texorpdfstring{$p$}{p}-adiques } 
 Ce paragraphe tend à fournir un définition de la notion de \mat sur les corps $p-$adiques pour en déduire une définition de spectraèdre qui serait pertinente sur un corps non-archimédien. 
 La première étape pour définir un spectraèdre est de définir un équivalent des matrices symétriques définies positives. Sans théorème spectrale et le produit scalaire n'étant qu'une forme bilinéaire "banale" (ni positive ni définie), la symétrie est en $p$-adique parfaitement inutile et ne sera pas exigé. De plus, se par le manque cruel du théorème spectral la plupart des caractérisations des matrices symétriques semi-définies positives peinent à faire sens en $p$-adique. 
 Il a donc été choisi de définir les \mats \footnote{notez l'absence du mot symétrique}comme les matrices à valeurs propres positives.
 Or là un second problème se pose : $\mathbb{Q}_{p} $ n'est pas algébriquement clos et les matrices $\mathcal{M}_n\left( \mathbb{Q}_{p}  \right) $ peuvent donc avoir des valeurs propres hors de $\mathbb{Q}_{p}$. Ce problème sera réglé en étendant la valuation $p$-adique aux extensions de $\mathbb{Q}_{p} $.
 
-\subsection{Clôture algébrique $p$-adique \texorpdfstring{p}{$p$}-adique } 
+\subsection{Clôture algébrique \texorpdfstring{$p$}{p}-adique } 
+Cette section présente quelques résultats élémentaires sur les extensions de corps $p$-adiques. La plupart des résultats présentés dans cette section étant soit classique et trouvable dans n'importe quel cours d'algèbre de niveau master soit élémentaires, peu de preuves y seront importés. On recommandera toutefois la lecture de la section 5 de \parencite{gouvea_p-adic_2003} pour plus d'information sur les extensions de corps $p$-adiques. 
 
 \begin{definition}
 	On appelle \textit{extension de corps} d'un corps $\mathbb{K}$ tout corps $\mathbb{L}$ muni d'un morphisme de corps injectif de $\mathbb{K}$ dans $\mathbb{L}$. On note $\mathbb{L}/\mathbb{K}$ le fait que $\mathbb{L}$ soit une extension de $\mathbb{K}.$
 \end{definition}
-
+Une extension d'un corps $\mathbb{K}$ est grossièrement un corps contenant une copie du corps $\mathbb{K}$.
 
 \begin{definition}
 	Un corps $\mathbb{K}$ est dit algébriquement clos si tout polynôme $P\in \mathbb{K}[X]$ de degré au moins $1$ possède une racine dans $\mathbb{K}$.
@@ -41,7 +42,7 @@ x & \longmapsto \val^{\mathbb{Q}_{p} } \left(a\right)/d
 	où $d$ et $a$ sont respectivement le degré et le terme constant du polynôme minimal de $x$.
 \end{definition}
 
-On retrouve alors une notion de positivité dans l'extension de corps et étendra à $\overline{\mathbb{Q}_{p}} $ la notation $x\ge 0$ si et seulement si $\val\left(x\right)\ge 0$. Il n'est cependant informatiquement pas très pratique de travailler dans $\overline{\mathbb{Q}_{p} }$ qui est n'est pas une extension finie de $\mathbb{Q}_{p} $ %\footnote{c'est-à-dire $\overline{\mathbb{Q}_{p} }$ est un $\mathbb{Q}_{p}$-espace vectoriel de dimension infinie }. On essayera donc de trouver des caractérisations permettant de savoir plus simplement si un polynôme est à racines positives, ce qui sera fait dans la prochaine section.
+On retrouve alors une notion de positivité dans l'extension de corps et étendra à $\overline{\mathbb{Q}_{p}} $ la notation $x\ge 0$ si et seulement si $\val\left(x\right)\ge 0$. Il n'est cependant informatiquement pas très pratique de travailler dans $\overline{\mathbb{Q}_{p} }$ qui est n'est pas une extension finie de $\mathbb{Q}_{p} $ \footnote{c'est-à-dire $\overline{\mathbb{Q}_{p} }$ est un $\mathbb{Q}_{p}$-espace vectoriel de dimension infinie }. On cherchera donc des caractérisations plus simples pour savoir si un polynôme est à racines positives, ce qui sera fait dans la prochaine section.
 
 \subsection{\Mats} 
 
@@ -97,4 +98,48 @@ Le $iii$. est laissé en exercice au lecteur.
 \input{convexemple.tex}
 
 \subsection{Zoologie Spectraèdrique}
-p
+Dans le cas réel de nombreux ensembles convexes peuvent être représentés comme des spectraèdres ou des projections de spectraèdres, il a même été conjecturé que tous les ensembles semialgébriques \footnote{$i.e.$ les ensembles définis par des inégalités polynomiales} convexes soient des ombres de spéctraèdres \todo{lien machin}. Bien que cette conjecture ait ensuite été prouvée fausse \todo{le lien}, il n'en reste pas loin qu'un nombre important d'ensemble admettant une telle représentation garantisse sa flexibilité 
+
+\begin{definition}
+	Couronnes
+
+	On appelle couronne tout ensemble $C$ défini par $C = \{x \in \mathbb{Q}_{p}  | a\le \val\left(x\right) \le b\} $ pour $a < b$ deux réels positifs fixés.
+\end{definition}
+
+Les couronnes sont un objet fondamentale de l'étude des espaces $p$-adique. \todo{expliquer pourquoi}. 
+\begin{proposition}
+	Les couronnes sont des projections de spectraèdres.
+\end{proposition} 
+
+\textit{Preuve :}
+Soit $C$ la couronne de paramètres $a<b \in R^*_+$.
+
+On considère pourtout $x,y \in \mathbb{Q}_{p} $ la matrice  $M(x,y) :=
+\begin{pmatrix} 
+p^ax & 0 & 0 & 0 \\
+0 & p^{-b}y & 0 & 0 \\
+0 & 0 & p^{-1} & p^{-1}x \\
+0 & 0 & p^{-1}y & - p^{-1}  \\
+\end{pmatrix} $ et le spectraèdre $\mathcal{S}= \{(x,y) \in \mathbb{Q}_{p}  : M(x,y) \succeq 0\} $
+
+Soient $x,y \in \mathbb{Q}_{p} $. Montrons que $x \in C$ si et seulement si  $\exists y \in \mathbb{Q}_{p} \left( x,y \right) \in \mathcal{S}$.
+
+Soient $x,y \in \mathbb{Q}_{p} $.
+En décomposant $M(x,y)$ en trois blocs : $p^ax$, $p^{-b}y $ et $M'(x,y) = \begin{pmatrix} p^{-1} & p^{-1}x \\ p^{-1} y & p^{-1}\end{pmatrix} $ et en utilisant \ref{caracsnp} on a que $M(x,y)$ est semi-définie positive si et seulement si 
+$
+\begin{cases}
+p^ax \ge 0 \\
+p^{-b}y \ge 0\\
+\text{Tr}M'\left( x,y \right) = 0 \ge 0\\
+\text{det} M'(x,y ) = p^{-2}\left( xy-1 \right)  \ge 0 
+\end{cases}
+$ 
+c'est à dire si et seulement si $beg \begin{cases}
+\label{caracsdp} 
+	\val\left(x\right)\ge a\\
+\val\left(y\right)\ge -b\\
+p^{-2} \left( xy-1 \right) \ge 0
+
+
+\end{cases}$
+Or $x \in C$ si et seulement si il existe $y \in \mathbb{Q}_{p} $ tel que $(x, y)$ vérifient \ref{caracsdp}. En effet, si $x, y$ vérifient \ref{caracsdp}alors $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ et $p^{-2} \left( xy-1 \right) \ge 0$ implique que $\val\left(x\right)+\val\left(y\right)=\val\left(xy\right) = \val\left(-1\right) =0$ et donc que $\val\left(x\right)=-\val\left(y\right)\le -(-b)  =b$, donc $x \in $. Puis réciproquement si $x \in C$ alors $(x,x^{-1}) $ vérifient \ref{caracsdp}  .

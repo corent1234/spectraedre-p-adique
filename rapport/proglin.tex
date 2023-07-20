@@ -1,16 +1,39 @@
-\section{Résolution de la programmation linéaire \texorpdfstring{p}{$p$}-adique} 
+\section{Résolution de la programmation linéaire \texorpdfstring{$p$}{p}-adique} 
+\label{appendixalgo} 
+Cette section présente le pseudo-code ainsi qu'une implémentation en \sage de l'algorithme de la section \ref{sectionalgo}.
+\input{algo.tex} 
 
 \begin{algorithm}
-\caption{Un joli algorithme}
-\begin{algorithmic}
-\REQUIRE{habiter près des montagnes}
-\REPEAT
- \IF{il fait beau}
-  \STATE faire une randonnée
- \ELSE[il fait moche]
-  \STATE résoudre P $\neq$ NP
- \ENDIF
-\UNTIL{foulure de cheville}
-\ENSURE{bobo}
+\caption{Résolution de la programmation $p$-adique}
+%\Entry Une matrice $A$ de taille $m \times n$, un vecteur $b$ de taille $m$ et un vecteur $c$ de taille $n$.
+\begin{algorithmic}[0]
+\State $S,P,Q$ = FormeNormaleDeSmith($A$)
+\State $r$ = rang($S$)
+\State $b' = P \times b$
+\State $c'$ = $c \times Q$
+\For{$i$ allant de $r+1$ à $m$}
+\If{$\val\left(b'[i] \right) < 0$}
+\State Pas de solution
+\EndIf
+\EndFor
+\For{$i$ allant de $r+1$ à $n$} 
+\If{$c'[i]\neq 0$}
+\State Le problème n'est pas borné
+\EndIf
+\EndFor
+\State $\tilde{c} =$Projection$\left( c', 1, r \right) $ \Comment On réduit le problème à un problème de taille $r$ 
+\State $\tilde{b} =$ Projection$\left(b', 1, r \right) $ 
+\State $\tilde{S} = $SousMatrice$\left( S, (1,r),(1,r) \right) $
+\State $\lambda_0 = \tilde{c}. S^{-1}. \tilde{b} $
+\State $v_0 = \min \left\{\val\left(z_{i}\right)| \left( z_1,\ldots,z_r \right) = \tilde{c}.S^{-1}  \right\}$
+
+\If{$\val\left( \lambda_0\right) < v_0$}
+\Return $\val\left( \lambda_0 \right)$
+\Else \Return $v_0$ \Comment Si l'on cherche à calculer la valuation maximale à la place il suffit de soulever une erreur au lieu de renvoyer $v_0$.
+\EndIf
 \end{algorithmic}
 \end{algorithm}
+
+Ou FormeNormaleDeSmith renvoie la forme normale de Smith de la matrice $A$ ainsi que les matrices $P$ et $Q$ telles que \todo{stick to a convention}. 
+
+L'algorithme s'exécute en $O\left( n^3 \right) $

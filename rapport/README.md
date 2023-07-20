@@ -1,1 +1,0 @@
-# spectraedre-p-adique
