@@ -21,11 +21,26 @@
 \end{propriete}
 
 \begin{definition}
-	On appelle \emph{spectraèdre} l'intersection de $\mathcal{S}_n^+\left(\mathbb{R}\right)$ avec un plan affine $\mathcal{L}$ de $\mathcal{S}_n\left(\mathbb{R}\right)$.
+	On appelle \emph{spectraèdre} l'intersection de $\mathcal{S}_n^+\left(\mathbb{R}\right)$ avec un \simone{espace} affine $\mathcal{L}$ de $\mathcal{S}_n\left(\mathbb{R}\right)$.
 \end{definition}
 
-En écrivant l'hyperplan $\mathcal{L}$ de $\mathcal{S}_n^+\left(\mathbb{R}\right)$ sous sa forme paramétrique \textit{i.e.} comme l'ensemble des matrices de la forme $A_0 + x_1 A_1 + \ldots x_s A_s$ pour $A_0,\ldots, A_s$ des matrices symétriques fixées on peut définir le spéctraèdre $\mathcal{S} = \mathcal{L} \cap \mathcal{S}_n^+\left(\mathbb{R}\right)$ comme $\mathcal{S} = \{A_0 + x_1A_1 + \ldots + x_s A_s \succeq 0| (x_1,\ldots,x_s) \in \mathbb{R}^s\} $. On identifie alors souvent ce dernier à sa préimage dans $\mathbb{R}^s$ $S = \{(x_1,\ldots,x_s) | A_0+ x_1A_1 + \ldots+ x_s A_s \succeq 0 \}. $
+En écrivant l'hyperplan $\mathcal{L}$ de $\mathcal{S}_n^+\left(\mathbb{R}\right)$ sous sa forme paramétrique \textit{i.e.} comme l'ensemble des matrices de la forme $A_0 + x_1 A_1 + \ldots x_s A_s$ pour $A_0,\ldots, A_s$ des matrices symétriques fixées on peut définir le spéctraèdre $\mathcal{S} = \mathcal{L} \cap \mathcal{S}_n^+\left(\mathbb{R}\right)$ comme
+\simone{$\mathcal{S} = \{A := A_0 + x_1A_1 + \ldots + x_s A_s | A \succeq 0, (x_1,\ldots,x_s) \in \mathbb{R}^s\}$}. On identifie alors souvent ce dernier à sa préimage dans $\mathbb{R}^s$
+$S = \{(x_1,\ldots,x_s) \simone{\in \mathbb{R}^s} | A_0+ x_1A_1 + \ldots+ x_s A_s \succeq 0 \}. $
 \todo{image + exemple}
+
+\simone{
+  \begin{ex} Un exemple celèbre de spectraèdre est l'ensemble des matrices symétrique semi-définie positives
+    avec diagonale $(1,1,1)$:
+    $$
+    S = \left\{
+    \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} \in \mathbb{R}^3 |
+    A:=\begin{pmatrix} 1 & x_1 & x_2 \\ x_1 & 1 & x_3 \\ x_2 & x_3 & 1 \end{pmatrix} \succeq 0
+    \right\}.
+    $$
+    La surface algébrique définie par $\det A(x_1,x_2,x_3) = 0$ est dite {\it cubique de Cayley}.
+  \end{ex}
+}
 
 \subsection{Programmation semi-définie positive}
 
