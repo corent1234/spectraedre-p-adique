@@ -66,6 +66,70 @@
       \verb https://www.sciencedirect.com/science/article/pii/S1385725858500766
       \endverb
     \endentry
+    \entry{porkolab1997complexity}{article}{}
+      \name{author}{2}{}{%
+        {{hash=47dd2e47ef08b449037b133f79e12380}{%
+           family={Porkolab},
+           familyi={P\bibinitperiod},
+           given={Lorant},
+           giveni={L\bibinitperiod}}}%
+        {{hash=04bc6e318c9ead1595fc9f143e83c261}{%
+           family={Khachiyan},
+           familyi={K\bibinitperiod},
+           given={Leonid},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{8e404b86374db471abdf635b690eee8d}
+      \strng{fullhash}{8e404b86374db471abdf635b690eee8d}
+      \strng{bibnamehash}{8e404b86374db471abdf635b690eee8d}
+      \strng{authorbibnamehash}{8e404b86374db471abdf635b690eee8d}
+      \strng{authornamehash}{8e404b86374db471abdf635b690eee8d}
+      \strng{authorfullhash}{8e404b86374db471abdf635b690eee8d}
+      \field{labelalpha}{PK97}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Global Optimization}
+      \field{number}{4}
+      \field{title}{On the complexity of semidefinite programs}
+      \field{volume}{10}
+      \field{year}{1997}
+      \field{pages}{351\bibrangedash 365}
+      \range{pages}{15}
+    \endentry
+    \entry{ramana1997exact}{article}{}
+      \name{author}{1}{}{%
+        {{hash=5bfdb6246551058a7204b33119d79066}{%
+           family={Ramana},
+           familyi={R\bibinitperiod},
+           given={Motakuri\bibnamedelima V},
+           giveni={M\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{5bfdb6246551058a7204b33119d79066}
+      \strng{fullhash}{5bfdb6246551058a7204b33119d79066}
+      \strng{bibnamehash}{5bfdb6246551058a7204b33119d79066}
+      \strng{authorbibnamehash}{5bfdb6246551058a7204b33119d79066}
+      \strng{authornamehash}{5bfdb6246551058a7204b33119d79066}
+      \strng{authorfullhash}{5bfdb6246551058a7204b33119d79066}
+      \field{labelalpha}{Ram97}
+      \field{sortinit}{1}
+      \field{sortinithash}{50c6687d7fc80f50136d75228e3c59ba}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematical Programming}
+      \field{title}{An exact duality theory for semidefinite programming and its complexity implications}
+      \field{volume}{77}
+      \field{year}{1997}
+      \field{pages}{129\bibrangedash 162}
+      \range{pages}{34}
+    \endentry
     \entry{gouvea_p-adic_2003}{book}{}
       \name{author}{1}{}{%
         {{hash=f1cd4ab0eea323485db0e5b5ea19fe47}{%
@@ -102,6 +166,108 @@
       \field{title}{P-adic numbers: an introduction}
       \field{year}{2003}
       \keyw{p-adic numbers}
+    \endentry
+    \entry{deKlerk}{book}{}
+      \name{author}{1}{}{%
+        {{hash=910390b6f841f8589aea1ef277cd07aa}{%
+           family={De\bibnamedelima Klerk},
+           familyi={D\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={Etienne},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Science \& Business Media}%
+      }
+      \strng{namehash}{910390b6f841f8589aea1ef277cd07aa}
+      \strng{fullhash}{910390b6f841f8589aea1ef277cd07aa}
+      \strng{bibnamehash}{910390b6f841f8589aea1ef277cd07aa}
+      \strng{authorbibnamehash}{910390b6f841f8589aea1ef277cd07aa}
+      \strng{authornamehash}{910390b6f841f8589aea1ef277cd07aa}
+      \strng{authorfullhash}{910390b6f841f8589aea1ef277cd07aa}
+      \field{labelalpha}{De 06}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Aspects of semidefinite programming: interior point algorithms and selected applications}
+      \field{volume}{65}
+      \field{year}{2006}
+    \endentry
+    \entry{sanyal}{article}{}
+      \name{author}{1}{}{%
+        {{hash=7aaf745d022d2472e63af1c6b61093f3}{%
+           family={Sanyal},
+           familyi={S\bibinitperiod},
+           given={Raman},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{7aaf745d022d2472e63af1c6b61093f3}
+      \strng{fullhash}{7aaf745d022d2472e63af1c6b61093f3}
+      \strng{bibnamehash}{7aaf745d022d2472e63af1c6b61093f3}
+      \strng{authorbibnamehash}{7aaf745d022d2472e63af1c6b61093f3}
+      \strng{authornamehash}{7aaf745d022d2472e63af1c6b61093f3}
+      \strng{authorfullhash}{7aaf745d022d2472e63af1c6b61093f3}
+      \field{labelalpha}{San13}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Advances in Geometry}
+      \field{number}{2}
+      \field{title}{On the derivative cones of polyhedral cones}
+      \field{volume}{13}
+      \field{year}{2013}
+      \field{pages}{315\bibrangedash 321}
+      \range{pages}{7}
+      \verb{doi}
+      \verb doi:10.1515/advgeom-2011-051
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1515/advgeom-2011-051
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1515/advgeom-2011-051
+      \endverb
+    \endentry
+    \entry{henrion2016exact}{article}{}
+      \name{author}{3}{}{%
+        {{hash=d789c480e529cc34b4f0bbde38a43005}{%
+           family={Henrion},
+           familyi={H\bibinitperiod},
+           given={Didier},
+           giveni={D\bibinitperiod}}}%
+        {{hash=d684f136b5712a73c414beb84b335410}{%
+           family={Naldi},
+           familyi={N\bibinitperiod},
+           given={Simone},
+           giveni={S\bibinitperiod}}}%
+        {{hash=6df9e6406861c0018303601110e388e0}{%
+           family={El\bibnamedelima Din},
+           familyi={E\bibinitperiod\bibinitdelim D\bibinitperiod},
+           given={Mohab\bibnamedelima Safey},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {SIAM}%
+      }
+      \strng{namehash}{a4d64096d0fc52399bd2c932cb590f2a}
+      \strng{fullhash}{a4d64096d0fc52399bd2c932cb590f2a}
+      \strng{bibnamehash}{a4d64096d0fc52399bd2c932cb590f2a}
+      \strng{authorbibnamehash}{a4d64096d0fc52399bd2c932cb590f2a}
+      \strng{authornamehash}{a4d64096d0fc52399bd2c932cb590f2a}
+      \strng{authorfullhash}{a4d64096d0fc52399bd2c932cb590f2a}
+      \field{labelalpha}{HNE16}
+      \field{sortinit}{2}
+      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{SIAM Journal on Optimization}
+      \field{number}{4}
+      \field{title}{Exact algorithms for linear matrix inequalities}
+      \field{volume}{26}
+      \field{year}{2016}
+      \field{pages}{2512\bibrangedash 2539}
+      \range{pages}{28}
     \endentry
     \entry{caruso_computations_2017}{misc}{}
       \name{author}{1}{}{%
