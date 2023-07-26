@@ -52,7 +52,7 @@
 \newcommand\Zp{ \ensuremath{ \mathbb {Z}_p }} 
 \newcommand\val{ \ensuremath{\text{val}_p} }  
 \renewcommand\P{ \mathcal{P} } 
-\newcommand\Pn{ \mathcal{P}_n \left( \Qp \right)} 
+\newcommand\Pn{ \mathcal{M}_n \left( \Zp \right)} 
 % Easily typeset systems of equations (French package)
 \usepackage{systeme}
 
@@ -284,6 +284,8 @@
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
-%\usepackage[frenchkw]{algorithm2e}
 
-%\include{algo.tex}%pour faire du pseudo code qui marhce ? 
+\usepackage{pdfpages} 
+
+%% macro Simone
+\newcommand\simone[1]{{\color{blue} #1}}
