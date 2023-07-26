@@ -1,13 +1,110 @@
 \section{Forme normale de Smith}
 \label{smith} 
-On revient dans cette partie sur la construction de la forme normale de Smith d'une matrice ainsi que sur les principaux résultats sur cette dernière. Ces résultats sont utilisé dans l'algorithme présenté en section \ref{sectionalgo} 
-
-\begin{propriete}
-	Il existe une unique matrice $0$ 
+On revient dans cette partie sur la construction de la forme normale de Smith d'une matrice ainsi que sur les principaux résultats sur cette dernière. Ces résultats sont utilisé dans l'algorithme présenté en section \ref{sectionalgo}.  Les preuves de cette section ont étés tirées de \todo{le lien} puis rapportées au cas $p$-adique, là ou le cours original se place dans le cadre plus général des anneaux euclidiens.
 
 
-\end{propriete}
 
-\begin{proof}
-i
-\end{proof}
+\begin{rappel}
+	On appelle forme normale de Smith d'une matrice $M \in \mathcal{M}_{m,n}\left(\mathbb{Q}_{p} \right) $ de rang $r$ l'unique matrice $S$ de la forme $$S =  
+	\begin{pmatrix} p^{a_1} & \\
+		 & \ddots \\
+		 & & p^{ar}\\
+		 & & & 0\\
+		 & & & & \ddots \end{pmatrix} $$
+		 telle que $a_1\le  \ldots\le a_r$ et $M =  Q^{-1} S P$ avec $P \in \mathcal{G}L_n\left( \mathbb{Z}_p \right) $ et $Q \in \mathcal{G}L_m\left( \mathbb{Z}_p \right) $.
+\end{rappel}
+\textbf{Remarque préliminaire} 
+Soit $M$ une matrice de $\mathcal{M}_{m,n}\left(\mathbb{Q}_{p} \right) $. Pour $k \in \mathbb{N}$ suffisamment grand $M_k := p^k M$ est à coefficient dans$\mathcal{M}_{n}\left(\mathbb{Z}_p\right)$. Il suffit donc de montrer l'existence et l'unicité de la forme normale de Smith sur les matrices de $\mathcal{M}_{n}\left(\mathbb{Z}_p\right) $ pour l'avoir sur toutes les matrices à coefficients dans $\mathbb{Q}_{p}$.
+
+\begin{proof} Existence de la forme normale de Smith.
+
+On démontrera le résultat par récurrence sur $m+n$. 
+
+Les résultats dans les cas $n+m= 0,1$ et $2$ étant immédiats, on a l'initialisation.
+
+Soit $k \in \mathbb{N}$ tel que tout matrice $M \in M_{m,n}\left( \mathbb{Z}_{p}  \right) $ avec $m+n \le  k$ admettent une forme normale de Smith.
+
+	Soient $m,n \in \mathbb{N}$ tels que $m+n = k+1$ et $M \in \mathcal{M}_{m,n}\left(\mathbb{Z}_p\right) $.
+
+	Si $M$ est nulle le résultat est immédiat. On supposera donc $M \neq 0$. 
+	On peut alors trouver un coefficient $\alpha$ de $M$ de valuation minimale $a_1$. En multipliant $M$ à droite et à gauche par des matrices de permutation on peut faire remonter ce coefficient en position $(1,1)$. $M$ est alors équivalente à une matrice $N$ de la forme :
+
+	\[
+N = 		\begin{pmatrix} \alpha & N_{1,2} & \ldots & N_{1,n} \\
+			N_{2,1} & * & \ldots & *\\
+			\vdots & \vdots & \ddots & \vdots \\
+			N_{m,1} &* & \ldots & *\\
+		\end{pmatrix} 
+	.\] 
+	On considère alors $\tilde{\alpha} := \alpha^{-1} p^{a_1}$ ainsi $\alpha\tilde{\alpha} = p^{a_1} $ et $\tilde{\alpha} \in \mathbb{Z}_p^\times $ conformément à \ref{lemmeinversible}.
+Multiplier à gauche $N$ par la matrice $\text{diag}( \tilde{\alpha}, 0, \ldots,0)$ conserve l'équivalence dans $\mathbb{Z}_p$ \footnote{car on multiplie par une matrice de déterminant inversible dans $\mathbb{Z}_p$ et donc elle même inversible.} et permet d'obtenir une matrice $\tilde{N}$ :
+	\[
+\tilde{N} = 		\begin{pmatrix} p^{a_1} & \tilde{N}_{1,2} & \ldots & \tilde{N}_{1,n} \\
+			N_{2,1} & * & \ldots & *\\
+			\vdots & \vdots & \ddots & \vdots \\
+			N_{m,1} &* & \ldots & *\\
+		\end{pmatrix} 
+	.\] 
+	
+
+On remarque en particulier que le passage de $N$ à $\tilde{N}$ ne modifie pas la valuation de ses éléments. Or $N$ s'écrivant comme permutation des coefficients de $M$ $p^{a_1} $ reste un coefficient de $\tilde{N}$ de valuation minimale. À ce titre pour tout $2\le i\le m$ il existe $q_{i} \in \mathbb{Z}_p$ tel que $\tilde{N}_{i,1} = p^{a_1}q_{i}$ et de même pour tout $2\le j\le n$ on dispose de $p_{j} \in \mathbb{Z}_p$ vérifiant $N_{1,j} = p^{a_1} p_{j}$. On fixe de tels $q_{i}$ et $p_{j}$. En ajoutant à la $i$-ième ligne de $\tilde{N}$ $q_{i}$ fois la première pour $2\le i\le m$ on annule alors tous les coefficients de la première ligne sauf $p^{a_1}$ en conservant l'équivalence.
+
+	\[
+ 		\begin{pmatrix} p^{a_1}  & \tilde{N}_{1,2}- p^{a_1}  q_{i} & \ldots & \tilde{N}_{1,n}- p^{a_1}  q_{i} \\
+			N_{2,1} & * & \ldots & *\\
+			\vdots & \vdots & \ddots & \vdots \\
+			N_{m,1} &* & \ldots & *\\
+		\end{pmatrix} 
+ = 		\begin{pmatrix} p^{a_1}& 0 & \ldots & 0 \\
+			N_{2,1} & * & \ldots & *\\
+			\vdots & \vdots & \ddots & \vdots \\
+			N_{m,1} &* & \ldots & *\\
+		\end{pmatrix} 
+	.\] 
+
+On procède alors pareillement pour les colonnes en ajoutant à la $j$-ième colonne de la matrice nouvellement obtenue $p_{j}$ fois la première pour obtenir une matrice dont le seul coefficient non nul de la première ligne et colonne est $p^{a_1}$.
+
+	\[ 		\begin{pmatrix}  p^{a_1}& 0 & \ldots & 0 \\
+			0 & * & \ldots & *\\
+			\vdots & \vdots & \ddots & \vdots \\
+			0 &* & \ldots & *\\
+		\end{pmatrix} 
+	.\] 
+
+Dans les cas particuliers ou $m = 1$ ou $n=1$ la preuve s'arrête ici, la matrice étant de la forme demandée. 
+Sinon les coefficients de la matrice nouvellement obtenue s'écrive comme sommes et produits de coefficients de $M$ et sont de valuation supérieure à $a_1$. On applique alors l'hypothèse de récurrence et obtient le résultat.
+	\end{proof}
+
+	\begin{remarques}
+		On observe que la preuve ci-dessus décrit en fait une procédure permettant de canuler la forme normale de Smith d'une matrice ainsi que des matrices de passages associées en $O\left( \max\left( m,n \right) ^3 \right) $ opérations. Il est cependant possible d'obtenir ce même résultats en $O(n^{ \omega}) $ \todo{comment je dis que Tristan a pas encore publié l'article} .
+	\end{remarques}
+
+
+
+	\begin{proof} Unicité de la forme normale de Smith
+		Soit $M \in \mathcal{M}_{m,n}\left(\mathbb{Z}_p\right) $ et $S = \begin{pmatrix} p^{a_1} & \\
+		 & \ddots \\
+		 & & p^{ar}\\
+		 & & & 0\\
+		 & & & & \ddots \end{pmatrix} $ sa forme normale de Smith.
+
+		La preuve de l'unicité repose sur le fait que la valuation minimale pour les sous-déterminants de taille $k\times k$ de $M$ soit $a_1 + a_2 + \ldots + a_r$ si $k\le r$ et $0$ sinon pour $k=1,\ldots, \min(m,n)$. Ce qui permet de conclure immédiatement à l'unicité de $S$.
+
+		On note pour toute matrice $A \in \mathcal{M}_{m,n}\left(\mathbb{Z}_{p} \right) $, $v_k(A)$ la valuation minimale des déterminants de taille $k\times k$ de A, pour $k=1\ldots \min\left( m,n \right) $.
+
+		Remarquons tout d'abord la propriété suivante : pour tous $A \in \mathcal{M}_{m,n}\left(\mathbb{Z}_p\right) $ et $Q \in \mathcal{M}_{n}\left(\mathbb{Z}_p\right), v_k(AQ) \le v_k(A)$
+
+	Le résultat est une conséquence immédiate de \ref{propval}.
+
+	On en déduit alors ce résultat plus fort :
+	Pour toutes matrice $A \in \mathcal{M}_{m,n}\left(\mathbb{Z}_p\right) $, $P \in \mathcal{G}L_n\left( \mathbb{Z}_p \right) $ et $Q \in \mathcal{G}L_m\left( \mathbb{Z}_p \right) $ on a $v_k(A) = v_k(PAQ)$. 
+
+	En effet, soient $A\in \mathcal{M}_{m,n}\left(\mathbb{Z}_p\right) $, $P \in \mathcal{M}_{n}\left(\mathbb{Z}_p\right) $ et $Q \in \mathcal{M}_{m}\left(\mathbb{Z}_p\right) $.
+	On a l'inégalité suivante par invariance de $v_k$ par transposition :
+	$$v_k(PAQ) \le v_k(PA) = v_k\left( (PA)^T \right) = v_k(A^T P^T) \le v_k(A).$$
+	Puis de même $v_k(A) = v_k(P^{-1}(PAQ)Q^{-1}) \le v_k(PAQ)$.
+
+
+En appliquant ce résultat à $M$ et $S$ on a que pour tout $1\le k\le \max(m,n) $ $v_k(M)  = v_k(S)$, or par définition de $S$, $v_k(S) = a_1 + a_2 + \ldots + a_r$ si $k\le r$ et $0$ sinon. D'où le résultat.
+
+	\end{proof}

@@ -3,10 +3,36 @@
 
 Cette section de l'appendice présente la plupart des preuves qui n'ont pas été traitées en section \ref{padic} ainsi que quelques compléments sur les nombres $p$-adique pour en avoir une meilleur appréhension.
 
+
+\subsection*{Représentation sous forme d'arbre}
+Un façon intuitive de se représenter les nombres $p$-adiques est de les écrire comme les feuilles d'un arbre infini.
+
+On considère l'arbre $\mathcal{T}(\mathbb{Z}_p)$ dont les nœuds sont les suites finies à coefficients dans $\{1,\ldots,p\} $ et tels que deux sommets sont reliés entre eux si et seulement si 
+
 \begin{proof} \hypertarget{qpcorpspreuve}{Proposition \ref{qpcorps}} 
+En réalité on dispose même d'un résultat plus précis : $\mathbb{Q}_{p}$ est le corps des fractions de $\mathbb{Z}_p$. Pour prouver ce résultat on utilisera le lemme suivant :
+\begin{lemme}
+	\label{lemmeinversible} 
+	Les inversibles de $\mathbb{Z}_p$ sont exactement les entiers $p$-adique $\overline{\ldots x_n\ldots x_1x_0}$ tels que $x_0$ est non nul.
+\end{lemme}
+\textit{Preuve du lemme :} 
+Un entier $p$-adique $x = \overline{\ldots x_n \ldots x_1 x_0}$ est inversible si et seulement si il est inversible dans $\mathbb{Z}{/p^n\mathbb{Z}}$ pour tout $n \in \mathbb{N}$, c'est-à-dire si et seulement si $ \sum \limits_{i=0}^{n}p^i x_{i}$ est premier avec $p^n$ pour tout $n \in \mathbb{N}$ ce qui est équivalent à $x_0$ premier avec $p$ et donc $x_0 \neq 0$.
+
+Ensuite il suffit de remarquer que tout entier $p$-adique non nul $x = \overline{\ldots x_n \ldots x_1 x_0}$ s'écrit $p^n \tilde{x}$ avec $\tilde{x} \in \mathbb{Z}_p^\times $ et $n$ un entier naturel. On a de plus unicité par \ref{lemmeinversible}. 
+
+En effet, si on pose $n$ le plus petit entier naturel tel que $x_n \neq 0$\footnote{c'est-à-dire la valuation de $x$} et $\tilde{x} := \overline{\ldots x_n }$ on a immédiatement $ x = p^n \tilde{x}$ et $\tilde{x} \in \mathbb{Z}_p^\times $. Il est alors immédiat que $\mathbb{Q}_{p} = \mathbb{Z}_p[\frac{1}{p}]$ est le plus petit corps contenant $\mathbb{Z}_p$
+
 \end{proof}
 
 \begin{proof} \hypertarget{propvalpreuve}{Propriété \ref{propval} }  
-	
+	Soient $x,y$ deux entiers naturels de valuation $n := \val\left(x\right)$ et $m := \val\left(y\right)$.
+	On peut alors écrire $x = p^n \tilde{x}$ et $y = p^m \tilde{y}$ avec $\tilde{x}, \tilde{y} \in \mathbb{Z}_p^\times $, comme vu \hyperref{qpcorpspreuve}{plus haut}.
+	On a alors tout d'abord $xy = (\tilde{x}\tilde{y}) p^{n+m}$ et donc par unicité de la décomposition $\val\left(xy\right) = \val\left(x\right)+\val\left(y\right) $.
+
+Ensuite, on trouve que $x+y \in p^n \mathbb{Z}_p+ p^m \mathbb{Z}_p = p ^{\min\left( m,n \right) }\mathbb{Z}_p $ ce qui signifie que $\val\left(x+y\right)\ge \min\left( \val\left(x\right), \val\left(y\right) \right) $. Puis si $m\neq n$ on peut supposer sans perte de généralité que $m>n$ et $x+y$ s'écrit alors $p^n(p^{m-n} \tilde{x} + \tilde{y})$ et par \ref{lemmeinversible}, $p^{m-n}\tilde{x}+\tilde{y} \in \mathbb{Z}_p^\times$.  
 \end{proof}
 
+\begin{proof} \hypertarget{caracsdppreuve}{Théorème \ref{caracsdp} }
+
+
+\end{proof} 
