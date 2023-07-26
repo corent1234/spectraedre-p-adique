@@ -86,16 +86,16 @@ Un nombre $p$-adique $x$ s'écrit alors comme une somme de la forme $x = \sum \l
 \end{propriete}
 \textit{Preuve :} Voir \hyperlink{qpcorpspreuve}{annexe}.   
 
-\todo{exemple d'opérations dans $\mathbb{Q}_{p} $ } 
+%\todo{exemple d'opérations dans $\mathbb{Q}_{p} $ } 
 \begin{corollaire}
 	Le corps $\mathbb{Q}$ des rationnels est un sous-corps de $\mathbb{Q}_{p} $.
 \end{corollaire}
-\todo{les personne habitués pourrait y voir une analogie avec la contruction de R[[X]} 
+%\todo{les personne habitués pourrait y voir une analogie avec la contruction de R[[X]} 
 Ce dernier résultat permet de construire de manière assez élémentaire des éléments de $\mathbb{Q}_{p}$ qui ne sont pas des entiers $p$-adique.
 
 \subsection{Valuation et norme}
 
-	\todo{Petit paragraphe introducif} 
+%	\todo{Petit paragraphe introducif} 
 On définit la valuation $p$-adique dans $\mathbb{Z}$ $\val^{\mathbb{Z}}:\mathbb{Z}\to \mathbb{N}\cup \{+\infty\}  $ comme l'application qui à 0 associe $+\infty$ et à un entier $a$ non nul associe le plus grand entier naturel $k$ tel que $p^k | a$.% ou de façon équivalente en considérant $\sum \limits_{i=1}^{n} a_{i} p^i$ la décomposition de $a$ en base $p$, la valuation $p$-adique de $a$ est le plus petit $a_{i}$ non nul. 
 
 La valuation $p$-adique s'étend ensuite aux nombres rationnels en une application $\val^{\mathbb{Q}} : \mathbb{Q} \to \mathbb{Z}\cup \{+\infty\}   $ en définissant pour tout $r \in \mathbb{Q}$  $\val^{\mathbb{Q}} \left( r \right) = \val^\mathbb{Z}(a)- \val^\mathbb{Z}\left( b \right) $ avec $a,b \in \mathbb{Z} \times \mathbb{N}^*$ tels que $r=\frac{a}{b}.$   
@@ -109,9 +109,8 @@ Une manière simple de visualiser la valuation d'un nombre $p$-adique est de com
 
 En effet, la valuation d'un entier $p$-adique correspond au nombres de $0$ à la fin de son écriture décimale et pour un nombre $p$-adique non entier il s'agit de l'opposé nombre de chiffres $p$-adiques après la virgule. Par exemple, $\val\left( \ldots 2413000 \right) = 3$ et $\val\left( \ldots 251,24 \right) = -2$.       
 
-Le principal intérêt qu'offre la notion de valuation pour le sujet développé ici est qu'elle permet de définir une notion de positivité dans un corps qui n'est pas totalement ordonnable \todo{i.e.}. À cet effet on introduira la notation suivante :
+Le principal intérêt qu'offre la notion de valuation pour le sujet développé ici est qu'elle permet de définir une notion de positivité dans un corps qui n'est pas totalement ordonnable \footnote{i.e. il n'y a pas relation d'ordre $\ge $ sur $\mathbb{Q}_{p}$ compatible avec l'addition et telle que $\forall s\ge 0$ $x\ge y \Rightarrow sx\ge sy$.}. À cet effet on introduira la notation suivante :
 \begin{notation}
-	  
 	Pour tout élément $x \in \mathbb{Q}_{p} $, on dit que $x$ est \hypertarget{positif}{\textit{positif}} et on note $x\ge 0$ si $\val\left(x\right)\ge 0$. On en induit alors les notations $x> 0$, $x\le 0$ et $x<0$.  
 \end{notation}
 
@@ -121,7 +120,7 @@ Le principal intérêt qu'offre la notion de valuation pour le sujet développé
 	La valuation $p$-adique possède les propriétés suivantes, pour tous $x$ et $y$ appartenant à $\mathbb{Q}_{p} $ :   
 	\begin{enumerate}
 		\label{propval} 
-		\item $\val(x+y) \ge \min\left( \val\left( x \right), \val\left( y \right)  \right) $ 
+		\item $\val(x+y) \ge \min\left( \val\left( x \right), \val\left( y \right)  \right) $ avec égalité si $\val\left(x\right) \neq \val\left(y\right)$
 		\item $\val\left( xy \right) = \val (x) + \val( y)$ 
 	\end{enumerate}
 \end{propriete}
