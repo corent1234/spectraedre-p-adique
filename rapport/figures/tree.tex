@@ -1,0 +1,29 @@
+% https://q.uiver.app/#q=WzAsMTUsWzEsMywiMDAiXSxbMCw1LCIwMDAiXSxbMiw1LCIwMDEiXSxbNCwzLCIwMSJdLFszLDUsIjAxMCJdLFs1LDUsIjAxMSJdLFs3LDUsIjEwMCJdLFs5LDUsIjEwMSJdLFsxMCw1LCIxMTAiXSxbMTIsNSwiMTExIl0sWzMsMSwiMCJdLFs4LDMsIjEwIl0sWzExLDMsIjExIl0sWzksMSwiMSJdLFs2LDAsIlxcYnVsbGV0Il0sWzAsMV0sWzAsMl0sWzMsNF0sWzMsNV0sWzEwLDBdLFsxMCwzXSxbMTEsNl0sWzExLDddLFsxMiw4XSxbMTIsOV0sWzEzLDExXSxbMTMsMTJdLFsxNCwxMF0sWzE0LDEzXV0=
+\newcommand\lacolora{purple} 
+\newcommand\lacouleur{\color{\lacolora}}  
+\[\begin{tikzcd}[sep=tiny]
+	&&&&&&& \lacouleur{\bullet} \\
+	&&&& \lacouleur{0} &&&&&& 1 \\
+	\\
+	&& 00 &&& \lacouleur{10} &&&& 01 &&& 11 \\
+	\\
+	&000 && 100 & \lacouleur{010} && 110 && 001 && 101 & 011 && 111\\
+	&\vdots && \vdots & \lacouleur{\vdots} && \vdots && \vdots && \vdots & \vdots && \vdots\\
+	\hline\\
+	\mathbb{Z}_p&      &&& \lacouleur{\ldots011010}&&&&&&&&&
+	\arrow[from=4-3, to=6-2]
+	\arrow[from=4-3, to=6-4]
+	\arrow[from=4-6, to=6-5, \lacolora]
+	\arrow[from=4-6, to=6-7]
+	\arrow[from=2-5, to=4-3]
+	\arrow[from=2-5, to=4-6, \lacolora]
+	\arrow[from=4-10, to=6-9]
+	\arrow[from=4-10, to=6-11]
+	\arrow[from=4-13, to=6-12]
+	\arrow[from=4-13, to=6-14]
+	\arrow[from=2-11, to=4-10]
+	\arrow[from=2-11, to=4-13]
+	\arrow[from=1-8, to=2-5, \lacolora]
+	\arrow[from=1-8, to=2-11]
+\end{tikzcd}\]
+

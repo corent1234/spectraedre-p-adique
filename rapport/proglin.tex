@@ -1,6 +1,8 @@
 \section{Résolution de la programmation linéaire \texorpdfstring{$p$}{p}-adique} 
 \label{appendixalgo} 
-Cette section présente le pseudo-code ainsi qu'une implémentation en \sage de l'algorithme de la section \ref{sectionalgo}.
+Cette section présente le pseudo-code \iffalse ainsi qu'une implémentation en \sage \fi de l'algorithme de la section \ref{sectionalgo}.
+
+%\subsection*{Pseudo-code} 
 \input{algo.tex} 
 
 \begin{algorithm}
@@ -35,6 +37,12 @@ Cette section présente le pseudo-code ainsi qu'une implémentation en \sage de 
 \end{algorithmic}
 \end{algorithm}
 
-Ou FormeNormaleDeSmith renvoie la forme normale de Smith de la matrice $A$ ainsi que les matrices $P$ et $Q$ telles que \todo{stick to a convention}. 
+Ou FormeNormaleDeSmith renvoie la forme normale de Smith $S$ de la matrice $A$ ainsi que les matrices $P$ et $Q$ telles que $A = Q^{-1}SP$. 
 
 L'algorithme s'exécute en $O\left( n^3 \right) $
+
+
+%\subsection*{Code \sage}
+
+%\lstinputlisting[language=Python]{../sage/polyhedra.sage}
+

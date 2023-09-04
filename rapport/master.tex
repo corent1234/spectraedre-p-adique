@@ -3,34 +3,41 @@
 \input{preamble.tex}
 \addbibresource{bibstage.bib}
 
-\title{Rapport de stage L3
+\title{
+	Vers les Spectraèdres \texorpdfstring{$p$}{p}-adiques, définition et propriétés algorithmiques
+}
 
-\large Sous la supervision de Tristan Vaccon et Simone Naldi} 
-
-\newcommand{\sage}{SageMath} 
-\newcommand\emp{\textit}   
+\newcommand{\sage}{SageMath}
+\newcommand\emp[1]{\textcolor{teal}{\textit{#1}}}
+\newcommand{\complalgo}{\max\left( m,n \right)^2  }%complexité de l'algorithme
 \begin{document}
-\include{algo.tex} 
 
-
-\maketitle
-    \tableofcontents
-    \input{intro.tex}
-    %Les principales sections du rapport 
+\input{garde.tex}
+%\maketitle
+    \input{abstract.tex}
+    %Les principales sections du rapport
  
-    \input{realspectrahedra.tex} 
+    \tableofcontents
+
+    \newpage
+    
+    \input{intro.tex} 
+    \input{jeracontemavie.tex}
+
+    \input{realspectrahedra.tex}
     \input{padic.tex}
     \input{polyhedra.tex}
-    \input{spectrahedra.tex} 
+    \input{spectrahedra.tex}
+    \input{conclusion.tex} 
 
-
-
+    \newpage
     %Appendice
     \appendix
-    \input{complpadic.tex} 
-    \input{smith.tex}     
-    \input{proglin.tex} 
+    \input{complpadic.tex}
+    \input{smith.tex}
+    \input{proglin.tex}
 
+    \newpage
     \printbibliography
     
 \end{document}

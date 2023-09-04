@@ -11,6 +11,7 @@
 
 \usepackage{xlop}%pour poser des additions
 
+\usepackage{listings}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
@@ -23,13 +24,13 @@
 %\pdfminorversion=7
 
 % Don't indent paragraphs, leave some space between them
-\usepackage{parskip}
+%\usepackage{parskip}
 
 % Hide page number when page is empty
 \usepackage{emptypage}
 \usepackage{subcaption}
 \usepackage{multicol}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 
 % Other font I sometimes use.
 % \usepackage{cmbright}
@@ -81,7 +82,7 @@
 % horizontal rule
 \newcommand\hr{
     \noindent\rule[0.5ex]{\linewidth}{0.5pt}
-}
+[dvipsnames][dvipsnames]}
 
 % hide parts
 \newcommand\hide[1]{}
@@ -94,20 +95,20 @@
 \makeatother
 % For box around Definition, Theorem, \ldots
 \usepackage{mdframed}
-\mdfsetup{skipabove=1em,skipbelow=0em}
+\mdfsetup{skipabove=.2em,skipbelow=0em}
 \theoremstyle{definition}
-\newmdtheoremenv[nobreak=true]{consequence}{Conséquence}
-\newmdtheoremenv[nobreak=true]{propriete}{Propriété}
-\newmdtheoremenv[nobreak=true]{proprietes}{Propriétés}
-\newmdtheoremenv[nobreak=true]{lemme}{Lemme}
-\newmdtheoremenv[nobreak=true]{proposition}{Proposition}
-\newmdtheoremenv[nobreak=true]{theoreme}{Théorème}
-\newmdtheoremenv[nobreak=true]{loi}{Loi}
-\newmdtheoremenv[nobreak=true]{postulat}{Postulat}
-\newmdtheoremenv{conclusion}{Conclusion}
-\newmdtheoremenv{corollaire}{Corollaire}
-\newmdtheoremenv{corrollaire}{Corollaire}
-\newmdtheoremenv{conjecture}{Conjecture}
+\newmdtheoremenv[nobreak=true]{consequence}{Conséquence}[subsection]
+\newmdtheoremenv[nobreak=true]{propriete}[consequence]{Propriété}
+\newmdtheoremenv[nobreak=true]{proprietes}[consequence]{Propriétés}
+\newmdtheoremenv[nobreak=true]{lemme}[consequence]{Lemme}
+\newmdtheoremenv[nobreak=true]{proposition}[consequence]{Proposition}
+\newmdtheoremenv[nobreak=true]{theoreme}[consequence]{Théorème}
+\newmdtheoremenv[nobreak=true]{loi}[consequence]{Loi}
+\newmdtheoremenv[nobreak=true]{postulat}[consequence]{Postulat}
+\newmdtheoremenv{conclusion}[consequence]{Conclusion}
+\newmdtheoremenv{corollaire}[consequence]{Corollaire}
+\newmdtheoremenv{corrollaire}[consequence]{Corollaire}
+\newmdtheoremenv{conjecture}[consequence]{Conjecture}
 \newtheorem*{rappel}{Rappel}
 \newtheorem*{remarque}{Remarque}
 \newtheorem*{remarques}{Remarques}
@@ -122,7 +123,7 @@
 \newtheorem*{ex}{Exemple}
 \newtheorem*{vraag}{Vraag}
 
-\newmdtheoremenv[nobreak=true]{definition}{Définition}
+\newmdtheoremenv[nobreak=true]{definition}[consequence]{Définition}
 \newtheorem*{eg}{Example}
 %\newtheorem*{notation}{Notation}
 \newtheorem*{previouslyseen}{As previously seen}
@@ -287,5 +288,9 @@
 
 \usepackage{pdfpages} 
 
+%to create trees
+\usepackage{tikz-cd} 
 %% macro Simone
 \newcommand\simone[1]{{\color{blue} #1}}
+
+
