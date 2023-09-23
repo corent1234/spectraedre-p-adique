@@ -1,48 +1,46 @@
 \section{Introduction aux nombres \texorpdfstring{$p$}{p}-adiques}
 \label{padic}
 
-On se contentera dans cette section d'une description très élémentaire des différentes définitions et propriétés des nombres $p$-adiques. La plupart des preuves relatives à cette section ainsi que de plus amples informations sont disponibles en \ref{cpadic}. Cette section est très largement inspiré du cours de Xavier Caruso \parencite{caruso_computations_2017} que l'on invite d'ailleurs à aller consulter pour une vision plus complète mais très largement compréhensible.
+On se contentera dans cette section d'une description très élémentaire de différentes définitions et propriétés des nombres $p$-adiques. La plupart des preuves relatives à cette section ainsi que de plus amples informations sont disponibles en \ref{cpadic}. Cette section est très largement inspirée du cours de Xavier Caruso \parencite{caruso_computations_2017} que l'on invite d'ailleurs à aller consulter pour une vision plus complète mais très largement compréhensible des corps $p$-adiques.
 
 \begin{notation}
 	On considère pour tout ce rapport $p$ un nombre premier.
 \end{notation}
 
 \subsection{Entiers \texorpdfstring{$p$}{p}-adique} 
+
 \begin{definition}{Entier $p$-adique }
 
-On appelle entier $p$-adique la somme formelle :
+	On appelle \emp{entier $p$-adique} la somme formelle :
 \[
-	z  = a_0 + a_1 p + \ldots+a_{n}p^n+\ldots
+	a  = a_0 + a_1 p + \ldots+a_{n}p^n+\ldots
 \]
 où les $a_i$ sont des entiers compris entre $0$ et $p-1$.
 
 \end{definition}
-
 \begin{remarques}
-	\begin{itemize}
-		\item[$\circ$]  On note $\Zp$ l'ensemble des entier $p-$adiques.
+	\begin{itemize} \
+		
+		\item[$\circ$]  L'ensemble des entiers $p$-adiques est noté $\Zp$.
 		\item[$\circ$] Par commodité on notera $\overline{\ldots a_n\ldots a_1 a_0}^p$ ou plus simplement $\ldots a_n \ldots a_1a_0$ l'entier $p$-adique $\sum a_{i}p^i$ 
 \end{itemize}
 \end{remarques}
 
 \begin{ex} \
 
-	Ainsi les sommes $\sum\limits_{i=0}^{ \infty} p^i = \overline{\ldots1111111}^p$ ou $\sum\limits_{i=0}^{ \infty} (i\ \text{mod}\ p) p^i =\overline{ \ldots210(p-1)\ldots21}^p $ sont des entiers $p$-adiques parfaitement définis bien que ne convergeant pas dans le cas réel. 
+	Ainsi les sommes $\sum\limits_{i=0}^{ \infty} p^i = \overline{\ldots1111111}^p$ ou $\sum\limits_{i=0}^{ \infty} (i\ \text{mod}\ p) p^i =\overline{ \ldots210(p-1)\ldots210}^p $ sont des entiers $p$-adiques parfaitement définis bien que ne convergeant pas dans le cas réel.
 \end{ex}
 
 \begin{propriete}
-	$\mathbb{Z}_p$ peut être muni d'une structure d'anneau commutatif intègre en lui adjoignant l'addition terme à terme avec retenue et la multiplication.
+	$\mathbb{Z}_p$ peut être muni d'une structure d'anneau commutatif intègre en lui adjoignant l'addition terme à terme avec retenue et la multiplication avec retenue.
 \end{propriete}
 
+\begin{ex}
+	
 Par exemple dans $\mathbb{Z}_5$ 
 
-
-\begin{definition}
-	L'anneau $\mathbb{Z}$ des entiers relatifs s'identifie naturellement à un sous-anneau de $\mathbb{Z}_p$.
-\end{definition}
-\begin{table}[htpb]
+\begin{figure}[htpb]
 	\centering
-	\caption{Exemples d'opérations dans $\mathbb{Z}_p$}
 	\label{tab:op}
 	\begin{tabular}{cc }
 		\begin{tabular}[t]{lS}
@@ -66,60 +64,96 @@ Par exemple dans $\mathbb{Z}_5$
 & \ldots14443	
 \end{tabular}  
 	\end{tabular}
-\end{table}
+	\caption{Exemples d'opérations dans $\mathbb{Z}_5$}
+\end{figure}
+
+\end{ex}
+
+\begin{proposition}
+	L'anneau $\mathbb{Z}$ des entiers relatifs s'identifie naturellement à un sous-anneau de $\mathbb{Z}_p$.
+\end{proposition}
+
 \begin{remarque}
-	Si l'on a vu que les entiers relatifs étaient des entiers $p$-adiques, certains entiers $p$-adique ont du sens en tant que nombre rationnels sans être des entiers relatifs, ainsi on a par exemple $\frac{1}{2} = \ldots 2223 \in \mathbb{Z}_5$. Cependant tous les rationnels ne sont pas éléments de $\mathbb{Z}_p$, $\frac{1}{p}$ n'étant par exemple jamais inclus dans $\mathbb{Z}_p$.
+	Si l'on a vu les entiers relatifs sont des entiers $p$-adiques, certains entiers $p$-adiques ont du sens en tant que nombre rationnels sans être des entiers relatifs, ainsi on a par exemple $\frac{1}{2} = \ldots 2223 \in \mathbb{Z}_5$. Cependant tous les rationnels ne sont pas éléments de $\mathbb{Z}_p$, $\frac{1}{p}$ n'étant par exemple jamais inclus dans $\mathbb{Z}_p$.
 \end{remarque}
 
 \subsection{Nombres \texorpdfstring{$p$}{p}-adiques}
 
 \begin{definition} Nombres $p$-adiques 
 
-	On définit l'ensemble $\Qp$ des nombres $p$-adiques comme $\mathbb{Z}_p \left[ \frac{1}{p} \right] \footnote{Le lecteur habitué à travailler dans $R[[X]]$ y verra dans la construction de $\mathbb{Q}_{p} $ à partir de $\mathbb{Z}_p$ une ressemblance avec celle de $R(X)$ à partir de $R[[X]]$. De nombreux autres similitudes entres ces ensemble peuvent être trouvées mais nos éviterons de les faire apparaître afin de rester à un niveau élémentaire (à reformuler bien).}  $.
+
+	On définit l'ensemble $\Qp$ des \emp{nombres $p$-adiques} comme $\mathbb{Z}_p \left[ \frac{1}{p} \right] $.
 \end{definition}
 
-Un nombre $p$-adique $x$ s'écrit alors comme une somme de la forme $x = \sum \limits_{i=k}^{\infty} x_{i} p^i$ avec $k \in \mathbb{Z}$ et les $x_{i}$ compris entre $0$ et $p-1$. Si $k<0$ on écrira plus couramment $x = \overline{\ldots x_i \ldots x_1 x_0 , x_{-1}\ldots x_{k}}^p$. 
+Un nombre $p$-adique $x$ s'écrit alors comme une somme de la forme $x = \sum \limits_{i=k}^{\infty} x_{i} p^i$ avec $k \in \mathbb{Z}$ et les $x_{i}$ compris entre $0$ et $p-1$. Si $k<0$ on écrira plus couramment $x = \overline{\ldots x_i \ldots x_1 x_0 , x_{-1}\ldots x_{k}}^p$.
 
+\begin{remarque}
+Le lecteur habitué à travailler dans $R[[X]]$ verra dans la construction de $\mathbb{Q}_{p} $ à partir de $\mathbb{Z}_p$ une ressemblance avec le passage de $R[[X]]$ à $\mathbb{R}\left( X \right) $. De nombreuses autres similitudes entres ces ensembles peuvent être trouvées mais nous éviterons de les évoquer afin de rester à un niveau élémentaire.
+
+\end{remarque}
 \begin{propriete}
 \label{qpcorps} 
 	$\mathbb{Q}_{p}$ est un corps qui étend les opérations de $\mathbb{Z}_p$.
 \end{propriete}
 \textit{Preuve :} Voir \hyperlink{qpcorpspreuve}{annexe}.   
 
+<<<<<<< HEAD
 %\todo{exemple d'opérations dans $\mathbb{Q}_{p} $ } 
 \begin{corollaire}
 	Le corps $\mathbb{Q}$ des rationnels est un sous-corps de $\mathbb{Q}_{p} $.
 \end{corollaire}
 %\todo{les personne habitués pourrait y voir une analogie avec la contruction de R[[X]} 
+=======
+\begin{remarque}
+	$\mathbb{Q}_{p}$ est même le corps des fractions de $\mathbb{Z}_p$. Ce qui établit une analogie claire avec la construction de $\mathbb{Q}$ à partir de $\mathbb{Z}$ et explique en partie les notations $\mathbb{Z}_p$ et $\mathbb{Q}_{p} $. 
+\end{remarque}
+\begin{corollaire}
+	Le corps $\mathbb{Q}$ des rationnels est un sous-corps de $\mathbb{Q}_{p} $.
+\end{corollaire}
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
 Ce dernier résultat permet de construire de manière assez élémentaire des éléments de $\mathbb{Q}_{p}$ qui ne sont pas des entiers $p$-adique.
 
 \subsection{Valuation et norme}
 
+<<<<<<< HEAD
 %	\todo{Petit paragraphe introducif} 
 On définit la valuation $p$-adique dans $\mathbb{Z}$ $\val^{\mathbb{Z}}:\mathbb{Z}\to \mathbb{N}\cup \{+\infty\}  $ comme l'application qui à 0 associe $+\infty$ et à un entier $a$ non nul associe le plus grand entier naturel $k$ tel que $p^k | a$.% ou de façon équivalente en considérant $\sum \limits_{i=1}^{n} a_{i} p^i$ la décomposition de $a$ en base $p$, la valuation $p$-adique de $a$ est le plus petit $a_{i}$ non nul. 
 
+=======
+On définit la valuation $p$-adique dans $\mathbb{Z}$ $\val^{\mathbb{Z}}:\mathbb{Z}\to \mathbb{N}\cup \{+\infty\}  $ comme l'application qui à 0 associe $+\infty$ et à un entier $a$ non nul associe le plus grand entier naturel $k$ tel que $p^k | a$.
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
 La valuation $p$-adique s'étend ensuite aux nombres rationnels en une application $\val^{\mathbb{Q}} : \mathbb{Q} \to \mathbb{Z}\cup \{+\infty\}   $ en définissant pour tout $r \in \mathbb{Q}$  $\val^{\mathbb{Q}} \left( r \right) = \val^\mathbb{Z}(a)- \val^\mathbb{Z}\left( b \right) $ avec $a,b \in \mathbb{Z} \times \mathbb{N}^*$ tels que $r=\frac{a}{b}.$   
 
 La valuation $p$-adique s'étend alors également à $\mathbb{Q}_p$ depuis $\mathbb{Q}$ comme suit :
 \begin{definition} Valuation $p$-adique
   
-	On appelle valuation $p$-adique l'application $\val: \mathbb{Q}_p \to \mathbb{Z}\cup \{+\infty\}  $ qui à un nombre $p$-adique $x$ associe $\max \{k \in \mathbb{Z}\cup \{+\infty\}| x\in p^k \mathbb{Z}_p\}$. 
+	On appelle \emp{valuation $p$-adique} l'application $\val: \mathbb{Q}_p \to \mathbb{Z}\cup \{+\infty\}  $ qui à un nombre $p$-adique $x$ associe $\max \{k \in \mathbb{Z}\cup \{+\infty\}| x\in p^k \mathbb{Z}_p\}$. 
 \end{definition}
 Une manière simple de visualiser la valuation d'un nombre $p$-adique est de compter la "distance à la virgule".
 
-En effet, la valuation d'un entier $p$-adique correspond au nombres de $0$ à la fin de son écriture décimale et pour un nombre $p$-adique non entier il s'agit de l'opposé nombre de chiffres $p$-adiques après la virgule. Par exemple, $\val\left( \ldots 2413000 \right) = 3$ et $\val\left( \ldots 251,24 \right) = -2$.       
+En effet, la valuation d'un entier $p$-adique correspond au nombres de $0$ à la fin de son écriture décimale et pour un nombre $p$-adique non entier il s'agit de l'opposé nombre de chiffres $p$-adiques après la virgule. Par exemple, $\val\left( \ldots 2413000 \right) = 3$ et $\val\left( \ldots 251,24 \right) = -2$.
 
+<<<<<<< HEAD
 Le principal intérêt qu'offre la notion de valuation pour le sujet développé ici est qu'elle permet de définir une notion de positivité dans un corps qui n'est pas totalement ordonnable \footnote{i.e. il n'y a pas relation d'ordre $\ge $ sur $\mathbb{Q}_{p}$ compatible avec l'addition et telle que $\forall s\ge 0$ $x\ge y \Rightarrow sx\ge sy$.}. À cet effet on introduira la notation suivante :
 \begin{notation}
 	Pour tout élément $x \in \mathbb{Q}_{p} $, on dit que $x$ est \hypertarget{positif}{\textit{positif}} et on note $x\ge 0$ si $\val\left(x\right)\ge 0$. On en induit alors les notations $x> 0$, $x\le 0$ et $x<0$.  
+=======
+Le principal intérêt qu'offre la notion de valuation pour le sujet développé ici est qu'elle permet de définir la positivité dans un corps qui n'est pas totalement ordonnable \footnote{i.e. il n'y a pas relation d'ordre $\ge $ sur $\mathbb{Q}_{p}$ compatible avec l'addition et telle que $\forall s\ge 0$ $x\ge y \Rightarrow sx\ge sy$.}. À cet effet on introduira la notation suivante :
+\begin{notation}
+	Pour tout élément $x \in \mathbb{Q}_{p} $, on dit que $x$ est \hypertarget{positif}{\textit{positif}} et on note $x\ge 0$ si $\val\left(x\right)\ge 0$. On en infère alors les notations $x> 0$, $x\le 0$ et $x<0$.  
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
 \end{notation}
 
         On évitera la notation $x\ge y$ qui pourrait laisser penser de manière trompeuse que $x\ge y \Rightarrow x-y\ge 0$\footnote{Par exemple, $\val(\ldots11,11) \ge \val(\ldots00,01) $ mais $\val(\ldots11,11 - \ldots00,01) = \val( \ldots 11,1) < 0$}.
 
 \begin{propriete}
-	La valuation $p$-adique possède les propriétés suivantes, pour tous $x$ et $y$ appartenant à $\mathbb{Q}_{p} $ :   
+	La valuation $p$-adique possède les propriétés suivantes pour tous $x$ et $y$ appartenant à $\mathbb{Q}_{p} $ :
 	\begin{enumerate}
+<<<<<<< HEAD
 		\label{propval} 
+=======
+		\label{propval}
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
 		\item $\val(x+y) \ge \min\left( \val\left( x \right), \val\left( y \right)  \right) $ avec égalité si $\val\left(x\right) \neq \val\left(y\right)$
 		\item $\val\left( xy \right) = \val (x) + \val( y)$ 
 	\end{enumerate}
@@ -131,7 +165,7 @@ Ces propriétés permettent alors de munir $\mathbb{Q}_{p} $ d'une valeur absolu
 \begin{definition} Valeur absolue $p$-adique
 \label{vabs}
 
-	On appelle valeur absolue $p$-adique l'application 
+On appelle \emp{valeur absolue $p$-adique} l'application 
 \begin{align*}
 |\cdot|_p : \mathbb{Q}_{p} & \longrightarrow \mathbb{R}^*_+\\
 x & \longmapsto p^{-\val\left(x\right)} 
@@ -141,7 +175,7 @@ qui est une valeur absolue, c'est-à-dire, une norme compatible avec le produit.
 
 \textit{Preuve :} Découle directement de \ref{propval}.
 
-On observera en particulier que, d'après \ref{propval}, pour tous $x,y$ éléments de $\mathbb{Q}_{p}$ on a l'inégalité $\left|x+y\right|_p \le \max\left( \left| x \right|_p,\left| y \right|_p \right)$. Ce qui en fait un corps non archimédien \footnote{c'est-à-dire tel que $\mathbb{N}$ est borné dans $\left( \mathbb{Q}_{p}, \left| \cdot \right|_p \right) $} et rend la géométrie $p$-adique très différente du cas réel peu et intuitive si l'on y est pas habituée. Ce qui explique le manque de figure et d'explications par le dessin dans la suite de ce rapport.
+On observera en particulier que, d'après \ref{propval}, pour tous $x,y$ éléments de $\mathbb{Q}_{p}$ on a l'inégalité $\left|x+y\right|_p \le \max\left( \left| x \right|_p,\left| y \right|_p \right)$. Ce qui fait de $\mathbb{Q}_{p} $ un corps non archimédien \footnote{c'est-à-dire tel que $\mathbb{N}$ est borné dans $\left( \mathbb{Q}_{p}, \left| \cdot \right|_p \right) $} et rend la géométrie $p$-adique très différente du cas réel et peu intuitive si l'on y est pas habitué. Ce qui explique le manque de figure et d'explications par le dessin dans la suite de ce rapport.
 
 On terminera cette section en discutant la proposition suivante, qui est d'une importance cruciale puisqu'elle offre une caractérisation simple de la positivité dans $\mathbb{Q}_{p}$.
 

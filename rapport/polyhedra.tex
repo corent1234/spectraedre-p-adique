@@ -1,5 +1,136 @@
 \section{Polyèdres convexes \texorpdfstring{$p$}{p}-adiques}
 \label{sec:polyedre} 
+<<<<<<< HEAD
+=======
+Cette partie contient les premières contributions apportées lors de ce stage, c'est-à-dire la définition des polyèdres $p$-adiques et un algorithme qui résout le problème de la programmation linéaire en $p$-adique.
+\subsection{Définition}
+
+\begin{definition}
+	On appelle \emp{polyèdre convexe $p$-adique} toute partie de $\mathbb{Q}_{p}^s$ définie par des inégalités linéaire $\val\left( \ell_1(x)\right)\ge 0$,\ldots, $ \val\left( \ell_n\left( x \right) \right)\ge 0$ pour $ \ell_1,\ldots, \ell_n $ des formes linéaires et $x$ parcourant $\mathbb{Q}_{p} ^s$.
+
+
+\end{definition}
+
+\begin{ex}
+	La boule unité de $\mathbb{Q}_{p}^s$ pour la norme infinie est un polyèdre. En effet, la boule infinie s'écrit comme l'ensemble des points $\left( x_1,\ldots,x_s \right)$ tels que $$
+	\begin{pmatrix} x_1 &  & & \\
+		  & x_2 &0 &  \\
+		&  0& \ddots & \\
+		&  & & x_s/
+	\end{pmatrix} \ge 0.$$ En effet, la boule unité de $\mathbb{Q}_{p} ^s$ est $\mathbb{Z}_p^s$. %En effet, considérons le polyèdre défini par l'intersection de $S_n\left( \mathbb{Q}_{ p }  \right) $ avec le plan linéaire induit par les matrices $E_k$, k=1\ldots n, de $S_n\left( \Zp \right) $ telles que le seul coefficient non nul de $E_k$ soit le k-ième coefficient diagonal lequel est égal à $1$ . On observe que pour tout $x_1,\ldots,x_n \in \mathbb{Q}_{ p } ^n$, $\sum x_k E_k \ge 0$ si et seulement si $x_1,\ldots,x_s \in \mathbb{Z}_{ p }^n $ i.e. si et seulement si $\|(x_1,\ldots,x_n)\|_\infty \le 1$.
+
+\end{ex}
+
+\subsection{Programmation linéaire \texorpdfstring{$p$-adique}{p-adique} } 
+\label{sectionalgo} 
+Dans ce paragraphe, il sera étudié une forme équivalente du problème de programmation linéaire, appelée \textit{programmation linéaire $p$-adique} (\ref{eqn:Proglinp}) . Lequel consiste simplement à minimiser la norme $p$-adique d'une application linéaire sur un polyèdre $p$-adique. 
+
+	Du fait des natures profondément différentes des polyèdres $p$-adiques et réels, les techniques classiques de résolution de la programmation linéaire sont mises à mal. Il est en effet complexe d'appliquer la méthode du simplexe à un ensemble sans frontière ou des techniques d'analyse convexe dans un espace sans notion de convexité. Il convient donc alors de développer de nouvelles techniques pour résoudre ces problèmes. C'est ce qui est proposé dans cette section, qui présente un algorithme en $O( \complalgo )$, avec $m,n$ les dimensions de la matrice de contrainte, pour résoudre le problème de la programmation linéaire en $p$-adique, dont une écriture en pseudo-code \iffalse ainsi qu'une implémentation en \sage  sont \fi est disponible en \ref{appendixalgo}.
+
+Cet algorithme est centré sur l'utilisation de la forme normale de Smith d'une matrice, dont seul la définition et quelques remarques sont présentées dans cette section, les preuves des résultats sont disponible en \ref{smith}.
+
+	On appelle \emp{programmation linéaire $p$-adique} le problème :
+\begin{equation}
+	  \tag{PLp}
+\begin{matrix}
+	\text{Minimiser } \val\left(\left<c,x \right>\right) \text{ tel que }\\
+	Ax + b \ge 0
+ \end{matrix}
+	    \label{eqn:Proglinp}
+\end{equation}
+
+avec $x$ un vecteur de taille $n$ parcourrant $\mathbb{Q}_{p} ^n$, $c$ un vecteur de taille $n$ représentant le coût, $A$ une matrice de taille $m \times n $ et $b$ un vecteur de taille $m$.
+
+La méthode choisie ici consiste à mettre la matrice $A$ sous forme normale de Smith, un factorisation classique en $p$-adique et qui permet de grandement simplifier le problème posé.
+
+\begin{definition}
+	Forme Normale de Smith
+
+	On appelle \emp{forme normale de Smith} d'une matrice $M \in \mathcal{M}_{m,n}\left(\mathbb{Q}_{p} \right) $ de rang $r$ l'unique matrice $S$ de la forme $$S =  
+	\begin{pmatrix} p^{a_1} & \\
+		 & \ddots \\
+		 & & p^{ar}\\
+		 & & & 0\\
+		 & & & & \ddots \end{pmatrix} $$
+		 telle que $a_1\le  \ldots\le a_r$ et $M =  Q^{-1} S P$ avec $P \in \mathcal{G}L_n\left( \mathbb{Z}_p \right) $ et $Q \in \mathcal{G}L_m\left( \mathbb{Z}_p \right) $.
+\end{definition}
+
+\begin{remarques}
+
+	
+	\begin{enumerate}[label=\roman*.]
+		\item Les coefficients de la forme normale de Smith sont uniques et sont appelés \textit{facteurs invariants de Smith} ou, plus simplement, \textit{invariants de Smith}.
+		\item La valuation $p$-adique du premier coefficient de la forme normale de Smith d'une matrice $M \in \mathcal{M}_n \left( \Qp \right) $ est égale au minimum des valuations des termes de $M$.
+		\item En particulier, la forme normale de Smith d'une matrice de $\mathcal{M}_n \left( \mathbb{Z}_p \right) $ est à coefficients dans $\mathbb{Z}_p$ .
+		\item Les $r = \text{rang} M$ premiers coefficients diagonaux de $S$ sont exactement ses coefficients non nuls.
+	\end{enumerate}
+
+\end{remarques}
+
+
+Avant de pouvoir utiliser la forme de normale de Smith pour résoudre \ref{eqn:Proglinp}, il nous faut démontrer le lemme suivant:
+
+\begin{lemme}
+Pour tous $z \in \mathbb{Q}_{ p } ^n$ et $M \in \mathcal{M}_{m,n}\left( \mathbb{Q}_{ p }  \right)  $ si $z\ge 0$ et $M\ge 0$ alors $Mz\ge 0$.  
+\end{lemme}
+\textit{Preuve :} $\mathbb{Z}_p$ est un anneau. \hfill\qedsymbol
+
+
+
+En mettant alors la matrice $A$ de \ref{eqn:Proglinp} sous sa forme normale de Smith il vient que résoudre \ref{eqn:Proglinp} équivaut à résoudre :    
+
+
+\begin{equation}
+	  \tag{PLp'}
+\begin{matrix}
+	\text{Minimiser } \val\left(\left<c',x \right>\right) \text{ tel que }\\
+	Sy + b' \ge 0
+ \end{matrix}
+	    \label{eqn:Proglinp2}
+\end{equation}
+où $b' = Qb$, $c' = P^Tc$, $S$ est la forme normale de Smith de $A$ et $A = Q^{-1} S P$ avec $P \in \mathcal{G}L_m\left( \mathbb{Z}_p \right)$ et $ Q \in \mathcal{G}L_n\left( \mathbb{Z}_p \right)$.
+
+\begin{remarques}
+	
+Il en vient immédiatement plusieurs résultats:
+\begin{enumerate}
+	\item $x^*$ est une solution admissible de \ref{eqn:Proglinp} si et seulement si $y^* = P x^*$ est une solution admissible de \ref{eqn:Proglinp2}
+	\item \ref{eqn:Proglinp2} possède des solutions admissibles si et seulement si les $m-r$ coefficients de $b'$ sont non nuls, où $r$ le rang de $S$.
+	\item Si au moins un des $n-r$ derniers coefficients de $c'$ est non nul \ref{eqn:Proglinp2} n'est pas borné et n'admet donc pas de solution.   
+\end{enumerate}
+
+\end{remarques}
+
+\begin{propriete}
+	\begin{itemize}~
+
+		\item[$\circ$] Si les $m-r$ coefficients de $b'$ ne sont pas tous nuls alors il n'existe pas de $y \in \mathbb{Q}_{p} ^n$ tel que $A'y+b' \ge  0$.
+	\item[$\circ$] Si les $n-r$ coefficients de $c'$ ne sont pas tous nuls alors le problème n'est pas borné et n'admet donc pas de solution. \end{itemize} 
+\end{propriete}
+En ne considérant alors que les itérations du problème admettant des solutions on peut réduire le problème en ne considérant que les $r$ premiers coefficients de $y, b', c'$ et la sous matrice de $S$ composée des $r$ premières lignes et colonnes et dont les coefficients sont alors exactement les facteurs invariants de Smith non nuls. L'ensemble $Adm$ des solutions admissibles s'écrit alors comme l'ensemble des vecteurs $y \in \mathbb{Q}_{ p } ^n$ vérifiant $
+\forall 1 \le i\le r \ s_i y_i + b'_i \in \mathbb{Z}_p$ c'est-à-dire vérifiant :
+
+\begin{equation}
+	\forall 1 \le i\le r  \ y_i \in -\frac{b’_i}{s_i} + \frac{1}{s_i} \mathbb{Z}_p
+\end{equation}
+ 
+
+Résoudre \ref{eqn:Proglinp2} revient donc à minimiser $\val\left(\left<c',y \right>\right)$ sur $Adm$. L'image de $Adm$ par $y \mapsto \left<c',y \right>$ est $\sum_{i=1}^r -c'_i.\frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \mathbb{Z}_p \right)$ qui se réécrit :
+$$\left<c',Adm \right> = \lambda + p^{v} \mathbb{Z}_p$$
+où $\lambda = \sum\limits_{i=1}^r -c'_i.\frac{b'_i}{s_i}$ et $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
+
+Ainsi, deux cas apparaissent.
+\begin{itemize}
+	\item Soit $\val( \lambda) < v$ auquel cas le minimum de $y\mapsto \val\left(\left<c',y \right>\right)$ sur $Adm$ est atteint en n'importe quel point de $Adm$ et vaut $\val\left( \lambda\right)$.
+	\item Soit $\val\left( \lambda \right) \ge v$, auquel cas $\lambda \in p^{v} \mathbb{Z}_p$ et le minimum vaut $v $ et est atteint en tous les points $y$ de $Adm$ vérifiant
+	$$\val\sum \limits_{\begin{array}{c} 1\le i\le r\\ \val\left(c'_{i}/{s_{i}} \right) = v  \end{array}   } y_{i} = 0.$$ 
+
+\end{itemize}
+\begin{remarque}
+	Si l'on souhaite maximiser la valuation d'un application linéaire sur un polyèdre $p$-adique au lieu de la minimiser (ce qui revient à maximiser la valeur absolue) on pourra appliquer le même raisonnement. La seule différence est que si $\val\left( \lambda\right) < v$ le problème n'est pas borné et n'admet donc pas de solution. 
+\end{remarque}
+
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
 \iffalse
 \subsection{Matrices symétriques positive} 
 
@@ -73,6 +204,7 @@ On note $ \alpha_1,\ldots, \alpha_n$ les coefficients diagonaux de $M'$ qui sont
 	La preuve de la proposition précédente montre qu'il suffit en réalité que les mineurs principaux de taille au plus $2$ aient une valuation positive (ou soient éléments de $\Zp$) ce qui correspond à la définition de matrice semi-définie positive sur le semi-corps tropical développée par Allamigeon, Gaubert et Skorma dans \cite{allamigeon_tropical_2020} . Ce n'est toutefois pas la définition qui sera choisie ici, pour des raisons développées en partie \hyperlink{subsection.1.2}{1.2}.
 \end{remarque}
 
+<<<<<<< HEAD
 \fi
 
 
@@ -83,6 +215,18 @@ On note $ \alpha_1,\ldots, \alpha_n$ les coefficients diagonaux de $M'$ qui sont
 
 
 	Une matrice $M$ de $\mathcal{M}_n(\Qp)$ est dite \emph{positive} si tous ses coefficients sont positifs ou nuls, c'est-à-dire, par définition si elle est à coefficient dans $\mathbb{Z}_p$.
+=======
+
+
+
+\subsection{Polyèdres convexes \texorpdfstring{$p$}{p}-adiques} 
+
+\begin{definition}
+	(Matrice positive)
+
+
+	Une matrice $M$ de $\mathcal{M}_n(\Qp)$ est dite \emp{positive} si tous ses coefficients sont positifs ou nuls, c'est-à-dire, par définition si elle est à coefficient dans $\mathbb{Z}_p$.
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
 	On notera alors $M\ge 0$ le fait que $M \in \mathcal{M}_{n}\left(\mathbb{Z}_p\right) $
 
 \end{definition}
@@ -102,7 +246,11 @@ On note $ \alpha_1,\ldots, \alpha_n$ les coefficients diagonaux de $M'$ qui sont
 $i.$ et $ii.$ se déduisent du fait que $\Zp$ soit ouvert et fermé dans $\Qp$, $ii.$ découle directement du fait que $\|M\|_\infty = \sup |M_{i,j}|_p \le 1$ et $iv.$ se déduit de $ii.$ et $iii.$.
 Quand à $v.$ c'est une conséquence directe de la convexité de $\Zp$.
 
+<<<<<<< HEAD
 \todo{$\Pn$ est un cône $p$-adique pour la définition :Soit $\mathbb{E} $ un $\mathbb{Q}_{ p } $ espace vectoriel $C \subset \mathbb{E} $ est un cône si pour tout $x \in C$ et $\lambda \ge 0 $ $\lambda x \in C$. La preuve pour $ \Pn$ est assez triviale et pour $S_n^+\left( \mathbb{Q}_p \right)$ elle est laissée en exercice au lecteur} 
+=======
+%{$\Pn$ est un cône $p$-adique pour la définition :Soit $\mathbb{E} $ un $\mathbb{Q}_{ p } $ espace vectoriel $C \subset \mathbb{E} $ est un cône si pour tout $x \in C$ et $\lambda \ge 0 $ $\lambda x \in C$. La preuve pour $ \Pn$ est assez triviale et pour $S_n^+\left( \mathbb{Q}_p \right)$ elle est laissée en exercice au lecteur} 
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
 \begin{definition}
 	
 On définit un polyèdre convexe $P$ comme l'intersection de $\Pn$ avec un espace affine $\mathcal{L} $ de $\mathcal{M}_n\left( \Qp \right) $. 
@@ -140,6 +288,7 @@ En mettant sous cette forme le polyèdre on reconnait alors aisément que le pro
 Un polyèdre $p$-adique convexe est convexe au sens de \cite{monna_ensembles_1958}.  
 \end{propriete}
 
+<<<<<<< HEAD
 \textit{Preuve :} Provient immédiatement du fait qu'un polyèdre s'écrit comme intersection d'ensemble convexe.
 \fi
 \begin{ex}
@@ -261,3 +410,6 @@ Ainsi, deux cas apparaissent.
 	Si l'on souhaite maximiser la valuation d'un application linéaire su un polyèdre $p$-adique au lieu de la minimiser (ce qui revient à maximiser la valeur absolue) on pourra utiliser un raisonnement similaire à celui présenté dans cette partie. La seule différence est que si $\val\left( \lambda\right) < v$ le problème n'est pas borné et n'admet donc pas de solution. 
 \end{remarque}
 
+=======
+\fi
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00

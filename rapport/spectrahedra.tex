@@ -6,32 +6,42 @@
 
 \section{Spectraèdres \texorpdfstring{$p$}{p}-adiques } 
 \label{sec:spectraedre} 
+<<<<<<< HEAD
 Ce paragraphe tend à fournir un définition de la notion de \mat sur les corps $p-$adiques pour en déduire une définition de spectraèdre qui serait pertinente sur un corps non-archimédien. 
 La première étape pour définir un spectraèdre est de définir un équivalent des matrices symétriques définies positives. Sans théorème spectral et le produit scalaire n'étant qu'une forme bilinéaire "banale" (ni positive ni définie), la symétrie est en $p$-adique parfaitement inutile et ne sera pas exigé. De plus, du fait du manque cruel du théorème spectral la plupart des caractérisations des matrices symétriques semi-définies positives peinent à faire sens en $p$-adique. 
 Il a donc été choisi de définir les \mats \footnote{notez l'absence du mot symétrique}comme les matrices à valeurs propres positives.
+=======
+Ce paragraphe tend à fournir un définition de la notion de \mat sur les corps $p-$adiques pour en déduire une définition de spectraèdre qui serait pertinente sur un corps non-archimédien. Il contient la majeur partie de la contribution apportée lors de ce stage : les notions de matrice semi-définie positive et les propriétés et définitions concernant les spectraèdres $p$-adiques étant nouveaux. 
+La première étape pour définir un spectraèdre est de définir un équivalent des matrices symétriques définies positives. Sans théorème spectral et le produit scalaire n'étant qu'une forme bilinéaire "banale" (ni positive ni définie), la symétrie est en $p$-adique parfaitement inutile et ne sera pas exigée. De plus, du fait du manque cruel du théorème spectral la plupart des caractérisations des matrices symétriques semi-définies positives peinent à faire sens en $p$-adique. 
+Il a donc été choisi de définir les \mats \footnote{On notera l'absence du mot symétrique}comme les matrices à valeurs propres positives.
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
 Or là un second problème se pose : $\mathbb{Q}_{p} $ n'est pas algébriquement clos et les matrices $\mathcal{M}_n\left( \mathbb{Q}_{p}  \right) $ peuvent donc avoir des valeurs propres hors de $\mathbb{Q}_{p}$. Ce problème sera réglé en étendant la valuation $p$-adique aux extensions de $\mathbb{Q}_{p} $.
 
 \subsection{Clôture algébrique \texorpdfstring{$p$}{p}-adique } 
-Cette section présente quelques résultats élémentaires sur les extensions de corps $p$-adiques. La plupart des résultats présentés dans cette section étant soit classique et trouvable dans n'importe quel cours d'algèbre de niveau master soit élémentaires, peu de preuves y seront importés. On recommandera toutefois la lecture de la section 5 de \parencite{gouvea_p-adic_2003} pour plus d'information sur les extensions de corps $p$-adiques. 
+Cette section présente quelques résultats élémentaires sur les extensions de corps $p$-adiques. La plupart des résultats présentés dans cette section étant soit classique et trouvable dans n'importe quel cours d'algèbre de niveau master soit élémentaires, peu de preuves y seront aporté. On recommandera toutefois la lecture de la section 5 de \parencite{gouvea_p-adic_2003} pour plus d'informations sur les extensions de corps $p$-adiques. 
 
 \begin{definition}
-	On appelle \textit{extension de corps} d'un corps $\mathbb{K}$ tout corps $\mathbb{L}$ muni d'un morphisme de corps injectif de $\mathbb{K}$ dans $\mathbb{L}$. On note $\mathbb{L}/\mathbb{K}$ le fait que $\mathbb{L}$ soit une extension de $\mathbb{K}.$
+	On appelle \emp{extension de corps} d'un corps $\mathbb{K}$ tout corps $\mathbb{L}$ muni d'un morphisme de corps injectif de $\mathbb{K}$ dans $\mathbb{L}$. On note $\mathbb{L}/\mathbb{K}$ le fait que $\mathbb{L}$ soit une extension de $\mathbb{K}.$
 \end{definition}
-Une extension d'un corps $\mathbb{K}$ est grossièrement un corps contenant une copie du corps $\mathbb{K}$.
+Une extension d'un corps $\mathbb{K}$ est grossièrement un corps contenant une copie du corps $\mathbb{K}$. Par exemple le corps des nombres complexes $\mathbb{C}$ est une extension du corps des nombres réels $\mathbb{R}$ qui est lui même une extension du corps $\mathbb{Q}$ des rationnels.
 
 \begin{definition}
-	Un corps $\mathbb{K}$ est dit algébriquement clos si tout polynôme $P\in \mathbb{K}[X]$ de degré au moins $1$ possède une racine dans $\mathbb{K}$.
+	Un corps $\mathbb{K}$ est dit \emp{algébriquement clos} si tout polynôme $P\in \mathbb{K}[X]$ de degré au moins $1$ possède une racine dans $\mathbb{K}$.
 \end{definition}
-
+\begin{ex}
+	Le corps $\mathbb{C}$ est algébriquement clos.
+\end{ex}
 \begin{proposition}
 	$\mathbb{Q}_{p} $ n'est pas algébriquement clos.
 \end{proposition}
 \textit{Preuve :} Le polynôme $X^2 - p$ n'a pas de racine dans $\mathbb{Q}_{p}$ \hfill \qedsymbol.
 
 \begin{definition}
-	On appelle clôture algébrique l'unique (à isomorphisme près) corps $\mathbb{L}$ tel que tout élément de $\mathbb{L}$ est racine d'un polynôme de $\mathbb{K}[X]$ et $\mathbb{L}$ est algébriquement clos.
+	On appelle \emp{clôture algébrique} l'unique (à isomorphisme près) corps $\mathbb{L}$ tel que tout élément de $\mathbb{L}$ est racine d'un polynôme de $\mathbb{K}[X]$ et $\mathbb{L}$ est algébriquement clos.
 \end{definition}
-
+\begin{ex}
+	$\mathbb{C}$ est la clôture algébrique de $\mathbb{R}$.
+\end{ex}
 On notera $\overline{\mathbb{Q}_{p} }$ la clôture algébrique de $\mathbb{Q}_{p}$, il est alors possible d'y étendre la valuation $p$-adique comme suit :
 
 \begin{definition}
@@ -43,20 +53,20 @@ x & \longmapsto \val^{\mathbb{Q}_{p} } \left(a\right)/d
 	où $d$ et $a$ sont respectivement le degré et le terme constant du polynôme minimal de $x$.
 \end{definition}
 
-On retrouve alors une notion de positivité dans l'extension de corps et étendra à $\overline{\mathbb{Q}_{p}} $ la notation $x\ge 0$ si et seulement si $\val\left(x\right)\ge 0$. Il n'est cependant informatiquement pas très pratique de travailler dans $\overline{\mathbb{Q}_{p} }$ qui est n'est pas une extension finie de $\mathbb{Q}_{p} $ \footnote{c'est-à-dire $\overline{\mathbb{Q}_{p} }$ est un $\mathbb{Q}_{p}$-espace vectoriel de dimension infinie }. On cherchera donc des caractérisations plus simples pour savoir si un polynôme est à racines positives, ce qui sera fait dans la prochaine section.
+On retrouve alors une notion de positivité dans l'extension de corps et étendra à $\overline{\mathbb{Q}_{p}} $ la notation $x\ge 0$ si et seulement si $\val\left(x\right)\ge 0$. Il est cependant pour des usage pratique complexe de travailler dans $\overline{\mathbb{Q}_{p} }$ qui est n'est pas une extension finie de $\mathbb{Q}_{p} $ \footnote{c'est-à-dire $\overline{\mathbb{Q}_{p} }$ est un $\mathbb{Q}_{p}$-espace vectoriel de dimension infinie }. On cherchera donc des caractérisations plus simples pour savoir si un polynôme est à racines positives, ce qui sera fait dans la prochaine section.
 
 \subsection{\Mats} 
 
 \begin{definition}
-	On appelle \mat toute matrice $M \in \mathcal{M}_n\left( \Qp \right) $ dont toutes les valeurs propres sont de valuation positive ou nulle.
+	On appelle \emp{\mat} toute matrice $M \in \mathcal{M}_n\left( \Qp \right) $ dont toutes les valeurs propres sont de valuation positive ou nulle (dans $\overline{\mathbb{Q}_{p}}$) .
 
-	On note $ \mathcal{M}_n^+\left( \mathbb{Q}_p \right)$ l'ensemble des \mats.
+	On note $ \mathcal{M}_n^+\left( \mathbb{Q}_p \right)$ l'ensemble des \mats et $M \succeq 0$ le fait que $M \in \mathcal{M}_n^+\left( \mathbb{Q}_{p}\right) $.
 \end{definition}
 \begin{theoreme}
 	\label{caracsdp}
 	Caractérisation des \mats
 
-	Une matrice est symétrique définie positive si et seulement si son polynôme caractéristique est à coefficient dans $\Zp$ .
+	Une matrice est semi-définie positive si et seulement si son polynôme caractéristique est à coefficient dans $\Zp$ .
 	
 \end{theoreme}
 	\textit{Preuve :} Voir \hyperlink{caracsdppreuve}{annexe}.  
@@ -65,19 +75,22 @@ On retrouve alors une notion de positivité dans l'extension de corps et étendr
 	$\Pn \subset \mathcal{M}_n^+\left( \mathbb{Q}_p \right)$ 
 \end{consequence}
 
+<<<<<<< HEAD
 \textit{Preuve : }  $\mathbb{Z}_p$ étant un anneau, le polynôme caractéristique d'une matrice à coefficients dans $\Zp$ est à coefficient dans $\Zp$. Onconclut par \ref{caracsdp} .
+=======
+\textit{Preuve : }  $\mathbb{Z}_p$ étant un anneau, le polynôme caractéristique d'une matrice à coefficients dans $\Zp$ est à coefficient dans $\Zp$. On conclut par \ref{caracsdp} .
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
 
 \begin{remarque}
-	En général l'inclusion réciproque est fausse. Ainsi pour $M = \begin{pmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{pmatrix} $, on a $\chi_M = X^2  - 5 X - 4$. Or une fois $M$ plongé dans $\mathbb{Q}_5$ on a $\chi_M \in \mathbb{Z}_5[X]$ donc $M \in S_2^+\left( \mathbb{Q}_5 \right)$ or aucun des coefficients de $M$ n'est dans $\mathbb{Z}_5 $
+	En général l'inclusion réciproque est fausse. Ainsi pour $M = \begin{pmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{pmatrix} $, on a $\chi_M = X^2  - 5 X - 4$. Or une fois $M$ plongé dans $\mathbb{Q}_5$ on a $\chi_M \in \mathbb{Z}_5[X]$ donc $M \in \mathcal{M}_2^+\left( \mathbb{Q}_5 \right)$ or aucun des coefficients de $M$ n'est dans $\mathbb{Z}_5 $
 \end{remarque}
 
-	\todo{probablement pas nécessaire ira peut-être en annexe} 
 \begin{propriete}
 	L'ensemble $\mathcal{M}_n^+\left( \mathbb{Q}_p \right)$  est :
 	\begin{enumerate}[label = \textit{\roman*}.]
 		\item ouvert
 		\item fermé
-		\item un cône
+	%	\item un cône
 	\end{enumerate}
 \end{propriete}
 
@@ -92,34 +105,55 @@ Donc $\Zp[X]^c$ est ouvert et $\Zp[X]$ est fermé.
 
 \fi
 On montre alors $i.$ et $ii.$ par $\mathcal{M}^+_{n}\left(\mathbb{Q}_{p} \right)  = \chi^{-1}( \Zp[X]) $ ou $\chi$ est l'application qui a une matrice associe son polynôme caractéristique qui est continue car polynomiale en les coefficients de la matrice.
+<<<<<<< HEAD
+=======
 
-Le $iii$. est laissé en exercice au lecteur. 
-\input{convexemple.tex}
+%Le $iii$. est laissé en exercice au lecteur. 
+% Je ne parle plus de convexité dans le rapport mais on ne sait jamais
+%\input{convexemple.tex}
 
-\subsection{Zoologie Spectraèdrique}
-Dans le cas réel de nombreux ensembles convexes peuvent être représentés comme des spectraèdres ou des projections de spectraèdres, il a même été conjecturé que tous les ensembles semialgébriques \footnote{$i.e.$ les ensembles définis par des inégalités polynomiales} convexes soient des ombres de spéctraèdres \todo{lien machin}. Bien que cette conjecture ait ensuite été prouvée fausse \todo{le lien}, il n'en reste pas loin qu'un nombre important d'ensemble admettant une telle représentation garantisse sa flexibilité 
+\subsection{Spectraèdres \texorpdfstring{$p$}{p}-adiques} 
+\begin{definition}
+	On appelle \emp{spectraèdre $p$-adique} l'intersection de $\mathcal{M}_n^+\left( \mathbb{Q}_{p} \right) $ avec un hyperplan affine $\mathcal{L}$ de $\mathcal{M}_n\left( \mathbb{Q}_{p} \right) $.
+\end{definition}
 
+\begin{remarque}
+	De même que dans le cas réel on identifiera communément le spectraèdre engendré par l'hyperplan $\mathcal{L}$ avec sa préimage dans $\mathbb{Q}_{p}^s$ (i.e. l'ensemble des vecteurs $x \in \mathbb{Q}_{p} ^s$ tels que la matrice linéaire $A(x) = A_0 + x_1A_1 + \ldots + x_sA_s$ soit semi-définie positive avec $A_0,A_1,\ldots,A_s$ lui engendrent $\mathcal{L}$). 
+\end{remarque}
+On peut alors en déduire la propriété suivante :
+\begin{propriete}
+	Les polyèdres $p$-adique sont des spectraèdres $p$-adiques.
+\end{propriete}
+\textit{Preuve :}
+La preuve est identique à celle du cas réel présentée en \ref{subsec:psdreele}. 
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
+
+
+
+\subsection{Couronnes \texorpdfstring{$p$}{p}-adiques}
+Dans le cas réel de nombreux ensembles convexes peuvent être représentés comme des spectraèdres ou des projections de spectraèdres, il a même été conjecturé que tous les ensembles semi-algébriques \footnote{$i.e.$ les ensembles définis par des inégalités polynomiales} convexes soient des ombres de spéctraèdres \cite{helton_sufficient_2008}. Bien que cette conjecture ait ensuite été réfutée par Schreider dans \cite{scheiderer_spectrahedral_2017} dans le cas réel elle a été prouvée vraie pour les spectraèdres tropicaux \cite{allamigeon_tropical_2019}, il n'en reste pas loin qu'un nombre important d'ensemble admettant une telle représentation garantisse sa flexibilité. 
+	Le cas $p$-adique est lui assez différent du cas réel puisque, sans notion de convexité la conjecture d'Helton-Nie n'a pas vraiment de sens. On trouve au contraire des résultats très différents du cas réel. L'exemple développé ici est celui des couronnes $p$-adique qui peuvent s'écrire comme projections de spectraèdres bien que les couronnes réelles soient des objets non convexes.
 \begin{definition}
 	Couronnes
 
-	On appelle couronne tout ensemble $C$ défini par $C = \{x \in \mathbb{Q}_{p}  | a\le \val\left(x\right) \le b\} $ pour $a < b$ deux réels positifs fixés.
+	On appelle \emp{couronne} tout ensemble $C$ défini par $C = \{x \in \mathbb{Q}_{p}  | a\le \val\left(x\right) \le b\} $ pour $a < b$ deux réels positifs fixés.
 \end{definition}
 
-Les couronnes sont un objet fondamentale de l'étude des espaces $p$-adique. \todo{expliquer pourquoi}. 
-\begin{proposition}
+Les couronnes sont un objet fondamental de l'étude des espaces $p$-adique. En effet, ces dernières sont à l'origine de la géométrie rigide qui sert de base une partie non négligeable de l'analyse $p$-adique. 
+\begin{theoreme}
 	Les couronnes sont des projections de spectraèdres.
-\end{proposition} 
+\end{theoreme} 
 
 \textit{Preuve :}
 Soit $C$ la couronne de paramètres $a<b \in R^*_+$.
 
-On considère pourtout $x,y \in \mathbb{Q}_{p} $ la matrice  $M(x,y) :=
+On considère pour tous $x,y \in \mathbb{Q}_{p} $ la matrice  $$M(x,y) :=
 \begin{pmatrix} 
 p^ax & 0 & 0 & 0 \\
 0 & p^{-b}y & 0 & 0 \\
 0 & 0 & p^{-1} & p^{-1}x \\
 0 & 0 & p^{-1}y & - p^{-1}  \\
-\end{pmatrix} $ et le spectraèdre $\mathcal{S}= \{(x,y) \in \mathbb{Q}_{p}  : M(x,y) \succeq 0\} $
+\end{pmatrix} $$ et le spectraèdre associé $\mathcal{S}= \{(x,y) \in \mathbb{Q}_{p}  : M(x,y) \succeq 0\} $
 
 Soient $x,y \in \mathbb{Q}_{p} $. Montrons que $x \in C$ si et seulement si  $\exists y \in \mathbb{Q}_{p} \left( x,y \right) \in \mathcal{S}$.
 
@@ -143,6 +177,26 @@ p^{-2} \left( xy-1 \right) \ge 0
 \end{cases}
 \end{equation}
 
+<<<<<<< HEAD
+=======
 
 
 Or $x \in C$ si et seulement si il existe $y \in \mathbb{Q}_{p} $ tel que $(x, y)$ vérifient \ref{eq:caracsdp}. En effet, si $x, y$ vérifient \ref{caracsdp}alors $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ et $p^{-2} \left( xy-1 \right) \ge 0$ implique que $\val\left(x\right)+\val\left(y\right)=\val\left(xy\right) = \val\left(-1\right) =0$ et donc que $\val\left(x\right)=-\val\left(y\right)\le -(-b)  =b$, donc $x \in $. Puis réciproquement si $x \in C$ alors $(x,x^{-1}) $ vérifient \ref{eq:caracsdp}  .
+
+
+\subsection{Vers la résolution du problème \texorpdfstring{ \textit{(LMI)} }{LMI}} 
+\label{piste} 
+Cette dernière section présente des résultats qui bien qu'ils n'ont pas permis d'aboutir à une résolution concrète peuvent servir de bases a de futures réflexion.
+
+On rappelle que le problème \textit{(LMI)} consiste à déterminer si un spectraèdre est vide. On y développe ici quelques pistes.
+
+Comme vu précédemment, d'après \ref{caracsdp} le fait qu'une matrice soit semi-définie positive est caractérisé par le fait que son polynôme soit à coefficient dans $\mathbb{Z}_p$. Pour obtenir une représentation claire des spectraèdres, qui permettrait de résoude $(LMI)$ on est en droit de se demander : à quelles conditions le polynôme caractéristique d'une matrice linéaire $A(x) := A_0 + x_1 A_1 + \ldots + x_s A_s$ est-il à coefficient dans $\mathbb{Z}_p$ ? 
+Les coefficients du polynôme caractéristique de la matrice linéaire $A(x)$ étant polynomiaux en $x$ se poser la question précédente revient alors à se demander pour quelles valeurs de $x = (x_1,\ldots x_s)$ un polynôme $P \in \mathbb{Q}_{p} [x_1,\ldots,x_s]$ est-il à valeur dans $\mathbb{Z}_p$ ? 
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
+
+Si je n'ai pu y répondre, on peut toutefois remarquer que dans le cas où le polynôme est univarié on retrouve le concept de discoïde développé par Rüth dans \cite{ruth_models_2015}. Ce qui signifie que pour un polynôme univarié $P$ à coefficients dans $\mathbb{Q}_{p}$ fixé, l'ensemble des points $x$ de $ \overline{\mathbb{Q}_{p} }$ tels que $P(x)\ge 0$ correspond à une union disjointes de boules de $\overline{\mathbb{Q}_{p} }$ centrées en les racines de $P$ et dont le rayon se déduit des coefficients de Taylor du polynôme en ses racines. Si trouver l'intersection d'un boule de $\overline{\mathbb{Q}_{p} }$ avec $\mathbb{Q}_{p}$ est aisé si cette dernière est centrée en un élément de $\mathbb{Q}_{p}$ (c'est alors le boule de même centre et de même rayon mais cette fois dans $\mathbb{Q}_{p}$) le cas où le centre donné n'est pas un nombre $p$-adique est lui plus délicat et je n'ai pas de résolution à y apporter dans ce rapport. 
+
+<<<<<<< HEAD
+Or $x \in C$ si et seulement si il existe $y \in \mathbb{Q}_{p} $ tel que $(x, y)$ vérifient \ref{eq:caracsdp}. En effet, si $x, y$ vérifient \ref{caracsdp}alors $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ et $p^{-2} \left( xy-1 \right) \ge 0$ implique que $\val\left(x\right)+\val\left(y\right)=\val\left(xy\right) = \val\left(-1\right) =0$ et donc que $\val\left(x\right)=-\val\left(y\right)\le -(-b)  =b$, donc $x \in $. Puis réciproquement si $x \in C$ alors $(x,x^{-1}) $ vérifient \ref{eq:caracsdp}  .
+=======
+>>>>>>> afed46df6ee66c8447d25c77be41fc228335ae00
