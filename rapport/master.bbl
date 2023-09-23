@@ -193,42 +193,6 @@
       \field{volume}{65}
       \field{year}{2006}
     \endentry
-    \entry{sanyal}{article}{}
-      \name{author}{1}{}{%
-        {{hash=7aaf745d022d2472e63af1c6b61093f3}{%
-           family={Sanyal},
-           familyi={S\bibinitperiod},
-           given={Raman},
-           giveni={R\bibinitperiod}}}%
-      }
-      \strng{namehash}{7aaf745d022d2472e63af1c6b61093f3}
-      \strng{fullhash}{7aaf745d022d2472e63af1c6b61093f3}
-      \strng{bibnamehash}{7aaf745d022d2472e63af1c6b61093f3}
-      \strng{authorbibnamehash}{7aaf745d022d2472e63af1c6b61093f3}
-      \strng{authornamehash}{7aaf745d022d2472e63af1c6b61093f3}
-      \strng{authorfullhash}{7aaf745d022d2472e63af1c6b61093f3}
-      \field{labelalpha}{San13}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Advances in Geometry}
-      \field{number}{2}
-      \field{title}{On the derivative cones of polyhedral cones}
-      \field{volume}{13}
-      \field{year}{2013}
-      \field{pages}{315\bibrangedash 321}
-      \range{pages}{7}
-      \verb{doi}
-      \verb doi:10.1515/advgeom-2011-051
-      \endverb
-      \verb{urlraw}
-      \verb https://doi.org/10.1515/advgeom-2011-051
-      \endverb
-      \verb{url}
-      \verb https://doi.org/10.1515/advgeom-2011-051
-      \endverb
-    \endentry
     \entry{henrion2016exact}{article}{}
       \name{author}{3}{}{%
         {{hash=d789c480e529cc34b4f0bbde38a43005}{%
@@ -313,61 +277,6 @@
       \verb http://arxiv.org/abs/1701.06794
       \endverb
       \keyw{Computer Science - Symbolic Computation,Mathematics - Number Theory,Mathematics - Numerical Analysis}
-    \endentry
-    \entry{allamigeon_tropical_2020}{article}{}
-      \name{author}{3}{}{%
-        {{hash=b1e817e9d1bd389b0f93e61c06f14889}{%
-           family={Allamigeon},
-           familyi={A\bibinitperiod},
-           given={Xavier},
-           giveni={X\bibinitperiod}}}%
-        {{hash=244b75eea383ffd94ca64f4b3b1537ee}{%
-           family={Gaubert},
-           familyi={G\bibinitperiod},
-           given={Stéphane},
-           giveni={S\bibinitperiod}}}%
-        {{hash=9c6c4d6c82304ad1a7e97957856b8db5}{%
-           family={Skomra},
-           familyi={S\bibinitperiod},
-           given={Mateusz},
-           giveni={M\bibinitperiod}}}%
-      }
-      \strng{namehash}{2a454cd29b9c88ed54a6aec94d2045da}
-      \strng{fullhash}{2a454cd29b9c88ed54a6aec94d2045da}
-      \strng{bibnamehash}{2a454cd29b9c88ed54a6aec94d2045da}
-      \strng{authorbibnamehash}{2a454cd29b9c88ed54a6aec94d2045da}
-      \strng{authornamehash}{2a454cd29b9c88ed54a6aec94d2045da}
-      \strng{authorfullhash}{2a454cd29b9c88ed54a6aec94d2045da}
-      \field{labelalpha}{AGS20}
-      \field{sortinit}{2}
-      \field{sortinithash}{ed39bb39cf854d5250e95b1c1f94f4ed}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{abstract}{We introduce tropical spectrahedra, defined as the images by the nonarchimedean valuation of spectrahedra over the field of real Puiseux series. We provide an explicit polyhedral characterization of generic tropical spectrahedra, involving principal tropical minors of size at most 2. One of the key ingredients is Denef-Pas quantifier elimination result over valued fields. We obtain from this that the nonarchimedean valuation maps semialgebraic sets to semilinear sets that are closed. We also prove that, under a regularity assumption, the image by the valuation of a basic semialgebraic set is obtained by tropicalizing the inequalities which define it.}
-      \field{annotation}{Comment: v1: 23 pages, 3 figures; v2: 25 pages, 4 figures, stronger results in Section 4 + new example + minor revisions; v3: 31 pages, 4 figures, new theorem in Section 5 + more discussion in Sections 2 and 4}
-      \field{issn}{0179-5376, 1432-0444}
-      \field{journaltitle}{Discrete \& Computational Geometry}
-      \field{month}{4}
-      \field{note}{arXiv:1610.06746 [math]}
-      \field{number}{3}
-      \field{title}{Tropical spectrahedra}
-      \field{volume}{63}
-      \field{year}{2020}
-      \field{pages}{507\bibrangedash 548}
-      \range{pages}{42}
-      \verb{doi}
-      \verb 10.1007/s00454-020-00176-1
-      \endverb
-      \verb{file}
-      \verb arXiv.org Snapshot:C\:\\Users\\coren\\Zotero\\storage\\A6WH3WVC\\1610.html:text/html;Full Text PDF:C\:\\Users\\coren\\Zotero\\storage\\GPNV9JHQ\\Allamigeon et al. - 2020 - Tropical spectrahedra.pdf:application/pdf
-      \endverb
-      \verb{urlraw}
-      \verb http://arxiv.org/abs/1610.06746
-      \endverb
-      \verb{url}
-      \verb http://arxiv.org/abs/1610.06746
-      \endverb
-      \keyw{14T05 (Primary),90C22,14P10,12J25 (Secondary),Mathematics - Algebraic Geometry,Mathematics - Combinatorics,Mathematics - Optimization and Control}
     \endentry
   \enddatalist
 \endrefsection
