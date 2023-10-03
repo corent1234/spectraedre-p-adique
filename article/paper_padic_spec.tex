@@ -1,6 +1,5 @@
 \documentclass[a4paper,12pt]{article}
 
-%\usepackage{amsthm}
 \newenvironment{proof}{\hbox{}\vspace{-0.5cm} {\bf Proof:}}{\hfill $\Box$ \\}
 
 \newtheorem{theorem}{Theorem}
@@ -42,17 +41,20 @@
 \newcommand{\N}{\mathbb{N}} % integers
 
 \newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
-\newcommand{\corentin}[1]{{\color{red} #1}} % simone's comments
-\newcommand{\tristan}[1]{{\color{olive} #1}} % simone's comments
+\newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
+\newcommand{\tristan}[1]{{\color{olive} #1}} % tristan's comments
 
+\usepackage{biblatex}
+\addbibresource{../rapport/bibstage.bib}
 
 \title{\bf Title}
 
 \begin{document}
 
-\author{$^{1,2}$,  $^3$}
+\author{Corentin Cornou$^{1}$, Simone Naldi$^2$ and Tristan Vaccon$^2$}
 
-\footnotetext[1]{CNRS; LAAS; Universit\'e de Toulouse, 7 avenue du colonel Roche, F-31400 Toulouse, France. }
+\footnotetext[1]{ENS Paris-Saclay, Université Paris-Saclay.}
+\footnotetext[2]{Université de Limoges, CNRS, XLIM, Limoges, France.}
 
 \date{Draft of \today}
 
@@ -62,6 +64,23 @@
 \end{abstract}
 
 \section{Introduction}
+\subsection{Motivations and main results}
+\subsection{Real spectrahedra}
+
+\section{Notation}
+
+\section{Polyhedra and linear programming}
+
+\subsection{Polyhedra}
+\subsection{Linear programmming}
+
+\section{Spectrahedra}
+
+\subsection{Definition}
+\subsection{Annuli (couronnes)}
+\subsection{Polyhedrality}
+Cf. \cite{bhardwaj2015deciding}
 
 
+\printbibliography
 \end{document}
