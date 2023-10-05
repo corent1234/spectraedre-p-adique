@@ -39,6 +39,7 @@
 \newcommand{\R}{\mathbb{R}} % real numbers
 \newcommand{\C}{\mathbb{C}} % complex numbers
 \newcommand{\N}{\mathbb{N}} % integers
+\newcommand{\sym}{\mathbb{S}} % matrices symétriques
 
 \newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
 \newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
@@ -53,7 +54,7 @@
 
 \author{Corentin Cornou$^{1}$, Simone Naldi$^2$ and Tristan Vaccon$^2$}
 
-\footnotetext[1]{ENS Paris-Saclay, Université Paris-Saclay.}
+\footnotetext[1]{ENS Paris-Saclay, Université Paris-Saclay, France.}
 \footnotetext[2]{Université de Limoges, CNRS, XLIM, Limoges, France.}
 
 \date{Draft of \today}
@@ -63,9 +64,28 @@
 \begin{abstract}
 \end{abstract}
 
+
 \section{Introduction}
 \subsection{Motivations and main results}
+
+
+il faudra mentionner (et peut être motiver l'approche p-adique) :
+\begin{itemize}
+\item les questions ouvertes de complexité concernant la programmation semidefinie (pas clair si NP $\cap$ co-NP
+  dans le modele de Turing)
+\item les questions ouvertes géométriques (Conjecture de Lax)
+\end{itemize}
+
 \subsection{Real spectrahedra}
+
+Let $\sym_m(\R)$ be the vector space of $m \times m$ real symmetric matrices. We recall that
+a matrix $M \in \sym_m(\R)$ is called positive semidefinite ($M \succeq 0$) whenever the quadratic
+form $x \mapsto x^TMx$ is globally nonnegative. Recall that by the Spectral Theorem, $M \succeq 0$
+if and only if the eigenvalues of $M$ are nonnegative, if and only if all the principal minors of
+$M$ are nonnegative. The set of positive semidefinite matrices, denoted $\sym_m^+(\R) \subset \sym_m(\R)$,
+is a closed convex cone with non-empty interior in $\sym_m(\R)$.
+
+A {\it (real) spectrahedron} is an affine slice of the 
 
 \section{Notation}
 
