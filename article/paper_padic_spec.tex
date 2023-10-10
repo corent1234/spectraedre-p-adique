@@ -34,6 +34,9 @@
 
 \usepackage{cleveref}
 
+\usepackage{stmaryrd} %for double brackets
+
+
 % updates
 
 \newcommand{\R}{\mathbb{R}} % real numbers
@@ -46,6 +49,13 @@
 \newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
 \newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
 \newcommand{\tristan}[1]{{\color{olive} #1}} % tristan's comments
+
+%p-adic commands
+\DeclareMathOperator{\val}{val}
+\def\QQ{\ensuremath{\mathbb{Q}}}
+\def\ZZ{\ensuremath{\mathbb{Z}}}
+\newcommand{\OK}{\mathcal{O}_K}
+
 
 \usepackage{biblatex}
 \addbibresource{../rapport/bibstage.bib}
@@ -90,6 +100,21 @@ Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
 
 \subsection{Notation}
 
+Throughout the paper, $K$ refers to a complete,
+discrete valuation field, $\val : K \twoheadrightarrow \ZZ \cup \{+\infty\}$ to its valuation,
+$\OK$ its ring of integers and $\pi$ a uniformizer.
+For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK.$
+A typical example of $K$ as above is the field of $p$-adic numbers 
+$\QQ_p$ (equipped with the $p$-adic valuation). For this example, we 
+have $\OK = \ZZ_p$.
+Another example is the field of Laurent series
+$K=\QQ ((T))$ equiped with $T$-adic valuation.
+In this case,  $\OK = \QQ \llbracket T \rrbracket$.
+We refer to Serre's Local Fields \cite{Serre} for a
+general introduction to such fields
+and to Caruso's course on $p$-adic computations \cite{caruso_computations_2017}
+for an introduction to effective computations
+over them
 
 \subsection{Real spectrahedra}
 
