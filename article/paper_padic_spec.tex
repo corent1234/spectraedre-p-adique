@@ -222,7 +222,7 @@ $$
 \subsection{Polyhedra}
 
 \begin{definition}
-	We call {\it convex $p$-adic polyhedra} subsets of $K^s$ defined by linear inequalities $\val\left( \ell_1(x)\right)\ge 0$,\ldots, $ \val\left( \ell_n\left( x \right) \right)\ge 0$ for $ \ell_1,\ldots, \ell_n $ fixed linear forms and for all $x \in K ^s$.
+	We call {\it polyhedra} subsets of $K^s$ defined by linear inequalities $\val\left( \ell_1(x)\right)\ge 0$,\ldots, $ \val\left( \ell_n\left( x \right) \right)\ge 0$ for $ \ell_1,\ldots, \ell_n $ fixed linear forms and for all $x \in K ^s$.
 	
 	
 \end{definition}
@@ -238,7 +238,7 @@ $$
 \end{example}
 
 \subsection{linear programming}
-	We call { \it $p$-adic programming} the problem :
+	We call { \it $p$-adic linear programming} the problem :
 \begin{equation}
 	\tag{PLp}
 	\begin{matrix}
@@ -248,7 +248,7 @@ $$
 	\label{eqn:Proglinp}
 \end{equation}
 
-with $x$ a vector of $K ^n$, and $c$ a fixed vector of size $n$ that represents the cost, $A$ a fixed $m \times n $ matrix and $b$ fiexed a vector of size $m$.
+with $x$ a vector of $K ^n$, and $c$ a fixed vector of size $n$ that represents the cost, $A$ a fixed $m \times n $ matrix and $b$ fixed a vector of size $m$.
 
 The method used in this article consists in reducing the Smith normal form of the matrix $A$.
 
@@ -257,17 +257,17 @@ The method used in this article consists in reducing the Smith normal form of th
 	We call {\it Smith normal form} of a matrix $M \in \mathcal{M}_{m,n}\left(K \right) $ of rank $r$ the only matrix $S$ of the form $$S =  
 	\begin{pmatrix} p^{a_1} & \\
 		& \ddots \\
-		& & p^{ar}\\
+		& & p^{a_r}\\
 		& & & 0\\
 		& & & & \ddots \end{pmatrix} $$
-	so that $(a_1)_{1\le i\le r}$ is a increasing sequence of integers and $M$ can be written $M =  Q^{-1} S P$ for $P \in \mathcal{G}L_n\left( \OK \right) $, $Q \in \mathcal{G}L_m\left( \OK \right) $.
+	so that $(a_1)_{1\le i\le r}$ is a increasing sequence of integers and $M$ can be written $M =  Q^{-1} S P$ for $P \in \mathcal{G}L_n\left( \ZZ_p \right) $, $Q \in \mathcal{G}L_m\left( \ZZ_p \right) $.
 \end{definition}
 
 \begin{remark}
 	\begin{enumerate}%[label=\roman*.]
-		\item The coefficient of the Smith normal Form are unique and called \textit{invariant factors}.
-		\item The $p$-adic valuation of the first coefficient of the Smith normal form of a matrix $M \in \mathcal{M}_n \left( K \right) $ is the minimum of the valuations of the matrix $M$'s terms.
-		\item In particular, the the normal Smith form of matrix of $\mathcal{M}_n \left( \OK \right) $ have coefficients in $\OK$ .
+		\item The coefficient of the Smith normal form are unique and called \textit{invariant factors}.
+		\item The valuation of the first coefficient of the Smith normal form of a matrix $M \in \mathcal{M}_n \left( \QQ_p \right) $ is the minimum of the valuations of the matrix $M$'s terms.
+		\item In particular, the the normal Smith form of matrix of $\mathcal{M}_n \left( \OK \right) $ have coefficients in $\ZZ_p$ .
 		\item The $r = \text{rank} M$ first diagonals coefficients of $S$ are exactly its non-zero coefficient.
 	\end{enumerate}
 	
@@ -276,10 +276,10 @@ The method used in this article consists in reducing the Smith normal form of th
 In order to be able to use the Smith normal form to resolve \ref{eqn:Proglinp} we need the following lemma :
 
 \begin{lemma}
-	Forall $p$-adic numbers $z \in K ^n$ and matrix $M \in \mathcal{M}_{m,n}\left( K  \right)  $ if $z\ge 0$ and $M\ge 0$ then $Mz\ge 0$.  
+	Forall $p$-adic numbers $z \in \QQ_p ^n$ and matrix $M \in \mathcal{M}_{m,n}\left( \QQ_p  \right)  $ if $z\ge 0$ and $M\ge 0$ then $Mz\ge 0$.  
 \end{lemma}
 \begin{proof}
-	$\OK$ is a ring.
+	$\ZZ_p$ is a ring.
 \end{proof}
 
 
@@ -294,7 +294,7 @@ If we put the matrix $A$ of \ref{eqn:Proglinp} in its normal Smith form, it come
 	\end{matrix}
 	\label{eqn:Proglinp2}
 \end{equation}
-where $b' = Qb$, $c' = P^Tc$, $S$ is the Smith normal form of $A$ and $A = Q^{-1} S P$ for some $P \in \mathcal{G}L_m\left( \OK \right)$ and $ Q \in \mathcal{G}L_n\left( \OK \right)$.
+where $b' = Qb$, $c' = P^Tc$, $S$ is the Smith normal form of $A$ and $A = Q^{-1} S P$ for some $P \in \mathcal{G}L_m\left( \ZZ_p \right)$ and $ Q \in \mathcal{G}L_n\left( \ZZ_p \right)$.
 
 \begin{remark}
 	
@@ -332,7 +332,7 @@ The result can be split depending on the valuation of $\lambda$.
 	
 \end{itemize}
 \begin{remark}
-	To maximize the valuation of a linear map over a convex $p$-adic polyhedron instead of minimizing it (which is equuivalent to minimize the absolute value) the same reasoning can be apllied. The only differnece being that if $\val\left( \lambda\right) < v$ the problem is unbounded and then does not have any solution. 
+	To maximize the valuation of a linear map over a convex $p$-adic polyhedron instead of minimizing it (which is equuivalent to minimize the absolute value) the same reasoning can be aplied. The only differnece being that if $\val\left( \lambda\right) < v$ the problem is unbounded and then does not have any solution. 
 \end{remark}
 
 
@@ -354,7 +354,7 @@ The result can be split depending on the valuation of $\lambda$.
 	\label{caracsdp}
 	Characterization of the \mats
 	
-	A matrixe is positive semidefinite if and only if its characteristic polynomial have coefficients in $\OK$ .
+	A matrix is positive semidefinite if and only if its characteristic polynomial have coefficients in $\OK$ .
 	
 \end{theorem}
 
@@ -363,12 +363,14 @@ The result can be split depending on the valuation of $\lambda$.
 	$\mathcal{M}_n(\OK) \subset \mathcal{M}_n^+\left( K \right)$ 
 \end{corollary}
 
+\begin{proof}
+$\OK$ is a ring therefore the characteristic polynomial of matrix whose coefficients are $p$-adic integers have coefficients ins $Pp$. We conclude by \ref{caracsdp} .
+\end{proof}
 
-\textit{Preuve : }  $\OK$ is a ring therefore the characteristic polynomial of matrix whose coefficients are $p$-adic integers have coefficients ins $Pp$. We conclude by \ref{caracsdp} .
 
 
 \begin{remark}
-	In general, the reciprocal inclusion is false [not sure about this one]. For instance the characteristic polynomial of $M = \begin{pmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{pmatrix} $ is $\chi_M = X^2  - 5 X - 4$. However when seen as an element of $\mathbb{Q}_5$, $\chi_M \in \mathbb{Z}_5[X]$ then $M \in \mathcal{M}_2^+\left( \mathbb{Q}_5 \right)$ but no coefficient of $M$ is in $\mathbb{Z}_5 $
+	In general, the reverse inclusion is false. For instance the characteristic polynomial of $M = \begin{pmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{pmatrix} $ is $\chi_M = X^2  - 5 X - 4$. However when seen as an element of $\mathbb{Q}_5$, $\chi_M \in \mathbb{Z}_5[X]$ then $M \in \mathcal{M}_2^+\left( \mathbb{Q}_5 \right)$ but no coefficient of $M$ is in $\mathbb{Z}_5 $
 \end{remark}
 
 \begin{proposition}
@@ -390,7 +392,7 @@ Furthermore, $\mathcal{M}^+_{n}\left(K \right)  = \chi^{-1}( \OK[X]) $ where $\c
 
 
 \begin{definition}
-	We call {\it $p$-adic spectrahedron} the intersection of $\mathcal{M}_n^+\left( K \right) $ with an affine plan $\mathcal{L}$ of $\mathcal{M}_n\left( K \right) $.
+	We call {\it spectrahedron} the intersection of $\mathcal{M}_n^+\left( K \right) $ with an affine plan $\mathcal{L}$ of $\mathcal{M}_n\left( K \right) $.
 \end{definition}
 
 \begin{remark}
@@ -399,7 +401,7 @@ Furthermore, $\mathcal{M}^+_{n}\left(K \right)  = \chi^{-1}( \OK[X]) $ where $\c
 
 The latter allows gives us the following property :
 \begin{proposition}
-	A convex $p$-adic polyhedron is $p$-adic spectrahedron.
+	A polyhedron is a spectrahedron.
 \end{proposition}
 \begin{proof}
 	Same as in the real case (maybe modify it or add the link to real proof).
