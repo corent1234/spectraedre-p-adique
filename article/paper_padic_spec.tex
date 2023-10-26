@@ -37,6 +37,7 @@
 
 \usepackage{stmaryrd} %for double brackets
 
+%\usepackage{mathptmx}
 
 % updates
 
@@ -56,6 +57,8 @@
 \def\QQ{\ensuremath{\mathbb{Q}}}
 \def\ZZ{\ensuremath{\mathbb{Z}}}
 \newcommand{\OK}{\mathcal{O}_K}
+
+\newcommand{\exend}{\hfill $\blacksquare$}
 
 
 \usepackage{biblatex}
@@ -109,35 +112,34 @@ A typical example of $K$ as above is the field of $p$-adic numbers
 $\QQ_p$ (equipped with the $p$-adic valuation). For this example, we 
 have $\OK = \ZZ_p$.
 Another example is the field of Laurent series
-$K=\QQ ((T))$ equiped with $T$-adic valuation.
+$K=\QQ(\!(T)\!)$ equiped with $T$-adic valuation.
 In this case,  $\OK = \QQ \llbracket T \rrbracket$.
 We refer to \cite{Serre:1979} for a
 general introduction to such fields
-and to Caruso's course on $p$-adic computations \cite{caruso_computations_2017}
-for an introduction to effective computations
-over them
+and to X.~Caruso's course on $p$-adic computations \cite{caruso_computations_2017}
+for an introduction to effective computations over $p$-adic numbers.
 
 \subsection{Real spectrahedra}
 
-Let $\sym_m(\R)$ be the vector space of $m \times m$ real symmetric matrices. A matrix $M \in \sym_m(\R)$
+Let $\sym_d(\R)$ be the vector space of $d \times d$ real symmetric matrices. A matrix $M \in \sym_d(\R)$
 is called {\it positive semidefinite} ($M \succeq 0$) whenever the quadratic
 form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$
 if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors
-of $M$ being nonnegative. The set of positive semidefinite matrices, denoted $\sym_m^+(\R) \subset \sym_m(\R)$,
+of $M$ being nonnegative. The set of positive semidefinite matrices, denoted $\sym_d^+(\R) \subset \sym_d(\R)$,
 is a closed convex cone with non-empty interior in $\sym_m(\R)$.
 
-Let $A_0,A_1,\ldots,A_n \in \sym_m(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
+Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
 containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we assume linearly
 independent). The intersection
-$\calL \cap \sym_m^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_m(\R) : A(x) \succeq 0\right\}$, or
+$\calL \cap \sym_d^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_d(\R) : A(x) \succeq 0\right\}$, or
 equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
-a {\it real spectrahedron}. As affine sections of $\sym_m^+(\R)$, real spectrahedra are closed convex sets,
+a {\it real spectrahedron}. As affine sections of $\sym_d^+(\R)$, real spectrahedra are closed convex sets,
 but might have empty interior in $\calL$ (resp. in $\R^n$). Moreover, they are basic semialgebraic sets,
 defined by sign conditions on the principal minors of the defining matrix as well as sign conditions on the
 coefficients of its characteristic polynomial (cf. \Cref{ell3}).
 
 \begin{example}\label{ell3}
-  The $3$-elliptope is the three-dimensional spectrahedron given by
+  Let $d=n=3$. The $3$-elliptope is the three-dimensional spectrahedron given by
   $$
   \mathcal{E}_3 :=
   \left\{
@@ -167,6 +169,7 @@ coefficients of its characteristic polynomial (cf. \Cref{ell3}).
   $$
   1-x_1^2 \geq 0, \,\,\, 1-x_2^2 \geq 0, \,\,\, 1-x_3^2 \geq 0 \,\,\, \text{ and } \,\,\, 1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0
   $$
+  \exend
 \end{example}
 
 The optimization problem of miminizing a linear function over a real spectrahedron is called {\it semidefinite programming} (SDP). Given $C,A_0,A_1,\ldots,A_n \in \sym_m(\R)$, the corresponding semidefinite program is defined as
@@ -177,13 +180,15 @@ The optimization problem of miminizing a linear function over a real spectrahedr
   &    & \text{s.t.}         & A_0+\sum_{i=1}^n x_i A_i \succeq 0.
 \end{array}
 \end{equation}
-Since real polyhedra are special cases of real spectrahedra, SDP is a generalization of linear programming (LP).
-In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
+Real polyhedra (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
+spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal. Thus SDP is a generalization
+of linear programming (LP). In a fixed-precision model of computation, SDP is solvable in polynomial time in the
+input size (matrix size,
 number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the
 precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of the solution,
 cf. \cite[Sec.1.9]{deKlerk}. In exact arithmetic, the complexity status of SDP is essentially open but complexity
 bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity}
-or on the determinantal structure of the constraints \cite{henrion2016exact}.
+or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
 
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
 called {\it semidefinite representable sets} (or spectrahedral shadows): these are sets of the form
@@ -219,12 +224,16 @@ $$
 
 
 \section{Polyhedra and linear programming}
-\subsection{Polyhedra}
+
+%\subsection{Polyhedra}
+
+In this section, we define polyhedra over a complete discrete valuation field $K$ with valuation $\val$,
+and we discuss the associated linear optimization problem.
 
 \begin{definition}
-	We call {\it polyhedra} subsets of $K^s$ defined by linear inequalities $\val\left( \ell_1(x)\right)\ge 0$,\ldots, $ \val\left( \ell_n\left( x \right) \right)\ge 0$ for $ \ell_1,\ldots, \ell_n $ fixed linear forms and for all $x \in K ^s$.
-	
-	
+  Let $\ell_1,\ldots,\ell_d \in K[X]_1$ be linear inequalities on $X = (X_1, \ldots, X_n)$.
+  A {\it polyhedron} is a subset $P \subset K^s$ defined by linear inequalities:
+  $P = \val\left( \ell_1(x)\right)\ge 0$,\ldots, $ \val\left( \ell_n\left( x \right) \right)\ge 0$ for $ \ell_1,\ldots, \ell_n $ fixed linear forms and for all $x \in K ^s$.
 \end{definition}
 
 \begin{example}
@@ -237,7 +246,7 @@ $$
 	
 \end{example}
 
-\subsection{linear programming}
+%\subsection{linear programming}
 	We call { \it $p$-adic linear programming} the problem :
 \begin{equation}
 	\tag{PLp}
