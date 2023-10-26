@@ -44,6 +44,7 @@
 \newcommand{\R}{\mathbb{R}} % real numbers
 \newcommand{\C}{\mathbb{C}} % complex numbers
 \newcommand{\N}{\mathbb{N}} % integers
+\newcommand{\allmat}{\mathbb{M}} % matrices
 \newcommand{\sym}{\mathbb{S}} % matrices symétriques
 \renewcommand{\span}[1]{{\text{span}(#1)}} % simone's comments
 \newcommand{\calL}{\mathcal{L}} % simone's comments
@@ -119,20 +120,27 @@ general introduction to such fields
 and to X.~Caruso's course on $p$-adic computations \cite{caruso_computations_2017}
 for an introduction to effective computations over $p$-adic numbers.
 
+The $K$-vector space of polynomials of degree $\leq d$ on $X=(X_1,\ldots,X_n)$
+with coefficients in $K$ is denoted by $K[X]_{d}$. The vector space of matrices of
+size $p \times q$ with entries in $K$ is denoted by $\allmat_{p,q}(K)$. For the sake
+of ease of writing, diagonal matrices with entries $a_1,\ldots,a_d$ are denoted by
+$a_1 \oplus \cdots \oplus a_n$.
+
 \subsection{Real spectrahedra}
 
-Let $\sym_d(\R)$ be the vector space of $d \times d$ real symmetric matrices. A matrix $M \in \sym_d(\R)$
+Let $\sym_d(\R) \subset \allmat_{d,d}(\R)$ be the vector space of $d \times d$ real symmetric
+matrices. A matrix $M \in \sym_d(\R)$
 is called {\it positive semidefinite} ($M \succeq 0$) whenever the quadratic
 form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$
 if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors
 of $M$ being nonnegative. The set of positive semidefinite matrices, denoted $\sym_d^+(\R) \subset \sym_d(\R)$,
-is a closed convex cone with non-empty interior in $\sym_m(\R)$.
+is a closed convex cone with non-empty interior in $\sym_d(\R)$.
 
 Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
 containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we assume linearly
 independent). The intersection
-$\calL \cap \sym_d^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_d(\R) : A(x) \succeq 0\right\}$, or
-equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
+$\calL \cap \sym_d^+(\R) = \left\{A(X) := A_0+\sum_i X_i A_i \in \sym_d(\R) : A(X) \succeq 0\right\}$, or
+equivalently, its pre-image $S = \{X \in \R^n : A(X) \succeq 0\}$ under the map $X \mapsto A(X)$, is called
 a {\it real spectrahedron}. As affine sections of $\sym_d^+(\R)$, real spectrahedra are closed convex sets,
 but might have empty interior in $\calL$ (resp. in $\R^n$). Moreover, they are basic semialgebraic sets,
 defined by sign conditions on the principal minors of the defining matrix as well as sign conditions on the
@@ -143,46 +151,49 @@ coefficients of its characteristic polynomial (cf. \Cref{ell3}).
   $$
   \mathcal{E}_3 :=
   \left\{
-  x
+  X
   \in \R^3 :
   \begin{bmatrix}
-    1 & x_1 & x_2 \\
-    x_1 & 1 & x_3 \\
-    x_2 & x_3 & 1
+    1 & X_1 & X_2 \\
+    X_1 & 1 & X_3 \\
+    X_2 & X_3 & 1
   \end{bmatrix}
   \succeq 0
   \right\}
   =
   \left\{
-  x
+  X
   \in \R^3 :
   \begin{array}{r}
-    3-x_1^2-x_2^2-x_3^2 \geq 0 \\
-    1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0
+    3-X_1^2-X_2^2-X_3^2 \geq 0 \\
+    1+2X_1X_2X_3-X_1^2-X_2^2-X_3^2 \geq 0
   \end{array}
   \right\}.
   $$
   The polynomials on the right are the (non-constant) coefficients of the univariate polynomial
-  $p(t) = \det(A(x)+t I)$,
+  $p(T) = \det(A(X)+T I_3)$,
   whose roots are the opposites of the eigenvalues of the defining matrix. Equivalently $\mathcal{E}_3$
   is defined by positivity of the principal minors of the defining matrix:
   $$
-  1-x_1^2 \geq 0, \,\,\, 1-x_2^2 \geq 0, \,\,\, 1-x_3^2 \geq 0 \,\,\, \text{ and } \,\,\, 1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0
+  1-X_1^2 \geq 0, \,\,\, 1-X_2^2 \geq 0, \,\,\, 1-X_3^2 \geq 0 \,\,\, \text{ and } \,\,\, 1+2X_1X_2X_3-X_1^2-X_2^2-X_3^2 \geq 0
   $$
   \exend
 \end{example}
 
-The optimization problem of miminizing a linear function over a real spectrahedron is called {\it semidefinite programming} (SDP). Given $C,A_0,A_1,\ldots,A_n \in \sym_m(\R)$, the corresponding semidefinite program is defined as
+The optimization problem of miminizing a linear function over a real spectrahedron is called {\it semidefinite programming} (SDP). Given $c \in \R^n$ and $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, the corresponding semidefinite program is defined (in standard dual form) as
 \begin{equation}
   \label{SDP}
 \begin{array}{rcll}
-  p^* & := & \inf_{x \in \R^n} & \left\langle c, x \right\rangle \\
-  &    & \text{s.t.}         & A_0+\sum_{i=1}^n x_i A_i \succeq 0.
+  p^* & := & \inf_{X \in \R^n} & \left\langle c, X \right\rangle \\
+  &    & \text{s.t.}         & A_0+\sum_{i=1}^n X_i A_i \succeq 0.
 \end{array}
 \end{equation}
 Real polyhedra (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
-spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal. Thus SDP is a generalization
-of linear programming (LP). In a fixed-precision model of computation, SDP is solvable in polynomial time in the
+spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that $A(X) =
+\ell_1(X) \oplus \cdots \oplus \ell_d(X)$.
+
+In other words, SDP is a generalization
+of Linear Programming (LP). In a fixed-precision model of computation, SDP is solvable in polynomial time in the
 input size (matrix size,
 number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the
 precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of the solution,
@@ -193,29 +204,29 @@ or by exploiting the determinantal structure of the constraints \cite{henrion201
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
 called {\it semidefinite representable sets} (or spectrahedral shadows): these are sets of the form
 $$
-P = \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}
+P = \left\{X = \left[\begin{smallmatrix} X_1 \\ \vdots \\ X_n \end{smallmatrix}\right] \in \R^n : \exists\,Y\in\R^p, \, A_0 + \sum_{i=1}^n X_i A_i + \sum_{j=1}^p Y_j B_j \succeq 0\right\}
 $$
 
 \begin{example}
 \label{fermat_quartic}
-The basic closed semialgebraic set $P = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron
+The basic closed semialgebraic set $P = \{(X_1,X_2) \in \R^2 : 1-X_1^4-X_2^4 \geq 0\}$ is not a spectrahedron
 but it is semidefinite representable:
 $$
-P = \left\{x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \in \R^2 :
-\exists\, (y_1,y_2) \in \R^2, \,
+P = \left\{X = \begin{bmatrix} X_1 \\ X_2 \end{bmatrix} \in \R^2 :
+\exists\, (Y_1,Y_2) \in \R^2, \,
 \begin{bmatrix}
-  1+y_1 & y_2 \\
-  y_2 & 1-y_1
+  1+Y_1 & Y_2 \\
+  Y_2 & 1-Y_1
 \end{bmatrix}
 \bigoplus
 \begin{bmatrix}
-  1 & x_1 \\
-  x_1 & y_1
+  1 & X_1 \\
+  X_1 & Y_1
 \end{bmatrix}
 \bigoplus
 \begin{bmatrix}
-  1 & x_2 \\
-  x_2 & y_2
+  1 & X_2 \\
+  X_2 & Y_2
 \end{bmatrix}
 \succeq 0
 \right\}
@@ -231,30 +242,32 @@ In this section, we define polyhedra over a complete discrete valuation field $K
 and we discuss the associated linear optimization problem.
 
 \begin{definition}
-  Let $\ell_1,\ldots,\ell_d \in K[X]_1$ be linear inequalities on $X = (X_1, \ldots, X_n)$.
-  A {\it polyhedron} is a subset $P \subset K^s$ defined by linear inequalities:
-  $P = \val\left( \ell_1(x)\right)\ge 0$,\ldots, $ \val\left( \ell_n\left( x \right) \right)\ge 0$ for $ \ell_1,\ldots, \ell_n $ fixed linear forms and for all $x \in K ^s$.
+  A {\it polyhedron} is a subset $P \subset K^n$ of the form
+  $P = \{X \in K^n : \val(\ell_1(X))\geq0,\ldots,\val(\ell_n(X))\geq 0\}$,
+  where $\ell_1,\ldots,\ell_d \in K[X]_1$ are affine polynomials on $X = (X_1, \ldots, X_n)$.
 \end{definition}
 
 \begin{example}
-	The closed unit ball of $K^s$ for the infinity norm [not sure if it is really used ] is convex polyhedron.It is the set of $\left( x_1,\ldots,x_s \right) \in  ^s$ so that $$
-	\begin{pmatrix} x_1 &  & & \\
-		& x_2 &0 &  \\
-		&  0& \ddots & \\
-		&  & & x_s/
-	\end{pmatrix} \ge 0.$$ which is in fact $\OK^s$. 
-	
+  The closed unit ball in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the polyhedron defined as
+  the set of $(X_1,\ldots,X_n) \in K^n$ such that
+  $$
+  \begin{pmatrix} x_1 &  & & \\
+    & x_2 &0 &  \\
+    &  0& \ddots & \\
+    &  & & x_s/
+  \end{pmatrix} \ge 0.$$ which is in fact $\OK^s$.
 \end{example}
 
 %\subsection{linear programming}
-	We call { \it $p$-adic linear programming} the problem :
+
+A {\it linear programming problem} (or simply {\it linear program}) is
 \begin{equation}
-	\tag{PLp}
-	\begin{matrix}
-		\text{Minimize } \val\left(\left<c,x \right>\right) \text{ subject to }\\
-		Ax + b \ge 0
-	\end{matrix}
-	\label{eqn:Proglinp}
+  \tag{LP}
+  \begin{matrix}
+    \text{Minimize } \val\left(\left<c,x \right>\right) \text{ subject to }\\
+    Ax + b \ge 0
+  \end{matrix}
+  \label{eqn:Proglinp}
 \end{equation}
 
 with $x$ a vector of $K ^n$, and $c$ a fixed vector of size $n$ that represents the cost, $A$ a fixed $m \times n $ matrix and $b$ fixed a vector of size $m$.
@@ -350,12 +363,12 @@ The result can be split depending on the valuation of $\lambda$.
 \section{Spectrahedra}
 
 \subsection{Definition}
-\newcommand\mat{postive semidefinite matrix } 
+%\newcommand\mat{postive semidefinite matrix } 
 \newcommand\Mat{Positive semidefinite matrix }
 \newcommand\mats{positive semidefinite matrices }
 \newcommand\Mats{positive semidefinite matrices }
 \begin{definition}
-	We call {\it \mat} any matrix $M \in \mathcal{M}_n\left( K \right) $ whose eigenvalues have nonegative valuation (in $\overline{K}$) .
+	We call ... any matrix $M \in \mathcal{M}_n\left( K \right) $ whose eigenvalues have nonegative valuation (in $\overline{K}$) .
 	
 	We will denote as $ \mathcal{M}_n^+\left( K \right)$ the set of \mats and we will write $M \succeq 0$ if $M \in \mathcal{M}_n^+\left( K\right) $.
 \end{definition}
