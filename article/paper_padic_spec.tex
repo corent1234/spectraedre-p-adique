@@ -244,33 +244,37 @@ and we discuss the associated linear optimization problem.
 \begin{definition}
   A {\it polyhedron} is a subset $P \subset K^n$ of the form
   $P = \{X \in K^n : \val(\ell_1(X))\geq0,\ldots,\val(\ell_n(X))\geq 0\}$,
-  where $\ell_1,\ldots,\ell_d \in K[X]_1$ are affine polynomials on $X = (X_1, \ldots, X_n)$.
+  for some $\ell_1,\ldots,\ell_d \in K[X]_1$. This will often be denoted with
+  the compact notation $\val(\ell_1 \oplus \cdots \oplus \ell_d) \geq 0$, where $\val$
+  and $\geq$ are applied entrywise.
 \end{definition}
 
 \begin{example}
-  The closed unit ball in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the polyhedron defined as
-  the set of $(X_1,\ldots,X_n) \in K^n$ such that
-  $$
-  \begin{pmatrix} x_1 &  & & \\
-    & x_2 &0 &  \\
-    &  0& \ddots & \\
-    &  & & x_s/
-  \end{pmatrix} \ge 0.$$ which is in fact $\OK^s$.
+  The closed unit ball $B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
+  polyhedron defined as the set of $X=(X_1,\ldots,X_n) \in K^n$ such that $||X||_{\infty} =
+  \max_i\{X_i\}\leq 1$, other words, such that $\val(X_i) \geq 0$, for all $i=1, \ldots, n$.
+  In other words, $\OK^n = B_\infty(K^n)$ is the polyhedron in $K^n$ defined by the affine polynomials
+  $\ell_i(X)=X_i$, $i=1,\ldots, n$.
+%  $$
+%  \begin{pmatrix} x_1 &  & & \\
+%    & x_2 &0 &  \\
+%    &  0& \ddots & \\
+%    &  & & x_s/
+  %  \end{pmatrix} \ge 0.$$
 \end{example}
 
 %\subsection{linear programming}
 
-A {\it linear programming problem} (or simply {\it linear program}) is
+A {\it linear programming problem} (or simply {\it linear program}) is given by the following
+optimization problem:
 \begin{equation}
   \tag{LP}
-  \begin{matrix}
-    \text{Minimize } \val\left(\left<c,x \right>\right) \text{ subject to }\\
-    Ax + b \ge 0
-  \end{matrix}
-  \label{eqn:Proglinp}
+\begin{array}{rcll}
+  p^* & := & \inf_{X \in \R^n} & \val(\left\langle c, X \right\rangle) \\
+  &    & \text{s.t.}         & A X + b \geq 0
+\end{array}
 \end{equation}
-
-with $x$ a vector of $K ^n$, and $c$ a fixed vector of size $n$ that represents the cost, $A$ a fixed $m \times n $ matrix and $b$ fixed a vector of size $m$.
+with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in \allmat_{m,n}(K)$ and $b \in K^m$.
 
 The method used in this article consists in reducing the Smith normal form of the matrix $A$.
 
