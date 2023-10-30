@@ -59,6 +59,8 @@
 \def\ZZ{\ensuremath{\mathbb{Z}}}
 \newcommand{\OK}{\mathcal{O}_K}
 
+\newcommand{\GL}{\mathrm{GL}}
+
 \newcommand{\exend}{\hfill $\blacksquare$}
 
 
@@ -278,24 +280,23 @@ and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$.
 We present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in Smith normal form.
 We recall its definition below, in our context.
 
-\begin{definition}[Smith normal form] \label{smith_nf}
+\begin{definition}[Smith Normal Form] \label{smith_nf}
   Let $M \in \allmat_{m,n}(K)$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
-  unique matrices $P \in GL_n(\OK)$ and $Q \in GL_m(\OK)$, such that
+  unique matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
   S := QMP^{-1} = p^{a_1} \oplus p^{a_2} \oplus \cdots \oplus p^{a_r} \oplus {\bf 0}_{m-r}
   $$
   where ${\bf 0}_{m-r}$ is a null square matrix of size $m-r$.
-  The matrix $S$ is called the {\it Smith normal form} of $M$.
+  The matrix $S$ is called the {\it Smith Normal Form (SNF)} of $M$.
 \end{definition}
 
 \begin{remark}
-	\begin{enumerate}%[label=\roman*.]
-		\item The coefficient of the Smith normal form are unique and called \textit{invariant factors}.
-		\item The valuation of the first coefficient of the Smith normal form of a matrix $M \in \mathcal{M}_n \left( \QQ_p \right) $ is the minimum of the valuations of the matrix $M$'s terms.
-		\item In particular, the the normal Smith form of matrix of $\mathcal{M}_n \left( \OK \right) $ have coefficients in $\ZZ_p$ .
-		\item The $r = \text{rank} M$ first diagonals coefficients of $S$ are exactly its non-zero coefficient.
-	\end{enumerate}
-	
+  \begin{enumerate}%[label=\roman*.]
+  \item The coefficient of the Smith normal form are unique and called \textit{invariant factors}.
+  \item The valuation of the first coefficient of the Smith normal form of a matrix $M \in \mathcal{M}_n \left( \QQ_p \right) $ is the minimum of the valuations of the matrix $M$'s terms.
+  \item In particular, the the normal Smith form of matrix of $\mathcal{M}_n \left( \OK \right) $ have coefficients in $\ZZ_p$ .
+  \item The $r = \text{rank} M$ first diagonals coefficients of $S$ are exactly its non-zero coefficient.
+  \end{enumerate}
 \end{remark}
 
 In order to be able to use the Smith normal form to resolve \ref{eqn:Proglinp} we need the following lemma :
