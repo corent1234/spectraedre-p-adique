@@ -113,18 +113,18 @@ A typical example of $K$ as above is the field of $p$-adic numbers
 $\QQ_p$ (equipped with the $p$-adic valuation). For this example, we 
 have $\OK = \ZZ_p$.
 Another example is the field of Laurent series
-$K=\QQ(\!(T)\!)$ equiped with $T$-adic valuation.
-In this case,  $\OK = \QQ \llbracket T \rrbracket$.
+$K=\QQ(\!(t)\!)$ equiped with $t$-adic valuation.
+In this case, $\OK = \QQ \llbracket t \rrbracket$.
 We refer to \cite{Serre:1979} for a
 general introduction to such fields
 and to X.~Caruso's course on $p$-adic computations \cite{caruso_computations_2017}
 for an introduction to effective computations over $p$-adic numbers.
 
-The $K$-vector space of polynomials of degree $\leq d$ on $X=(X_1,\ldots,X_n)$
-with coefficients in $K$ is denoted by $K[X]_{d}$. The vector space of matrices of
+The $K$-vector space of polynomials of degree $\leq d$ on $x=(x_1,\ldots,x_n)$
+with coefficients in $K$ is denoted by $K[x]_{d}$. The vector space of matrices of
 size $p \times q$ with entries in $K$ is denoted by $\allmat_{p,q}(K)$. For the sake
-of ease of writing, diagonal matrices with entries $a_1,\ldots,a_d$ are denoted by
-$a_1 \oplus \cdots \oplus a_n$.
+of ease of writing, block-diagonal matrices with blocks $B_1,\ldots,B_d$ are denoted by
+$B_1 \oplus \cdots \oplus B_d$.
 
 \subsection{Real spectrahedra}
 
@@ -138,9 +138,9 @@ is a closed convex cone with non-empty interior in $\sym_d(\R)$.
 
 Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
 containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we assume linearly
-independent). The intersection
-$\calL \cap \sym_d^+(\R) = \left\{A(X) := A_0+\sum_i X_i A_i \in \sym_d(\R) : A(X) \succeq 0\right\}$, or
-equivalently, its pre-image $S = \{X \in \R^n : A(X) \succeq 0\}$ under the map $X \mapsto A(X)$, is called
+independent). The intersection $\calL \cap \sym_d^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_d(\R) :
+A(x) \succeq 0\right\}$, or
+equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
 a {\it real spectrahedron}. As affine sections of $\sym_d^+(\R)$, real spectrahedra are closed convex sets,
 but might have empty interior in $\calL$ (resp. in $\R^n$). Moreover, they are basic semialgebraic sets,
 defined by sign conditions on the principal minors of the defining matrix as well as sign conditions on the
@@ -151,31 +151,31 @@ coefficients of its characteristic polynomial (cf. \Cref{ell3}).
   $$
   \mathcal{E}_3 :=
   \left\{
-  X
+  x
   \in \R^3 :
   \begin{bmatrix}
-    1 & X_1 & X_2 \\
-    X_1 & 1 & X_3 \\
-    X_2 & X_3 & 1
+    1 & x_1 & x_2 \\
+    x_1 & 1 & x_3 \\
+    x_2 & x_3 & 1
   \end{bmatrix}
   \succeq 0
   \right\}
   =
   \left\{
-  X
+  x
   \in \R^3 :
   \begin{array}{r}
-    3-X_1^2-X_2^2-X_3^2 \geq 0 \\
-    1+2X_1X_2X_3-X_1^2-X_2^2-X_3^2 \geq 0
+    3-x_1^2-x_2^2-x_3^2 \geq 0 \\
+    1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0
   \end{array}
   \right\}.
   $$
   The polynomials on the right are the (non-constant) coefficients of the univariate polynomial
-  $p(T) = \det(A(X)+T I_3)$,
+  $p(t) = \det(A(x)+t I_3)$,
   whose roots are the opposites of the eigenvalues of the defining matrix. Equivalently $\mathcal{E}_3$
   is defined by positivity of the principal minors of the defining matrix:
   $$
-  1-X_1^2 \geq 0, \,\,\, 1-X_2^2 \geq 0, \,\,\, 1-X_3^2 \geq 0 \,\,\, \text{ and } \,\,\, 1+2X_1X_2X_3-X_1^2-X_2^2-X_3^2 \geq 0
+  1-x_1^2 \geq 0, \,\,\, 1-x_2^2 \geq 0, \,\,\, 1-x_3^2 \geq 0 \,\,\, \text{ and } \,\,\, 1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0
   $$
   \exend
 \end{example}
@@ -184,17 +184,15 @@ The optimization problem of miminizing a linear function over a real spectrahedr
 \begin{equation}
   \label{SDP}
 \begin{array}{rcll}
-  p^* & := & \inf_{X \in \R^n} & \left\langle c, X \right\rangle \\
-  &    & \text{s.t.}         & A_0+\sum_{i=1}^n X_i A_i \succeq 0.
+  p^* & := & \inf_{x \in \R^n} & \left\langle c, x \right\rangle \\
+  &    & \text{s.t.}         & A_0+\sum_{i=1}^n x_i A_i \succeq 0.
 \end{array}
 \end{equation}
 Real polyhedra (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
-spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that $A(X) =
-\ell_1(X) \oplus \cdots \oplus \ell_d(X)$.
+spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that $A(x) =
+\ell_1(x) \oplus \cdots \oplus \ell_d(x)$. In other words, SDP is a generalization of Linear Programming (LP).
 
-In other words, SDP is a generalization
-of Linear Programming (LP). In a fixed-precision model of computation, SDP is solvable in polynomial time in the
-input size (matrix size,
+In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
 number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the
 precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of the solution,
 cf. \cite[Sec.1.9]{deKlerk}. In exact arithmetic, the complexity status of SDP is essentially open but complexity
@@ -204,29 +202,30 @@ or by exploiting the determinantal structure of the constraints \cite{henrion201
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
 called {\it semidefinite representable sets} (or spectrahedral shadows): these are sets of the form
 $$
-P = \left\{X = \left[\begin{smallmatrix} X_1 \\ \vdots \\ X_n \end{smallmatrix}\right] \in \R^n : \exists\,Y\in\R^p, \, A_0 + \sum_{i=1}^n X_i A_i + \sum_{j=1}^p Y_j B_j \succeq 0\right\}
+P = \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^p, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^p y_j B_j \succeq 0\right\}
 $$
 
 \begin{example}
 \label{fermat_quartic}
-The basic closed semialgebraic set $P = \{(X_1,X_2) \in \R^2 : 1-X_1^4-X_2^4 \geq 0\}$ is not a spectrahedron
+The basic closed semialgebraic set $P = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron
 but it is semidefinite representable:
 $$
-P = \left\{X = \begin{bmatrix} X_1 \\ X_2 \end{bmatrix} \in \R^2 :
-\exists\, (Y_1,Y_2) \in \R^2, \,
+P = \left\{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \in \R^2 :
+\exists\,
+\begin{bmatrix} y_1 \\ y_2 \end{bmatrix} \in \R^2, \,
 \begin{bmatrix}
-  1+Y_1 & Y_2 \\
-  Y_2 & 1-Y_1
+  1+y_1 & y_2 \\
+  y_2 & 1-y_1
 \end{bmatrix}
 \bigoplus
 \begin{bmatrix}
-  1 & X_1 \\
-  X_1 & Y_1
+  1 & x_1 \\
+  x_1 & y_1
 \end{bmatrix}
 \bigoplus
 \begin{bmatrix}
-  1 & X_2 \\
-  X_2 & Y_2
+  1 & x_2 \\
+  x_2 & y_2
 \end{bmatrix}
 \succeq 0
 \right\}
@@ -238,23 +237,23 @@ $$
 
 %\subsection{Polyhedra}
 
-In this section, we define polyhedra over a complete discrete valuation field $K$ with valuation $\val$,
+In this section, we define polyhedra over a (complete) discrete valuation field $K$ with valuation $\val$,
 and we discuss the associated linear optimization problem.
 
 \begin{definition}
   A {\it polyhedron} is a subset $P \subset K^n$ of the form
-  $P = \{X \in K^n : \val(\ell_1(X))\geq0,\ldots,\val(\ell_n(X))\geq 0\}$,
-  for some $\ell_1,\ldots,\ell_d \in K[X]_1$. This will often be denoted with
+  $P = \{x \in K^n : \val(\ell_1(x))\geq0,\ldots,\val(\ell_n(x))\geq 0\}$,
+  for some $\ell_1,\ldots,\ell_d \in K[x]_1$. This will often be denoted with
   the compact notation $\val(\ell_1 \oplus \cdots \oplus \ell_d) \geq 0$, where $\val$
   and $\geq$ are applied entrywise.
 \end{definition}
 
 \begin{example}
   The closed unit ball $B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
-  polyhedron defined as the set of $X=(X_1,\ldots,X_n) \in K^n$ such that $||X||_{\infty} =
-  \max_i\{X_i\}\leq 1$, other words, such that $\val(X_i) \geq 0$, for all $i=1, \ldots, n$.
+  polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} =
+  \max_i\{x_i\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   In other words, $\OK^n = B_\infty(K^n)$ is the polyhedron in $K^n$ defined by the affine polynomials
-  $\ell_i(X)=X_i$, $i=1,\ldots, n$.
+  $\ell_i(x)=x_i$, $i=1,\ldots, n$.
 %  $$
 %  \begin{pmatrix} x_1 &  & & \\
 %    & x_2 &0 &  \\
@@ -268,25 +267,25 @@ and we discuss the associated linear optimization problem.
 A {\it linear programming problem} (or simply {\it linear program}) is given by the following
 optimization problem:
 \begin{equation}
-  \tag{LP}
+  \tag{LP}\label{LP}
 \begin{array}{rcll}
-  p^* & := & \inf_{X \in \R^n} & \val(\left\langle c, X \right\rangle) \\
-  &    & \text{s.t.}         & A X + b \geq 0
+  p^* & := & \inf_{x \in \R^n} & \val(\left\langle c, x \right\rangle) \\
+  &    & \text{s.t.}         & A x + b \geq 0
 \end{array}
 \end{equation}
-with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in \allmat_{m,n}(K)$ and $b \in K^m$.
+with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in \allmat_{m,n}(K)$, $b \in K^m$,
+and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$.
+We present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in Smith normal form.
+We recall its definition below, in our context.
 
-The method used in this article consists in reducing the Smith normal form of the matrix $A$.
-
-\begin{definition} Smith normal form
-	
-	We call {\it Smith normal form} of a matrix $M \in \mathcal{M}_{m,n}\left(K \right) $ of rank $r$ the only matrix $S$ of the form $$S =  
-	\begin{pmatrix} p^{a_1} & \\
-		& \ddots \\
-		& & p^{a_r}\\
-		& & & 0\\
-		& & & & \ddots \end{pmatrix} $$
-	so that $(a_1)_{1\le i\le r}$ is a increasing sequence of integers and $M$ can be written $M =  Q^{-1} S P$ for $P \in \mathcal{G}L_n\left( \ZZ_p \right) $, $Q \in \mathcal{G}L_m\left( \ZZ_p \right) $.
+\begin{definition}[Smith normal form] \label{smith_nf}
+  Let $M \in \allmat_{m,n}(K)$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
+  unique matrices $P \in GL_n(\OK)$ and $Q \in GL_m(\OK)$, such that
+  $$
+  S := QMP^{-1} = p^{a_1} \oplus p^{a_2} \oplus \cdots \oplus p^{a_r} \oplus {\bf 0}_{m-r}
+  $$
+  where ${\bf 0}_{m-r}$ is a null square matrix of size $m-r$.
+  The matrix $S$ is called the {\it Smith normal form} of $M$.
 \end{definition}
 
 \begin{remark}
