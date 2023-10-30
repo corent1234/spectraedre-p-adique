@@ -287,25 +287,24 @@ We recall its definition below, in our context.
   S := QMP^{-1} = p^{a_1} \oplus p^{a_2} \oplus \cdots \oplus p^{a_r} \oplus {\bf 0}_{m-r}
   $$
   where ${\bf 0}_{m-r}$ is a null square matrix of size $m-r$.
-  The matrix $S$ is called the {\it Smith Normal Form (SNF)} of $M$.
+  The matrix $S$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $p^{a_i}$ the
+  \emph{invariant factors}.
 \end{definition}
 
 \begin{remark}
-  \begin{enumerate}%[label=\roman*.]
-  \item The coefficient of the Smith normal form are unique and called \textit{invariant factors}.
-  \item The valuation of the first coefficient of the Smith normal form of a matrix $M \in \mathcal{M}_n \left( \QQ_p \right) $ is the minimum of the valuations of the matrix $M$'s terms.
-  \item In particular, the the normal Smith form of matrix of $\mathcal{M}_n \left( \OK \right) $ have coefficients in $\ZZ_p$ .
-  \item The $r = \text{rank} M$ first diagonals coefficients of $S$ are exactly its non-zero coefficient.
-  \end{enumerate}
+  The valuation of the first coefficient\footnote{invariant factor?} of the SNF of a matrix
+  $M \in \allmat_{n,n} \left( \QQ_p \right) $ is the minimum of the valuations of the matrix
+  $M$'s terms (\simone{proof or reference}). In particular, the the SNF of matrix of $\mathcal{M}_n \left( \OK \right) $ have coefficients in $\ZZ_p$ .
+ The $r = \text{rank} M$ first diagonals coefficients of $S$ are exactly its non-zero coefficient.
 \end{remark}
 
 In order to be able to use the Smith normal form to resolve \ref{eqn:Proglinp} we need the following lemma :
 
 \begin{lemma}
-	Forall $p$-adic numbers $z \in \QQ_p ^n$ and matrix $M \in \mathcal{M}_{m,n}\left( \QQ_p  \right)  $ if $z\ge 0$ and $M\ge 0$ then $Mz\ge 0$.  
+  Forall $p$-adic numbers $z \in \QQ_p ^n$ and matrix $M \in \mathcal{M}_{m,n}\left( \QQ_p  \right)  $ if $z\ge 0$ and $M\ge 0$ then $Mz\ge 0$.  
 \end{lemma}
 \begin{proof}
-	$\ZZ_p$ is a ring.
+  $\ZZ_p$ is a ring.
 \end{proof}
 
 
@@ -490,6 +489,12 @@ Cf. \cite{bhardwaj2015deciding}
 
 \section{Linear matrix inequalities}
 
+
+\section{Other questions}
+\begin{itemize}
+\item The projection of a real polyhedron is a real polyhedron (thanks to Fourier-Motzkin elimination procedure). Is it the same for $K$-polyhedra?
+\item Annuli are semidefinite representable, we should remark/prove that they are not spectrahedra.
+\end{itemize}
 
 \printbibliography
 \end{document}
