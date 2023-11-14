@@ -6,7 +6,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{proposition}{Proposition}
-\newtheorem{corollary}{corollary}
+\newtheorem{corollary}{Corollary}
 \newtheorem{algorithm}{Algorithm}
 \newtheorem{conjecture}{Conjecture}
 \newtheorem{condition}{Condition}
@@ -15,6 +15,7 @@
 \newtheorem{remark}{Remark}
 \newtheorem{problem}{Problem}
 \newtheorem{example}{Example}
+\newtheorem{notation}{Notation}
 \usepackage{booktabs}
 
 \textheight235mm
@@ -110,7 +111,7 @@ Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
 Throughout the paper, $K$ refers to a complete,
 discrete valuation field, $\val : K \twoheadrightarrow \ZZ \cup \{+\infty\}$ to its valuation,
 $\OK$ its ring of integers and $\pi$ a uniformizer.
-For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK.$
+For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
 A typical example of $K$ as above is the field of $p$-adic numbers 
 $\QQ_p$ (equipped with the $p$-adic valuation). For this example, we 
 have $\OK = \ZZ_p$.
@@ -239,7 +240,7 @@ $$
 
 %\subsection{Polyhedra}
 
-In this section, we define polyhedra over a (complete) discrete valuation field $K$ with valuation $\val$,
+In this section, we define polyhedra over a complete discrete valuation field $K$ with valuation $\val$ and a uniformizer $\pi$,
 and we discuss the associated linear optimization problem.
 
 \begin{definition}
@@ -271,7 +272,7 @@ optimization problem:
 \begin{equation}
   \tag{LP}\label{LP}
 \begin{array}{rcll}
-  p^* & := & \inf_{x \in \R^n} & \val(\left\langle c, x \right\rangle) \\
+  p^* & := & \inf_{x \in K^n} & \val(\left\langle c, x \right\rangle) \\
   &    & \text{s.t.}         & A x + b \geq 0
 \end{array}
 \end{equation}
@@ -280,84 +281,81 @@ and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$.
 We present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in Smith normal form.
 We recall its definition below, in our context.
 
-\begin{definition}[Smith Normal Form] \label{smith_nf}
+\begin{definition}[Smith Normal Form]\label{smith_nf}
   Let $M \in \allmat_{m,n}(K)$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
-  unique matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
+  matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
-  S := QMP^{-1} = p^{a_1} \oplus p^{a_2} \oplus \cdots \oplus p^{a_r} \oplus {\bf 0}_{m-r}
+  S := QMP^{-1} = \pi^{a_1} \oplus \pi^{a_2} \oplus \cdots \oplus \pi^{a_r} \oplus {\bf 0}_{\min(m,n)-r}
   $$
-  where ${\bf 0}_{m-r}$ is a null square matrix of size $m-r$.
-  The matrix $S$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $p^{a_i}$ the
+  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$.
+  The matrix $S$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
   \emph{invariant factors}.
 \end{definition}
-
 \begin{remark}
   The valuation of the first coefficient\footnote{invariant factor?} of the SNF of a matrix
-  $M \in \allmat_{n,n} \left( \QQ_p \right) $ is the minimum of the valuations of the matrix
-  $M$'s terms (\simone{proof or reference}). In particular, the the SNF of matrix of $\mathcal{M}_n \left( \OK \right) $ have coefficients in $\ZZ_p$ .
- The $r = \text{rank} M$ first diagonals coefficients of $S$ are exactly its non-zero coefficient.
+  $M \in \allmat_{n,n} \left( K \right) $ is the minimum of the valuations of the matrix
+  $M$'s terms (\simone{proof or reference}). In particular, the the SNF of matrix of $\allmat_n \left( \OK \right) $ have coefficients in $\OK$.
 \end{remark}
 
-In order to be able to use the Smith normal form to resolve \ref{eqn:Proglinp} we need the following lemma :
+The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse is true if the matrix $M$ is invertible in $\OK$ \corentin{est-ce qu'il y a besoin de le prouver ?}. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$ $Mz \geq 0$ if and only if $Sz \geq 0$. 
 
-\begin{lemma}
-  Forall $p$-adic numbers $z \in \QQ_p ^n$ and matrix $M \in \mathcal{M}_{m,n}\left( \QQ_p  \right)  $ if $z\ge 0$ and $M\ge 0$ then $Mz\ge 0$.  
-\end{lemma}
-\begin{proof}
-  $\ZZ_p$ is a ring.
-\end{proof}
-
-
-If we put the matrix $A$ of \ref{eqn:Proglinp} in its normal Smith form, it comes that resolving \ref{eqn:Proglinp} is equivalent to resolve :    
-
-
+That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem to an equivalent simpler iteration of the \ref{LP} problem that will be called {\it diagonal linear programming problem} \corentin{or maybe reduced linear programming problem?}. This problem is the optimization problem: 
 \begin{equation}
-	\tag{PLp'}
-	\begin{matrix}
-		\text{Minimize } \val\left(\left<c',x \right>\right) \text{ subject to }\\
-		Sy + b' \ge 0
-	\end{matrix}
-	\label{eqn:Proglinp2}
+  \tag{dLP}\label{dLP}
+\begin{array}{rcll}
+  p^* & := & \inf_{y \in K^n} & \val(\left\langle c', y \right\rangle) \\
+  &    & \text{s.t.}         & S y + b' \geq 0
+\end{array}
 \end{equation}
-where $b' = Qb$, $c' = P^Tc$, $S$ is the Smith normal form of $A$ and $A = Q^{-1} S P$ for some $P \in \mathcal{G}L_m\left( \ZZ_p \right)$ and $ Q \in \mathcal{G}L_n\left( \ZZ_p \right)$.
+with $c' \in K^n$ a fixed vector of size $n$, $b' \in K^m$ and $S$ a diagonal $m \times n$ matrix of the form $S = s_1 \oplus s_2 \oplus \ldots \oplus s_r \oplus { \bm 0}_{m-r} $ for $r={\rm rank} S$.
 
-\begin{remark}
+The {\it associated diagonal linear programming problem} of a linear program is the iteration of the \ref{dLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m\left( \OK \right)$ and $ Q \in GL_n\left( \OK \right)$ are such that $A = Q^{-1} S P$.
+
+A vector $x^* \in K^n$ is {\it feasible solution} of \ref{LP} if $Ax^* + b \geq 0$. Similarly, a vector $y^* \in K^n$ is a feasible of \ref{dLP} if $Sy^*+b' \geq 0$. We will denote as $Adm$ \corentin{Probablement à changer mais je ne sais pas quel nom lui donner} the set of feasible solution of \ref{dLP}.
+
+\begin{proposition}\label{prop:reduc}
 	
 	We have then the following results
 	\begin{enumerate}
-		\item $x^*$ is a feasible solution of \ref{eqn:Proglinp} if and only if $y^* = P x^*$ is a feasible solution of \ref{eqn:Proglinp2}
-		\item \ref{eqn:Proglinp2} have feasible solutions if and only if the $m-r$ coefficients of $b'$ are non-zero, with $r$ the rank of $S$.
-		\item If at least one of the $n-r$ last coefficients of $c'$ is non-zero \ref{eqn:Proglinp2} is unbounded and does not have a soution.
-	\end{enumerate}
-	
-\end{remark}
-
-\begin{proposition}
-	\begin{itemize}~
-		
-		\item[$\circ$] If not all the $m-r$ coefficients of $b'$ are zeros then there is no $y \in K ^n$ so that $A'y+b' \ge  0$.
-		\item[$\circ$] If not all the $n-r$ coefficients of $c'$ are zero then the problem is unbounded and does not have solution. \end{itemize} 
+		\item $x^*$ is a feasible solution of \ref{LP} if and only if $y^* = P x^*$ is a feasible solution of the associated \ref{dLP} problem.
+		\item $x$ is a solution of \ref{LP} if and only if $y = P x$ is a solution of the associated \ref{dLP} and the the infimum is the same.
+		\item \ref{dLP} have feasible solutions if and only if the $m-r$ last coefficients of $b'$ have nonegative valuation, with $r$ the rank of $S$.
+		\item If at least one of the $n-r$ last coefficients of $c'$ is non-zero, if \ref{dLP} admits feasible solutions it is unbounded and does not have a solution.
+		 
+  \end{enumerate}
 \end{proposition}
-If one considers only the itération of the problem which have des solution one can reduce the problem by only taking acount the $r$ first coefficients of $y, b', c'$ and the submatrix of $S$ made with only $r$ first lines et columns of and which coefficients are exactly the nonzero invariants factors. The set $Adm$ of the feasible solutions can then be written as the set of vectors $y \in \mathbb{Q}_{ p } ^n$ that verifies $\forall 1 \le i\le r \ s_i y_i + b'_i \in \OK$ i.e. that verifies :
+	
+\begin{proof}
+
+  First of all, 1. is a consequence of the fact that $Mx^*+b = MP^{-1}y^* +b\geq 0$ if and only if $Q(MP^{-1}y^* + b) = Sy^* + b' \geq 0$ because $Q \in GL_m(\OK)$.
+
+  Then, 2. comes from the fact that for all $c \in K^n$ $\langle c, x\rangle = \langle c, P^{-1}Py \rangle = \langle \left(P^{-1}\right)^T c, y \rangle$.
+
+  A vector $y =  \left[\begin{smallmatrix} y_1 \\ \vdots \\ y_n \end{smallmatrix}\right] \in K^n$ is feasible solution of \ref{dLP} if and only if $\val(s_i y_i + b_i) >=0$ for all $i \in \{1...n\}$ \corentin{préciser les notations}. 
+  However, $s_i =0$ for $n-r \leq i\leq n$. Therefore, \ref{dLP} have solution only if the $m-r$ last coefficient of b' are zero.
+  
+  Conversely, if the $m-r$ last coefficient of $b'$ are zero, the vector $y \in K^n$ such that $y_i = -\frac{-b'_i}{s_i}$ if $1 \leq i \leq r$ and $y_i =0$ otherwise is a feasible solution.
+
+  Finally, let $y^*$ be a feasible solution of \ref{dLP}. Let us suppose there exists $r+1 \leq i \leq m$ such that $c'_i \neq  0$ and fix such $i$. Let us then consider the vector $e^i$ whose only non-zero coefficient is the $i-$th, which is $1$. Then $y^*+\lambda e^i$ is a feasible solution for all $\lambda \in K$ and $\langle c', y^* + \lambda e^i\rangle = \langle c' , y^* \rangle + \lambda c'_i$. In particular, for $\lambda = -\frac{\langle c', y^* \rangle}{c'_i}$ $\val \left( \langle c', y^* + \lambda e ^i \rangle\right) = \val (0) = + \infty$. 
+
+The two first points of the proposition \ref{prop:reduc} show that we can resolving a linear program is equivalent to resolution the associated \ref{dLP} problem. Furthermore, if one considers only the iteration of \ref{dLP} which have solutions. By point 3. and 4. of proposition \ref{prop:reduc} one can reduce the problem by only taking acount only the $r$ first coefficients of $y, b', c'$ and the submatrix of $S$ made with only $r$ first lines et columns of and which coefficients are exactly the nonzero invariants factors. The set $Adm$ of the feasible solutions can then be written as the set of vectors $y \in \mathbb{Q}_{ p } ^n$ that verifies $\forall 1 \le i\le r \ s_i y_i + b'_i \in \OK$ i.e. that verifies :
 
 \begin{equation}
-	\forall 1 \le i\le r  \ y_i \in -\frac{b’_i}{s_i} + \frac{1}{s_i} \OK
+	\forall 1 \le i\le r  \ y_i \in -\frac{b`_i}{s_i} + \frac{1}{s_i} \OK
 \end{equation}
 
 
-Resolving \ref{eqn:Proglinp2} consists in minimizing $\val\left(\left<c',y \right>\right)$ over $Adm$. The image of $Adm$ by $y \mapsto \left<c',y \right>$ is $\sum_{i=1}^r -c'_i.\frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right)$ which can be rewritten in 
-$$\left<c',Adm \right> = \lambda + p^{v} \OK$$
-with $\lambda = \sum\limits_{i=1}^r -c'_i.\frac{b'_i}{s_i}$ et $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
+Resolving \ref{dLP} consists in minimizing $\val\left(\left<c',y \right>\right)$ over $Adm$. The image of $Adm$ by $y \mapsto \left<c',y \right>$ is $\sum_{i=1}^r -c'_i.\frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right)$ which can be rewritten in $\left<c',Adm \right> = \lambda + \pi^{v} \OK$ with $\lambda = \sum_{i=1}^r -c'_i.\frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
 
-The result can be split depending on the valuation of $\lambda$.
+Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
 \begin{itemize}
 	\item If $\val( \lambda) < v$ the minimum of $y\mapsto \val\left(\left<c',y \right>\right)$ over $Adm$ is reached in any point of $Adm$ and is equal to $\val\left( \lambda\right)$.
-	\item If $\val\left( \lambda \right) \ge v$ then $\lambda \in p^{v} \OK$ and the minimum is $v $ and is reached in any points $y$ of $Adm$ that verifies 
-	$$\val\sum \limits_{\begin{array}{c} 1\le i\le r\\ \val\left(c'_{i}/{s_{i}} \right) = v  \end{array}   } y_{i} = 0.$$ 
+	\item If $\val\left( \lambda \right) \ge v$ then $\lambda \in \pi^{v} \OK$ and the minimum is $v $ and is reached in any points $y$ of $Adm$ that verifies 
+	\[\val \underset{ \begin{array}{c} 1\le i\le r\\ \val\left(c'_{i}/{s_{i}} \right) = v  \end{array}}{\sum} y_{i} = 0. \]
 	
 \end{itemize}
 \begin{remark}
-	To maximize the valuation of a linear map over a convex $p$-adic polyhedron instead of minimizing it (which is equuivalent to minimize the absolute value) the same reasoning can be aplied. The only differnece being that if $\val\left( \lambda\right) < v$ the problem is unbounded and then does not have any solution. 
+	To maximize the valuation of a linear map over a convex $p$-adic polyhedron instead of minimizing it (which is equuivalent to minimize the absolute value) the same reasoning can be aplied. The only difference being that if $\val\left( \lambda\right) < v$ the problem is unbounded and as such does not have any solution. 
 \end{remark}
 
 
@@ -379,7 +377,7 @@ The result can be split depending on the valuation of $\lambda$.
 	\label{caracsdp}
 	Characterization of the \mats
 	
-	A matrix is positive semidefinite if and only if its characteristic polynomial have coefficients in $\OK$ .
+	A matrix is positive semidefinite if and only if its characteristic polynomial have coefficients in $\OK$.
 	
 \end{theorem}
 
