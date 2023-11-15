@@ -338,6 +338,8 @@ A vector $x^* \in K^n$ is {\it feasible solution} of \ref{LP} if $Ax^* + b \geq 
 
   Finally, let $y^*$ be a feasible solution of \ref{dLP}. Let us suppose there exists $r+1 \leq i \leq m$ such that $c'_i \neq  0$ and fix such $i$. Let us then consider the vector $e^i$ whose only non-zero coefficient is the $i-$th, which is $1$. Then $y^*+\lambda e^i$ is a feasible solution for all $\lambda \in K$ and $\langle c', y^* + \lambda e^i\rangle = \langle c' , y^* \rangle + \lambda c'_i$. In particular, for $\lambda = -\frac{\langle c', y^* \rangle}{c'_i}$ $\val \left( \langle c', y^* + \lambda e ^i \rangle\right) = \val (0) = + \infty$. 
 
+\end{proof}
+
 The two first points of the proposition \ref{prop:reduc} show that we can resolving a linear program is equivalent to resolution the associated \ref{dLP} problem. Furthermore, if one considers only the iteration of \ref{dLP} which have solutions. By point 3. and 4. of proposition \ref{prop:reduc} one can reduce the problem by only taking acount only the $r$ first coefficients of $y, b', c'$ and the submatrix of $S$ made with only $r$ first lines et columns of and which coefficients are exactly the nonzero invariants factors. The set $Adm$ of the feasible solutions can then be written as the set of vectors $y \in \mathbb{Q}_{ p } ^n$ that verifies $\forall 1 \le i\le r \ s_i y_i + b'_i \in \OK$ i.e. that verifies :
 
 \begin{equation}
