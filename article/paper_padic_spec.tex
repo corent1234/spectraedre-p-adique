@@ -3,19 +3,19 @@
 
 \newenvironment{proof}{\hbox{}\vspace{-0.5cm} {\bf Proof:}}{\hfill $\Box$ \\}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{proposition}{Proposition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{algorithm}{Algorithm}
-\newtheorem{conjecture}{Conjecture}
-\newtheorem{condition}{Condition}
-\newtheorem{definition}{Definition}
-\newtheorem{assumption}{Assumption}
-\newtheorem{remark}{Remark}
-\newtheorem{problem}{Problem}
-\newtheorem{example}{Example}
-\newtheorem{notation}{Notation}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
 \usepackage{booktabs}
 
 \textheight235mm
@@ -47,12 +47,14 @@
 \newcommand{\N}{\mathbb{N}} % integers
 \newcommand{\allmat}{\mathbb{M}} % matrices
 \newcommand{\sym}{\mathbb{S}} % matrices symétriques
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\Qc}{\mathcal{Q}}
 \renewcommand{\span}[1]{{\text{span}(#1)}} % simone's comments
 \newcommand{\calL}{\mathcal{L}} % simone's comments
 
 \newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
 \newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
-\newcommand{\tristan}[1]{{\color{olive} #1}} % tristan's comments
+\newcommand{\tristan}[1]{{\color{red} #1}} % tristan's comments
 
 %p-adic commands
 \DeclareMathOperator{\val}{val}
@@ -495,6 +497,224 @@ Cf. \cite{bhardwaj2015deciding}
 \item The projection of a real polyhedron is a real polyhedron (thanks to Fourier-Motzkin elimination procedure). Is it the same for $K$-polyhedra?
 \item Annuli are semidefinite representable, we should remark/prove that they are not spectrahedra.
 \end{itemize}
+
+\begin{proposition}
+Let $\PP \subset K^n$ be a polyhedron and $f: K^n \rightarrow K^m$
+be a linear mapping. Then $f(\PP)$ is a polyhedron.
+\end{proposition}
+\begin{proof}
+Let us assume that 
+$\PP$ is defined by the set of conditions $\left\lbrace \val (l_i (x) ) \geq 0, \textrm{ for } i \in I \right\rbrace$ for some
+finite set $I \subset \N$ and all $l_i \in K[X]_1$ for $i \in I.$
+We further assume that $\PP$ is non-empty.
+
+Thanks to the Smith Normal Form (see Definition \ref{smith_nf}), $f$
+can be written $f=Q^{-1} \Delta P$
+with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
+and $\Delta \in \allmat_{n,m}(K)$ of the form $\lambda_1 \oplus \cdots \oplus \lambda_r \oplus {\bf 0}_{\min(m,n)-r}$
+  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
+
+We first prove the result when $f$ is in $\GL_n(\OK)$.
+In that case, $x \in f(P)$ if and only if for all
+$i \in I,$
+$\val (l_i (f^{-1}(x)) \geq 0$.
+The $l_i \circ f^{-1}$ are clearly in $K[x]_1$
+and $f(P)$ is a polyhedra.
+
+Similarly, if $f$ is of the form $K^n \rightarrow K^n$,
+$(x_1,\dots,x_n) \mapsto (\lambda_1 x_1,\dots,\lambda_n x_n)$
+for some $\lambda_i$'s in $K$,
+then it is clear that $f(P)$
+can be defined by $\val (\widetilde{l_i}(x)) \geq 0$, $i \in I$
+with the $\widetilde{l_i}$'s obtained from the $l_i$'s by an
+obvious change of variables.
+
+Now, we turn our attention to the $\Delta$ part of $f.$
+We first assume that $f$ is a projection 
+of the form $K^n \rightarrow K^{n+1},$
+$(x_1,\dots,x_{n-1},x_n)\mapsto (x_1,\dots,x_{n-1}).$
+
+Let us write the conditions defining $\PP$
+in matrix form:
+$\val(A X+B) \geq 0$
+with $A \in M_{q,n}(K)$, $B \in K^q$
+and $X=(x_1,\dots,x_n)^\intercal.$
+
+We can computer a Smith Normal Form
+of the $q \times (n-1)$ matrix defined by the 
+$n-1$ first columns of $A$
+to obtain a decomposition of the form:
+\[ Q_A A P_A^{-1} = \begin{bmatrix}
+\delta_1	& 		& 			&   &		 &  &a_1	\\
+			& \ddots& 			& 0	&		 &	&		\\
+			&		& \delta_l  &   & 		 &	&		\\
+			&		&			&0  & 		 &	& 		\\
+			&		&			&   & \ddots &	&		\\
+			&		&			&	&		 & 0&a_{n-1} \\
+			&		&			&	&		 &	&a_n 	\\
+			&		&			&	&		 &	&    	\\
+			&		&			&	&		 &	&a_q 	\\			
+\end{bmatrix},\]
+with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n.$
+
+Multiplying on the left by $Q_A^{\pm 1}$ does not
+modify whether the valuation inequalities are satisfied.
+Moreover, thanks to our previous on the case when $f$ is an automorphism,
+$\PP$ can be written
+$\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \in K^n$
+and we are reduced to proving that
+$f(\PP_2)$ is polyhedron for $f$ still the canonical projection
+$K^n \rightarrow K^{n-1}$ and $\PP_2$
+defined by the linear matrix inequality (for some $B_2 \in K^q$):
+\[  \begin{bmatrix}
+\delta_1	& 		& 			&   &		 &  &a_1	\\
+			& \ddots& 			& 0	&		 &	&		\\
+			&		& \delta_l  &   & 		 &	& \vdots\\
+			&		&			&0  & 		 &	& 		\\
+			&		&			&   & \ddots &	&		\\
+			&		&			&	&		 & 0&a_{n-1} \\
+			&		&			&	&		 &	&a_n 	\\
+			&		&			&	&		 &	& \vdots   	\\
+			&		&			&	&		 &	&a_q 	\\			
+\end{bmatrix} \begin{bmatrix} x_1 \\ \\ \\ \\ \\ \vdots \\ \\ \\ \\ x_n \\ \end{bmatrix} + B_2 \geq 0.\]
+
+
+
+We remark that 
+$a_s x_n + b_s \geq 0$
+if and only if $x_n = -a_s^{-1} b_s + O(\pi^{- \val(a_s)}).$
+This exactly corresponds to $x_n \in B(-a_s^{-1} b_s, 2^{\val(a_s)}).$
+Since the conditions have to be compatible (we have assumed
+$\PP$ not empty), and thanks to ultrametricity,  
+the intersection of these conditions for 
+$s \in \llbracket l+1,q \rrbracket$
+is then given by the smallest of these balls.
+Let us assume it is the one defined for $l=n.$
+The only condition on $x_n$
+is then $\val(a_nx_n +b_n) \geq 0.$
+
+Thanks to the above discussion on diagonal mapping,
+we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
+and are reduce to $\PP_2$ defined by the linear matrix inequality :
+\[  \begin{bmatrix}
+1	& 		& 			&   &		 &  &a_1	\\
+			& \ddots& 			& 0	&		 &	&		\\
+			&		& 1  &   & 		 &	& \\
+			&		&			&0  & 		 &	& 	\vdots	\\
+			&		&			&   & \ddots &	&		\\
+			&		&			&	&		 & 0&a_{n-1} \\
+			&		&			&	&		 &	&1 	\\
+		
+\end{bmatrix} \begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}  \geq 0.\]
+Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
+We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
+
+Let us first assume that $\val(a_1) \geq 0$
+
+Let $x \in \PP_2$.
+Then $x_n=-b_n+O(1)$
+and $x_1+a_1 x_n+b_1=O(1).$
+Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(1).$
+Similarly, for all $i \in \llbracket 2,n-1 \rrbracket,$
+$x_i-a_ib_n+b_i=O(1)+O(\pi^{\val(a_i)})=O(1).$
+
+We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
+ for all $i \in \llbracket 1,n-1 \rrbracket,$
+$\val(x_i-a_ib_n+b_i) \geq 0.$
+
+Then the previous computations prove that $f(\PP_2)\subset \Qc.$
+Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
+Then let $x_n := -b_n.$
+
+We check that for $i \in \llbracket 1,n-1 \rrbracket,$
+$x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
+and $x_n+b_n=O(1)$. Hence $(x_1,\dots,x_n) \in \PP_2$
+which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
+Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron.
+
+We now deal with the second case, with $\val(a_1)<0.$
+Let $x \in \PP_2$.
+Then $x_n=-b_n+O(1)$
+and $x_1+a_1 x_n+b_1=O(1).$
+Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)})).$
+Thus $a_1^{-1}x_1- b_n +a_1^{-1}b_1=O(1)$.
+%and $x_n=-a_1^{-1}(x_1+b_1)+O(1).$
+In addition, $x_n=-a_1^{-1}(x_1+b_1)+O(\pi^{-\val(a_1)}).$
+We plug this equality in 
+$x_i+a_i x_n+b_i=O(1)$ to get
+$x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)+O(\pi^{\val(a_i)-\val(a_1)})=O(1)$
+using that $\val(a_i) \geq \val (a_1).$
+
+We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
+$\val(a_1^{-1}x_1- b_n +a_1^{-1}b_1) \geq 0$ and for all $i \in \llbracket 2,n-1 \rrbracket,$
+$\val(x_i-a_1^{-1}a_i(x_1+b_1)+b_i) \geq 0.$
+
+Then the previous computations prove that $f(\PP_2)\subset \Qc.$
+Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
+Let $x_n := -a_1^{-1}(x_1+b_1).$
+Then
+$x_1+a_1 x_n+b_1=0=O(1).$
+Let $i \in \llbracket 2,n-1 \rrbracket,$
+then $x_i+a_i x_n+b_i=x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)$
+since $(x_1,\dots,x_{n-1}) \in \Qc.$
+Finally, 
+$x_n+b_n=-a_1^{-1}(x_1+b_1)+b_n=O(1)$ thanks to the inequality satisfied by $x_1.$
+Hence $(x_1,\dots,x_n) \in \PP_2$
+which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
+Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron,
+and it has been proved in both cases.
+
+Therefore, if $f$ is the projection 
+$(x_1,\dots,x_{n-1},x_n)\mapsto (x_1,\dots,x_{n-1})$ 
+and $\PP$ is a polyhedron in $K^n$,
+then $f(\PP)$ is a polyhedron.
+
+\tristan{Attention, à partir de maintenant,
+il faut ajouter à la définition qu'on peut
+fixer des points!
+Cela revient à ajouter des conditions
+$\val = + \infty.$}
+
+It is also clear that
+if $f$ is the immersion 
+$K^l \rightarrow K^n$
+$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0)$ 
+and $\PP$ is a polyhedron in $K^n$,
+then $f(\PP)$ is a polyhedron.
+
+
+We now prove that for
+$\Delta$ a Smith Normal Form
+and $\PP$ a polyhedron,
+$\Delta(\PP)$ is a polyhedron.
+Then $\Delta$ is the composition
+of the immersion 
+$K^l \rightarrow K^n$
+$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0),$ 
+ the diagonal invertible mapping
+$K^l \rightarrow K^l$,
+$(x_1,\dots,x_l)\mapsto (\delta_1,\dots,\delta_l x_l)$,
+and the projections
+$(x_1,\dots,x_{l+1})\mapsto (x_1,\dots,x_{l}),$
+ $(x_1,\dots,x_{l+2})\mapsto (x_1,\dots,x_{l+1}),$
+ $\dots,$
+ $(x_1,\dots,x_{n})\mapsto (x_1,\dots,x_{n-1}).$
+ Thus $\Delta(\PP)$ is a polyhedron thanks to the previous 
+ results on image of polyhedron.
+
+Finally, if $f: K^n \rightarrow K^m$
+is a linear mapping and
+$f=Q^{-1} \Delta P$ is its Smith Normal Form
+with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
+and $\Delta \in \allmat_{n,m}(K)$,
+then
+$P(\PP)$ is a polyhedron,
+$\Delta (P(\PP))$ also,
+and finally $f(\PP)=Q^{-1} (\Delta (P(\PP)))$
+is a polyhedron.
+This concludes the proof.
+\end{proof}
+
 
 \printbibliography
 \end{document}
