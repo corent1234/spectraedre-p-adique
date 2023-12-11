@@ -504,9 +504,8 @@ be a linear mapping. Then $f(\PP)$ is a polyhedron.
 \end{proposition}
 \begin{proof}
 Let us assume that 
-$\PP$ is defined by the set of conditions $\left\lbrace \val (l_i (x) ) \geq 0, \textrm{ for } i \in I \right\rbrace$ for some
-finite set $I \subset \N$ and all $l_i \in K[X]_1$ for $i \in I.$
-We further assume that $\PP$ is non-empty.
+$\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I \right\rbrace$ for some
+finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I.$ We further assume that $\PP \neq \emptyset$.
 
 Thanks to the Smith Normal Form (see Definition \ref{smith_nf}), $f$
 can be written $f=Q^{-1} \Delta P$
@@ -540,7 +539,7 @@ $\val(A X+B) \geq 0$
 with $A \in M_{q,n}(K)$, $B \in K^q$
 and $X=(x_1,\dots,x_n)^\intercal.$
 
-We can computer a Smith Normal Form
+We can compute a Smith Normal Form
 of the $q \times (n-1)$ matrix defined by the 
 $n-1$ first columns of $A$
 to obtain a decomposition of the form:
