@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt]{article}
 
-\newenvironment{proof}{\hbox{}\vspace{-0.5cm} {\bf Proof:}}{\hfill $\Box$ \\}
+\newenvironment{proof}{\hbox{}\vspace{-0.8cm} {\bf Proof:}}{\hfill $\Box$}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -249,7 +249,7 @@ In this section, we define polyhedra over a complete discrete valuation field $K
   \val(m_1 \oplus \cdots \oplus m_e) = +\infty\},
   $$
   for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$, where $\val,\geq$ and $=$ are applied entrywise.
-  We always assume without loss of generality that $m_1,\ldots,m_e$ are $K$-linearly independent.
+  We always assume without loss of generality that $m_1,\ldots,m_e$ are affinely independent.
 \end{definition}
 
 We recall that that the smallest affine space of $K^n$ containing a set $P \subset K^n$ is called its
@@ -291,8 +291,8 @@ We recall its definition below, in our context.
 \end{definition}
 \begin{remark}
   The valuation of the first invariant factor of the SNF of a matrix
-  $M \in \allmat_{n,n} \left( K \right)$ is the minimum of the valuations of the entries of
-  $M$. In particular, the SNF of $M \in \allmat_n \left( \OK \right)$ has entries in $\OK$.
+  $M \in \allmat_{n,n}(K)$ is the minimum of the valuations of the entries of
+  $M$. In particular, the SNF of $M \in \allmat_n(\OK)$ has entries in $\OK$.
 \end{remark}
 
 The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse is true if the matrix $M$ is invertible in $\OK$ \corentin{est-ce qu'il y a besoin de le prouver ?}. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$ $Mz \geq 0$ if and only if $Sz \geq 0$. 
@@ -307,7 +307,7 @@ That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem 
 \end{equation}
 with $c' \in K^n$ a fixed vector of size $n$, $b' \in K^m$ and $S$ a diagonal $m \times n$ matrix of the form $S = s_1 \oplus s_2 \oplus \ldots \oplus s_r \oplus { \bm 0}_{m-r} $ for $r={\rm rank} S$.
 
-The \emph{associated diagonal linear programming problem} of a linear program is the iteration of the \ref{dLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m\left( \OK \right)$ and $ Q \in GL_n\left( \OK \right)$ are such that $A = Q^{-1} S P$.
+The \emph{associated diagonal linear programming problem} of a linear program is the iteration of the \ref{dLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m(\OK)$ and $ Q \in GL_n(\OK)$ are such that $A = Q^{-1} S P$.
 
 A vector $x^* \in K^n$ is \emph{feasible solution} of \ref{LP} if $Ax^* + b \geq 0$. Similarly, a vector $y^* \in K^n$ is a feasible of \ref{dLP} if $Sy^*+b' \geq 0$. We will denote as $Adm$ \corentin{Probablement à changer mais je ne sais pas quel nom lui donner} the set of feasible solution of \ref{dLP}.
 
@@ -368,66 +368,71 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
 \newcommand\Mat{Positive semidefinite matrix }
 \newcommand\mats{positive semidefinite matrices }
 \newcommand\Mats{positive semidefinite matrices }
+
 \begin{definition}
-	We call ... any matrix $M \in \mathcal{M}_n\left( K \right) $ whose eigenvalues have nonegative valuation (in $\overline{K}$) .
-	
-	We will denote as $ \mathcal{M}_n^+\left( K \right)$ the set of \mats and we will write $M \succeq 0$ if $M \in \mathcal{M}_n^+\left( K\right) $.
+  We call a matrix $M \in \mathcal{M}_n(K)$ \emph{positive semidefinite} (in symbols $M \succeq 0$)
+  if all its eigenvalues have nonnegative valuation in $\overline{K}$.
+  We denote by $\mathcal{M}_n^+(K) \subset \mathcal{M}_n(K)$ the set of positive semidefinite matrices.
+  The characteristic polynomial of $M$ is denoted $\chi_M$.
 \end{definition}
+
 \begin{theorem}
-	\label{caracsdp}
-	Characterization of the \mats
-	
-	A matrix is positive semidefinite if and only if its characteristic polynomial have coefficients in $\OK$.
-	
+  \label{caracsdp}
+  $M \in \mathcal{M}_n^+(K)$ if and only if $\chi_M$ has coefficients in $\OK$.
 \end{theorem}
-
-
-\begin{corollary}
-	$\mathcal{M}_n(\OK) \subset \mathcal{M}_n^+\left( K \right)$ 
-\end{corollary}
-
 \begin{proof}
-$\OK$ is a ring therefore the characteristic polynomial of matrix whose coefficients are $p$-adic integers have coefficients ins $Pp$. We conclude by \ref{caracsdp} .
+  \simone{preuve ?}
 \end{proof}
 
-
+\begin{corollary}\label{cor_caracsdp}
+  $\mathcal{M}_n(\OK) \subset \mathcal{M}_n^+(K)$.
+\end{corollary}
+\begin{proof}
+$\OK$ is a ring therefore the characteristic polynomial of matrix whose coefficients are $p$-adic integers have coefficients ins $Pp$ \simone{je comprends pas}. We conclude by \Cref{caracsdp}.
+\end{proof}
 
 \begin{remark}
-	In general, the reverse inclusion is false. For instance the characteristic polynomial of $M = \begin{pmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{pmatrix} $ is $\chi_M = X^2  - 5 X - 4$. However when seen as an element of $\mathbb{Q}_5$, $\chi_M \in \mathbb{Z}_5[X]$ then $M \in \mathcal{M}_2^+\left( \mathbb{Q}_5 \right)$ but no coefficient of $M$ is in $\mathbb{Z}_5 $
+  The reverse inclusion of \Cref{cor_caracsdp} is false. For instance the characteristic polynomial of
+  $M = \left(\begin{smallmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{smallmatrix}\right)$ is $\chi_M = X^2-5X-4$. However when seen as an element of $\mathbb{Q}_5$, $\chi_M \in \mathbb{Z}_5[X]$ then $M \in \mathcal{M}_2^+\left( \mathbb{Q}_5 \right)$ but no coefficient of $M$ is in $\mathbb{Z}_5 $
 \end{remark}
 
 \begin{proposition}
-	The set $\mathcal{M}_n^+\left( K \right)$ is :
-	\begin{enumerate}%[label = \textit{\roman*}.]
-		\item open
-		\item closed
-		%\item a convex cone
-	\end{enumerate}
-\end{proposition}
-
-\textit{Preuve :}  
-Firstly, $\OK[X]$ is closed and open in $\mathbb{Q}_{ p }[X] $ equiped with the infinitiy norm $\|.\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|_p$. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ which defines a discrete distance for which open balls are also closed.
-Furthermore, $\mathcal{M}^+_{n}\left(K \right)  = \chi^{-1}( \OK[X]) $ where $\chi$ is the function that maps its characteristic polynomial to a matrix which is continuous.
-
-%Le $iii$. est laissé en exercice au lecteur. 
-% Je ne parle plus de convexité dans le rapport mais on ne sait jamais
-%\input{convexemple.tex}
-
-
-\begin{definition}
-  We call \emph{spectrahedron} the intersection of $\mathcal{M}_n^+\left( K \right) $ with an affine plan $\mathcal{L}$ of $\mathcal{M}_n\left( K \right) $.
-\end{definition}
-
-\begin{remark}
-	As in the real case, the spectrahedron associated with the affine plan $\mathcal{L}$ will often be identified with its preimage in $K^s$ (i.e. the set of vectors $x \in K ^s$ so that the linear matrix $A(x) = A_0 + x_1A_1 + \ldots + x_sA_s$ is positive semidefinite with $A_0,A_1,\ldots,A_s$ spanning $\mathcal{L}$). 
-\end{remark}
-
-The latter allows gives us the following property :
-\begin{proposition}
-	A polyhedron is a spectrahedron.
+	The set $\mathcal{M}_n^+(K)$ is both open and closed.
 \end{proposition}
 \begin{proof}
-	Same as in the real case (maybe modify it or add the link to real proof).
+Firstly, $\OK[X]$ is closed and open in $\mathbb{Q}_{p}[X]$ equiped with the infinitiy norm $\|.\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|_p$. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ which defines a discrete distance for which open balls are also closed.
+Furthermore, $\mathcal{M}^+_{n}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps its characteristic polynomial to a matrix which is continuous.
+\end{proof}
+
+\begin{definition}
+  \label{def_spectrahedra}
+  Let $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset \mathcal{M}_n(K)$ be an affine space, for given
+  matrices $A_0,A_1,\ldots,A_n$.
+  The set $\mathcal{L} \cap \mathcal{M}_n^+(K)$ is called a \emph{spectrahedron} or equivalently
+  its canonical preimage in $K^n$:
+  $$
+  S = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}.
+  $$
+\end{definition}
+
+Remark that \Cref{def_spectrahedra} is invariant under intersection: the intersection of two
+(canonical preimages of) spectrahedra is a (canonical image of a) spectrahedron.
+
+%\begin{remark}
+%	As in the real case, the spectrahedron associated with the affine plan $\mathcal{L}$ will often be identified with its preimage in $K^s$ (i.e. the set of vectors $x \in K ^s$ so that the linear matrix $A(x) = A_0 + x_1A_1 + \ldots + x_sA_s$ is positive semidefinite with $A_0,A_1,\ldots,A_s$ spanning $\mathcal{L}$). 
+%\end{remark}
+\begin{proposition}
+  A polyhedron is a spectrahedron.
+\end{proposition}
+\begin{proof}
+  Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
+  be the polyhedron given in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
+  and $L = \{x \in K^n : \val(m_j) = 0, j=1,\ldots,e\}$.
+  First, denote by $A(x) = \ell_1 \oplus \cdots \oplus \ell_d$, so that $Q$ is the (preimage of the)
+  spectrahedron defined by $A(x) \succeq 0$.
+  Next, remark that $L \subset K^n$ is the affine space defined by equations $m_1=\ldots=m_e=0$.
+
+  Let $\varphi_Q : K^n \to \mathcal{M}_n(K)$
 \end{proof}
 
 
@@ -435,15 +440,14 @@ The latter allows gives us the following property :
 \begin{definition}
 	Annulus
 	
-	We call \emph{annulus} a set $A$ defined as $C = \{x \in K  | a\le \val\left(x\right) \le b\} $ for $a < b$ two nonnegative real numbers.
+	We call \emph{annulus} a set $A$ defined as $C = \{x \in K  | a\le \val(x) \le b\} $ for $a < b$ two nonnegative real numbers.
 \end{definition}
 
-
 \begin{theorem}
-	Annuli are spectrahedral shadows.
+Annuli are spectrahedral shadows.
 \end{theorem} 
 
-\textit{Preuve :}
+\begin{proof}
 Let $A$ be the annuli defined by $a<b \in R^*_+$.
 
 We consider for all $x,y \in K $ the matrix  $$M(x,y) :=
@@ -454,16 +458,16 @@ We consider for all $x,y \in K $ the matrix  $$M(x,y) :=
 	0 & 0 & p^{-1}y & - p^{-1}  \\
 \end{pmatrix} $$ and the associated spectrahedron $\mathcal{S}= \{(x,y) \in K  : M(x,y) \succeq 0\} $
 
-Let us show that $x \in C$ if and only if  $\exists y \in K \left( x,y \right) \in \mathcal{S}$.
+Let us show that $x \in C$ if and only if  $\exists y \in K(x,y) \in \mathcal{S}$.
 
 Let $x,y$ be two $p$-adic numbers.
 $M(x,y)$ can be decomposed in three blocks : $p^ax$, $p^{-b}y $ and $M'(x,y) = \begin{pmatrix} p^{-1} & p^{-1}x \\ p^{-1} y & p^{-1}\end{pmatrix} $. Using \ref{caracsdp} we know that $M(x,y)$ is positive semidefinfite if and only if
 $
 \begin{cases}
-	p^ax \ge 0 \\
-	p^{-b}y \ge 0\\
-	\text{Tr}M'\left( x,y \right) = 0 \ge 0\\
-	\text{det} M'(x,y ) = p^{-2}\left( xy-1 \right)  \ge 0 
+  p^ax \ge 0 \\
+  p^{-b}y \ge 0\\
+  \text{Tr}M'\left( x,y \right) = 0 \ge 0\\
+  \text{det} M'(x,y ) = p^{-2}\left( xy-1 \right)  \ge 0 
 \end{cases}
 $ 
 that is if and only if 
@@ -476,11 +480,8 @@ that is if and only if
 	\end{cases}
 \end{equation}
 
-
-
-
 Therefore $x \in C$ if and only if there exists $y \in K $ so that $(x, y)$ verifies \ref{eq:caracsdp}. Si $x, y$ verifies indeed \ref{caracsdp} then $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ and $p^{-2} \left( xy-1 \right) \ge 0$ implies that $\val\left(x\right)+\val\left(y\right)=\val\left(xy\right) = \val\left(-1\right) =0$ and therefore that $\val\left(x\right)=-\val\left(y\right)\le -(-b)  =b$, so $x \in $. Reciprocally if $x \in C$ then $(x,x^{-1}) $ verifies \ref{eq:caracsdp}  .
-
+\end{proof}
 
 \subsection{Polyhedrality}
 Cf. \cite{bhardwaj2015deciding}
