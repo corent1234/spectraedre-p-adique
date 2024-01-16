@@ -1,17 +1,27 @@
 \documentclass[a4paper,12pt]{article}
 
-
 \newenvironment{proof}{\hbox{}\vspace{-0.5cm} {\bf Proof:}}{\hfill $\Box$ \\}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs} 
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{ulem}
+\usepackage{bm}
+
+\usepackage{cleveref}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{algorithm}{Algorithm}
 \newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{condition}[theorem]{Condition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{condition}{Condition}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
 \newtheorem{remark}[theorem]{Remark}
 \newtheorem{problem}[theorem]{Problem}
 \newtheorem{example}[theorem]{Example}
@@ -25,16 +35,6 @@
 \parindent0cm
 \parskip2mm
 
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{amsfonts}
-\usepackage{mathrsfs} 
-\usepackage{graphicx}
-\usepackage{color}
-\usepackage{ulem}
-\usepackage{bm}
-
-\usepackage{cleveref}
 
 \usepackage{stmaryrd} %for double brackets
 
@@ -74,10 +74,11 @@
 
 \begin{document}
 
-\author{Corentin Cornou$^{1}$, Simone Naldi$^2$ and Tristan Vaccon$^2$}
+\author{Corentin Cornou$^{1}$, Simone Naldi$^{2,3}$ and Tristan Vaccon$^{2}$}
 
 \footnotetext[1]{ENS Paris-Saclay, Université Paris-Saclay, France.}
-\footnotetext[2]{Université de Limoges, CNRS, XLIM, Limoges, France.}
+\footnotetext[2]{Université de Limoges, CNRS, XLIM, UMR 7252, F-87000 Limoges, France.}
+\footnotetext[3]{Sorbonne Université, CNRS, LIP6, Equipe PolSys, F-75005 Paris, France.}
 
 \date{Draft of \today}
 
@@ -86,20 +87,18 @@
 \begin{abstract}
 \end{abstract}
 
-
 \tableofcontents
-
 
 \section{Introduction}
 
 \subsection{Context and motivations}
 
-Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
-\begin{itemize}
-\item les questions ouvertes de complexité concernant la programmation semidefinie (pas clair si NP $\cap$ co-NP
-  dans le modele de Turing)
-\item les questions ouvertes géométriques (Conjecture de Lax)
-\end{itemize}
+%Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
+%\begin{itemize}
+%\item les questions ouvertes de complexité concernant la programmation semidefinie (pas clair si NP $\cap$ co-NP
+%  dans le modele de Turing)
+%\item les questions ouvertes géométriques (Conjecture de Lax)
+%\end{itemize}
 
 
 \subsection{Main results}
@@ -135,7 +134,7 @@ $B_1 \oplus \cdots \oplus B_d$.
 
 Let $\sym_d(\R) \subset \allmat_{d,d}(\R)$ be the vector space of $d \times d$ real symmetric
 matrices. A matrix $M \in \sym_d(\R)$
-is called {\it positive semidefinite} ($M \succeq 0$) whenever the quadratic
+is called \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic
 form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$
 if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors
 of $M$ being nonnegative. The set of positive semidefinite matrices, denoted $\sym_d^+(\R) \subset \sym_d(\R)$,
@@ -146,7 +145,7 @@ containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$
 independent). The intersection $\calL \cap \sym_d^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_d(\R) :
 A(x) \succeq 0\right\}$, or
 equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
-a {\it real spectrahedron}. As affine sections of $\sym_d^+(\R)$, real spectrahedra are closed convex sets,
+a \emph{real spectrahedron}. As affine sections of $\sym_d^+(\R)$, real spectrahedra are closed convex sets,
 but might have empty interior in $\calL$ (resp. in $\R^n$). Moreover, they are basic semialgebraic sets,
 defined by sign conditions on the principal minors of the defining matrix as well as sign conditions on the
 coefficients of its characteristic polynomial (cf. \Cref{ell3}).
@@ -185,7 +184,7 @@ coefficients of its characteristic polynomial (cf. \Cref{ell3}).
   \exend
 \end{example}
 
-The optimization problem of miminizing a linear function over a real spectrahedron is called {\it semidefinite programming} (SDP). Given $c \in \R^n$ and $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, the corresponding semidefinite program is defined (in standard dual form) as
+The optimization problem of miminizing a linear function over a real spectrahedron is called \emph{semidefinite programming} (SDP). Given $c \in \R^n$ and $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, the corresponding semidefinite program is defined (in standard dual form) as
 \begin{equation}
   \label{SDP}
 \begin{array}{rcll}
@@ -199,13 +198,13 @@ spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diago
 
 In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
 number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the
-precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of the solution,
+precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of a solution,
 cf. \cite[Sec.1.9]{deKlerk}. In exact arithmetic, the complexity status of SDP is essentially open but complexity
 bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity}
 or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
 
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
-called {\it semidefinite representable sets} (or spectrahedral shadows): these are sets of the form
+called \emph{semidefinite representable sets} (or spectrahedral shadows): these are sets of the form
 $$
 P = \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^p, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^p y_j B_j \succeq 0\right\}
 $$
@@ -240,36 +239,33 @@ $$
 
 \section{Polyhedra and linear programming}
 
-%\subsection{Polyhedra}
-
-In this section, we define polyhedra over a complete discrete valuation field $K$ with valuation $\val$ and a uniformizer $\pi$,
-and we discuss the associated linear optimization problem.
+In this section, we define polyhedra over a complete discrete valuation field $K$ with valuation $\val$ and a uniformizer $\pi$, and we discuss the associated linear optimization problem.
 
 \begin{definition}
-  A {\it polyhedron} is a subset $P \subset K^n$ of the form
-  $P = \{x \in K^n : \val(\ell_1(x))\geq0,\ldots,\val(\ell_n(x))\geq 0\}$,
-  for some $\ell_1,\ldots,\ell_d \in K[x]_1$. This will often be denoted with
-  the compact notation $\val(\ell_1 \oplus \cdots \oplus \ell_d) \geq 0$, where $\val$
-  and $\geq$ are applied entrywise.
+  \label{def_polyhedra}
+  A \emph{polyhedron} is a subset $P \subset K^n$ of the form
+  $$
+  P = \{x \in K^n : \val(\ell_1 \oplus \cdots \oplus \ell_d) \geq 0 \text{ and }
+  \val(m_1 \oplus \cdots \oplus m_e) = +\infty\},
+  $$
+  for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$, where $\val,\geq$ and $=$ are applied entrywise.
+  We always assume without loss of generality that $m_1,\ldots,m_e$ are $K$-linearly independent.
 \end{definition}
 
+We recall that that the smallest affine space of $K^n$ containing a set $P \subset K^n$ is called its
+\emph{affine hull}. The constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ in \Cref{def_polyhedra}
+is equivalent to $m_1(x) = \cdots = m_e(x) = 0$ and defines the affine hull of $P$. The \emph{dimension}
+of $P$ is defined as $n-e$ (namely the dimension of its affine hull).
+
 \begin{example}
-  The closed unit ball $B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
+  The \emph{closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
   polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} =
   \max_i\{x_i\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
-  In other words, $\OK^n = B_\infty(K^n)$ is the polyhedron in $K^n$ defined by the affine polynomials
-  $\ell_i(x)=x_i$, $i=1,\ldots, n$.
-%  $$
-%  \begin{pmatrix} x_1 &  & & \\
-%    & x_2 &0 &  \\
-%    &  0& \ddots & \\
-%    &  & & x_s/
-  %  \end{pmatrix} \ge 0.$$
+  In other words, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
+  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$ (its affine hull is indeed the whole $K^n$).
 \end{example}
 
-%\subsection{linear programming}
-
-A {\it linear programming problem} (or simply {\it linear program}) is given by the following
+A \emph{linear programming problem} (or simply \emph{linear program}) is given by the following
 optimization problem:
 \begin{equation}
   \tag{LP}\label{LP}
@@ -294,14 +290,14 @@ We recall its definition below, in our context.
   \emph{invariant factors}.
 \end{definition}
 \begin{remark}
-  The valuation of the first coefficient\footnote{invariant factor?} of the SNF of a matrix
-  $M \in \allmat_{n,n} \left( K \right) $ is the minimum of the valuations of the matrix
-  $M$'s terms (\simone{proof or reference}). In particular, the the SNF of matrix of $\allmat_n \left( \OK \right) $ have coefficients in $\OK$.
+  The valuation of the first invariant factor of the SNF of a matrix
+  $M \in \allmat_{n,n} \left( K \right)$ is the minimum of the valuations of the entries of
+  $M$. In particular, the SNF of $M \in \allmat_n \left( \OK \right)$ has entries in $\OK$.
 \end{remark}
 
 The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse is true if the matrix $M$ is invertible in $\OK$ \corentin{est-ce qu'il y a besoin de le prouver ?}. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$ $Mz \geq 0$ if and only if $Sz \geq 0$. 
 
-That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem to an equivalent simpler iteration of the \ref{LP} problem that will be called {\it diagonal linear programming problem} \corentin{or maybe reduced linear programming problem?}. This problem is the optimization problem: 
+That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem to an equivalent simpler iteration of the \ref{LP} problem that will be called \emph{diagonal linear programming problem} \corentin{or maybe reduced linear programming problem?}. This problem is the optimization problem: 
 \begin{equation}
   \tag{dLP}\label{dLP}
 \begin{array}{rcll}
@@ -311,9 +307,9 @@ That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem 
 \end{equation}
 with $c' \in K^n$ a fixed vector of size $n$, $b' \in K^m$ and $S$ a diagonal $m \times n$ matrix of the form $S = s_1 \oplus s_2 \oplus \ldots \oplus s_r \oplus { \bm 0}_{m-r} $ for $r={\rm rank} S$.
 
-The {\it associated diagonal linear programming problem} of a linear program is the iteration of the \ref{dLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m\left( \OK \right)$ and $ Q \in GL_n\left( \OK \right)$ are such that $A = Q^{-1} S P$.
+The \emph{associated diagonal linear programming problem} of a linear program is the iteration of the \ref{dLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m\left( \OK \right)$ and $ Q \in GL_n\left( \OK \right)$ are such that $A = Q^{-1} S P$.
 
-A vector $x^* \in K^n$ is {\it feasible solution} of \ref{LP} if $Ax^* + b \geq 0$. Similarly, a vector $y^* \in K^n$ is a feasible of \ref{dLP} if $Sy^*+b' \geq 0$. We will denote as $Adm$ \corentin{Probablement à changer mais je ne sais pas quel nom lui donner} the set of feasible solution of \ref{dLP}.
+A vector $x^* \in K^n$ is \emph{feasible solution} of \ref{LP} if $Ax^* + b \geq 0$. Similarly, a vector $y^* \in K^n$ is a feasible of \ref{dLP} if $Sy^*+b' \geq 0$. We will denote as $Adm$ \corentin{Probablement à changer mais je ne sais pas quel nom lui donner} the set of feasible solution of \ref{dLP}.
 
 \begin{proposition}\label{prop:reduc}
 	
@@ -419,7 +415,7 @@ Furthermore, $\mathcal{M}^+_{n}\left(K \right)  = \chi^{-1}( \OK[X]) $ where $\c
 
 
 \begin{definition}
-	We call {\it spectrahedron} the intersection of $\mathcal{M}_n^+\left( K \right) $ with an affine plan $\mathcal{L}$ of $\mathcal{M}_n\left( K \right) $.
+  We call \emph{spectrahedron} the intersection of $\mathcal{M}_n^+\left( K \right) $ with an affine plan $\mathcal{L}$ of $\mathcal{M}_n\left( K \right) $.
 \end{definition}
 
 \begin{remark}
@@ -439,7 +435,7 @@ The latter allows gives us the following property :
 \begin{definition}
 	Annulus
 	
-	We call {\it annulus} a set $A$ defined as $C = \{x \in K  | a\le \val\left(x\right) \le b\} $ for $a < b$ two nonnegative real numbers.
+	We call \emph{annulus} a set $A$ defined as $C = \{x \in K  | a\le \val\left(x\right) \le b\} $ for $a < b$ two nonnegative real numbers.
 \end{definition}
 
 
