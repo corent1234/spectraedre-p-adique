@@ -14,18 +14,18 @@
 \usepackage{cleveref}
 
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
 \newtheorem{algorithm}{Algorithm}
-\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{conjecture}{Conjecture}
 \newtheorem{condition}{Condition}
 \newtheorem{definition}{Definition}
 \newtheorem{assumption}{Assumption}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{problem}[theorem]{Problem}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{notation}[theorem]{Notation}
+\newtheorem{remark}{Remark}
+\newtheorem{problem}{Problem}
+\newtheorem{example}{Example}
+\newtheorem{notation}{Notation}
 \usepackage{booktabs}
 
 \textheight235mm
@@ -145,10 +145,11 @@ containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$
 independent). The intersection $\calL \cap \sym_d^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_d(\R) :
 A(x) \succeq 0\right\}$, or
 equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
-a \emph{real spectrahedron}. As affine sections of $\sym_d^+(\R)$, real spectrahedra are closed convex sets,
-but might have empty interior in $\calL$ (resp. in $\R^n$). Moreover, they are basic semialgebraic sets,
-defined by sign conditions on the principal minors of the defining matrix as well as sign conditions on the
-coefficients of its characteristic polynomial (cf. \Cref{ell3}).
+a \emph{real spectrahedron}. As (linear preimage of) affine sections of $\sym_d^+(\R)$, real spectrahedra
+are closed convex sets, but might have empty interior in $\calL$ (resp. in $\R^n$).
+Moreover, they are basic semialgebraic sets, indeed they are defined by sign conditions on the principal
+minors of the defining matrix as well as sign conditions on the coefficients of its characteristic polynomial
+(cf. \Cref{ell3}).
 
 \begin{example}\label{ell3}
   Let $d=n=3$. The $3$-elliptope is the three-dimensional spectrahedron given by
