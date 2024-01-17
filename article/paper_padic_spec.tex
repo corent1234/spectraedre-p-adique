@@ -254,8 +254,9 @@ In this section, we define polyhedra over a complete discrete valuation field $K
 
 We recall that that the smallest affine space of $K^n$ containing a set $P \subset K^n$ is called its
 \emph{affine hull}. The constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ in \Cref{def_polyhedra}
-is equivalent to $m_1(x) = \cdots = m_e(x) = 0$ and defines the affine hull of $P$. The \emph{dimension}
-of $P$ is defined as $n-e$ (namely the dimension of its affine hull).
+is equivalent to $m_1(x) = \cdots = m_e(x) = 0$ and since the forms $m_i$ are affinely independent, it
+defines the affine hull of $P$. The \emph{dimension} of $P$ is defined as $n-e$ (namely the dimension of
+its affine hull).
 
 \begin{example}
   The \emph{closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
@@ -297,7 +298,7 @@ We recall its definition below, in our context.
 
 The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse is true if the matrix $M$ is invertible in $\OK$ \corentin{est-ce qu'il y a besoin de le prouver ?}. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$ $Mz \geq 0$ if and only if $Sz \geq 0$. 
 
-That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem to an equivalent simpler iteration of the \ref{LP} problem that will be called \emph{diagonal linear programming problem} \corentin{or maybe reduced linear programming problem?}. This problem is the optimization problem: 
+That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem to an equivalent simpler iteration of the \ref{LP} problem that will be called \emph{diagonal linear programming problem} \corentin{or maybe reduced linear programming problem?}. This problem is the optimization problem: \simone{il me semble que tout ça n'est pas trop clair, par exemple quelle est la difference entre diagonal LP et associated diagonal LP plus en bas, est-ce qu'il y a vraiment besoin de tout ça, il faut simplifier la presentation}
 \begin{equation}
   \tag{dLP}\label{dLP}
 \begin{array}{rcll}
