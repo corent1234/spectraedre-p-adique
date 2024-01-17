@@ -50,6 +50,8 @@
 \newcommand{\PP}{\mathcal{P}}
 \newcommand{\Qc}{\mathcal{Q}}
 \renewcommand{\span}[1]{{\text{span}(#1)}} % simone's comments
+\newcommand{\aff}[1]{{\text{aff}(#1)}} % simone's comments
+\newcommand{\relint}[1]{{\text{relint}(#1)}} % simone's comments
 \newcommand{\calL}{\mathcal{L}} % simone's comments
 
 \newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
@@ -250,14 +252,20 @@ In this section, we define polyhedra over a complete discrete valuation field $K
   \val(m_1 \oplus \cdots \oplus m_e) = +\infty\},
   $$
   for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$, where $\val,\geq$ and $=$ are applied entrywise.
-  We always assume without loss of generality that $m_1,\ldots,m_e$ are affinely independent.
+  We assume without loss of generality that for every $i=1,\ldots,d$ there exists $x \in P$ such that
+  $\val(\ell_i(x))<+\infty$.
 \end{definition}
 
-We recall that that the smallest affine space of $K^n$ containing a set $P \subset K^n$ is called its
-\emph{affine hull}. The constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ in \Cref{def_polyhedra}
-is equivalent to $m_1(x) = \cdots = m_e(x) = 0$ and since the forms $m_i$ are affinely independent, it
-defines the affine hull of $P$. The \emph{dimension} of $P$ is defined as $n-e$ (namely the dimension of
-its affine hull).
+We recall that that the smallest affine space of $K^n$ containing a set $S \subset K^n$ is called its
+\emph{affine hull} and denoted $\aff{S}$.
+The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint
+$\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words
+$\aff{P} = \{x \in K^n : m_j(x) = 0,
+j=1,\ldots,e\}$. The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$,
+$\aff{P}=K^n$ and $P$ has dimension $n$).
+The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d)
+< +\infty\}$.
+Remark that \Cref{def_polyhedra} includes the case $d=0$ corresponding to affine spaces, as in the real case.
 
 \begin{example}
   The \emph{closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
@@ -281,7 +289,8 @@ and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$.
 We present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in Smith normal form.
 We recall its definition below, in our context.
 
-\begin{definition}[Smith Normal Form]\label{smith_nf}
+\begin{definition}[Smith Normal Form]\label{smith_nf} \simone{Je trouve que la SNF devrait être inclue dans les
+  préliminaires, car on l'utilise ailleurs, et laisser cette section pour polyèdre+LP}
   Let $M \in \allmat_{m,n}(K)$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
@@ -373,7 +382,7 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
 
 \begin{definition}
   We call a matrix $M \in \mathcal{M}_n(K)$ \emph{positive semidefinite} (in symbols $M \succeq 0$)
-  if all its eigenvalues have nonnegative valuation in $\overline{K}$.
+  if all its eigenvalues have nonnegative valuation in an algebraic closure of $K$.
   We denote by $\mathcal{M}_n^+(K) \subset \mathcal{M}_n(K)$ the set of positive semidefinite matrices.
   The characteristic polynomial of $M$ is denoted $\chi_M$.
 \end{definition}
@@ -390,7 +399,7 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
   $\mathcal{M}_n(\OK) \subset \mathcal{M}_n^+(K)$.
 \end{corollary}
 \begin{proof}
-$\OK$ is a ring therefore the characteristic polynomial of matrix whose coefficients are $p$-adic integers have coefficients ins $Pp$ \simone{je comprends pas}. We conclude by \Cref{caracsdp}.
+$\OK$ is a ring therefore the characteristic polynomial of matrix whose coefficients are $p$-adic integers have coefficients ins $Pp$ \simone{je comprends pas la fin de la phrase}. We conclude by \Cref{caracsdp}.
 \end{proof}
 
 \begin{remark}
@@ -408,17 +417,23 @@ Furthermore, $\mathcal{M}^+_{n}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the fun
 
 \begin{definition}
   \label{def_spectrahedra}
-  Let $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset \mathcal{M}_n(K)$ be an affine space, for given
-  matrices $A_0,A_1,\ldots,A_n$.
-  The set $\mathcal{L} \cap \mathcal{M}_n^+(K)$ is called a \emph{spectrahedron} or equivalently
+  Let $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset \mathcal{M}_n(K)$ be an affine space, for some
+  $A_0,A_1,\ldots,A_n \in \mathcal{M}_n(K)$.
+  The set $\mathcal{L} \cap \mathcal{M}_n^+(K)$ or equivalently,
   its canonical preimage in $K^n$:
   $$
-  S = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}.
+  S_A = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\},
   $$
+  is called a \emph{spectrahedron}.
 \end{definition}
 
-Remark that \Cref{def_spectrahedra} is invariant under intersection: the intersection of two
-(canonical preimages of) spectrahedra is a (canonical image of a) spectrahedron.
+\begin{remark}
+  The class of spectrahedra is closed under intersection. Indeed, for affine spaces $\mathcal{L}_1,\mathcal{L}_2$
+  one has $(\mathcal{L}_1 \cap \mathcal{M}_n^+(K)) \cap (\mathcal{L}_2 \cap \mathcal{M}_n^+(K)) =
+  (\mathcal{L}_1\cap\mathcal{L}_2) \cap \mathcal{M}_n^+(K)$. Now
+  assuming $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = B_0+\span{B_1,\ldots,B_n}$,
+  then 
+\end{remark}
 
 %\begin{remark}
 %	As in the real case, the spectrahedron associated with the affine plan $\mathcal{L}$ will often be identified with its preimage in $K^s$ (i.e. the set of vectors $x \in K ^s$ so that the linear matrix $A(x) = A_0 + x_1A_1 + \ldots + x_sA_s$ is positive semidefinite with $A_0,A_1,\ldots,A_s$ spanning $\mathcal{L}$). 
