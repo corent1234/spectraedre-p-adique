@@ -119,11 +119,11 @@ A typical example of $K$ as above is the field of $p$-adic numbers
 $\QQ_p$ (equipped with the $p$-adic valuation). For this example, we 
 have $\OK = \ZZ_p$.
 Another example is the field of Laurent series
-$K=\QQ(\!(t)\!)$ equiped with $t$-adic valuation.
-In this case, $\OK = \QQ \llbracket t \rrbracket$.
+$K=\QQ(\!(t)\!)$ equiped with $t$-adic valuation,
+in which case $\OK = \QQ \llbracket t \rrbracket$.
 We refer to \cite{Serre:1979} for a
 general introduction to such fields
-and to X.~Caruso's course on $p$-adic computations \cite{caruso_computations_2017}
+and to Caruso's course on $p$-adic computations \cite{caruso_computations_2017}
 for an introduction to effective computations over $p$-adic numbers.
 
 The $K$-vector space of polynomials of degree $\leq d$ on $x=(x_1,\ldots,x_n)$
@@ -240,7 +240,7 @@ $$
 \end{example}
 
 
-\section{Polyhedra and linear programming}
+\section{Polyhedra}
 
 In this section, we define polyhedra over a complete discrete valuation field $K$ with valuation $\val$ and a uniformizer $\pi$, and we discuss the associated linear optimization problem.
 
@@ -262,10 +262,7 @@ The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constr
 $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words
 $\aff{P} = \{x \in K^n : m_j(x) = 0,
 j=1,\ldots,e\}$ (\simone{il nous faudrait une preuve}).
-The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$,
-$\aff{P}=K^n$ and $P$ has dimension $n$).
-The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d)
-< +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
+%The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$, $\aff{P}=K^n$ and $P$ has dimension $n$). The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d) < +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
 Remark that \Cref{def_polyhedra} includes the case $d=0$ corresponding to affine spaces, as in the real case.
 
 \begin{example}
@@ -382,53 +379,59 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
 \newcommand\Mats{positive semidefinite matrices }
 
 \begin{definition}
-  We call a matrix $M \in \mathcal{M}_n(K)$ \emph{positive semidefinite} (in symbols $M \succeq 0$)
+  We call a matrix $M \in \allmat_{d,d}(K)$ \emph{positive semidefinite} (in symbols $M \succeq 0$)
   if all its eigenvalues have nonnegative valuation in an algebraic closure of $K$.
-  We denote by $\mathcal{M}_n^+(K) \subset \mathcal{M}_n(K)$ the set of positive semidefinite matrices.
-  The characteristic polynomial of $M$ is denoted $\chi_M$.
+  We denote by $\allmat_{d,d}^+(K) \subset \allmat_{d,d}(K)$ the set of positive semidefinite matrices.
+  The characteristic polynomial of a matrix $M \in \allmat_{d,d}(K)$ is denoted $\chi_M \in K[T]$.
 \end{definition}
 
 \begin{theorem}
   \label{caracsdp}
-  $M \in \mathcal{M}_n^+(K)$ if and only if $\chi_M$ has coefficients in $\OK$.
+  $M \in \allmat_{d,d}^+(K)$ if and only if $\chi_M \in \OK[T]$.
 \end{theorem}
 \begin{proof}
   \simone{preuve ?}
 \end{proof}
 
 \begin{corollary}\label{cor_caracsdp}
-  $\mathcal{M}_n(\OK) \subset \mathcal{M}_n^+(K)$.
+  $\allmat_{d,d}(\OK) \subset \allmat_{d,d}^+(K)$.
 \end{corollary}
 \begin{proof}
-$\OK$ is a ring therefore the characteristic polynomial of matrix whose coefficients are $p$-adic integers have coefficients ins $Pp$ \simone{je comprends pas la fin de la phrase}. We conclude by \Cref{caracsdp}.
+  $\OK$ is a ring therefore if $M \in \allmat_{d,d}(\OK)$, then $\chi_M \in \OK[T]$, thus we conclude
+  by \Cref{caracsdp}.
 \end{proof}
 
-\begin{remark}
-  The reverse inclusion of \Cref{cor_caracsdp} is false. For instance the characteristic polynomial of
-  $M = \left(\begin{smallmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{smallmatrix}\right)$ is $\chi_M = X^2-5X-4$. However when seen as an element of $\mathbb{Q}_5$, $\chi_M \in \mathbb{Z}_5[X]$ then $M \in \mathcal{M}_2^+\left( \mathbb{Q}_5 \right)$ but no coefficient of $M$ is in $\mathbb{Z}_5 $
-\end{remark}
+\begin{example}
+  The reverse inclusion of \Cref{cor_caracsdp} is false in general. For instance the characteristic polynomial of
+  $M = (\begin{smallmatrix} 5 + {3}/{5} & {4}/{5} \\ {4}/{5} & -{3}/{5} \end{smallmatrix})$ is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$: then $M \in \allmat_{2,2}^+(\mathbb{Q}_5)$, nevertheless $M \not\in \allmat_{2,2}(\mathbb{Z}_5)$, hence $\allmat_{2,2}^+(\mathbb{Q}_5) \not\subset \allmat_{2,2}(\mathbb{Z}_5)$.
+\end{example}
 
 \begin{proposition}
-	The set $\mathcal{M}_n^+(K)$ is both open and closed.
+  The set $\allmat_{d,d}^+(K)$ is both open and closed.
 \end{proposition}
 \begin{proof}
-Firstly, $\OK[X]$ is closed and open in $\mathbb{Q}_{p}[X]$ equiped with the infinitiy norm $\|.\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|_p$. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ which defines a discrete distance for which open balls are also closed.
-Furthermore, $\mathcal{M}^+_{n}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps its characteristic polynomial to a matrix which is continuous.
+Firstly, $\OK[X]$ is closed and open in $\mathbb{Q}_{p}[X]$ (\simone{attention p-adique}) equipped with the infinitiy norm $\|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|_p$ \simone{attention p-adique}. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ which defines a discrete distance for which open balls are also closed.
+Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps its characteristic polynomial to a matrix which is continuous. \simone{mmm je dirais plutôt ``the function that maps a matrix to its characteristic polynomial'', n'est-ce pas ?}
 \end{proof}
+
+
+\simone{que peut-on dire de plus de l'ensemble $\allmat_{d,d}^+(K)$ ? normalement c'est un cône non ? peut être
+  à cause de \Cref{caracsdp} c'est un $\OK$-cône mais pas un $K$-cône ? ça serait un peu contre-intuitif, mais
+  bon, on est sur un corps abstrait.}
 
 \begin{definition}
   \label{def_spectrahedra}
-  Let $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset \mathcal{M}_n(K)$ be an affine space, for some
-  $A_0,A_1,\ldots,A_n \in \mathcal{M}_n(K)$.
-  The set $\mathcal{L} \cap \mathcal{M}_n^+(K)$ is called a \emph{spectrahedron}. Its 
-  its canonical preimage $S_A = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$
-  is also called spectrahedron.
+  Let $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset \allmat_{d,d}(K)$ be an affine space, for some
+  $A_0,A_1,\ldots,A_n \in \allmat_{d,d}(K)$.
+  The set $\mathcal{L} \cap \allmat_{d,d}^+(K)$ is called a \emph{spectrahedron}. The set 
+  $S_A = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$, that is the preimage of $\allmat_{d,d}^+(K)$
+  under the map $x \mapsto A_0+x_1A_1+\cdots+x_nA_n$, is also called spectrahedron.
 \end{definition}
 
 \begin{remark}
   The class of spectrahedra is closed under intersection. Indeed, for affine spaces $\mathcal{L}_1,\mathcal{L}_2$
-  one has $(\mathcal{L}_1 \cap \mathcal{M}_n^+(K)) \cap (\mathcal{L}_2 \cap \mathcal{M}_n^+(K)) =
-  (\mathcal{L}_1\cap\mathcal{L}_2) \cap \mathcal{M}_n^+(K)$. Now
+  one has $(\mathcal{L}_1 \cap \allmat_{d,d}^+(K)) \cap (\mathcal{L}_2 \cap \allmat_{d,d}^+(K)) =
+  (\mathcal{L}_1 \cap \mathcal{L}_2) \cap \allmat_{d,d}^+(K)$. Now
   assuming $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = B_0+\span{B_1,\ldots,B_n}$,
   then $S_A \cap S_B = S_{A \oplus B}$ (indeed both $A \succeq 0$ and $B \succeq 0$ if and only if
   $A \oplus B \succeq 0$).
@@ -443,10 +446,12 @@ Furthermore, $\mathcal{M}^+_{n}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the fun
 \begin{proof}
   Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
   be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
-  and $L = \{x \in K^n : \val(m_j) = 0, j=1,\ldots,e\}$.
-  First, denote by $A(x) = \ell_1 \oplus \cdots \oplus \ell_d$, so that $Q$ is the (preimage of the)
-  spectrahedron defined by $A(x) \succeq 0$.
+  and $L = \{x \in K^n : \val(m_j) = +\infty, j=1,\ldots,e\}$.
+  First, denote by $A(x) = \ell_1 \oplus \cdots \oplus \ell_d \in \allmat_{d,d}(K[x]_1)$,
+  so that $A = A_0+x_1A_1+\cdots+x_nA_n$ for some (diagonal) $A_i \in \allmat_{d,d}(K)$.
+  One has $Q=S_A$.
   Next, remark that $L \subset K^n$ is the affine space defined by equations $m_1=\ldots=m_e=0$.
+  Define $B = m_1 \oplus \cdots \oplus m_e \in \allmat_{e,e}(K[x]_1)$
 
   Let $\varphi_Q : K^n \to \mathcal{M}_n(K)$
 \end{proof}
@@ -729,4 +734,5 @@ This concludes the proof.
 
 
 \printbibliography
+
 \end{document}
