@@ -261,10 +261,11 @@ We recall that that the smallest affine space of $K^n$ containing a set $S \subs
 The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint
 $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words
 $\aff{P} = \{x \in K^n : m_j(x) = 0,
-j=1,\ldots,e\}$. The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$,
+j=1,\ldots,e\}$ (\simone{il nous faudrait une preuve}).
+The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$,
 $\aff{P}=K^n$ and $P$ has dimension $n$).
 The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d)
-< +\infty\}$.
+< +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
 Remark that \Cref{def_polyhedra} includes the case $d=0$ corresponding to affine spaces, as in the real case.
 
 \begin{example}
@@ -419,12 +420,9 @@ Furthermore, $\mathcal{M}^+_{n}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the fun
   \label{def_spectrahedra}
   Let $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset \mathcal{M}_n(K)$ be an affine space, for some
   $A_0,A_1,\ldots,A_n \in \mathcal{M}_n(K)$.
-  The set $\mathcal{L} \cap \mathcal{M}_n^+(K)$ or equivalently,
-  its canonical preimage in $K^n$:
-  $$
-  S_A = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\},
-  $$
-  is called a \emph{spectrahedron}.
+  The set $\mathcal{L} \cap \mathcal{M}_n^+(K)$ is called a \emph{spectrahedron}. Its 
+  its canonical preimage $S_A = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$
+  is also called spectrahedron.
 \end{definition}
 
 \begin{remark}
@@ -432,7 +430,8 @@ Furthermore, $\mathcal{M}^+_{n}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the fun
   one has $(\mathcal{L}_1 \cap \mathcal{M}_n^+(K)) \cap (\mathcal{L}_2 \cap \mathcal{M}_n^+(K)) =
   (\mathcal{L}_1\cap\mathcal{L}_2) \cap \mathcal{M}_n^+(K)$. Now
   assuming $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = B_0+\span{B_1,\ldots,B_n}$,
-  then 
+  then $S_A \cap S_B = S_{A \oplus B}$ (indeed both $A \succeq 0$ and $B \succeq 0$ if and only if
+  $A \oplus B \succeq 0$).
 \end{remark}
 
 %\begin{remark}
@@ -443,7 +442,7 @@ Furthermore, $\mathcal{M}^+_{n}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the fun
 \end{proposition}
 \begin{proof}
   Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
-  be the polyhedron given in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
+  be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
   and $L = \{x \in K^n : \val(m_j) = 0, j=1,\ldots,e\}$.
   First, denote by $A(x) = \ell_1 \oplus \cdots \oplus \ell_d$, so that $Q$ is the (preimage of the)
   spectrahedron defined by $A(x) \succeq 0$.
