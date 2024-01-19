@@ -261,9 +261,10 @@ We recall that that the smallest affine space of $K^n$ containing a set $S \subs
 The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint
 $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words
 $\aff{P} = \{x \in K^n : m_j(x) = 0,
-j=1,\ldots,e\}$ (\simone{il nous faudrait une preuve}).
+j=1,\ldots,e\}$ \simone{(il nous faudrait une preuve, du genre: $\val(m(x))=+\infty$ pour tout $x \in P$ si et seulement si $m$ est une combinaison affine de $m_1,\ldots,m_e$.)}
 %The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$, $\aff{P}=K^n$ and $P$ has dimension $n$). The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d) < +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
 Remark that \Cref{def_polyhedra} includes the case $d=0$ corresponding to affine spaces, as in the real case.
+Moreover by definition the class of polyhedra is closed under intersection.
 
 \begin{example}
   The \emph{closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
@@ -448,12 +449,16 @@ Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the funct
   be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
   and $L = \{x \in K^n : \val(m_j) = +\infty, j=1,\ldots,e\}$.
   First, denote by $A(x) = \ell_1 \oplus \cdots \oplus \ell_d \in \allmat_{d,d}(K[x]_1)$,
-  so that $A = A_0+x_1A_1+\cdots+x_nA_n$ for some (diagonal) $A_i \in \allmat_{d,d}(K)$.
-  One has $Q=S_A$.
-  Next, remark that $L \subset K^n$ is the affine space defined by equations $m_1=\ldots=m_e=0$.
-  Define $B = m_1 \oplus \cdots \oplus m_e \in \allmat_{e,e}(K[x]_1)$
-
-  Let $\varphi_Q : K^n \to \mathcal{M}_n(K)$
+  so that $A(x) = A_0+x_1A_1+\cdots+x_nA_n$ for some (diagonal) $A_i \in \allmat_{d,d}(K)$.
+  We might assume that $A_0,A_1,\ldots,A_n$ are affinely independent, so that the mapping
+  $\varphi(x) = A(x)$ is injective. 
+  First, remark that $Q=S_A$ and thus $\varphi(Q) = \mathcal{L} \cap \allmat_{d,d}(K)$, with
+  $\mathcal{L} = A_0+\span{A_1,\ldots,A_n}$ is a spectrahedron.
+  Next, remark that $L \subset K^n$ is the affine space defined by equations $m_1=\ldots=m_e=0$,
+  hence $\varphi(L) \subset \allmat_{d,d}(K)$ is an affine space. Since $\varphi$ is injective,
+  one has $\varphi(P) = \varphi(Q \cap L) = \varphi(Q) \cap \varphi(L)$ which is the intersection
+  of a spectrahedron with an affine space, thus a spectrahedron.
+  %Define $B = m_1 \oplus \cdots \oplus m_e \in \allmat_{e,e}(K[x]_1)$
 \end{proof}
 
 
