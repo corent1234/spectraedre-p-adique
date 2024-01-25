@@ -391,6 +391,17 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
   $M \in \allmat_{d,d}^+(K)$ if and only if $\chi_M \in \OK[T]$.
 \end{theorem}
 \begin{proof}
+  Both sense of the equivalence will be proven by contraposition.
+
+  Let $M \in \allmat_{d,d}(K)$ with characteristic polynomial $\chi_M = X^d + \sum_{i=0}^{d} a_i X_i$ for $a_0,...,a_{d-1} \in K$.
+  Firstly, suppose $\chi_M$ have a root $\rho$ of negative valuation {\it i.e.} $M \not \in \allmat_{d,d}^+(K)$.
+  It follows that $\val \chi_M (\rho) = \val \left(\rho^n \sum_{i=0}^{d} a_i \rho^i \right) = + \infty$ and $\val \rho^d = d \val \rho <0$.
+  The properties of the non-archimedean inequality followed by $\val $ implie that $\val \left( \sum_{i=0}^{d} a_i \rho^i\right) = \val \rho^n$ and $\val \left( \sum_{i=0}^{d} a_i \rho^i\right) \ge \min \limits_{i=0,..., d-1} \val \left(a_i \rho^i\right)$. Therefore, there exists $i \in \left\{0,...,d-1\right\}$ such that $\val( a_i \rho^i) \le \val\rho^n$ {\it i.e.} such that $\val (a_i) \le (n-i) \val \rho <0$.
+  
+  We have proven the converse sense of the equivalence. To prove the direct sense we will need a brief intriduction to Newton's polygon.
+
+  Let suppose $\chi_M \not\in O_K[X]$. There exists $j \in \{0,...,d-1\}$ such that $\val (a_j)<0$. The polynomial $\chi_M$ being monic the point with abscissa $n$ of $\chi_M$'s Newton's Polygon is $(n,0)$. 
+  Therefore, the point $(j, a_j)$ having negative ordinate implies that at least one of the slopes of $\chi_M$'s Newton's Polygon is positive so that $\chi_M$ has a root with negative valuation.
   \simone{preuve ?}
 \end{proof}
 
@@ -411,8 +422,8 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
   The set $\allmat_{d,d}^+(K)$ is both open and closed.
 \end{proposition}
 \begin{proof}
-Firstly, $\OK[X]$ is closed and open in $\mathbb{Q}_{p}[X]$ (\simone{attention p-adique}) equipped with the infinitiy norm $\|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|_p$ \simone{attention p-adique}. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ which defines a discrete distance for which open balls are also closed.
-Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps its characteristic polynomial to a matrix which is continuous. \simone{mmm je dirais plutôt ``the function that maps a matrix to its characteristic polynomial'', n'est-ce pas ?}
+Firstly, $\OK[X]$ is closed and open in $K[X]$ (\simone{attention p-adique}) equipped with the infinitiy norm $\|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|$ \simone{attention p-adique}. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ that induces a discrete distance for which open balls are also closed sets.
+Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps a matrix to its characteristic polynomial which is continuous. \simone{mmm je dirais plutôt ``the function that maps a matrix to its characteristic polynomial'', n'est-ce pas ?}
 \end{proof}
 
 
