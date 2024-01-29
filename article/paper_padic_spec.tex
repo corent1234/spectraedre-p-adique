@@ -305,11 +305,11 @@ We recall its definition below, in our context.
   $M$. In particular, the SNF of $M \in \allmat_n(\OK)$ has entries in $\OK$.
 \end{remark}
 
-The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse is true if the matrix $M$ is invertible in $\OK$ \corentin{est-ce qu'il y a besoin de le prouver ?}. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$ $Mz \geq 0$ if and only if $Sz \geq 0$. 
+The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$ $Mz \geq 0$ if and only if $Sz \geq 0$. 
 
 That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem to an equivalent simpler iteration of the \ref{LP} problem that will be called \emph{diagonal linear programming problem} \corentin{or maybe reduced linear programming problem?}. This problem is the optimization problem: \simone{il me semble que tout ça n'est pas trop clair, par exemple quelle est la difference entre diagonal LP et associated diagonal LP plus en bas, est-ce qu'il y a vraiment besoin de tout ça, il faut simplifier la presentation}
 \begin{equation}
-  \tag{dLP}\label{dLP}
+  \tag{DLP}\label{DLP}
 \begin{array}{rcll}
   p^* & := & \inf_{y \in K^n} & \val(\left\langle c', y \right\rangle) \\
   &    & \text{s.t.}         & S y + b' \geq 0
@@ -317,53 +317,53 @@ That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem 
 \end{equation}
 with $c' \in K^n$ a fixed vector of size $n$, $b' \in K^m$ and $S$ a diagonal $m \times n$ matrix of the form $S = s_1 \oplus s_2 \oplus \ldots \oplus s_r \oplus { \bm 0}_{m-r} $ for $r={\rm rank} S$.
 
-The \emph{associated diagonal linear programming problem} of a linear program is the iteration of the \ref{dLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m(\OK)$ and $ Q \in GL_n(\OK)$ are such that $A = Q^{-1} S P$.
+%The \emph{associated diagonal linear programming problem} of a linear program is the iteration of the \ref{DLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m(\OK)$ and $ Q \in GL_n(\OK)$ are such that $A = Q^{-1} S P$.
 
-A vector $x^* \in K^n$ is \emph{feasible solution} of \ref{LP} if $Ax^* + b \geq 0$. Similarly, a vector $y^* \in K^n$ is a feasible of \ref{dLP} if $Sy^*+b' \geq 0$. We will denote as $Adm$ \corentin{Probablement à changer mais je ne sais pas quel nom lui donner} the set of feasible solution of \ref{dLP}.
+A vector $x^* \in K^n$ is \emph{feasible solution} of \ref{LP} if $Ax^* + b \geq 0$. Similarly, a vector $y^* \in K^n$ is a feasible of \ref{DLP} if $Sy^*+b' \geq 0$. We will denote as $Adm$ \corentin{Probablement à changer mais je ne sais pas quel nom lui donner} the set of feasible solution of \ref{DLP}.
 
+\begin{proposition} 
+  Let $A \in \allmat_{m,n}(K), b \in K^m, c\in K^n$ and let $S \in \allmat_{m,n}(K)$ be the Smith normal form of $A$ with transition matrices $P \in \GL_n(\OK)$ and $Q\in \GL(\OK)$ such that $A=Q^{-1}SP$.
+  We define $b':= Qb$ and $c':= (P^{-1})^Tc$. 
+   \begin{enumerate}
+    \item $x^* \in K^n$ is a feasible solution of the \ref{LP} problem of parameters $A, b$ and $c$ if and only if $y^* = P x^*$ is a feasible solution of the \ref{DLP} problem of parameters $S, b'$ ans $c'$.
+		\item $x \in K^n$ is a solution of the \ref{LP} problem of parameters $A, b$ and $c$ if and only if $y = P x$ is a solution of the \ref{DLP} problem of parameters $S,b'$ and $c'$ and $\langle c,x \rangle = \langle c',y \rangle$.
+   \end{enumerate}
+\end{proposition}
+\begin{proof}
+  First of all, 1. is a direct consequence of the fact that $Ax^*+b = AP^{-1}y^* +b\geq 0$ if and only if $Q(AP^{-1}y^* + b) = Sy^* + b' \geq 0$ because $Q \in GL_m(\OK)$.
+
+  Then, 2. comes from the fact that for all $c \in K^n$ $\langle c, x\rangle = \langle c, P^{-1}Py \rangle = \langle \left(P^{-1}\right)^T c, y \rangle$.
+\end{proof}
+
+The last proposition allows to only consider the resolution of the \ref{DLP} problem.
 \begin{proposition}\label{prop:reduc}
 	
 	We have then the following results
 	\begin{enumerate}
-		\item $x^*$ is a feasible solution of \ref{LP} if and only if $y^* = P x^*$ is a feasible solution of the associated \ref{dLP} problem.
-		\item $x$ is a solution of \ref{LP} if and only if $y = P x$ is a solution of the associated \ref{dLP} and the the infimum is the same.
-		\item \ref{dLP} have feasible solutions if and only if the $m-r$ last coefficients of $b'$ have nonegative valuation, with $r$ the rank of $S$.
-		\item If at least one of the $n-r$ last coefficients of $c'$ is non-zero, if \ref{dLP} admits feasible solutions it is unbounded and does not have a solution.
+		
+		\item \ref{DLP} have feasible solutions if and only if the $m-r$ last coefficients of $b'$ have nonegative valuation, with $r$ the rank of $S$.
+		\item If at least one of the $n-r$ last coefficients of $c'$ is non-zero, if \ref{DLP} admits feasible solutions it is unbounded and does not have a solution.
 		 
   \end{enumerate}
 \end{proposition}
 	
 \begin{proof}
-
-  First of all, 1. is a consequence of the fact that $Mx^*+b = MP^{-1}y^* +b\geq 0$ if and only if $Q(MP^{-1}y^* + b) = Sy^* + b' \geq 0$ because $Q \in GL_m(\OK)$.
-
-  Then, 2. comes from the fact that for all $c \in K^n$ $\langle c, x\rangle = \langle c, P^{-1}Py \rangle = \langle \left(P^{-1}\right)^T c, y \rangle$.
-
-  A vector $y =  \left[\begin{smallmatrix} y_1 \\ \vdots \\ y_n \end{smallmatrix}\right] \in K^n$ is feasible solution of \ref{dLP} if and only if $\val(s_i y_i + b_i) >=0$ for all $i \in \{1...n\}$ \corentin{préciser les notations}. 
-  However, $s_i =0$ for $n-r \leq i\leq n$. Therefore, \ref{dLP} have solution only if the $m-r$ last coefficient of b' are zero.
+  A vector $y =  \left[\begin{smallmatrix} y_1 \\ \vdots \\ y_n \end{smallmatrix}\right] \in K^n$ is feasible solution of \ref{DLP} if and only if $\val(s_i y_i + b_i) >=0$ for all $i = 1...n$ \corentin{préciser les notations}. 
+  However, $s_i =0$ for $n-r \leq i\leq n$. Therefore, \ref{DLP} have solution only if the $m-r$ last coefficient of b' have nonnegative valuation.
   
   Conversely, if the $m-r$ last coefficient of $b'$ are zero, the vector $y \in K^n$ such that $y_i = -\frac{-b'_i}{s_i}$ if $1 \leq i \leq r$ and $y_i =0$ otherwise is a feasible solution.
 
-  Finally, let $y^*$ be a feasible solution of \ref{dLP}. Let us suppose there exists $r+1 \leq i \leq m$ such that $c'_i \neq  0$ and fix such $i$. Let us then consider the vector $e^i$ whose only non-zero coefficient is the $i-$th, which is $1$. Then $y^*+\lambda e^i$ is a feasible solution for all $\lambda \in K$ and $\langle c', y^* + \lambda e^i\rangle = \langle c' , y^* \rangle + \lambda c'_i$. In particular, for $\lambda = -\frac{\langle c', y^* \rangle}{c'_i}$ $\val \left( \langle c', y^* + \lambda e ^i \rangle\right) = \val (0) = + \infty$. 
-
+  Finally, let $y^*$ be a feasible solution of \ref{DLP}. Let us suppose there exists $r+1 \leq i \leq m$ such that $c'_i \neq  0$ and fix such $i$. Let us then consider the vector $e^i$ whose only non-zero coefficient is the $i-$th, which is $1$. Then $y^*+\alpha e^i$ is a feasible solution for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$. In particular, for $\alpha = -\frac{\langle c', y^* \rangle}{c'_i}$, $\val \left( \langle c', y^* + \alpha e ^i \rangle\right) = \val (0) = + \infty$. 
 \end{proof}
 
-The two first points of the proposition \ref{prop:reduc} show that we can resolving a linear program is equivalent to resolution the associated \ref{dLP} problem. Furthermore, if one considers only the iteration of \ref{dLP} which have solutions. By point 3. and 4. of proposition \ref{prop:reduc} one can reduce the problem by only taking acount only the $r$ first coefficients of $y, b', c'$ and the submatrix of $S$ made with only $r$ first lines et columns of and which coefficients are exactly the nonzero invariants factors. The set $Adm$ of the feasible solutions can then be written as the set of vectors $y \in \mathbb{Q}_{ p } ^n$ that verifies $\forall 1 \le i\le r \ s_i y_i + b'_i \in \OK$ i.e. that verifies :
-
-\begin{equation}
-	\forall 1 \le i\le r  \ y_i \in -\frac{b`_i}{s_i} + \frac{1}{s_i} \OK
-\end{equation}
+From now on, we will only consider the iterations of \ref{DLP} which have solutions, by \ref{prop:reduc}, we can then reduce the problem by only taking acount only the $r$ first coefficients of $y, b', c'$ and the submatrix of $S$ made with only $r$ first lines et columns of and whose coefficients are exactly the nonzero invariants factors. 
+The set $Adm$ of the feasible solutions can then be written as the set of vectors $y \in K^n$ that verifies $ \ s_i y_i + b'_i \in \OK$ for $i=1,...,r$ {\it i.e.} $Adm = \left\{\left[\begin{smallmatrix} y_1\\ \vdots\\ y_n \end{smallmatrix}\right] \in K^n :\ y_i \in -\frac{b`_i}{s_i} + \frac{1}{s_i} \OK, 1\le i\le r\right\}$.
 
 
-Resolving \ref{dLP} consists in minimizing $\val\left(\left<c',y \right>\right)$ over $Adm$. The image of $Adm$ by $y \mapsto \left<c',y \right>$ is $\sum_{i=1}^r -c'_i.\frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right)$ which can be rewritten in $\left<c',Adm \right> = \lambda + \pi^{v} \OK$ with $\lambda = \sum_{i=1}^r -c'_i.\frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
-
-Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
-\begin{itemize}
-	\item If $\val( \lambda) < v$ the minimum of $y\mapsto \val\left(\left<c',y \right>\right)$ over $Adm$ is reached in any point of $Adm$ and is equal to $\val\left( \lambda\right)$.
-	\item If $\val\left( \lambda \right) \ge v$ then $\lambda \in \pi^{v} \OK$ and the minimum is $v $ and is reached in any points $y$ of $Adm$ that verifies 
+Resolving \ref{DLP} consists (by definition) in minimizing $y \mapsto \val\left(\left<c',y \right>\right)$ over $Adm$. The image of $Adm$ by $y \mapsto \left<c',y \right>$ is $\sum_{i=1}^r -c'_i.\frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right)$ which can be expressed as $\left<c',Adm \right> = \lambda + \pi^{v} \OK$ with $\lambda = \sum_{i=1}^r -c'_i.\frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
+Finally, two cases can occur depending on $v$ and the valuation of $\lambda$. If $\val( \lambda) < v$ the minimum of $y\mapsto \val\left(\left<c',y \right>\right)$ over $Adm$ is reached in any point of $Adm$ and is equal to $\val\left( \lambda\right)$. Whereas, if $\val\left( \lambda \right) \ge v$ then $\lambda \in \pi^{v} \OK$ and the minimum is $v $ and is reached in any points $y$ of $Adm$ that verifies 
 	\[\val \underset{ \begin{array}{c} 1\le i\le r\\ \val\left(c'_{i}/{s_{i}} \right) = v  \end{array}}{\sum} y_{i} = 0. \]
-	
-\end{itemize}
+
 \begin{remark}
 	To maximize the valuation of a linear map over a convex $p$-adic polyhedron instead of minimizing it (which is equuivalent to minimize the absolute value) the same reasoning can be aplied. The only difference being that if $\val\left( \lambda\right) < v$ the problem is unbounded and as such does not have any solution. 
 \end{remark}
@@ -391,18 +391,19 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
   $M \in \allmat_{d,d}^+(K)$ if and only if $\chi_M \in \OK[T]$.
 \end{theorem}
 \begin{proof}
-  Both sense of the equivalence will be proven by contraposition.
+  Both senses of the equivalence will be proven by contraposition.
 
-  Let $M \in \allmat_{d,d}(K)$ with characteristic polynomial $\chi_M = X^d + \sum_{i=0}^{d} a_i X_i$ for $a_0,...,a_{d-1} \in K$.
-  Firstly, suppose $\chi_M$ have a root $\rho$ of negative valuation {\it i.e.} $M \not \in \allmat_{d,d}^+(K)$.
-  It follows that $\val \chi_M (\rho) = \val \left(\rho^n \sum_{i=0}^{d} a_i \rho^i \right) = + \infty$ and $\val \rho^d = d \val \rho <0$.
-  The properties of the non-archimedean inequality followed by $\val $ implie that $\val \left( \sum_{i=0}^{d} a_i \rho^i\right) = \val \rho^n$ and $\val \left( \sum_{i=0}^{d} a_i \rho^i\right) \ge \min \limits_{i=0,..., d-1} \val \left(a_i \rho^i\right)$. Therefore, there exists $i \in \left\{0,...,d-1\right\}$ such that $\val( a_i \rho^i) \le \val\rho^n$ {\it i.e.} such that $\val (a_i) \le (n-i) \val \rho <0$.
+  Let $M \in \allmat_{d,d}(K)$ with characteristic polynomial $\chi_M = T^d + \sum_{i=0}^{d-1} a_i T^i$ for $a_0,...,a_{d-1} \in K$.
+  Firstly, suppose   $M \not \in \allmat_{d,d}^+(K)$ {\it i.e.} $\chi_M$ have a root $\rho$ of negative valuation.
+  It follows that $\val \chi_M (\rho) = \val \left(\rho^d+ \sum_{i=0}^{d-1} a_i \rho^i \right) = + \infty$ and $\val \rho^d = d \val \rho <0$.
+  The properties of the non-archimedean inequality followed by $\val $ implie that $\val \left( \sum_{i=0}^{d-1} a_i \rho^i\right) = \val \rho^d$ and $\val \left( \sum_{i=0}^{d-1} a_i \rho^i\right) \ge \min \limits_{i=0,..., d-1} \val \left(a_i \rho^i\right)$. Therefore, there exists $i \in \left\{0,...,d-1\right\}$ such that $\val( a_i \rho^i) \le \val\rho^d$ {\it i.e.} such that $\val (a_i) \le (d-i) \val \rho <0$. That is all the results we need to prove the result.
   
-  We have proven the converse sense of the equivalence. To prove the direct sense we will need a brief intriduction to Newton's polygon.
+  We have proven the converse sense of the equivalence. To prove the direct sense a brief introduction to Newton's polygon will be needed, we will only state the results we use in this proof and will redirect to \cite{gouvea_p-adic_2003} to further explanations.
+  The Newton polygon $\mathcal{P}$ of a polynomial $P = \sum_{n}^{i=0} a_i T^i \in K[T]$ is defined as the inferior convex hull of the set $\{(i, \val a_i ) | i\in \{0,...,d\} \}$ {\it i.e.} the largest convex function $\mathcal{P} : [0,n] \to \R$ such that $\mathcal{P}(i) \leq \val a_i$ for $i=1,...,n$. 
+  This function is piecewise affine and its slopes are exactly the opposites of the valuations of the roots of $P$. These are all the results we will need for this proof.
 
-  Let suppose $\chi_M \not\in O_K[X]$. There exists $j \in \{0,...,d-1\}$ such that $\val (a_j)<0$. The polynomial $\chi_M$ being monic the point with abscissa $n$ of $\chi_M$'s Newton's Polygon is $(n,0)$. 
-  Therefore, the point $(j, a_j)$ having negative ordinate implies that at least one of the slopes of $\chi_M$'s Newton's Polygon is positive so that $\chi_M$ has a root with negative valuation.
-  \simone{preuve ?}
+  Suppose $\chi_M \not\in \OK[T]$. There exists $j \in \{0,...,d-1\}$ such that $\val (a_j)<0$. The polynomial $\chi_M$ being monic the point with abscissa $n$ of $\chi_M$'s Newton's Polygon is $(n,0)$. 
+  Therefore, the point $(j, \val a_j)$ having negative ordinate implies that at least one of the slopes of $\chi_M$'s Newton's Polygon is positive so that $\chi_M$ has a root with negative valuation.
 \end{proof}
 
 \begin{corollary}\label{cor_caracsdp}
@@ -415,21 +416,37 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$.
 
 \begin{example}
   The reverse inclusion of \Cref{cor_caracsdp} is false in general. For instance the characteristic polynomial of
-  $M = (\begin{smallmatrix} 5 + {3}/{5} & {4}/{5} \\ {4}/{5} & -{3}/{5} \end{smallmatrix})$ is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$: then $M \in \allmat_{2,2}^+(\mathbb{Q}_5)$, nevertheless $M \not\in \allmat_{2,2}(\mathbb{Z}_5)$, hence $\allmat_{2,2}^+(\mathbb{Q}_5) \not\subset \allmat_{2,2}(\mathbb{Z}_5)$.
+  $M = \left(\begin{smallmatrix} 5 + {3}/{5} & {4}/{5} \\ {4}/{5} & -{3}/{5} \end{smallmatrix}\right)$ is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$: then $M \in \allmat_{2,2}^+(\mathbb{Q}_5)$, nevertheless $M \not\in \allmat_{2,2}(\mathbb{Z}_5)$, hence $\allmat_{2,2}^+(\mathbb{Q}_5) \not\subset \allmat_{2,2}(\mathbb{Z}_5)$.
 \end{example}
 
 \begin{proposition}
   The set $\allmat_{d,d}^+(K)$ is both open and closed.
 \end{proposition}
 \begin{proof}
-Firstly, $\OK[X]$ is closed and open in $K[X]$ (\simone{attention p-adique}) equipped with the infinitiy norm $\|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|$ \simone{attention p-adique}. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ that induces a discrete distance for which open balls are also closed sets.
-Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps a matrix to its characteristic polynomial which is continuous. \simone{mmm je dirais plutôt ``the function that maps a matrix to its characteristic polynomial'', n'est-ce pas ?}
+Firstly, $\OK[X]$ is closed and open in $K[X]$ equipped with the infinitiy norm $\|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|$. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ that induces a discrete distance for which open balls are also closed sets.
+Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps a matrix to its characteristic polynomial which is continuous.
 \end{proof}
 
 
 \simone{que peut-on dire de plus de l'ensemble $\allmat_{d,d}^+(K)$ ? normalement c'est un cône non ? peut être
   à cause de \Cref{caracsdp} c'est un $\OK$-cône mais pas un $K$-cône ? ça serait un peu contre-intuitif, mais
   bon, on est sur un corps abstrait.}
+
+\begin{definition}
+  A \emph{cone} is subset $C$ of $K^d$ that is closed under multiplication by elements of $\OK$.   
+\end{definition}
+
+\begin{remark}
+  \corentin{Pas nécessairement très important, à voir}
+  If $C$ is a cone that is furthermore closed under addition (what shall be called a convex cone in the real case) then $C$ is a $\OK$-module.
+\end{remark}
+
+\begin{proposition}
+  The set $\allmat^+_{d,d}(K)$ is a cone.
+\end{proposition}
+\begin{proof}
+  The result is immediate following the definiton of $\allmat^+_{d,d}(K)$.
+\end{proof}
 
 \begin{definition}
   \label{def_spectrahedra}
@@ -472,6 +489,12 @@ Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the funct
   %Define $B = m_1 \oplus \cdots \oplus m_e \in \allmat_{e,e}(K[x]_1)$
 \end{proof}
 
+\corentin{ Une autre définition qu'il pourrait être intéressant d'explorer. Attention! Pas les mêmes propriétés.}
+\begin{definition}[Alternative definition]
+  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$. 
+  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$. 
+  The set $S_A,B := S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
+\end{definition}
 
 \subsection{Annuli (couronnes)}
 \begin{definition}
@@ -485,39 +508,35 @@ Annuli are spectrahedral shadows.
 \end{theorem} 
 
 \begin{proof}
-Let $A$ be the annuli defined by $a<b \in R^*_+$.
+Let $A$ be the annuli defined by $a<b \in R^*_+$. We consider for all $x,y \in K $ the spectrahedron $\mathcal{S}= \left\{(x,y) \in K  : M(x,y) := \pi^ax \oplus \pi^{-b}y \oplus \begin{bmatrix} \pi^{-1} & -\pi^{-1}x \\ \pi^{-1}y & - \pi^{-1}  \\ \end{bmatrix} \succeq 0\right\}$.
 
-We consider for all $x,y \in K $ the matrix  $$M(x,y) :=
-\begin{pmatrix} 
-	p^ax & 0 & 0 & 0 \\
-	0 & p^{-b}y & 0 & 0 \\
-	0 & 0 & p^{-1} & p^{-1}x \\
-	0 & 0 & p^{-1}y & - p^{-1}  \\
-\end{pmatrix} $$ and the associated spectrahedron $\mathcal{S}= \{(x,y) \in K  : M(x,y) \succeq 0\} $
+We will show that $x \in A$ if and only if  there exists $y\in K$ such that $(x,y) \in \mathcal{S}$.
 
-Let us show that $x \in C$ if and only if  $\exists y \in K(x,y) \in \mathcal{S}$.
+Let $x,y \in K$. By \ref{caracsdp}, $M(x,y)$ is positive semidefinite if and only if $(x,y)$ is a solution of \ref{eq:annulussyst}.
 
-Let $x,y$ be two $p$-adic numbers.
-$M(x,y)$ can be decomposed in three blocks : $p^ax$, $p^{-b}y $ and $M'(x,y) = \begin{pmatrix} p^{-1} & p^{-1}x \\ p^{-1} y & p^{-1}\end{pmatrix} $. Using \ref{caracsdp} we know that $M(x,y)$ is positive semidefinfite if and only if
-$
-\begin{cases}
-  p^ax \ge 0 \\
-  p^{-b}y \ge 0\\
-  \text{Tr}M'\left( x,y \right) = 0 \ge 0\\
-  \text{det} M'(x,y ) = p^{-2}\left( xy-1 \right)  \ge 0 
-\end{cases}
-$ 
-that is if and only if 
+
 \begin{equation}
-	\label{eq:caracsdp} 
-	\begin{cases} 
+  \label[type]{eq:annulussyst}
+\begin{cases}
+  \val(\pi^ax) \ge 0 \\
+  \val(\pi^{-b}y) \ge 0\\
+  \val(\pi^{-1}- \pi^{-1}) = +\infty \ge 0\\
+  \val(\pi^{-2}\left( xy-1 \right))  \ge 0 
+\end{cases}
+\iff	
+\begin{cases} 
 		\val\left(x\right)\ge a\\
 		\val\left(y\right)\ge -b\\
-		p^{-2} \left( xy-1 \right) \ge 0
+		\val\left( xy-1 \right) \ge 2
 	\end{cases}
 \end{equation}
 
-Therefore $x \in C$ if and only if there exists $y \in K $ so that $(x, y)$ verifies \ref{eq:caracsdp}. Si $x, y$ verifies indeed \ref{caracsdp} then $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ and $p^{-2} \left( xy-1 \right) \ge 0$ implies that $\val\left(x\right)+\val\left(y\right)=\val\left(xy\right) = \val\left(-1\right) =0$ and therefore that $\val\left(x\right)=-\val\left(y\right)\le -(-b)  =b$, so $x \in $. Reciprocally if $x \in C$ then $(x,x^{-1}) $ verifies \ref{eq:caracsdp}  .
+
+
+
+Therefore, if $(x, y)$ verifies \ref{eq:annulussyst} then $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ and $ \left( xy-1 \right) \ge 2$. The last inequality implies that $\val\left(x\right)+\val\left(y\right)=\val\left(xy\right) = \val\left(-1\right) =0$ and therefore that $\val\left(x\right)=-\val\left(y\right)\le -(-b)  =b$, so $x \in C$. 
+
+Reciprocally if $x \in C$ then $(x,x^{-1}) $ is a solution of \ref{eq:annulussyst} .
 \end{proof}
 
 \subsection{Polyhedrality}
