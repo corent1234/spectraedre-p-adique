@@ -335,15 +335,12 @@ A vector $x^* \in K^n$ is \emph{feasible solution} of \ref{LP} if $Ax^* + b \geq
   Then, 2. comes from the fact that for all $c \in K^n$ $\langle c, x\rangle = \langle c, P^{-1}Py \rangle = \langle \left(P^{-1}\right)^T c, y \rangle$.
 \end{proof}
 
-The last proposition allows to only consider the resolution of the \ref{DLP} problem.
+The last proposition allows us to consider only the case of the \ref{DLP} problem to solve \ref{LP}.
 \begin{proposition}\label{prop:reduc}
-	
-	We have then the following results
-	\begin{enumerate}
-		
-		\item \ref{DLP} have feasible solutions if and only if the $m-r$ last coefficients of $b'$ have nonegative valuation, with $r$ the rank of $S$.
+		\begin{enumerate}
+		\item \ref{DLP} have feasible solutions if and only if the $m-r$ last coefficients of $b'$ have nonegative valuation, for $r$ the rank of $S$.
 		\item If at least one of the $n-r$ last coefficients of $c'$ is non-zero, if \ref{DLP} admits feasible solutions it is unbounded and does not have a solution.
-		 
+	 
   \end{enumerate}
 \end{proposition}
 	
@@ -395,8 +392,8 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$. If
 
   Let $M \in \allmat_{d,d}(K)$ with characteristic polynomial $\chi_M = T^d + \sum_{i=0}^{d-1} a_i T^i$ for $a_0,...,a_{d-1} \in K$.
   Firstly, suppose   $M \not \in \allmat_{d,d}^+(K)$ {\it i.e.} $\chi_M$ have a root $\rho$ of negative valuation.
-  It follows that $\val \chi_M (\rho) = \val \left(\rho^d+ \sum_{i=0}^{d-1} a_i \rho^i \right) = + \infty$ and $\val \rho^d = d \val \rho <0$.
-  The properties of the non-archimedean inequality followed by $\val $ implie that $\val \left( \sum_{i=0}^{d-1} a_i \rho^i\right) = \val \rho^d$ and $\val \left( \sum_{i=0}^{d-1} a_i \rho^i\right) \ge \min \limits_{i=0,..., d-1} \val \left(a_i \rho^i\right)$. Therefore, there exists $i \in \left\{0,...,d-1\right\}$ such that $\val( a_i \rho^i) \le \val\rho^d$ {\it i.e.} such that $\val (a_i) \le (d-i) \val \rho <0$. That is all the results we need to prove the result.
+  It follows that $\val \chi_M (\rho) = \val (\rho^d+ \sum_{i=0}^{d-1} a_i \rho^i ) = + \infty$ and $\val \rho^d = d \val \rho <0$.
+  The properties of the non-archimedean inequality followed by $\val $ implie that $\val ( \sum_{i=0}^{d-1} a_i \rho^i) = \val \rho^d$ and $\val ( \sum_{i=0}^{d-1} a_i \rho^i) \ge \min_{i=0,..., d-1} \val \left(a_i \rho^i\right)$. Therefore, there exists $i \in \left\{0,...,d-1\right\}$ such that $\val( a_i \rho^i) \le \val\rho^d$ {\it i.e.} such that $\val (a_i) \le (d-i) \val \rho <0$. That is all the results we need to prove the result.
   
   We have proven the converse sense of the equivalence. To prove the direct sense a brief introduction to Newton's polygon will be needed, we will only state the results we use in this proof and will redirect to \cite{gouvea_p-adic_2003} to further explanations.
   The Newton polygon $\mathcal{P}$ of a polynomial $P = \sum_{n}^{i=0} a_i T^i \in K[T]$ is defined as the inferior convex hull of the set $\{(i, \val a_i ) | i\in \{0,...,d\} \}$ {\it i.e.} the largest convex function $\mathcal{P} : [0,n] \to \R$ such that $\mathcal{P}(i) \leq \val a_i$ for $i=1,...,n$. 
@@ -428,9 +425,6 @@ Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the funct
 \end{proof}
 
 
-\simone{que peut-on dire de plus de l'ensemble $\allmat_{d,d}^+(K)$ ? normalement c'est un cône non ? peut être
-  à cause de \Cref{caracsdp} c'est un $\OK$-cône mais pas un $K$-cône ? ça serait un peu contre-intuitif, mais
-  bon, on est sur un corps abstrait.}
 
 \begin{definition}
   A \emph{cone} is subset $C$ of $K^d$ that is closed under multiplication by elements of $\OK$.   
@@ -489,6 +483,21 @@ Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the funct
   %Define $B = m_1 \oplus \cdots \oplus m_e \in \allmat_{e,e}(K[x]_1)$
 \end{proof}
 
+\begin{definition}
+  A subset $S$ of $K^n$ is said \emph{semialgebraic} if it is defined by finite unions and intersections of sets defined by polynomial equalities of the form $\{ x \in K^n  : P( x) = 0 \}$ and of sets defined by polynomial inequalities of the form $\{ x\in K^n : \val P(x) \geq 0 \}$.
+\end{definition}
+
+\begin{proposition}
+  Spectrahedra are semialgebraic sets. 
+\end{proposition}
+
+\begin{proof}
+  Let $S$ be spectrahedron and $A$ a linear matrix such that $S={x \in K^n : A(x) \succeq 0}$. 
+  We denote as $p_i(x)$ the $i$-th coefficient of $\chi_{M(x)}$. The map $p_i	: x \to p_i(x)$ is polynomial and $x \in S$ if and only if $\val(p_i(x)) \geq 0$ for $i=0,...,d$.
+  
+  Finally, by \ref{caracsdp}, $S = \{x \in K^n : \chi_{M(x)} \in \OK(T)\} = \bigcap\limits_{i=0}^d \{x \in K^n : \val(p_i(x)) \geq 0\}$.
+\end{proof}
+
 \corentin{ Une autre définition qu'il pourrait être intéressant d'explorer. Attention! Pas les mêmes propriétés.}
 \begin{definition}[Alternative definition]
   Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$. 
@@ -508,7 +517,7 @@ Annuli are spectrahedral shadows.
 \end{theorem} 
 
 \begin{proof}
-Let $A$ be the annuli defined by $a<b \in R^*_+$. We consider for all $x,y \in K $ the spectrahedron $\mathcal{S}= \left\{(x,y) \in K  : M(x,y) := \pi^ax \oplus \pi^{-b}y \oplus \begin{bmatrix} \pi^{-1} & -\pi^{-1}x \\ \pi^{-1}y & - \pi^{-1}  \\ \end{bmatrix} \succeq 0\right\}$.
+Let $A$ be the annulus defined by $a<b \in \R^*_+$. We consider for all $x,y \in K $ the spectrahedron $\mathcal{S}= \left\{(x,y) \in K  : M(x,y) := \pi^ax \oplus \pi^{-b}y \oplus \begin{bmatrix} \pi^{-1} & -\pi^{-1}x \\ \pi^{-1}y & - \pi^{-1}  \\ \end{bmatrix} \succeq 0\right\}$.
 
 We will show that $x \in A$ if and only if  there exists $y\in K$ such that $(x,y) \in \mathcal{S}$.
 
@@ -535,7 +544,6 @@ Let $x,y \in K$. By \ref{caracsdp}, $M(x,y)$ is positive semidefinite if and onl
 
 
 Therefore, if $(x, y)$ verifies \ref{eq:annulussyst} then $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ and $ \left( xy-1 \right) \ge 2$. The last inequality implies that $\val\left(x\right)+\val\left(y\right)=\val\left(xy\right) = \val\left(-1\right) =0$ and therefore that $\val\left(x\right)=-\val\left(y\right)\le -(-b)  =b$, so $x \in C$. 
-
 Reciprocally if $x \in C$ then $(x,x^{-1}) $ is a solution of \ref{eq:annulussyst} .
 \end{proof}
 
