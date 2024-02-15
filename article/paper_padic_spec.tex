@@ -63,6 +63,7 @@
 \def\QQ{\ensuremath{\mathbb{Q}}}
 \def\ZZ{\ensuremath{\mathbb{Z}}}
 \newcommand{\OK}{\mathcal{O}_K}
+\def\diag{\mathrm{diag}}
 
 \newcommand{\GL}{\mathrm{GL}}
 
@@ -106,7 +107,7 @@
 \subsection{Main results}
 
 
-
+\newpage
 \section{Preliminaries}
 
 \subsection{Notation}
@@ -128,9 +129,29 @@ for an introduction to effective computations over $p$-adic numbers.
 
 The $K$-vector space of polynomials of degree $\leq d$ on $x=(x_1,\ldots,x_n)$
 with coefficients in $K$ is denoted by $K[x]_{d}$. The vector space of matrices of
-size $p \times q$ with entries in $K$ is denoted by $\allmat_{p,q}(K)$. For the sake
+size $p \times q$ with entries in $K$ is $\allmat_{p,q}(K)$ and the general
+linear group in $\allmat_{n,n}(K)$ is $\GL_n(K)$.
+For the sake
 of ease of writing, block-diagonal matrices with blocks $B_1,\ldots,B_d$ are denoted by
-$B_1 \oplus \cdots \oplus B_d$.
+$\diag(B_1, \ldots, B_d)$.
+
+We recall the definition of Smith Normal Form, in our context.
+\begin{definition}[Smith Normal Form]\label{smith_nf}
+  Let $M \in \allmat_{m,n}(K)$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
+  matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
+  $$
+  S := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r})
+  $$
+  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$.
+  The matrix $S$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
+  \emph{invariant factors}.
+\end{definition}
+\begin{remark}
+  The valuation of the first invariant factor of the SNF of a matrix
+  $M \in \allmat_{n,n}(K)$ is the minimum of the valuations of the entries of
+  $M$. In particular, the SNF of $M \in \allmat_{n,n}(\OK)$ has entries in $\OK$.
+\end{remark}
+
 
 \subsection{Real spectrahedra}
 
@@ -248,31 +269,249 @@ In this section, we define polyhedra over a complete discrete valuation field $K
   \label{def_polyhedra}
   A \emph{polyhedron} is a subset $P \subset K^n$ of the form
   $$
-  P = \{x \in K^n : \val(\ell_1 \oplus \cdots \oplus \ell_d) \geq 0 \text{ and }
-  \val(m_1 \oplus \cdots \oplus m_e) = +\infty\},
+  P = \{x \in K^n : \val(\ell_i(x)) \geq 0, i=1,\ldots,d \text{ and }
+  \val(m_j(x)) = +\infty, j=1,\ldots,e\},
   $$
-  for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$, where $\val,\geq$ and $=$ are applied entrywise.
-  We assume without loss of generality that for every $i=1,\ldots,d$ there exists $x \in P$ such that
-  $\val(\ell_i(x))<+\infty$.
+  for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
 \end{definition}
 
-We recall that that the smallest affine space of $K^n$ containing a set $S \subset K^n$ is called its
-\emph{affine hull} and denoted $\aff{S}$.
-The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint
-$\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words
-$\aff{P} = \{x \in K^n : m_j(x) = 0,
-j=1,\ldots,e\}$ \simone{(il nous faudrait une preuve, du genre: $\val(m(x))=+\infty$ pour tout $x \in P$ si et seulement si $m$ est une combinaison affine de $m_1,\ldots,m_e$.)}
-%The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$, $\aff{P}=K^n$ and $P$ has dimension $n$). The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d) < +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
+%%We recall that that the smallest affine space of $K^n$ containing a set $S \subset K^n$ is called its \emph{affine hull} and denoted $\aff{S}$. The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words $\aff{P} = \{x \in K^n : m_j(x) = 0, j=1,\ldots,e\}$ \simone{(il nous faudrait une preuve, du genre: $\val(m(x))=+\infty$ pour tout $x \in P$ si et seulement si $m$ est une combinaison affine de $m_1,\ldots,m_e$.)}
+%%The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$, $\aff{P}=K^n$ and $P$ has dimension $n$). The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d) < +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
 Remark that \Cref{def_polyhedra} includes the case $d=0$ corresponding to affine spaces, as in the real case.
-Moreover by definition the class of polyhedra is closed under intersection.
+Moreover by definition the class of polyhedra is closed under intersection. Without loss of generality, one may
+assume in \Cref{def_polyhedra} that for every $i=1,\ldots,d$ there exists $x \in P$ such that
+$\val(\ell_i(x))<+\infty$.
 
 \begin{example}
   The \emph{closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
   polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} =
   \max_i\{x_i\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   In other words, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
-  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$ (its affine hull is indeed the whole $K^n$).
+  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$. %%%%%(its affine hull is indeed the whole $K^n$).
 \end{example}
+
+
+\subsection{Projections of polyhedra}
+
+\begin{proposition}
+Let $\PP \subset K^n$ be a polyhedron and $f: K^n \rightarrow K^m$
+be a linear mapping. Then $f(\PP)$ is a polyhedron.
+\end{proposition}
+\begin{proof}
+Let us assume that 
+$\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I \right\rbrace$ for some
+finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I.$ We further assume that $\PP \neq \emptyset$.
+
+Thanks to the Smith Normal Form (see Definition \ref{smith_nf}), $f$
+can be written $f=Q^{-1} \Delta P$
+with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
+and $\Delta \in \allmat_{n,m}(K)$ of the form $\lambda_1 \oplus \cdots \oplus \lambda_r \oplus {\bf 0}_{\min(m,n)-r}$
+  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
+
+We first prove the result when $f$ is in $\GL_n(\OK)$.
+In that case, $x \in f(P)$ if and only if for all
+$i \in I,$
+$\val (l_i (f^{-1}(x)) \geq 0$.
+The $l_i \circ f^{-1}$ are clearly in $K[x]_1$
+and $f(P)$ is a polyhedron.
+
+Similarly, if $f$ is of the form $K^n \rightarrow K^n$,
+$(x_1,\dots,x_n) \mapsto (\lambda_1 x_1,\dots,\lambda_n x_n)$
+for some $\lambda_i$'s in $K$,
+then it is clear that $f(P)$
+can be defined by $\val (\widetilde{l_i}(x)) \geq 0$, $i \in I$
+with the $\widetilde{l_i}$'s obtained from the $l_i$'s by an
+obvious change of variables.
+
+Now, we turn our attention to the $\Delta$ part of $f.$
+We first assume that $f$ is a projection 
+of the form $K^n \rightarrow K^{n+1},$
+$(x_1,\dots,x_{n-1},x_n)\mapsto (x_1,\dots,x_{n-1}).$
+
+Let us write the conditions defining $\PP$
+in matrix form:
+$\val(A X+B) \geq 0$
+with $A \in M_{q,n}(K)$, $B \in K^q$
+and $X=(x_1,\dots,x_n)^\intercal.$
+
+We can compute a Smith Normal Form
+of the $q \times (n-1)$ matrix defined by the 
+$n-1$ first columns of $A$
+to obtain a decomposition of the form:
+\[ Q_A A P_A^{-1} = \begin{bmatrix}
+\delta_1	& 		& 			&   &		 &  &a_1	\\
+			& \ddots& 			& 0	&		 &	&		\\
+			&		& \delta_l  &   & 		 &	&		\\
+			&		&			&0  & 		 &	& 		\\
+			&		&			&   & \ddots &	&		\\
+			&		&			&	&		 & 0&a_{n-1} \\
+			&		&			&	&		 &	&a_n 	\\
+			&		&			&	&		 &	&    	\\
+			&		&			&	&		 &	&a_q 	\\			
+\end{bmatrix},\]
+with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n.$
+
+Multiplying on the left by $Q_A^{\pm 1}$ does not
+modify whether the valuation inequalities are satisfied.
+Moreover, thanks to our previous on the case when $f$ is an automorphism,
+$\PP$ can be written
+$\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \in K^n$
+and we are reduced to proving that
+$f(\PP_2)$ is polyhedron for $f$ still the canonical projection
+$K^n \rightarrow K^{n-1}$ and $\PP_2$
+defined by the linear matrix inequality (for some $B_2 \in K^q$):
+\[  \begin{bmatrix}
+\delta_1	& 		& 			&   &		 &  &a_1	\\
+			& \ddots& 			& 0	&		 &	&		\\
+			&		& \delta_l  &   & 		 &	& \vdots\\
+			&		&			&0  & 		 &	& 		\\
+			&		&			&   & \ddots &	&		\\
+			&		&			&	&		 & 0&a_{n-1} \\
+			&		&			&	&		 &	&a_n 	\\
+			&		&			&	&		 &	& \vdots   	\\
+			&		&			&	&		 &	&a_q 	\\			
+\end{bmatrix} \begin{bmatrix} x_1 \\ \\ \\ \\ \\ \vdots \\ \\ \\ \\ x_n \\ \end{bmatrix} + B_2 \geq 0.\]
+
+
+
+We remark that 
+$a_s x_n + b_s \geq 0$
+if and only if $x_n = -a_s^{-1} b_s + O(\pi^{- \val(a_s)}).$
+This exactly corresponds to $x_n \in B(-a_s^{-1} b_s, 2^{\val(a_s)}).$
+Since the conditions have to be compatible (we have assumed
+$\PP$ not empty), and thanks to ultrametricity,  
+the intersection of these conditions for 
+$s \in \llbracket l+1,q \rrbracket$
+is then given by the smallest of these balls.
+Let us assume it is the one defined for $l=n.$
+The only condition on $x_n$
+is then $\val(a_nx_n +b_n) \geq 0.$
+
+Thanks to the above discussion on diagonal mapping,
+we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
+and are reduce to $\PP_2$ defined by the linear matrix inequality :
+\[  \begin{bmatrix}
+1	& 		& 			&   &		 &  &a_1	\\
+			& \ddots& 			& 0	&		 &	&		\\
+			&		& 1  &   & 		 &	& \\
+			&		&			&0  & 		 &	& 	\vdots	\\
+			&		&			&   & \ddots &	&		\\
+			&		&			&	&		 & 0&a_{n-1} \\
+			&		&			&	&		 &	&1 	\\
+		
+\end{bmatrix} \begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}  \geq 0.\]
+Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
+We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
+
+Let us first assume that $\val(a_1) \geq 0$
+
+Let $x \in \PP_2$.
+Then $x_n=-b_n+O(1)$
+and $x_1+a_1 x_n+b_1=O(1).$
+Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(1).$
+Similarly, for all $i \in \llbracket 2,n-1 \rrbracket,$
+$x_i-a_ib_n+b_i=O(1)+O(\pi^{\val(a_i)})=O(1).$
+
+We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
+ for all $i \in \llbracket 1,n-1 \rrbracket,$
+$\val(x_i-a_ib_n+b_i) \geq 0.$
+
+Then the previous computations prove that $f(\PP_2)\subset \Qc.$
+Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
+Then let $x_n := -b_n.$
+
+We check that for $i \in \llbracket 1,n-1 \rrbracket,$
+$x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
+and $x_n+b_n=O(1)$. Hence $(x_1,\dots,x_n) \in \PP_2$
+which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
+Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron.
+
+We now deal with the second case, with $\val(a_1)<0.$
+Let $x \in \PP_2$.
+Then $x_n=-b_n+O(1)$
+and $x_1+a_1 x_n+b_1=O(1).$
+Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)})).$
+Thus $a_1^{-1}x_1- b_n +a_1^{-1}b_1=O(1)$.
+%and $x_n=-a_1^{-1}(x_1+b_1)+O(1).$
+In addition, $x_n=-a_1^{-1}(x_1+b_1)+O(\pi^{-\val(a_1)}).$
+We plug this equality in 
+$x_i+a_i x_n+b_i=O(1)$ to get
+$x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)+O(\pi^{\val(a_i)-\val(a_1)})=O(1)$
+using that $\val(a_i) \geq \val (a_1).$
+
+We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
+$\val(a_1^{-1}x_1- b_n +a_1^{-1}b_1) \geq 0$ and for all $i \in \llbracket 2,n-1 \rrbracket,$
+$\val(x_i-a_1^{-1}a_i(x_1+b_1)+b_i) \geq 0.$
+
+Then the previous computations prove that $f(\PP_2)\subset \Qc.$
+Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
+Let $x_n := -a_1^{-1}(x_1+b_1).$
+Then
+$x_1+a_1 x_n+b_1=0=O(1).$
+Let $i \in \llbracket 2,n-1 \rrbracket,$
+then $x_i+a_i x_n+b_i=x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)$
+since $(x_1,\dots,x_{n-1}) \in \Qc.$
+Finally, 
+$x_n+b_n=-a_1^{-1}(x_1+b_1)+b_n=O(1)$ thanks to the inequality satisfied by $x_1.$
+Hence $(x_1,\dots,x_n) \in \PP_2$
+which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
+Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron,
+and it has been proved in both cases.
+
+Therefore, if $f$ is the projection 
+$(x_1,\dots,x_{n-1},x_n)\mapsto (x_1,\dots,x_{n-1})$ 
+and $\PP$ is a polyhedron in $K^n$,
+then $f(\PP)$ is a polyhedron.
+
+\tristan{Attention, à partir de maintenant,
+il faut ajouter à la définition qu'on peut
+fixer des points!
+Cela revient à ajouter des conditions
+$\val = + \infty.$}
+
+It is also clear that
+if $f$ is the immersion 
+$K^l \rightarrow K^n$
+$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0)$ 
+and $\PP$ is a polyhedron in $K^n$,
+then $f(\PP)$ is a polyhedron.
+
+
+We now prove that for
+$\Delta$ a Smith Normal Form
+and $\PP$ a polyhedron,
+$\Delta(\PP)$ is a polyhedron.
+Then $\Delta$ is the composition
+of the immersion 
+$K^l \rightarrow K^n$
+$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0),$ 
+ the diagonal invertible mapping
+$K^l \rightarrow K^l$,
+$(x_1,\dots,x_l)\mapsto (\delta_1,\dots,\delta_l x_l)$,
+and the projections
+$(x_1,\dots,x_{l+1})\mapsto (x_1,\dots,x_{l}),$
+ $(x_1,\dots,x_{l+2})\mapsto (x_1,\dots,x_{l+1}),$
+ $\dots,$
+ $(x_1,\dots,x_{n})\mapsto (x_1,\dots,x_{n-1}).$
+ Thus $\Delta(\PP)$ is a polyhedron thanks to the previous 
+ results on image of polyhedron.
+
+Finally, if $f: K^n \rightarrow K^m$
+is a linear mapping and
+$f=Q^{-1} \Delta P$ is its Smith Normal Form
+with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
+and $\Delta \in \allmat_{n,m}(K)$,
+then
+$P(\PP)$ is a polyhedron,
+$\Delta (P(\PP))$ also,
+and finally $f(\PP)=Q^{-1} (\Delta (P(\PP)))$
+is a polyhedron.
+This concludes the proof.
+\end{proof}
+
+
+
+\subsection{Linear programming}
 
 A \emph{linear programming problem} (or simply \emph{linear program}) is given by the following
 optimization problem:
@@ -285,27 +524,10 @@ optimization problem:
 \end{equation}
 with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in \allmat_{m,n}(K)$, $b \in K^m$,
 and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$.
+
 We present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in Smith normal form.
-We recall its definition below, in our context.
-
-\begin{definition}[Smith Normal Form]\label{smith_nf} \simone{Je trouve que la SNF devrait être inclue dans les
-  préliminaires, car on l'utilise ailleurs, et laisser cette section pour polyèdre+LP}
-  Let $M \in \allmat_{m,n}(K)$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
-  matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
-  $$
-  S := QMP^{-1} = \pi^{a_1} \oplus \pi^{a_2} \oplus \cdots \oplus \pi^{a_r} \oplus {\bf 0}_{\min(m,n)-r}
-  $$
-  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$.
-  The matrix $S$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
-  \emph{invariant factors}.
-\end{definition}
-\begin{remark}
-  The valuation of the first invariant factor of the SNF of a matrix
-  $M \in \allmat_{n,n}(K)$ is the minimum of the valuations of the entries of
-  $M$. In particular, the SNF of $M \in \allmat_n(\OK)$ has entries in $\OK$.
-\end{remark}
-
-The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$ $Mz \geq 0$ if and only if $Sz \geq 0$. 
+The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$ $Mz \geq 0$ if and only if $Sz \geq 0$.
+ 
 
 That property applied to the matrix $A$ in \ref{LP} allow to reduce the problem to an equivalent simpler iteration of the \ref{LP} problem that will be called \emph{diagonal linear programming problem} \corentin{or maybe reduced linear programming problem?}. This problem is the optimization problem: \simone{il me semble que tout ça n'est pas trop clair, par exemple quelle est la difference entre diagonal LP et associated diagonal LP plus en bas, est-ce qu'il y a vraiment besoin de tout ça, il faut simplifier la presentation}
 \begin{equation}
@@ -559,221 +781,6 @@ Cf. \cite{bhardwaj2015deciding}
 \item Annuli are semidefinite representable, we should remark/prove that they are not spectrahedra.
 \end{itemize}
 
-\begin{proposition}
-Let $\PP \subset K^n$ be a polyhedron and $f: K^n \rightarrow K^m$
-be a linear mapping. Then $f(\PP)$ is a polyhedron.
-\end{proposition}
-\begin{proof}
-Let us assume that 
-$\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I \right\rbrace$ for some
-finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I.$ We further assume that $\PP \neq \emptyset$.
-
-Thanks to the Smith Normal Form (see Definition \ref{smith_nf}), $f$
-can be written $f=Q^{-1} \Delta P$
-with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta \in \allmat_{n,m}(K)$ of the form $\lambda_1 \oplus \cdots \oplus \lambda_r \oplus {\bf 0}_{\min(m,n)-r}$
-  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
-
-We first prove the result when $f$ is in $\GL_n(\OK)$.
-In that case, $x \in f(P)$ if and only if for all
-$i \in I,$
-$\val (l_i (f^{-1}(x)) \geq 0$.
-The $l_i \circ f^{-1}$ are clearly in $K[x]_1$
-and $f(P)$ is a polyhedron.
-
-Similarly, if $f$ is of the form $K^n \rightarrow K^n$,
-$(x_1,\dots,x_n) \mapsto (\lambda_1 x_1,\dots,\lambda_n x_n)$
-for some $\lambda_i$'s in $K$,
-then it is clear that $f(P)$
-can be defined by $\val (\widetilde{l_i}(x)) \geq 0$, $i \in I$
-with the $\widetilde{l_i}$'s obtained from the $l_i$'s by an
-obvious change of variables.
-
-Now, we turn our attention to the $\Delta$ part of $f.$
-We first assume that $f$ is a projection 
-of the form $K^n \rightarrow K^{n+1},$
-$(x_1,\dots,x_{n-1},x_n)\mapsto (x_1,\dots,x_{n-1}).$
-
-Let us write the conditions defining $\PP$
-in matrix form:
-$\val(A X+B) \geq 0$
-with $A \in M_{q,n}(K)$, $B \in K^q$
-and $X=(x_1,\dots,x_n)^\intercal.$
-
-We can compute a Smith Normal Form
-of the $q \times (n-1)$ matrix defined by the 
-$n-1$ first columns of $A$
-to obtain a decomposition of the form:
-\[ Q_A A P_A^{-1} = \begin{bmatrix}
-\delta_1	& 		& 			&   &		 &  &a_1	\\
-			& \ddots& 			& 0	&		 &	&		\\
-			&		& \delta_l  &   & 		 &	&		\\
-			&		&			&0  & 		 &	& 		\\
-			&		&			&   & \ddots &	&		\\
-			&		&			&	&		 & 0&a_{n-1} \\
-			&		&			&	&		 &	&a_n 	\\
-			&		&			&	&		 &	&    	\\
-			&		&			&	&		 &	&a_q 	\\			
-\end{bmatrix},\]
-with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n.$
-
-Multiplying on the left by $Q_A^{\pm 1}$ does not
-modify whether the valuation inequalities are satisfied.
-Moreover, thanks to our previous on the case when $f$ is an automorphism,
-$\PP$ can be written
-$\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \in K^n$
-and we are reduced to proving that
-$f(\PP_2)$ is polyhedron for $f$ still the canonical projection
-$K^n \rightarrow K^{n-1}$ and $\PP_2$
-defined by the linear matrix inequality (for some $B_2 \in K^q$):
-\[  \begin{bmatrix}
-\delta_1	& 		& 			&   &		 &  &a_1	\\
-			& \ddots& 			& 0	&		 &	&		\\
-			&		& \delta_l  &   & 		 &	& \vdots\\
-			&		&			&0  & 		 &	& 		\\
-			&		&			&   & \ddots &	&		\\
-			&		&			&	&		 & 0&a_{n-1} \\
-			&		&			&	&		 &	&a_n 	\\
-			&		&			&	&		 &	& \vdots   	\\
-			&		&			&	&		 &	&a_q 	\\			
-\end{bmatrix} \begin{bmatrix} x_1 \\ \\ \\ \\ \\ \vdots \\ \\ \\ \\ x_n \\ \end{bmatrix} + B_2 \geq 0.\]
-
-
-
-We remark that 
-$a_s x_n + b_s \geq 0$
-if and only if $x_n = -a_s^{-1} b_s + O(\pi^{- \val(a_s)}).$
-This exactly corresponds to $x_n \in B(-a_s^{-1} b_s, 2^{\val(a_s)}).$
-Since the conditions have to be compatible (we have assumed
-$\PP$ not empty), and thanks to ultrametricity,  
-the intersection of these conditions for 
-$s \in \llbracket l+1,q \rrbracket$
-is then given by the smallest of these balls.
-Let us assume it is the one defined for $l=n.$
-The only condition on $x_n$
-is then $\val(a_nx_n +b_n) \geq 0.$
-
-Thanks to the above discussion on diagonal mapping,
-we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
-and are reduce to $\PP_2$ defined by the linear matrix inequality :
-\[  \begin{bmatrix}
-1	& 		& 			&   &		 &  &a_1	\\
-			& \ddots& 			& 0	&		 &	&		\\
-			&		& 1  &   & 		 &	& \\
-			&		&			&0  & 		 &	& 	\vdots	\\
-			&		&			&   & \ddots &	&		\\
-			&		&			&	&		 & 0&a_{n-1} \\
-			&		&			&	&		 &	&1 	\\
-		
-\end{bmatrix} \begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}  \geq 0.\]
-Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
-We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
-
-Let us first assume that $\val(a_1) \geq 0$
-
-Let $x \in \PP_2$.
-Then $x_n=-b_n+O(1)$
-and $x_1+a_1 x_n+b_1=O(1).$
-Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(1).$
-Similarly, for all $i \in \llbracket 2,n-1 \rrbracket,$
-$x_i-a_ib_n+b_i=O(1)+O(\pi^{\val(a_i)})=O(1).$
-
-We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
- for all $i \in \llbracket 1,n-1 \rrbracket,$
-$\val(x_i-a_ib_n+b_i) \geq 0.$
-
-Then the previous computations prove that $f(\PP_2)\subset \Qc.$
-Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-Then let $x_n := -b_n.$
-
-We check that for $i \in \llbracket 1,n-1 \rrbracket,$
-$x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
-and $x_n+b_n=O(1)$. Hence $(x_1,\dots,x_n) \in \PP_2$
-which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
-Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron.
-
-We now deal with the second case, with $\val(a_1)<0.$
-Let $x \in \PP_2$.
-Then $x_n=-b_n+O(1)$
-and $x_1+a_1 x_n+b_1=O(1).$
-Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)})).$
-Thus $a_1^{-1}x_1- b_n +a_1^{-1}b_1=O(1)$.
-%and $x_n=-a_1^{-1}(x_1+b_1)+O(1).$
-In addition, $x_n=-a_1^{-1}(x_1+b_1)+O(\pi^{-\val(a_1)}).$
-We plug this equality in 
-$x_i+a_i x_n+b_i=O(1)$ to get
-$x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)+O(\pi^{\val(a_i)-\val(a_1)})=O(1)$
-using that $\val(a_i) \geq \val (a_1).$
-
-We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
-$\val(a_1^{-1}x_1- b_n +a_1^{-1}b_1) \geq 0$ and for all $i \in \llbracket 2,n-1 \rrbracket,$
-$\val(x_i-a_1^{-1}a_i(x_1+b_1)+b_i) \geq 0.$
-
-Then the previous computations prove that $f(\PP_2)\subset \Qc.$
-Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-Let $x_n := -a_1^{-1}(x_1+b_1).$
-Then
-$x_1+a_1 x_n+b_1=0=O(1).$
-Let $i \in \llbracket 2,n-1 \rrbracket,$
-then $x_i+a_i x_n+b_i=x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)$
-since $(x_1,\dots,x_{n-1}) \in \Qc.$
-Finally, 
-$x_n+b_n=-a_1^{-1}(x_1+b_1)+b_n=O(1)$ thanks to the inequality satisfied by $x_1.$
-Hence $(x_1,\dots,x_n) \in \PP_2$
-which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
-Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron,
-and it has been proved in both cases.
-
-Therefore, if $f$ is the projection 
-$(x_1,\dots,x_{n-1},x_n)\mapsto (x_1,\dots,x_{n-1})$ 
-and $\PP$ is a polyhedron in $K^n$,
-then $f(\PP)$ is a polyhedron.
-
-\tristan{Attention, à partir de maintenant,
-il faut ajouter à la définition qu'on peut
-fixer des points!
-Cela revient à ajouter des conditions
-$\val = + \infty.$}
-
-It is also clear that
-if $f$ is the immersion 
-$K^l \rightarrow K^n$
-$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0)$ 
-and $\PP$ is a polyhedron in $K^n$,
-then $f(\PP)$ is a polyhedron.
-
-
-We now prove that for
-$\Delta$ a Smith Normal Form
-and $\PP$ a polyhedron,
-$\Delta(\PP)$ is a polyhedron.
-Then $\Delta$ is the composition
-of the immersion 
-$K^l \rightarrow K^n$
-$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0),$ 
- the diagonal invertible mapping
-$K^l \rightarrow K^l$,
-$(x_1,\dots,x_l)\mapsto (\delta_1,\dots,\delta_l x_l)$,
-and the projections
-$(x_1,\dots,x_{l+1})\mapsto (x_1,\dots,x_{l}),$
- $(x_1,\dots,x_{l+2})\mapsto (x_1,\dots,x_{l+1}),$
- $\dots,$
- $(x_1,\dots,x_{n})\mapsto (x_1,\dots,x_{n-1}).$
- Thus $\Delta(\PP)$ is a polyhedron thanks to the previous 
- results on image of polyhedron.
-
-Finally, if $f: K^n \rightarrow K^m$
-is a linear mapping and
-$f=Q^{-1} \Delta P$ is its Smith Normal Form
-with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta \in \allmat_{n,m}(K)$,
-then
-$P(\PP)$ is a polyhedron,
-$\Delta (P(\PP))$ also,
-and finally $f(\PP)=Q^{-1} (\Delta (P(\PP)))$
-is a polyhedron.
-This concludes the proof.
-\end{proof}
 
 
 \printbibliography
