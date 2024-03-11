@@ -140,16 +140,16 @@ We recall the definition of Smith Normal Form, in our context.
   Let $M \in \allmat_{m,n}(K)$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
-  S := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r})
+  SNF(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r})
   $$
   where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$.
-  The matrix $S$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
+  The matrix $SNF(M)$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
   \emph{invariant factors}.
 \end{definition}
 \begin{remark}
-  The valuation of the first invariant factor of the SNF of a matrix
+  The valuation of the first invariant factor of $SNF(M)$ of a matrix
   $M \in \allmat_{n,n}(K)$ is the minimum of the valuations of the entries of
-  $M$. In particular, the SNF of $M \in \allmat_{n,n}(\OK)$ has entries in $\OK$.
+  $M$. In particular, $SNF(M) \in \allmat_{n,n}(\OK)$.
 \end{remark}
 
 
@@ -303,13 +303,13 @@ be a linear mapping. Then $f(\PP)$ is a polyhedron.
 \begin{proof}
 Let us assume that 
 $\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I \right\rbrace$ for some
-finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I.$ We further assume that $\PP \neq \emptyset$.
-{\color{blue} mettre aussi les égalités dans $\PP$}.
+finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ ({\color{blue} mettre aussi les égalités dans $\PP$}).
+We further assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $\allmat_{n,n}(K)$.
 
-Thanks to the Smith Normal Form (see Definition \ref{smith_nf}), $f$
+Thanks to Definition \ref{smith_nf}, (the matrix of) $f$
 can be written $f=Q^{-1} \Delta P$
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta \in \allmat_{n,m}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
+and $\Delta = SNF(f)\in \allmat_{m,n}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
   where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
 
 We first prove the result when $f$ is in $\GL_n(\OK)$.
@@ -519,8 +519,8 @@ This concludes the proof.
 
 \subsection{Linear programming}
 
-A \emph{linear programming problem} (or simply \emph{linear program}) is given by the following
-optimization problem:
+A \emph{linear programming problem} (or simply \emph{linear program}) \emph{with data $(A,b,c)$} is defined
+as:
 \begin{equation}
   \tag{LP}\label{LP}
 \begin{array}{rcll}
@@ -530,76 +530,121 @@ optimization problem:
 \end{equation}
 with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in \allmat_{m,n}(K)$, $b \in K^m$,
 and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$. When $A$ is a diagonal matrix, we often
-refer to \eqref{LP} as a \emph{diagonal} linear program.
+refer to \eqref{LP} as a \emph{diagonal} linear program. We denote the \emph{feasible set} of \eqref{LP} by
+\begin{equation*}
+\begin{aligned}
+  \PP  &= \{x \in K^n : Ax + b \geq 0\}.
+\end{aligned}
+\end{equation*}
+A vector $x \in K^n$ is called \emph{feasible} for \eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$
+is called a \emph{solution} to \eqref{LP} if $p^* = \left\langle c,x^*\right\rangle$.
 
-We present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in Smith normal form.
-The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$, then $Mz \geq 0$ if and only if $Sz \geq 0$.
- 
+In this section we present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in
+Smith Normal Form,
+thus reducing a general linear program to an iteration of diagonal linear programs.
+The most interesting aspect of the SNF regarding the resolution of \eqref{LP} is that the transition matrices are
+invertible in $\OK$, thus they preserve inequalities: indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such
+that $z \geq 0$, then $Mz \geq 0$.
+The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is
+invertible in $\OK$. Therefore, for all matrix $M \in \allmat_{n,n}(K)$ with $S=SNF(M)$ and for all $z \in K^n$,
+then $Mz \geq 0$ if and only if $Sz \geq 0$.
 
-That property applied to the matrix $A$ in \ref{LP} allows to reduce the problem to an equivalent simpler iteration of the problem in \eqref{LP}, that will be called \emph{diagonal linear programming problem}
 %%%\corentin{or maybe reduced linear programming problem?}:
 %%%\simone{il me semble que tout ça n'est pas trop clair, par exemple quelle est la difference entre diagonal LP et associated diagonal LP plus en bas, est-ce qu'il y a vraiment besoin de tout ça, il faut simplifier la presentation}
-\begin{equation}
-  \tag{dLP}\label{DLP}
-\begin{array}{rcll}
-  {p^*}' & := & \inf_{y \in K^n} & \val(\left\langle c', y \right\rangle) \\
-  &    & \text{s.t.}         & S y + b' \geq 0
-\end{array}
-\end{equation}
-with $c' \in K^n$ a fixed vector of size $n$, $b' \in K^m$ and $S$ a diagonal $m \times n$ matrix of the form $S = \diag(s_1, s_2, \ldots, s_r, { \bm 0}_{m-r})$, with $r = {\rm rank}\, S$.
+%That property applied to the matrix $A$ in \ref{LP} allows to reduce the problem to an equivalent simpler iteration of the problem in \eqref{LP}, that will be called \emph{diagonal linear programming problem}
+%\begin{equation}
+%  \tag{dLP}\label{DLP}
+%\begin{array}{rcll}
+%  {p^*}' & := & \inf_{y \in K^n} & \val(\left\langle c', y \right\rangle) \\
+%  &    & \text{s.t.}         & S y + b' \geq 0
+%\end{array}
+%\end{equation}
+%with $c' \in K^n$ a fixed vector of size $n$, $b' \in K^m$ and $S$ a diagonal $m \times n$ matrix of the form $S = \diag(s_1, s_2, \ldots, s_r, { \bm 0}_{m-r})$, with $r = {\rm rank}\, S$.
 
 %The \emph{associated diagonal linear programming problem} of a linear program is the iteration of the \ref{DLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m(\OK)$ and $ Q \in GL_n(\OK)$ are such that $A = Q^{-1} S P$.
 
-A vector $x \in K^n$ is \emph{feasible} for \eqref{LP} if $Ax + b \geq 0$. Similarly, a vector $y \in K^n$ is feasible for \eqref{DLP} if $Sy+b' \geq 0$. We denote the \emph{feasible set} of \eqref{LP} and \eqref{DLP} respectively by
-\begin{equation*}
-\begin{aligned}
-  \PP  &= \{x \in K^n : Ax + b \geq 0\} \\
-  \PP' &= \{y \in K^n : Sy + b' \geq 0\}.
-\end{aligned}
-\end{equation*}
-A feasible vector $x^* \in \PP$ is called a \emph{solution} to \eqref{LP} if $p^* = \left\langle c,x^*\right\rangle$
-(similarly for \eqref{DLP}).
-%%%$Adm$ \corentin{Probablement à changer mais je ne sais pas quel nom lui donner} the set of feasible solution of \ref{DLP}.
-
-\begin{proposition} 
-  Let $A \in \allmat_{m,n}(K), b \in K^m, c\in K^n$ and let $S \in \allmat_{m,n}(K)$ be the Smith normal form of $A$ with transition matrices $P \in \GL_n(\OK)$ and $Q\in \GL_m(\OK)$ such that $A=Q^{-1}SP$.
-  We define $b':= Qb$ and $c':= (P^{-1})^Tc$.  Then
+\begin{proposition} \label{solsLP}
+  Let $A \in \allmat_{m,n}(K), b \in K^m, c\in K^n$ and let $S = SNF(A) = QAP^{-1} \in \allmat_{m,n}(K)$, with
+  transition matrices $P \in \GL_n(\OK)$ and $Q\in \GL_m(\OK)$. Define $b' = Qb$ and $c' = (P^{-1})^Tc$.
+  Then
    \begin{enumerate}
-    \item $x^* \in K^n$ is feasible for \eqref{LP} if and only if $y^* = P x^* \in K^n$ is feasible for \eqref{DLP}.
-    \item $x \in K^n$ is a solution of the \ref{LP} problem of parameters $A, b$ and $c$ if and only if $y = P x$ is a solution of the \ref{DLP} problem of parameters $S,b'$ and $c'$ and $\langle c,x \rangle = \langle c',y \rangle$.
+   \item \label{solsLP_item1}
+     $x \in K^n$ is feasible for \eqref{LP} with data $(A,b,c)$ if and only if $y = P x \in K^n$ is
+     feasible for \eqref{LP} with data $(S,b',c')$.
+   \item \label{solsLP_item2}
+     $x^* \in K^n$ is a solution to \eqref{LP} with data $(A,b,c)$ if and only if $y^* = P x^*$ is
+     a solution to \eqref{LP} with data $(S,b',c')$ and $\langle c,x^* \rangle = \langle c',y^* \rangle$.
    \end{enumerate}
 \end{proposition}
 \begin{proof}
-  First of all, 1. is a direct consequence of the fact that $Ax^*+b = AP^{-1}y^* +b\geq 0$ if and only if $Q(AP^{-1}y^* + b) = Sy^* + b' \geq 0$ because $Q \in GL_m(\OK)$.
-
-  Then, 2. comes from the fact that for all $c \in K^n$ $\langle c, x\rangle = \langle c, P^{-1}Py \rangle = \langle \left(P^{-1}\right)^T c, y \rangle$.
+  First of all, $Ax+b = AP^{-1}y +b \geq 0$ if and only if $Q(AP^{-1}y + b) = Sy + b' \geq 0$ because
+  $Q \in GL_m(\OK)$, which yields \Cref{solsLP_item1}. Next, for all $c \in K^n$, one has $\langle c,
+  x\rangle = \langle c, P^{-1}Px \rangle = \langle \left(P^{-1}\right)^T c, Px \rangle = \langle c',y\rangle$,
+  which proves \Cref{solsLP_item2}.
 \end{proof}
 
-The last proposition allows us to consider only the case of the \ref{DLP} problem to solve \ref{LP}.
+\Cref{solsLP} allows us to reduce \eqref{LP} to diagonal linear programs.
+
 \begin{proposition}\label{prop:reduc}
-		\begin{enumerate}
-		\item \ref{DLP} have feasible solutions if and only if the $m-r$ last coefficients of $b'$ have nonegative valuation, for $r$ the rank of $S$.
-		\item If at least one of the $n-r$ last coefficients of $c'$ is non-zero, if \ref{DLP} admits feasible solutions it is unbounded and does not have a solution.
-	 
+  Let $(A,b,c), (S,b',c') \in \allmat_{m,n}(K) \times K^m \times K^n$ be as in \Cref{solsLP}, where
+  $S=SNF(A)$. Then
+  \begin{enumerate}
+  \item \label{prop:reduc_it1}
+    \eqref{LP} with data $(S,b',c')$ is feasible if and only if the $m-r$ last coefficients
+    of $b'$ have nonnegative valuation, for $r = \text{rank}\,S$.
+  \item \label{prop:reduc_it2}
+    Assume at least one of the $n-r$ last coefficients of $c'$ is non-zero. If \eqref{LP} with
+    data $(S,b',c')$ is feasible, then it is unbounded and does not admit solutions.
   \end{enumerate}
 \end{proposition}
-	
 \begin{proof}
-  A vector $y =  \left[\begin{smallmatrix} y_1 \\ \vdots \\ y_n \end{smallmatrix}\right] \in K^n$ is feasible solution of \ref{DLP} if and only if $\val(s_i y_i + b_i) >=0$ for all $i = 1...n$ \corentin{préciser les notations}. 
-  However, $s_i =0$ for $n-r \leq i\leq n$. Therefore, \ref{DLP} have solution only if the $m-r$ last coefficient of b' have nonnegative valuation.
-  
-  Conversely, if the $m-r$ last coefficient of $b'$ are zero, the vector $y \in K^n$ such that $y_i = -\frac{-b'_i}{s_i}$ if $1 \leq i \leq r$ and $y_i =0$ otherwise is a feasible solution.
+  %%%%\corentin{préciser les notations}. 
+  A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for \eqref{LP} with data $(S,b',c')$
+  if and only if $\val(s_i y_i + b_i) \geq 0$ for all $i = 1,\ldots,n$.
+  However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b',c')$ is feasible,
+  necessarily the $m-r$ last coefficients of $b'$ have nonnegative valuation.
+  Conversely, if the $m-r$ last coefficients of $b'$ are zero, the vector $y \in K^n$ such that
+  $y_i = -\frac{-b'_i}{s_i}$ if $1 \leq i \leq r$, and $y_i =0$ otherwise, is feasible for \eqref{LP}
+  with data $(S,b',c')$.
 
-  Finally, let $y^*$ be a feasible solution of \ref{DLP}. Let us suppose there exists $r+1 \leq i \leq m$ such that $c'_i \neq  0$ and fix such $i$. Let us then consider the vector $e^i$ whose only non-zero coefficient is the $i-$th, which is $1$. Then $y^*+\alpha e^i$ is a feasible solution for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$. In particular, for $\alpha = -\frac{\langle c', y^* \rangle}{c'_i}$, $\val \left( \langle c', y^* + \alpha e ^i \rangle\right) = \val (0) = + \infty$. 
+  Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for \eqref{LP} with data $(S,b',c')$.
+  Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $e^i$ whose only non-zero
+  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c')$,
+  for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$.
+  In particular, for $\alpha = -\frac{\langle c', y^* \rangle}{c'_i}$, one has $\val \left( \langle c', y^* +
+  \alpha e ^i \rangle\right) = \val (0) = + \infty$. ({\color{blue} je ne comprends pas: il est non-borné
+    supérieurement, mais nous on cherche l'inf..., donc comment montrer qu'il n'y a pas de solutions ? il faudrait
+  une sequence avec limite valuation $-\infty$})
 \end{proof}
 
-From now on, we will only consider the iterations of \ref{DLP} which have solutions, by \ref{prop:reduc}, we can then reduce the problem by only taking acount only the $r$ first coefficients of $y, b', c'$ and the submatrix of $S$ made with only $r$ first lines et columns of and whose coefficients are exactly the nonzero invariants factors. 
-The set $Adm$ of the feasible solutions can then be written as the set of vectors $y \in K^n$ that verifies $ \ s_i y_i + b'_i \in \OK$ for $i=1,...,r$ {\it i.e.} $Adm = \left\{\left[\begin{smallmatrix} y_1\\ \vdots\\ y_n \end{smallmatrix}\right] \in K^n :\ y_i \in -\frac{b`_i}{s_i} + \frac{1}{s_i} \OK, 1\le i\le r\right\}$.
+From now on, we will only consider iterations of diagonal linear programs which have solutions.
+By \Cref{prop:reduc} we can then reduce the problem by only taking account the first $r$ coefficients of
+$y, b', c'$ and the submatrix of $S$ made with only by the $r$ first rows and columns and whose coefficients
+are exactly the nonzero invariants factors.
 
+The feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$ of the diagonal LP can be written as the set of vectors
+$y \in K^n$ that verifies $s_i y_i + b'_i \in \OK$ for $i=1,...,r$ {\it i.e.}:
+$$
+\PP' = \left\{\left[\begin{smallmatrix} y_1\\ \vdots\\ y_n \end{smallmatrix}\right] \in K^n :
+y_i \in -\frac{b`_i}{s_i} + \frac{1}{s_i} \OK, 1\le i\le r\right\}.
+$$
 
-Resolving \ref{DLP} consists (by definition) in minimizing $y \mapsto \val\left(\left<c',y \right>\right)$ over $Adm$. The image of $Adm$ by $y \mapsto \left<c',y \right>$ is $\sum_{i=1}^r -c'_i.\frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right)$ which can be expressed as $\left<c',Adm \right> = \lambda + \pi^{v} \OK$ with $\lambda = \sum_{i=1}^r -c'_i.\frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
-Finally, two cases can occur depending on $v$ and the valuation of $\lambda$. If $\val( \lambda) < v$ the minimum of $y\mapsto \val\left(\left<c',y \right>\right)$ over $Adm$ is reached in any point of $Adm$ and is equal to $\val\left( \lambda\right)$. Whereas, if $\val\left( \lambda \right) \ge v$ then $\lambda \in \pi^{v} \OK$ and the minimum is $v $ and is reached in any points $y$ of $Adm$ that verifies 
-	\[\val \underset{ \begin{array}{c} 1\le i\le r\\ \val\left(c'_{i}/{s_{i}} \right) = v  \end{array}}{\sum} y_{i} = 0. \]
+Solving the diagonal LP consists (by definition) in minimizing the linear map $y \mapsto \val\left(\left\langle
+c',y \right\rangle\right)$ over $\PP'$. The image of $\PP'$ by $y \mapsto \left\langle c',y \right\rangle$ is
+$$
+\left\langle c',\PP' \right\rangle = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right) = \lambda + \pi^{v} \OK
+$$
+where $\lambda = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
+Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
+\begin{enumerate}
+\item
+  If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$
+  is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
+\item
+  If $\val(\lambda) \ge v$, then $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$
+  of $\PP'$ that verifies 
+  \[\val \underset{ \begin{array}{c} 1\le i\le r\\ \val\left(c'_{i}/{s_{i}} \right) = v  \end{array}}{\sum} y_{i} = 0. \]
+\end{enumerate}
 
 \begin{remark}
 	To maximize the valuation of a linear map over a convex $p$-adic polyhedron instead of minimizing it (which is equuivalent to minimize the absolute value) the same reasoning can be aplied. The only difference being that if $\val\left( \lambda\right) < v$ the problem is unbounded and as such does not have any solution. 
