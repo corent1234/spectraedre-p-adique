@@ -529,7 +529,8 @@ optimization problem:
 \end{array}
 \end{equation}
 with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in \allmat_{m,n}(K)$, $b \in K^m$,
-and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$.
+and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$. When $A$ is a diagonal matrix, we often
+refer to \eqref{LP} as a \emph{diagonal} linear program.
 
 We present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in Smith normal form.
 The most interesting aspect in the SNF regarding the resolution of \ref{LP} is that the transition matrices are invertible in $\OK$. Indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such that $z \geq 0$ then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$. Therefore, for all matrix $M \in \allmat_n(K)$ with SNF $S$ and all $z \in K^n$, then $Mz \geq 0$ if and only if $Sz \geq 0$.
