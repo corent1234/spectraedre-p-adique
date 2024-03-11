@@ -203,9 +203,7 @@ minors of the defining matrix as well as sign conditions on the coefficients of 
   whose roots are the opposites of the eigenvalues of the defining matrix. Equivalently $\mathcal{E}_3$
   is defined by positivity of the principal minors of the defining matrix:
   $$
-  1-x_1^2 \geq 0, \,\,\, 1-x_2^2 \geq 0, \,\,\, 1-x_3^2 \geq 0 \,\,\, \text{ and } \,\,\, 1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0
-  $$
-  \exend
+  1-x_1^2 \geq 0, \,\,\, 1-x_2^2 \geq 0, \,\,\, 1-x_3^2 \geq 0 \,\,\, \text{ and } \,\,\, 1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0.$$ \exend
 \end{example}
 
 The optimization problem of miminizing a linear function over a real spectrahedron is called \emph{semidefinite programming} (SDP). Given $c \in \R^n$ and $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, the corresponding semidefinite program is defined (in standard dual form) as
@@ -293,6 +291,9 @@ $\val(\ell_i(x))<+\infty$.
 
 \subsection{Projections of polyhedra}
 
+{\bf normalement avec la nouvelle definition, ça devrait aller, peut être il faudrait
+  diviser la proposition en plusieures parties pour la rendre plus lisible}.
+
 \begin{proposition}
 Let $\PP \subset K^n$ be a polyhedron and $f: K^n \rightarrow K^m$
 be a linear mapping. Then $f(\PP)$ is a polyhedron.
@@ -305,20 +306,20 @@ finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I.$ We further assume
 Thanks to the Smith Normal Form (see Definition \ref{smith_nf}), $f$
 can be written $f=Q^{-1} \Delta P$
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta \in \allmat_{n,m}(K)$ of the form $\lambda_1 \oplus \cdots \oplus \lambda_r \oplus {\bf 0}_{\min(m,n)-r}$
+and $\Delta \in \allmat_{n,m}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
   where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
 
 We first prove the result when $f$ is in $\GL_n(\OK)$.
 In that case, $x \in f(P)$ if and only if for all
 $i \in I,$
-$\val (l_i (f^{-1}(x)) \geq 0$.
+$\val(l_i (f^{-1}(x))) \geq 0$.
 The $l_i \circ f^{-1}$ are clearly in $K[x]_1$
 and $f(P)$ is a polyhedron.
 
-Similarly, if $f$ is of the form $K^n \rightarrow K^n$,
-$(x_1,\dots,x_n) \mapsto (\lambda_1 x_1,\dots,\lambda_n x_n)$
-for some $\lambda_i$'s in $K$,
-then it is clear that $f(P)$
+Similarly, if $f:K^n \rightarrow K^n$ is of the form
+$f(x_1,\dots,x_n)=(\lambda_1 x_1,\dots,\lambda_n x_n)$
+for some $\lambda \in K$,
+then of course $f(P)$
 can be defined by $\val (\widetilde{l_i}(x)) \geq 0$, $i \in I$
 with the $\widetilde{l_i}$'s obtained from the $l_i$'s by an
 obvious change of variables.
