@@ -536,7 +536,8 @@ refer to \eqref{LP} as a \emph{diagonal} linear program. We denote the \emph{fea
   \PP  &= \{x \in K^n : Ax + b \geq 0\}.
 \end{aligned}
 \end{equation*}
-A vector $x \in K^n$ is called \emph{feasible} for \eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$
+A vector $x \in K^n$ is called \emph{feasible} for \eqref{LP} if $x \in \PP$ and the program \eqref{LP} is
+called \emph{feasible} if $\PP \neq \emptyset$. A feasible vector $x^* \in \PP$
 is called a \emph{solution} to \eqref{LP} if $p^* = \left\langle c,x^*\right\rangle$.
 
 In this section we present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in
