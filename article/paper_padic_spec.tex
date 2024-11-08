@@ -677,8 +677,11 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
   Both senses of the equivalence will be proven by contraposition.
 
   Let $M \in \allmat_{d,d}(K)$ with characteristic polynomial $\chi_M = T^d + \sum_{i=0}^{d-1} a_i T^i$ for $a_0,...,a_{d-1} \in K$.
-  Firstly, suppose   $M \not \in \allmat_{d,d}^+(K)$ {\it i.e.} $\chi_M$ have a root $\rho$ of negative valuation.
-  It follows that $\val \chi_M (\rho) = \val (\rho^d+ \sum_{i=0}^{d-1} a_i \rho^i ) = + \infty$ and $\val \rho^d = d \val \rho <0$.
+  Firstly, suppose $M \not \in \allmat_{d,d}^+(K)$, {\it i.e.} $\chi_M$ has a root $\rho$ with $\val\,\rho<0$.
+  It follows that
+  $$
+  \val \chi_M (\rho) = \val \left(\rho^d+ \sum_{i=0}^{d-1} a_i \rho^i\right) = + \infty
+  $$ and $\val \rho^d = d \val \rho <0$.
   The properties of the non-archimedean inequality followed by $\val $ implie that $\val ( \sum_{i=0}^{d-1} a_i \rho^i) = \val \rho^d$ and $\val ( \sum_{i=0}^{d-1} a_i \rho^i) \ge \min_{i=0,..., d-1} \val \left(a_i \rho^i\right)$. Therefore, there exists $i \in \left\{0,...,d-1\right\}$ such that $\val( a_i \rho^i) \le \val\rho^d$ {\it i.e.} such that $\val (a_i) \le (d-i) \val \rho <0$. That is all the results we need to prove the result.
   
   We have proven the converse sense of the equivalence. To prove the direct sense a brief introduction to Newton's polygon will be needed, we will only state the results we use in this proof and will redirect to \cite{gouvea_p-adic_2003} to further explanations.
