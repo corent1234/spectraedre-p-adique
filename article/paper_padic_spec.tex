@@ -669,6 +669,14 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
   The characteristic polynomial of a matrix $M \in \allmat_{d,d}(K)$ is denoted $\chi_M \in K[T]$.
 \end{definition}
 
+Recall that the {\it Newton polygon} $\mathcal{P}$ of a polynomial $P = \sum_{i=0}^{n} a_i T^i \in K[T]$ is
+defined as the inferior convex hull of the set $\{(i, \val a_i) \,|\, i\in \{0,...,d\} \}$, {\it i.e.} the
+graph of the greatest convex function $\mathcal{P} : [0,n] \to \R$ such that $\mathcal{P}(i) \leq \val a_i$
+for $i=1,...,n$. This function is piecewise affine and its slopes are exactly the opposites of the valuations
+of the roots of $P$.
+  %%%These are all the results we will need for this proof.
+
+  
 \begin{theorem}
   \label{caracsdp}
   $M \in \allmat_{d,d}^+(K)$ if and only if $\chi_M \in \OK[T]$.
@@ -682,14 +690,20 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
   $$
   \val \chi_M (\rho) = \val \left(\rho^d+ \sum_{i=0}^{d-1} a_i \rho^i\right) = + \infty
   $$ and $\val \rho^d = d \val \rho <0$.
-  The properties of the non-archimedean inequality followed by $\val $ implie that $\val ( \sum_{i=0}^{d-1} a_i \rho^i) = \val \rho^d$ and $\val ( \sum_{i=0}^{d-1} a_i \rho^i) \ge \min_{i=0,..., d-1} \val \left(a_i \rho^i\right)$. Therefore, there exists $i \in \left\{0,...,d-1\right\}$ such that $\val( a_i \rho^i) \le \val\rho^d$ {\it i.e.} such that $\val (a_i) \le (d-i) \val \rho <0$. That is all the results we need to prove the result.
+  The properties of the non-archimedean inequality and of the valuation imply that
+  $$
+  \min_{0 \leq i \leq d-1} \val \left(a_i \rho^i\right) \leq \val\left(\sum_{i=0}^{d-1} a_i \rho^i\right) = \val \rho^d
+  $$
+  %%%$\val ( \sum_{i=0}^{d-1} a_i \rho^i) = \val \rho^d$ and $\val ( \sum_{i=0}^{d-1} a_i \rho^i) \ge \min_{i=0,..., d-1} \val \left(a_i \rho^i\right)$.
+  Therefore, there exists $j \in \left\{0,...,d-1\right\}$ such that $\val(a_j \rho^j) \le \val\rho^d$,
+  {\it i.e.} such that $\val a_j \le (d-j) \val \rho <0$. This shows that $\chi_M \not\in \OK[T]$.
   
-  We have proven the converse sense of the equivalence. To prove the direct sense a brief introduction to Newton's polygon will be needed, we will only state the results we use in this proof and will redirect to \cite{gouvea_p-adic_2003} to further explanations.
-  The Newton polygon $\mathcal{P}$ of a polynomial $P = \sum_{n}^{i=0} a_i T^i \in K[T]$ is defined as the inferior convex hull of the set $\{(i, \val a_i ) | i\in \{0,...,d\} \}$ {\it i.e.} the largest convex function $\mathcal{P} : [0,n] \to \R$ such that $\mathcal{P}(i) \leq \val a_i$ for $i=1,...,n$. 
-  This function is piecewise affine and its slopes are exactly the opposites of the valuations of the roots of $P$. These are all the results we will need for this proof.
+  %%We have proven the converse sense of the equivalence.
+  %%To prove the direct sense a brief introduction to Newton's polygon will be needed, we will only state the results we use in this proof and will redirect to \cite{gouvea_p-adic_2003} to further explanations.
 
-  Suppose $\chi_M \not\in \OK[T]$. There exists $j \in \{0,...,d-1\}$ such that $\val (a_j)<0$. The polynomial $\chi_M$ being monic the point with abscissa $n$ of $\chi_M$'s Newton's Polygon is $(n,0)$. 
-  Therefore, the point $(j, \val a_j)$ having negative ordinate implies that at least one of the slopes of $\chi_M$'s Newton's Polygon is positive so that $\chi_M$ has a root with negative valuation.
+  Suppose now $\chi_M \not\in \OK[T]$. There exists $j \in \{0,...,d-1\}$ such that $\val a_j <0$. The polynomial $\chi_M$ being monic, the point with abscissa $n$ of the Newton polygon of $\chi_M$ is $(n,0)$. 
+  Therefore, the point $(j, \val a_j)$ having negative ordinate implies that at least one of the slopes of
+  the Newton polygon of $\chi_M$ is positive, so that $\chi_M$ has a root with negative valuation.
 \end{proof}
 
 \begin{corollary}\label{cor_caracsdp}
