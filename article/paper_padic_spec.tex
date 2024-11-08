@@ -142,7 +142,7 @@ We recall the definition of Smith Normal Form, in our context.
   $$
   SNF(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r})
   $$
-  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$.
+  where ${\bf 0}_{t}$ is a null square matrix of size $t$.
   The matrix $SNF(M)$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
   \emph{invariant factors}.
 \end{definition}
@@ -239,20 +239,20 @@ $$
 P = \left\{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \in \R^2 :
 \exists\,
 \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} \in \R^2, \,
+\diag\left(
 \begin{bmatrix}
   1+y_1 & y_2 \\
   y_2 & 1-y_1
-\end{bmatrix}
-\bigoplus
+\end{bmatrix},
 \begin{bmatrix}
   1 & x_1 \\
   x_1 & y_1
-\end{bmatrix}
-\bigoplus
+\end{bmatrix},
 \begin{bmatrix}
   1 & x_2 \\
   x_2 & y_2
 \end{bmatrix}
+\right)
 \succeq 0
 \right\}
 $$
