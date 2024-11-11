@@ -73,7 +73,9 @@
 \usepackage{biblatex}
 \addbibresource{../rapport/bibstage.bib}
 
-\title{\bf Title}
+%\title{\bf Title}
+%\title{\bf On polyhedra and spectrahedra over valuation fields}
+\title{\bf On semidefinite-representable sets over valuation fields}
 
 \begin{document}
 
@@ -88,26 +90,29 @@
 \maketitle
 
 \begin{abstract}
+  \noindent
+  Real polyhedra and real spectrahedra are respectively the feasible sets of linear programming
+  (LP) and semidefinite programming (SDP). This paper investigates versions of these sets and of
+  the related optimization problems with data over a field $K$ with valuation.
+  We showcase examples of non-polyhedral $K$-spectrahedra and of sets that are semidefinite
+  representable over $K$ but are not $K$-spectrahedra.
 \end{abstract}
 
 \tableofcontents
 
 \section{Introduction}
 
-\subsection{Context and motivations}
-
+%\subsection{Context and motivations}
 %Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
 %\begin{itemize}
 %\item les questions ouvertes de complexité concernant la programmation semidefinie (pas clair si NP $\cap$ co-NP
 %  dans le modele de Turing)
 %\item les questions ouvertes géométriques (Conjecture de Lax)
 %\end{itemize}
+%\subsection{Main results}
 
 
-\subsection{Main results}
-
-
-\newpage
+%\newpage
 \section{Preliminaries}
 
 \subsection{Notation}
@@ -663,7 +668,7 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
 \newcommand\Mats{positive semidefinite matrices }
 
 \begin{definition}
-  We call a matrix $M \in \allmat_{d,d}(K)$ \emph{positive semidefinite} (in symbols $M \succeq 0$)
+  We say that a matrix $M \in \allmat_{d,d}(K)$ is \emph{positive semidefinite} (in symbols $M \succeq 0$)
   if all its eigenvalues have nonnegative valuation in an algebraic closure of $K$.
   We denote by $\allmat_{d,d}^+(K) \subset \allmat_{d,d}(K)$ the set of positive semidefinite matrices.
   The characteristic polynomial of a matrix $M \in \allmat_{d,d}(K)$ is denoted $\chi_M \in K[T]$.
