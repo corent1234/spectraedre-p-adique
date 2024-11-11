@@ -136,15 +136,15 @@ for an introduction to effective computations over $p$-adic numbers.
 
 The $K$-vector space of polynomials of degree $\leq d$ on $x=(x_1,\ldots,x_n)$
 with coefficients in $K$ is denoted by $K[x]_{d}$. The vector space of matrices of
-size $p \times q$ with entries in $K$ is $\allmat_{p,q}(K)$ and the general
-linear group in $\allmat_{n,n}(K)$ is $\GL_n(K)$.
+size $p \times q$ with entries in a ring $R$ is $R^{p \times q}$ and the general
+linear group in $R^{n \times n}$ is $\GL_n(R)$.
 For the sake
 of ease of writing, block-diagonal matrices with blocks $B_1,\ldots,B_d$ are denoted by
 $\diag(B_1, \ldots, B_d)$.
 
 We recall the definition of Smith Normal Form, in our context.
 \begin{definition}[Smith Normal Form]\label{smith_nf}
-  Let $M \in \allmat_{m,n}(K)$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
+  Let $M \in K^{m \times n}$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
   SNF(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r})
@@ -155,14 +155,14 @@ We recall the definition of Smith Normal Form, in our context.
 \end{definition}
 \begin{remark}
   The valuation of the first invariant factor of $SNF(M)$ of a matrix
-  $M \in \allmat_{n,n}(K)$ is the minimum of the valuations of the entries of
-  $M$. In particular, $SNF(M) \in \allmat_{n,n}(\OK)$.
+  $M \in K^{n \times n}$ is the minimum of the valuations of the entries of
+  $M$. In particular, $SNF(M) \in \OK^{n \times n}$.
 \end{remark}
 
 
 \subsection{Real spectrahedra}
 
-Let $\sym_d(\R) \subset \allmat_{d,d}(\R)$ be the vector space of $d \times d$ real symmetric
+Let $\sym_d(\R) \subset \R^{d\times d}$ be the vector space of $d \times d$ real symmetric
 matrices. A matrix $M \in \sym_d(\R)$
 is called \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic
 form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$
@@ -171,10 +171,13 @@ of $M$ being nonnegative. The set of positive semidefinite matrices, denoted $\s
 is a closed convex cone with non-empty interior in $\sym_d(\R)$.
 
 Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
-containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we assume linearly
-independent). The intersection $\calL \cap \sym_d^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_d(\R) :
-A(x) \succeq 0\right\}$, or
-equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
+containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we might assume
+to be linearly independent). The intersection
+$$
+\calL \cap \sym_d^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_d(\R) :
+A(x) \succeq 0\right\},
+$$
+or equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
 a \emph{real spectrahedron}. As (linear preimage of) affine sections of $\sym_d^+(\R)$, real spectrahedra
 are closed convex sets, but might have empty interior in $\calL$ (resp. in $\R^n$).
 Moreover, they are basic semialgebraic sets, indeed they are defined by sign conditions on the principal
@@ -311,12 +314,12 @@ be a linear mapping. Then $f(\PP)$ is a polyhedron.
 Let us assume that 
 $\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I \right\rbrace$ for some
 finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ ({\color{blue} mettre aussi les égalités dans $\PP$}).
-We further assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $\allmat_{n,n}(K)$.
+We further assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $K^{n \times n}$.
 
 Thanks to Definition \ref{smith_nf}, (the matrix of) $f$
 can be written $f=Q^{-1} \Delta P$
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta = SNF(f)\in \allmat_{m,n}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
+and $\Delta = SNF(f)\in K^{m \times n}$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
   where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
 
 We first prove the result when $f$ is in $\GL_n(\OK)$.
@@ -511,7 +514,7 @@ Finally, if $f: K^n \rightarrow K^m$
 is a linear mapping and
 $f=Q^{-1} \Delta P$ is its Smith Normal Form
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta \in \allmat_{n,m}(K)$,
+and $\Delta \in K^{m \times n}$,
 then
 $P(\PP)$ is a polyhedron,
 $\Delta (P(\PP))$ also,
@@ -535,7 +538,7 @@ as:
   &    & \text{s.t.}         & A x + b \geq 0
 \end{array}
 \end{equation}
-with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in \allmat_{m,n}(K)$, $b \in K^m$,
+with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in K^{m \times n}$, $b \in K^m$,
 and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$. When $A$ is a diagonal matrix, we often
 refer to \eqref{LP} as a \emph{diagonal} linear program. We denote the \emph{feasible set} of \eqref{LP} by
 \begin{equation*}
@@ -551,10 +554,10 @@ In this section we present an algorithm for solving \eqref{LP} which consists in
 Smith Normal Form,
 thus reducing a general linear program to an iteration of diagonal linear programs.
 The most interesting aspect of the SNF regarding the resolution of \eqref{LP} is that the transition matrices are
-invertible in $\OK$, thus they preserve inequalities: indeed, if $z \in K^n$ and $M \in \allmat_n(\OK)$ such
+invertible in $\OK$, thus they preserve inequalities: indeed, if $z \in K^n$ and $M \in \OK^{n \times n}$ such
 that $z \geq 0$, then $Mz \geq 0$.
 The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is
-invertible in $\OK$. Therefore, for all matrix $M \in \allmat_{n,n}(K)$ with $S=SNF(M)$ and for all $z \in K^n$,
+invertible in $\OK$. Therefore, for all matrix $M \in K^{n \times n}$ with $S=SNF(M)$ and for all $z \in K^n$,
 then $Mz \geq 0$ if and only if $Sz \geq 0$.
 
 %%%\corentin{or maybe reduced linear programming problem?}:
@@ -572,7 +575,7 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$.
 %The \emph{associated diagonal linear programming problem} of a linear program is the iteration of the \ref{DLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m(\OK)$ and $ Q \in GL_n(\OK)$ are such that $A = Q^{-1} S P$.
 
 \begin{proposition} \label{solsLP}
-  Let $A \in \allmat_{m,n}(K), b \in K^m, c\in K^n$ and let $S = SNF(A) = QAP^{-1} \in \allmat_{m,n}(K)$, with
+  Let $A \in K^{m\times n}, b \in K^m, c\in K^n$ and let $S = SNF(A) = QAP^{-1} \in K^{m \times n}$, with
   transition matrices $P \in \GL_n(\OK)$ and $Q\in \GL_m(\OK)$. Define $b' = Qb$ and $c' = (P^{-1})^Tc$.
   Then
    \begin{enumerate}
@@ -594,7 +597,7 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$.
 \Cref{solsLP} allows us to reduce \eqref{LP} to diagonal linear programs.
 
 \begin{proposition}\label{prop:reduc}
-  Let $(A,b,c), (S,b',c') \in \allmat_{m,n}(K) \times K^m \times K^n$ be as in \Cref{solsLP}, where
+  Let $(A,b,c), (S,b',c') \in K^{m \times n} \times K^m \times K^n$ be as in \Cref{solsLP}, where
   $S=SNF(A)$. Then
   \begin{enumerate}
   \item \label{prop:reduc_it1}
@@ -670,10 +673,10 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
 \newcommand\Mats{positive semidefinite matrices }
 
 \begin{definition}
-  We say that a matrix $M \in \allmat_{d,d}(K)$ is \emph{positive semidefinite} ($M \succeq 0$)
+  We say that a matrix $M \in K^{d \times d}$ is \emph{positive semidefinite} ($M \succeq 0$)
   if all its eigenvalues have nonnegative valuation in an algebraic closure of $K$.
-  We denote by $\allmat_{d,d}^+(K) \subset \allmat_{d,d}(K)$ the set of positive semidefinite matrices.
-  The characteristic polynomial of a matrix $M \in \allmat_{d,d}(K)$ is denoted $\chi_M \in K[T]$.
+  We denote by $K^{d \times d}_+ \subset K^{d\times d}$ the set of positive semidefinite matrices.
+  The characteristic polynomial of a matrix $M \in K^{d\times d}$ is denoted $\chi_M \in K[T]$.
 \end{definition}
 
 Recall that the {\it Newton polygon} $\mathcal{P}$ of a polynomial $P = \sum_{i=0}^{d} a_i T^i \in K[T]$ is
@@ -687,12 +690,12 @@ valuation fields reduces to checking whether the coefficients of $\chi_M$ are in
 
 \begin{theorem}
   \label{caracsdp}
-  $M \in \allmat_{d,d}^+(K)$ if and only if $\chi_M \in \OK[T]$.
+  $M \in K^{d\times d}_+$ if and only if $\chi_M \in \OK[T]$.
 \end{theorem}
 \begin{proof}
   Both senses of the equivalence will be proven by contraposition.
-  Let $M \in \allmat_{d,d}(K)$ with characteristic polynomial $\chi_M = T^d + \sum_{i=0}^{d-1} a_i T^i$ for $a_0,...,a_{d-1} \in K$.
-  First suppose $M \not \in \allmat_{d,d}^+(K)$, thus $\chi_M$ has a root $\rho$ with $\val\,\rho<0$.
+  Let $M \in K^{d\times d}$ with characteristic polynomial $\chi_M = T^d + \sum_{i=0}^{d-1} a_i T^i$ for $a_0,...,a_{d-1} \in K$.
+  First suppose $M \not \in K^{d\times d}_+$, thus $\chi_M$ has a root $\rho$ with $\val\,\rho<0$.
   It follows that
   $$
   + \infty = \val \chi_M (\rho) = \val \left(\rho^d+ \sum_{i=0}^{d-1} a_i \rho^i\right)
@@ -719,11 +722,10 @@ valuation fields reduces to checking whether the coefficients of $\chi_M$ are in
 As a consequence, matrices with integer coefficients are positive semidefinite.
 
 \begin{corollary}\label{cor_caracsdp}
-  $\allmat_{d,d}(\OK) \subset \allmat_{d,d}^+(K)$.
+  $\OK^{d\times d} \subset K^{d\times d}_+$.
 \end{corollary}
 \begin{proof}
-  $\OK$ is a ring therefore if $M \in \allmat_{d,d}(\OK)$, then $\chi_M \in \OK[T]$, thus we conclude
-  by \Cref{caracsdp}.
+  $\OK$ is a ring, therefore if $M \in \OK^{d \times d}$, then $\chi_M \in \OK[T]$.
 \end{proof}
 
 The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in the next example.
@@ -731,19 +733,20 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in t
 \begin{example}
   Let
   $$
-  M = \begin{pmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{pmatrix}.
+  M = \begin{bmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{bmatrix}.
   $$
   The characteristic polynomial of $M$
-  is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$: then $M \in \allmat_{2,2}^+(\mathbb{Q}_5)$, nevertheless $M \not\in \allmat_{2,2}(\mathbb{Z}_5)$, hence $\allmat_{2,2}^+(\mathbb{Q}_5) \not\subset \allmat_{2,2}(\mathbb{Z}_5)$.
+  is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$: then $M \in (\mathbb{Q}_5)^{2 \times 2}_+$, nevertheless $M \not\in (\mathbb{Z}_5)^{2\times 2}$, hence
+  $(\mathbb{Q}_5)^{2 \times 2}_+ \not\subset (\mathbb{Z}_5)^{2 \times 2}$.
 \end{example}
 
 \begin{proposition}
   {\color{blue} [Peut être une hypothèse à rajouter, par exemple $K$ à valuation discrete]}
-  The set $\allmat_{d,d}^+(K)$ is both open and closed.
+  The set $K^{d \times d}_+$ is both open and closed.
 \end{proposition}
 \begin{proof}
 Firstly, $\OK[X]$ is closed and open in $K[X]$ equipped with the infinitiy norm $\|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|$. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ that induces a discrete distance for which open balls are also closed sets.
-Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps a matrix to its characteristic polynomial which is continuous.
+Furthermore, $K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps a matrix to its characteristic polynomial which is continuous.
 \end{proof}
 
 \begin{definition}
@@ -756,10 +759,10 @@ Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the funct
 \end{remark}
 
 \begin{proposition}
-  The set $\allmat^+_{d,d}(K)$ is a cone.
+  The set $K^{d \times d}_+$ is a cone.
 \end{proposition}
 \begin{proof}
-  The result is immediate following the definiton of $\allmat^+_{d,d}(K)$.
+  The result is immediate following the definiton of $K^{d \times d}_+$.
 \end{proof}
 
 
@@ -767,17 +770,24 @@ Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the funct
 
 \begin{definition}
   \label{def_spectrahedra}
-  Let $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset \allmat_{d,d}(K)$ be an affine space, for some
-  $A_0,A_1,\ldots,A_n \in \allmat_{d,d}(K)$.
-  The set $\mathcal{L} \cap \allmat_{d,d}^+(K)$ is called a \emph{spectrahedron}. The set 
-  $S_A = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$, that is the preimage of $\allmat_{d,d}^+(K)$
-  under the map $x \mapsto A_0+x_1A_1+\cdots+x_nA_n$, is also called spectrahedron.
+  A \emph{spectrahedron in $K^{d\times d}$} is a set of the form
+  $\mathcal{S} = \mathcal{L} \cap K^{d\times d}_+$,
+  where $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset K^{d \times d}$ is an affine space, for some
+  $A_0,A_1,\ldots,A_n \in K^{d\times d}$.
 \end{definition}
 
 \begin{remark}
+  As in the real case, one often abuses of notation, saying that the preimage
+  $S = \varphi^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$
+  of $K^{d \times d}_+$ under the map $\varphi(x) = A_0+x_1A_1+\cdots+x_nA_n$, is a \emph{spectrahedron
+  in $K^n$}.
+\end{remark}
+
+
+\begin{remark}
   The class of spectrahedra is closed under intersection. Indeed, for affine spaces $\mathcal{L}_1,\mathcal{L}_2$
-  one has $(\mathcal{L}_1 \cap \allmat_{d,d}^+(K)) \cap (\mathcal{L}_2 \cap \allmat_{d,d}^+(K)) =
-  (\mathcal{L}_1 \cap \mathcal{L}_2) \cap \allmat_{d,d}^+(K)$. Now
+  one has $(\mathcal{L}_1 \cap K^{d \times d}_+) \cap (\mathcal{L}_2 \cap K^{d \times d}_+) =
+  (\mathcal{L}_1 \cap \mathcal{L}_2) \cap K^{d \times d}_+$. Now
   assuming $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = B_0+\span{B_1,\ldots,B_n}$,
   then $S_A \cap S_B = S_{A \oplus B}$ (indeed both $A \succeq 0$ and $B \succeq 0$ if and only if
   $A \oplus B \succeq 0$).
@@ -793,17 +803,17 @@ Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the funct
   Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
   be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
   and $L = \{x \in K^n : \val(m_j) = +\infty, j=1,\ldots,e\}$.
-  First, denote by $A(x) = \ell_1 \oplus \cdots \oplus \ell_d \in \allmat_{d,d}(K[x]_1)$,
-  so that $A(x) = A_0+x_1A_1+\cdots+x_nA_n$ for some (diagonal) $A_i \in \allmat_{d,d}(K)$.
+  First, denote by $A(x) = \ell_1 \oplus \cdots \oplus \ell_d \in K[x]^{d\times d}_1$,
+  so that $A(x) = A_0+x_1A_1+\cdots+x_nA_n$ for some (diagonal) $A_i \in K^{d\times d}$.
   We might assume that $A_0,A_1,\ldots,A_n$ are affinely independent, so that the mapping
   $\varphi(x) = A(x)$ is injective. 
-  First, remark that $Q=S_A$ and thus $\varphi(Q) = \mathcal{L} \cap \allmat_{d,d}(K)$, with
+  First, remark that $Q=S_A$ and thus $\varphi(Q) = \mathcal{L} \cap K^{d\times d}$, with
   $\mathcal{L} = A_0+\span{A_1,\ldots,A_n}$ is a spectrahedron.
   Next, remark that $L \subset K^n$ is the affine space defined by equations $m_1=\ldots=m_e=0$,
-  hence $\varphi(L) \subset \allmat_{d,d}(K)$ is an affine space. Since $\varphi$ is injective,
+  hence $\varphi(L) \subset K^{d\times d}$ is an affine space. Since $\varphi$ is injective,
   one has $\varphi(P) = \varphi(Q \cap L) = \varphi(Q) \cap \varphi(L)$ which is the intersection
   of a spectrahedron with an affine space, thus a spectrahedron.
-  %Define $B = m_1 \oplus \cdots \oplus m_e \in \allmat_{e,e}(K[x]_1)$
+  %Define $B = m_1 \oplus \cdots \oplus m_e \in K[x]^{e\times e}_1$
 \end{proof}
 
 \begin{definition}
