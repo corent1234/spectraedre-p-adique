@@ -668,7 +668,7 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
 \newcommand\Mats{positive semidefinite matrices }
 
 \begin{definition}
-  We say that a matrix $M \in \allmat_{d,d}(K)$ is \emph{positive semidefinite} (in symbols $M \succeq 0$)
+  We say that a matrix $M \in \allmat_{d,d}(K)$ is \emph{positive semidefinite} ($M \succeq 0$)
   if all its eigenvalues have nonnegative valuation in an algebraic closure of $K$.
   We denote by $\allmat_{d,d}^+(K) \subset \allmat_{d,d}(K)$ the set of positive semidefinite matrices.
   The characteristic polynomial of a matrix $M \in \allmat_{d,d}(K)$ is denoted $\chi_M \in K[T]$.
@@ -681,14 +681,13 @@ for $i=1,...,n$. This function is piecewise affine and its slopes are exactly th
 of the roots of $P$.
   %%%These are all the results we will need for this proof.
 
-  
+Testing positive semidefiniteness reduces to checking the coefficients of $\chi_M$.
 \begin{theorem}
   \label{caracsdp}
   $M \in \allmat_{d,d}^+(K)$ if and only if $\chi_M \in \OK[T]$.
 \end{theorem}
 \begin{proof}
   Both senses of the equivalence will be proven by contraposition.
-
   Let $M \in \allmat_{d,d}(K)$ with characteristic polynomial $\chi_M = T^d + \sum_{i=0}^{d-1} a_i T^i$ for $a_0,...,a_{d-1} \in K$.
   Firstly, suppose $M \not \in \allmat_{d,d}^+(K)$, {\it i.e.} $\chi_M$ has a root $\rho$ with $\val\,\rho<0$.
   It follows that
