@@ -1,8 +1,9 @@
 \documentclass[a4paper,12pt]{article}
 
-\newenvironment{proof}{\hbox{}\vspace{-0.8cm} {\bf Proof:}}{\hfill $\Box$}
+%%%\newenvironment{proof}{\hbox{}\vspace{-0.8cm} {\bf Proof:}}{\hfill $\Box$ \vspace{0.2cm}}
 
 \usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{mathrsfs} 
@@ -32,8 +33,8 @@
 \textwidth165mm
 \voffset-10mm
 \hoffset-12.5mm
-\parindent0cm
-\parskip2mm
+\parindent0.8cm
+\parskip0mm
 
 
 \usepackage{stmaryrd} %for double brackets
@@ -75,7 +76,7 @@
 
 %\title{\bf Title}
 %\title{\bf On polyhedra and spectrahedra over valuation fields}
-\title{\bf On semidefinite-representable sets over valuation fields}
+\title{\bf On semidefinite representable sets over valuation fields}
 
 \begin{document}
 
@@ -91,8 +92,9 @@
 
 \begin{abstract}
   \noindent
-  Real polyhedra and real spectrahedra are respectively the feasible sets of linear programming
-  (LP) and semidefinite programming (SDP). This paper investigates versions of these sets and of
+  Real polyhedra and real spectrahedra (or their projections) are respectively the feasible sets
+  of linear programming (LP) and semidefinite programming (SDP). 
+  This paper investigates versions of these sets and of
   the related optimization problems with data over a field $K$ with valuation.
   We showcase examples of non-polyhedral $K$-spectrahedra and of sets that are semidefinite
   representable over $K$ but are not $K$-spectrahedra.
@@ -661,7 +663,7 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
 
 \section{Spectrahedra}
 
-\subsection{Definition}
+\subsection{Positive semidefinite matrices}
 %\newcommand\mat{postive semidefinite matrix } 
 \newcommand\Mat{Positive semidefinite matrix }
 \newcommand\mats{positive semidefinite matrices }
@@ -674,14 +676,15 @@ Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
   The characteristic polynomial of a matrix $M \in \allmat_{d,d}(K)$ is denoted $\chi_M \in K[T]$.
 \end{definition}
 
-Recall that the {\it Newton polygon} $\mathcal{P}$ of a polynomial $P = \sum_{i=0}^{n} a_i T^i \in K[T]$ is
-defined as the inferior convex hull of the set $\{(i, \val a_i) \,|\, i\in \{0,...,d\} \}$, {\it i.e.} the
-graph of the greatest convex function $\mathcal{P} : [0,n] \to \R$ such that $\mathcal{P}(i) \leq \val a_i$
-for $i=1,...,n$. This function is piecewise affine and its slopes are exactly the opposites of the valuations
+Recall that the {\it Newton polygon} $\mathcal{P}$ of a polynomial $P = \sum_{i=0}^{d} a_i T^i \in K[T]$ is
+defined as the inferior convex hull of the set $\{(i, \val a_i) \,|\, 0 \le i \le d\}$, {\it i.e.} the
+graph of the greatest convex function $\mathcal{P} : [0,d] \to \R$ such that $\mathcal{P}(i) \leq \val a_i$
+for $i=1,\ldots,d$. This function is piecewise affine and its slopes are exactly the opposites of the valuations
 of the roots of $P$.
-  %%%These are all the results we will need for this proof.
 
-Testing positive semidefiniteness reduces to checking the coefficients of $\chi_M$.
+The following result shows that testing positive semidefiniteness of matrices over
+valuation fields reduces to checking whether the coefficients of $\chi_M$ are integers.
+
 \begin{theorem}
   \label{caracsdp}
   $M \in \allmat_{d,d}^+(K)$ if and only if $\chi_M \in \OK[T]$.
@@ -689,14 +692,15 @@ Testing positive semidefiniteness reduces to checking the coefficients of $\chi_
 \begin{proof}
   Both senses of the equivalence will be proven by contraposition.
   Let $M \in \allmat_{d,d}(K)$ with characteristic polynomial $\chi_M = T^d + \sum_{i=0}^{d-1} a_i T^i$ for $a_0,...,a_{d-1} \in K$.
-  Firstly, suppose $M \not \in \allmat_{d,d}^+(K)$, {\it i.e.} $\chi_M$ has a root $\rho$ with $\val\,\rho<0$.
+  First suppose $M \not \in \allmat_{d,d}^+(K)$, thus $\chi_M$ has a root $\rho$ with $\val\,\rho<0$.
   It follows that
   $$
-  \val \chi_M (\rho) = \val \left(\rho^d+ \sum_{i=0}^{d-1} a_i \rho^i\right) = + \infty
+  + \infty = \val \chi_M (\rho) = \val \left(\rho^d+ \sum_{i=0}^{d-1} a_i \rho^i\right)
   $$ and $\val \rho^d = d \val \rho <0$.
   The properties of the non-archimedean inequality and of the valuation imply that
   $$
-  \min_{0 \leq i \leq d-1} \val \left(a_i \rho^i\right) \leq \val\left(\sum_{i=0}^{d-1} a_i \rho^i\right) = \val \rho^d
+  0> \val \rho^d = \val\left(\sum_{i=0}^{d-1} a_i \rho^i\right) \geq
+  \min_{0 \leq i \leq d-1} \val \left(a_i \rho^i\right)
   $$
   %%%$\val ( \sum_{i=0}^{d-1} a_i \rho^i) = \val \rho^d$ and $\val ( \sum_{i=0}^{d-1} a_i \rho^i) \ge \min_{i=0,..., d-1} \val \left(a_i \rho^i\right)$.
   Therefore, there exists $j \in \left\{0,...,d-1\right\}$ such that $\val(a_j \rho^j) \le \val\rho^d$,
@@ -705,10 +709,14 @@ Testing positive semidefiniteness reduces to checking the coefficients of $\chi_
   %%We have proven the converse sense of the equivalence.
   %%To prove the direct sense a brief introduction to Newton's polygon will be needed, we will only state the results we use in this proof and will redirect to \cite{gouvea_p-adic_2003} to further explanations.
 
-  Suppose now $\chi_M \not\in \OK[T]$. There exists $j \in \{0,...,d-1\}$ such that $\val a_j <0$. The polynomial $\chi_M$ being monic, the point with abscissa $n$ of the Newton polygon of $\chi_M$ is $(n,0)$. 
+  Suppose now $\chi_M \not\in \OK[T]$. There exists $j \in \{0,...,d-1\}$ such that $\val a_j <0$.
+  The polynomial $\chi_M$ being monic, the point with abscissa $d$ of the Newton polygon of $\chi_M$ is
+  $(d,\val(1)) = (d,0)$. 
   Therefore, the point $(j, \val a_j)$ having negative ordinate implies that at least one of the slopes of
   the Newton polygon of $\chi_M$ is positive, so that $\chi_M$ has a root with negative valuation.
 \end{proof}
+
+As a consequence, matrices with integer coefficients are positive semidefinite.
 
 \begin{corollary}\label{cor_caracsdp}
   $\allmat_{d,d}(\OK) \subset \allmat_{d,d}^+(K)$.
@@ -718,12 +726,19 @@ Testing positive semidefiniteness reduces to checking the coefficients of $\chi_
   by \Cref{caracsdp}.
 \end{proof}
 
+The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in the next example.
+
 \begin{example}
-  The reverse inclusion of \Cref{cor_caracsdp} is false in general. For instance the characteristic polynomial of
-  $M = \left(\begin{smallmatrix} 5 + {3}/{5} & {4}/{5} \\ {4}/{5} & -{3}/{5} \end{smallmatrix}\right)$ is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$: then $M \in \allmat_{2,2}^+(\mathbb{Q}_5)$, nevertheless $M \not\in \allmat_{2,2}(\mathbb{Z}_5)$, hence $\allmat_{2,2}^+(\mathbb{Q}_5) \not\subset \allmat_{2,2}(\mathbb{Z}_5)$.
+  Let
+  $$
+  M = \begin{pmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{pmatrix}.
+  $$
+  The characteristic polynomial of $M$
+  is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$: then $M \in \allmat_{2,2}^+(\mathbb{Q}_5)$, nevertheless $M \not\in \allmat_{2,2}(\mathbb{Z}_5)$, hence $\allmat_{2,2}^+(\mathbb{Q}_5) \not\subset \allmat_{2,2}(\mathbb{Z}_5)$.
 \end{example}
 
 \begin{proposition}
+  {\color{blue} [Peut être une hypothèse à rajouter, par exemple $K$ à valuation discrete]}
   The set $\allmat_{d,d}^+(K)$ is both open and closed.
 \end{proposition}
 \begin{proof}
@@ -731,10 +746,8 @@ Firstly, $\OK[X]$ is closed and open in $K[X]$ equipped with the infinitiy norm 
 Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps a matrix to its characteristic polynomial which is continuous.
 \end{proof}
 
-
-
 \begin{definition}
-  A \emph{cone} is subset $C$ of $K^d$ that is closed under multiplication by elements of $\OK$.   
+  A \emph{cone} of $K^d$ is a subset that is closed under multiplication by elements of $\OK$.   
 \end{definition}
 
 \begin{remark}
@@ -748,6 +761,9 @@ Furthermore, $\allmat^+_{d,d}(K) = \chi^{-1}(\OK[X]) $ where $\chi$ is the funct
 \begin{proof}
   The result is immediate following the definiton of $\allmat^+_{d,d}(K)$.
 \end{proof}
+
+
+\subsection{Definition of spectrahedra}
 
 \begin{definition}
   \label{def_spectrahedra}
@@ -851,18 +867,23 @@ Therefore, if $(x, y)$ verifies \eqref{eq:annulussyst} then $\val\left(x\right)\
 Reciprocally if $x \in C$ then $(x,x^{-1}) $ is a solution of \eqref{eq:annulussyst}.
 \end{proof}
 
-\subsection{Polyhedrality}
-Cf. \cite{bhardwaj2015deciding}
 
-\section{Linear matrix inequalities}
+%\subsection{Polyhedrality}
+%Cf. \cite{bhardwaj2015deciding}
+
+%\section{Linear matrix inequalities}
 
 
-\section{Other questions}
-\begin{itemize}
-\item The projection of a real polyhedron is a real polyhedron (thanks to Fourier-Motzkin elimination procedure). Is it the same for $K$-polyhedra?
-\item Annuli are semidefinite representable, we should remark/prove that they are not spectrahedra.
-\end{itemize}
+%\section{Other questions}
+%\begin{itemize}
+%\item The projection of a real polyhedron is a real polyhedron (thanks to Fourier-Motzkin elimination procedure). Is it the same for $K$-polyhedra?
+%\item Annuli are semidefinite representable, we should remark/prove that they are not spectrahedra.
+%\end{itemize}
 
+
+\section*{Acknowledgments}
+
+The second author acknowledges support from the ANR Project ``HYPERSPACE'' (ANR-21-CE48-0006-01).
 
 
 \printbibliography
