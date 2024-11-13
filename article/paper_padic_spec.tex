@@ -299,55 +299,82 @@ $\val(\ell_i(x))<+\infty$.
   $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$. %%%%%(its affine hull is indeed the whole $K^n$).
 \end{example}
 
-
 \subsection{Projections of polyhedra}
 
-{\color{blue} Normalement avec la nouvelle definition, ça devrait aller, il faut par contre
-  partir d'un polyedre defini aussi par des égalités. Peut être il faudrait aussi
-  diviser la proposition en plusieures parties pour la rendre plus lisible, par exemple une
-  première proposition avec la projection.}
+%{\color{blue} Normalement avec la nouvelle definition, ça devrait aller, il faut par contre
+%  partir d'un polyedre defini aussi par des égalités. Peut être il faudrait aussi
+%  diviser la proposition en plusieures parties pour la rendre plus lisible, par exemple une
+%  première proposition avec la projection.}
+
+In this section we show that the image of a polyhedron by a linear mappingA is a polyhedron. 
+We first prove the result in the cases of authomorphisms of $\OK^n$ and diagonal endomorphisms of $K^n$.
+Then we use these particular cases to prove the result for projections of the form $(x_1,\dots,x_n) \mapsto (x_1,\dots, x_{n-1})$
+and finally for the general case.
+
+\begin{remark}
+ First, let $f : K^n \to K^m$ be a linear map and $\PP \subset K^n$ be a polyhedron defined by 
+$\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, m_i(x)=0, \textrm{ for } i \in I, j \in J \right\rbrace$ 
+for some finite sets $I \subset \N$ and $J \subset \mathbb{N}$ and $m_j, l_i \in K[x]_1$, for $i \in I$  and $j \in J$.
+Then  $\PP = \PP_i \cap \PP_e$ where $\PP_i := \{x \in K^n : \val(l_i(x)) \ge 0, i = 1,\dots,d\}$
+and $\PP_e := \{x \in K^n : m_j(x) = 0, j = 1,\dots,e\}$.
+
+Thus, we have  $f(\PP) = f(\PP_i) \cap f(\PP_e)$.
+However, $\PP_e$ is either empty or an affine subspace of $K^n$ and therefore 
+$f(\PP_e)$ is either empty or an affine subspace of $K^m$, so it is a polyhedron.
+Hence, as the class of polyhedron is closed under intersection to prove that
+$f(\PP)$ is a polyhedron it is sufficient to prove that $f(\PP_i)$ is one.
+\end{remark}
+
+Therefore, we can only consider the image of polyhedron of the form 
+$\left\lbrace x \in K^n : \val (l_i (x) ) \geq 0 \textrm{ for } i \in I \right\rbrace$.
 
 \begin{proposition}
-Let $\PP \subset K^n$ be a polyhedron and $f: K^n \rightarrow K^m$
-be a linear mapping. Then $f(\PP)$ is a polyhedron.
+  Let $\PP \subset K^n$ be a polyhedron and $f : K^n \to K^n$ be a linear mapping.
+  If $f \in \GL_n(\OK)$ or if there exists $\lambda_1, \dots, \lambda_n \in K$ such that 
+  $(x_1,\dots,x_{n-1}, x_n) \mapsto (x_1,\dots, x_{n-1})$.
 \end{proposition}
+
 \begin{proof}
-Let us assume that 
-$\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I \right\rbrace$ for some
-finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ ({\color{blue} mettre aussi les égalités dans $\PP$}).
-We further assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $K^{n \times n}$.
+We assume that $\PP \neq \emptyset$
+As discussed above we can assume that
+$\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0,\textrm{ for } i \in I \right\rbrace$ for some
+finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
 
-Thanks to Definition \ref{smith_nf}, (the matrix of) $f$
-can be written $f=Q^{-1} \Delta P$
-with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta = SNF(f)\in K^{m \times n}$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
-  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
-
-We first prove the result when $f$ is in $\GL_n(\OK)$.
-In that case, $x \in f(P)$ if and only if for all
-$i \in I,$
+First, if $f \in \GL_n(\OK)$ then, $x \in f(P)$ if and only if for all $i \in I$, 
 $\val(l_i (f^{-1}(x))) \geq 0$.
 The $l_i \circ f^{-1}$ are clearly in $K[x]_1$
 and $f(P)$ is a polyhedron.
 
 Similarly, if $f:K^n \rightarrow K^n$ is of the form
 $f(x_1,\dots,x_n)=(\lambda_1 x_1,\dots,\lambda_n x_n)$
-for some $\lambda \in K$,
+for some $\lambda_1,\ldots, \lambda_n \in K$,
 then of course $f(P)$
 can be defined by $\val (\widetilde{l_i}(x)) \geq 0$, $i \in I$
 with the $\widetilde{l_i}$'s obtained from the $l_i$'s by an
 obvious change of variables.
+\end{proof}
 
-Now, we turn our attention to the $\Delta$ part of $f.$
-We first assume that $f$ is a projection 
-of the form $K^n \rightarrow K^{n-1},$
-$(x_1,\dots,x_{n-1},x_n)\mapsto (x_1,\dots,x_{n-1}).$
+The two above results allows us to demonstrate the following proposition, which we will use to prove the general case. 
+
+\begin{proposition}
+      Let $\PP \subset K^n$ be a polyhedron and $p : K^n \to K^{n-1}$ be the projection $p : (x_1,\dots,x_{n-1},x_n) \mapsto (x_1, \dots, x_{n-1})$.
+       Then $p(\PP)$ is a spectrahedron.
+\end{proposition}
+
+
+  \begin{proof}
+      
+We assume that $\PP \neq \emptyset$.
+As discussed above we can assume that
+  $\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0,\textrm{ for } i \in I \right\rbrace$ for some
+finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
 
 Let us write the conditions defining $\PP$
 in matrix form:
-$\val(A X+B) \geq 0$
+$\val(A X+B) \geq 0$ and 
 with $A \in M_{q,n}(K)$, $B \in K^q$
-and $X=(x_1,\dots,x_n)^\intercal.$
+and $X=(x_1,\dots,x_n)^\intercal$. 
+
 
 We can compute a Smith Normal Form
 of the $q \times (n-1)$ matrix defined by the 
@@ -370,9 +397,9 @@ Multiplying on the left by $Q_A^{\pm 1}$ does not
 modify whether the valuation inequalities are satisfied.
 Moreover, thanks to our previous on the case when $f$ is an automorphism,
 $\PP$ can be written
-$\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \in K^n$
+$\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \subset K^n$
 and we are reduced to proving that
-$f(\PP_2)$ is polyhedron for $f$ still the canonical projection
+$f(\PP_2)$ is polyhedron for $p$ still the canonical projection
 $K^n \rightarrow K^{n-1}$ and $\PP_2$
 defined by the linear matrix inequality (for some $B_2 \in K^q$):
 \[  \begin{bmatrix}
@@ -431,21 +458,21 @@ We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
  for all $i \in \llbracket 1,n-1 \rrbracket,$
 $\val(x_i-a_ib_n+b_i) \geq 0.$
 
-Then the previous computations prove that $f(\PP_2)\subset \Qc.$
+Then the previous computations prove that $p(\PP_2)\subset \Qc.$
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
 Then let $x_n := -b_n.$
 
 We check that for $i \in \llbracket 1,n-1 \rrbracket,$
 $x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
 and $x_n+b_n=O(1)$. Hence $(x_1,\dots,x_n) \in \PP_2$
-which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
-Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron.
+which means that $(x_1,\dots,x_{n-1}) \in p(\PP_2).$
+Thus $p(\PP_2)= \Qc$ and $p(\PP_2)$ is a polyhedron.
 
 We now deal with the second case, with $\val(a_1)<0.$
 Let $x \in \PP_2$.
 Then $x_n=-b_n+O(1)$
 and $x_1+a_1 x_n+b_1=O(1).$
-Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)})).$
+Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)}).$
 Thus $a_1^{-1}x_1- b_n +a_1^{-1}b_1=O(1)$.
 %and $x_n=-a_1^{-1}(x_1+b_1)+O(1).$
 In addition, $x_n=-a_1^{-1}(x_1+b_1)+O(\pi^{-\val(a_1)}).$
@@ -458,7 +485,7 @@ We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
 $\val(a_1^{-1}x_1- b_n +a_1^{-1}b_1) \geq 0$ and for all $i \in \llbracket 2,n-1 \rrbracket,$
 $\val(x_i-a_1^{-1}a_i(x_1+b_1)+b_i) \geq 0.$
 
-Then the previous computations prove that $f(\PP_2)\subset \Qc.$
+Then the previous computations prove that $p(\PP_2)\subset \Qc.$
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
 Let $x_n := -a_1^{-1}(x_1+b_1).$
 Then
@@ -469,21 +496,35 @@ since $(x_1,\dots,x_{n-1}) \in \Qc.$
 Finally, 
 $x_n+b_n=-a_1^{-1}(x_1+b_1)+b_n=O(1)$ thanks to the inequality satisfied by $x_1.$
 Hence $(x_1,\dots,x_n) \in \PP_2$
-which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
-Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron,
+which means that $(x_1,\dots,x_{n-1}) \in p(\PP_2).$
+Thus $p(\PP_2)= \Qc$ and $p(\PP_2)$ is a polyhedron,
 and it has been proved in both cases.
 
-Therefore, if $f$ is the projection 
-$(x_1,\dots,x_{n-1},x_n)\mapsto (x_1,\dots,x_{n-1})$ 
-and $\PP$ is a polyhedron in $K^n$,
-then $f(\PP)$ is a polyhedron.
+Therefore,$p(\PP)$ is a polyhedron.
 
-\tristan{Attention, à partir de maintenant,
-il faut ajouter à la définition qu'on peut
-fixer des points!
-Cela revient à ajouter des conditions
-$\val = + \infty.$}
+\end{proof}
 
+We can finally prove that the image of polyhedron under a linear mapping is a polyhedron.
+\begin{proposition}
+Let $\PP \subset K^n$ be a polyhedron and $f: K^n \rightarrow K^m$
+be a linear mapping. Then $f(\PP)$ is a polyhedron.
+\end{proposition}
+
+\begin{proof}
+
+We assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $\allmat_{n,n}(K)$.
+As seen above, we can assume that $\PP$ is of the form $\left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I\right\rbrace$ for some
+finite sets $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
+
+
+Thanks to Definition \ref{smith_nf}, (the matrix of) $f$
+can be written $f=Q^{-1} \Delta P$
+with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
+and $\Delta = SNF(f)\in \allmat_{m,n}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
+  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
+
+  %Now, we turn our attention to the $\Delta$ part of $f$.
+We have previously proven that if $f \in \GL_n(\OK)$ then $f(\PP)$ is a polyhedron.
 It is also clear that
 if $f$ is the immersion 
 $K^l \rightarrow K^n$
@@ -515,7 +556,7 @@ Finally, if $f: K^n \rightarrow K^m$
 is a linear mapping and
 $f=Q^{-1} \Delta P$ is its Smith Normal Form
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta \in K^{m \times n}$,
+and $\Delta \in \allmat_{n,m}(K)$,
 then
 $P(\PP)$ is a polyhedron,
 $\Delta (P(\PP))$ also,
@@ -530,80 +571,95 @@ This concludes the proof.
 
 \subsection{Linear programming}
 
-A \emph{linear programming problem} (or simply \emph{linear program}) \emph{with data $(A,b,c)$} is defined
+
+A \emph{linear programming problem} (or simply \emph{linear program}) \emph{with data $(A,b,c,D,e)$} is defined
 as:
 \begin{equation}
   \tag{LP}\label{LP}
 \begin{array}{rcll}
   p^* & := & \inf_{x \in K^n} & \val(\left\langle c, x \right\rangle) \\
-  &    & \text{s.t.}         & A x + b \geq 0
+  &    & \text{s.t.}         & A x + b \geq 0\\
+  & & & D x = e
 \end{array}
 \end{equation}
-with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in K^{m \times n}$, $b \in K^m$,
-and $\left\langle c, x \right\rangle := c_1x_1+\cdots +c_nx_n$. When $A$ is a diagonal matrix, we often
+with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in \allmat_{d,n}(K)$, $b \in K^d$, $D \in \allmat_{m,n}$, $e \in K^m$ 
+and $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$. When $A$ is a diagonal matrix and $D = 0$, we often
 refer to \eqref{LP} as a \emph{diagonal} linear program. We denote the \emph{feasible set} of \eqref{LP} by
 \begin{equation*}
 \begin{aligned}
-  \PP  &= \{x \in K^n : Ax + b \geq 0\}.
+  \PP  &= \{x \in K^n : Ax + b \geq 0, Dx = e\}.
 \end{aligned}
 \end{equation*}
-A vector $x \in K^n$ is called \emph{feasible} for \eqref{LP} if $x \in \PP$ and the program \eqref{LP} is
-called \emph{feasible} if $\PP \neq \emptyset$. A feasible vector $x^* \in \PP$
+A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$
 is called a \emph{solution} to \eqref{LP} if $p^* = \left\langle c,x^*\right\rangle$.
 
-In this section we present an algorithm for solving \eqref{LP} which consists in reducing the matrix $A$ in
-Smith Normal Form,
-thus reducing a general linear program to an iteration of diagonal linear programs.
-The most interesting aspect of the SNF regarding the resolution of \eqref{LP} is that the transition matrices are
-invertible in $\OK$, thus they preserve inequalities: indeed, if $z \in K^n$ and $M \in \OK^{n \times n}$ such
-that $z \geq 0$, then $Mz \geq 0$.
-The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is
-invertible in $\OK$. Therefore, for all matrix $M \in K^{n \times n}$ with $S=SNF(M)$ and for all $z \in K^n$,
+\begin{remark}
+The valuation $\val$ is discrete. Thus if \eqref{LP} admits feasible vectors, $p^*$ is either $- \infty$ or reached by a certain solution $x^*$.
+\end{remark}
+
+In this section we present an algorithm for solving \eqref{LP} which starts by eliminating the constraint forced by $D$ and $e$ by operating a substitution. Then it reduces the matrix $A$ to
+Smith Normal Form, thus reducing a general linear program to a diagonal linear program. The latter problem being easily solved by simple calulations in $K$.
+
+The first proposition we prove  allows to consider only iterations of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
+
+\begin{proposition}\label{reducD}
+  Let $A \in \allmat_{d,n}(K), b \in K^d, c\in K^n$, $D \in \allmat_{m,n}$, $e \in K^m$ and let $J \in \allmat_{n,R}\left( K \right) $ be a matrix such that ${\rm Im } J = \ker D$ where $R$ denotes the dimension of $\ker D$. 
+  Additionally, we assume the existence of $x_0 \in K^n$ that verifies $D x_0 =e$ as if
+  there are no such vector the problem~\ref{LP} with data $(A,b,c,D,e)$ is not solvable.
+
+  Let $x \in \{x \in K^n : Dx=e\} = x_0 + \ker D $ and let $y \in K^R$ denote the unique element of
+  $K^n$ such that $x = x_0 + J y$, then :
+  \begin{enumerate}
+    \item\label{reducD_item1} $x$ is feasible for~\eqref{LP} with data $(A,b,c,D,e)$ if and only if 
+      $y$ is feasible for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,0,0)$.
+    \item\label{reducD_item2} $x$ is a solution for~\eqref{LP} with data $(A,b,c,D)$ if and only if 
+      $y$ is a solution for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,0,0)$ and $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  %The existence and uniqueness of $y$ are granted by the fact that $x \in x_0 + \ker D =x_0+ {\rm Im } J$  and $\ker J = \{0\}$. 
+  First,  $Dx=e$ and $Ax + b \le 0$ if and only if $AJy + b+Ax_0 \le 0$, proving \Cref{reducD_item1}.
+  Next, for all $c \in K^n$, $\langle c,x\rangle = \langle c, Jy\rangle = \langle J^T c,y\rangle$, which proves \Cref{reducD_item2}.
+\end{proof}
+ 
+The most interesting aspect of the SNF regarding the resolution of~\eqref{LP} is that the transition matrices are
+invertible in $\OK$ and as such they preserve inequalities. %Indeed, for all $z \in K^n$ and $M \in \allmat_n(\OK)$ if $z \geq 0$, then $Mz \geq 0$.
+%The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is
+%invertible in $\OK$. 
+Therefore, for all matrix $M \in \allmat_{n,n}(K)$ with $S=SNF(M)$ and for all $z \in K^n$,
 then $Mz \geq 0$ if and only if $Sz \geq 0$.
 
-%%%\corentin{or maybe reduced linear programming problem?}:
-%%%\simone{il me semble que tout ça n'est pas trop clair, par exemple quelle est la difference entre diagonal LP et associated diagonal LP plus en bas, est-ce qu'il y a vraiment besoin de tout ça, il faut simplifier la presentation}
-%That property applied to the matrix $A$ in \ref{LP} allows to reduce the problem to an equivalent simpler iteration of the problem in \eqref{LP}, that will be called \emph{diagonal linear programming problem}
-%\begin{equation}
-%  \tag{dLP}\label{DLP}
-%\begin{array}{rcll}
-%  {p^*}' & := & \inf_{y \in K^n} & \val(\left\langle c', y \right\rangle) \\
-%  &    & \text{s.t.}         & S y + b' \geq 0
-%\end{array}
-%\end{equation}
-%with $c' \in K^n$ a fixed vector of size $n$, $b' \in K^m$ and $S$ a diagonal $m \times n$ matrix of the form $S = \diag(s_1, s_2, \ldots, s_r, { \bm 0}_{m-r})$, with $r = {\rm rank}\, S$.
-
-%The \emph{associated diagonal linear programming problem} of a linear program is the iteration of the \ref{DLP} problem defined by $b' = Qb$, $c' = \left(P^{-1}\right)^T c$ and where $S$ is the Smith normal form of $A$ and $P \in GL_m(\OK)$ and $ Q \in GL_n(\OK)$ are such that $A = Q^{-1} S P$.
+\Cref{solsLP} allows us to reduce \eqref{LP} to diagonal linear programs.
 
 \begin{proposition} \label{solsLP}
-  Let $A \in K^{m\times n}, b \in K^m, c\in K^n$ and let $S = SNF(A) = QAP^{-1} \in K^{m \times n}$, with
-  transition matrices $P \in \GL_n(\OK)$ and $Q\in \GL_m(\OK)$. Define $b' = Qb$ and $c' = (P^{-1})^Tc$.
+  Let $A \in \allmat_{d,n}(K), b \in K^d, c\in K^n$ and let $S = SNF(A) = QAP^{-1} \in \allmat_{d,n}(K)$, with
+  transition matrices $P \in \GL_d(\OK)$ and $Q\in \GL_d(\OK)$. Define $b' = Qb$ and $c' = (P^{-1})^Tc$.
   Then
    \begin{enumerate}
    \item \label{solsLP_item1}
-     $x \in K^n$ is feasible for \eqref{LP} with data $(A,b,c)$ if and only if $y = P x \in K^n$ is
-     feasible for \eqref{LP} with data $(S,b',c')$.
+     $x \in K^n$ is feasible for \eqref{LP} with data $(A,b,c,0,0)$ if and only if $y = P x \in K^n$ is
+     feasible for \eqref{LP} with data $(S,b',c',0,0)$.
    \item \label{solsLP_item2}
-     $x^* \in K^n$ is a solution to \eqref{LP} with data $(A,b,c)$ if and only if $y^* = P x^*$ is
-     a solution to \eqref{LP} with data $(S,b',c')$ and $\langle c,x^* \rangle = \langle c',y^* \rangle$.
+     $x^* \in K^n$ is a solution to \eqref{LP} with data $(A,b,c,0,0)$ if and only if $y^* = P x^*$ is
+     a solution to \eqref{LP} with data $(S,b',c',0,0)$ and $\langle c,x^* \rangle = \langle c',y^* \rangle$.
    \end{enumerate}
 \end{proposition}
 \begin{proof}
   First of all, $Ax+b = AP^{-1}y +b \geq 0$ if and only if $Q(AP^{-1}y + b) = Sy + b' \geq 0$ because
-  $Q \in GL_m(\OK)$, which yields \Cref{solsLP_item1}. Next, for all $c \in K^n$, one has $\langle c,
+  $Q \in GL_m(\OK)$, which yields \Cref{solsLP_item1}. Next, for all $c \in K^n$, we have $\langle c,
   x\rangle = \langle c, P^{-1}Px \rangle = \langle \left(P^{-1}\right)^T c, Px \rangle = \langle c',y\rangle$,
   which proves \Cref{solsLP_item2}.
 \end{proof}
 
-\Cref{solsLP} allows us to reduce \eqref{LP} to diagonal linear programs.
 
 \begin{proposition}\label{prop:reduc}
-  Let $(A,b,c), (S,b',c') \in K^{m \times n} \times K^m \times K^n$ be as in \Cref{solsLP}, where
+  Let $(A,b,c), (S,b',c') \in \allmat_{d,n}(K) \times K^d \times K^n$ be as in \Cref{solsLP}, where
   $S=SNF(A)$. Then
   \begin{enumerate}
   \item \label{prop:reduc_it1}
-    \eqref{LP} with data $(S,b',c')$ is feasible if and only if the $m-r$ last coefficients
-    of $b'$ have nonnegative valuation, for $r = \text{rank}\,S$.
+    \eqref{LP} with data $(S,b',c',0,0)$ is feasible if and only if the $d-r$ last coefficients
+    of $b'$ have nonnegative valuation, for $r = {\rm rank}\,S$.
   \item \label{prop:reduc_it2}
     Assume at least one of the $n-r$ last coefficients of $c'$ is non-zero. If \eqref{LP} with
     data $(S,b',c')$ is feasible, then it is unbounded and does not admit solutions.
@@ -611,22 +667,19 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$.
 \end{proposition}
 \begin{proof}
   %%%%\corentin{préciser les notations}. 
-  A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for \eqref{LP} with data $(S,b',c')$
+  A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for \eqref{LP} with data $(S,b',c',0)$
   if and only if $\val(s_i y_i + b_i) \geq 0$ for all $i = 1,\ldots,n$.
-  However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b',c')$ is feasible,
-  necessarily the $m-r$ last coefficients of $b'$ have nonnegative valuation.
-  Conversely, if the $m-r$ last coefficients of $b'$ are zero, the vector $y \in K^n$ such that
+  However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b',c',0)$ is feasible,
+  necessarily the $d-r$ last coefficients of $b'$ have nonnegative valuation.
+  Conversely, if the $d-r$ last coefficients of $b'$ are zero, the vector $y \in K^n$ such that
   $y_i = -\frac{-b'_i}{s_i}$ if $1 \leq i \leq r$, and $y_i =0$ otherwise, is feasible for \eqref{LP}
-  with data $(S,b',c')$.
+  with data $(S,b',c',0,0)$.
 
-  Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for \eqref{LP} with data $(S,b',c')$.
+  Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for \eqref{LP} with data $(S,b',c',0,0)$.
   Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $e^i$ whose only non-zero
-  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c')$,
+  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c',0,0)$,
   for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$.
-  In particular, for $\alpha = -\frac{\langle c', y^* \rangle}{c'_i}$, one has $\val \left( \langle c', y^* +
-  \alpha e ^i \rangle\right) = \val (0) = + \infty$. ({\color{blue} je ne comprends pas: il est non-borné
-    supérieurement, mais nous on cherche l'inf..., donc comment montrer qu'il n'y a pas de solutions ? il faudrait
-  une sequence avec limite valuation $-\infty$})
+  In particular, for all $n \in \mathbb{N}$ if we set $\alpha = -\frac{\langle c', y^* \rangle + \pi^{-n}}{c'_i}$, we have $\val \left( \langle c', y^* + \alpha e ^i \rangle\right) = \val \pi^{-n} = -n$. Therefore, the problem is unbounded as $p^* = + \infty$. 
 \end{proof}
 
 From now on, we will only consider iterations of diagonal linear programs which have solutions.
@@ -641,28 +694,31 @@ $$
 y_i \in -\frac{b`_i}{s_i} + \frac{1}{s_i} \OK, 1\le i\le r\right\}.
 $$
 
-Solving the diagonal LP consists (by definition) in minimizing the linear map $y \mapsto \val\left(\left\langle
+Solving the diagonal \Cref{LP} consists -by definition- in minimizing the linear map $y \mapsto \val\left(\left\langle
 c',y \right\rangle\right)$ over $\PP'$. The image of $\PP'$ by $y \mapsto \left\langle c',y \right\rangle$ is
-$$
+\[
 \left\langle c',\PP' \right\rangle = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right) = \lambda + \pi^{v} \OK
-$$
+\]
 where $\lambda = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
-Finally, two cases can occur depending on $v$ and the valuation of $\lambda$:
-\begin{enumerate}
-\item
-  If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$
+
+Two cases can occur depending on $v$ and the valuation of $\lambda$.
+If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$
   is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
-\item
-  If $\val(\lambda) \ge v$, then $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$
-  of $\PP'$ that verifies 
-  \[\val \underset{ \begin{array}{c} 1\le i\le r\\ \val\left(c'_{i}/{s_{i}} \right) = v  \end{array}}{\sum} y_{i} = 0. \]
-\end{enumerate}
+  Otherwise, if $\val(\lambda) \ge v$, then $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$
+  of $\PP'$ such that $\left<c',y \right> \in \pi^v$.
 
 \begin{remark}
-	To maximize the valuation of a linear map over a convex $p$-adic polyhedron instead of minimizing it (which is equuivalent to minimize the absolute value) the same reasoning can be aplied. The only difference being that if $\val\left( \lambda\right) < v$ the problem is unbounded and as such does not have any solution. 
+	If $\val \lambda \ge v$ and $i_0 \in \{1,\ldots, n\} $ is such that $v = \val \frac{c_{i_0}'}{s_{i_0}²} $ 
+  then the vector $e^{i_0} \in K$ is a solution of \ref{LP}, 
+  where $e^{i_0}$ denotes the vector of $K^n$ whose only non-zero coefficient is the $i_0$-th which is $1$.
 \end{remark}
 
-
+\begin{remark}
+To maximize the valuation of a linear map over a polyhedron instead of minimizing it 
+(which is equivalent to minimize the absolute value) the same reasoning can be applied. 
+The only difference being that if $\val\left( \lambda\right) < v$ the problem is unbounded and 
+as such does not admit a solution. 
+\end{remark}
 
 
 \section{Spectrahedra}
