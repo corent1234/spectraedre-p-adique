@@ -772,7 +772,9 @@ Furthermore, $K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ where $\chi$ is the function
 \begin{definition}
   \label{def_spectrahedra}
   A \emph{spectrahedron in $K^{d\times d}$} is a set of the form
-  $\mathcal{S} = \mathcal{L} \cap K^{d\times d}_+$,
+  $$
+  \mathcal{S} = \mathcal{L} \cap K^{d\times d}_+ = \left\{X \in K^{d \times d} : \exists \, x \in K^n, X = A_0+\sum_{x_i A_i}, X \succeq 0\right\}
+  $$
   where $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset K^{d \times d}$ is an affine space, for some
   $A_0,A_1,\ldots,A_n \in K^{d\times d}$.
 \end{definition}
@@ -780,7 +782,7 @@ Furthermore, $K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ where $\chi$ is the function
 \begin{remark}
   As in the real case, one often abuses of notation, saying that the preimage
   $S_A = \varphi_A^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$
-  of $K^{d \times d}_+$ under the map $\varphi_A : K^n \to K^{d \times d}$, defined as
+  of $K^{d \times d}_+$ under the map $\varphi_A : K^n \to \mathcal{L} \subset K^{d \times d}$, defined as
   $\varphi_A(x) = A_0+x_1A_1+\cdots+x_nA_n$, is a \emph{spectrahedron
   in $K^n$}. Remark that the map $\varphi_A$ is in general not injective, unless $A_1,\ldots,A_n$ are linearly
   indepedent.
@@ -799,23 +801,46 @@ Furthermore, $K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ where $\chi$ is the function
 %\end{remark}
 
 \begin{proposition}
-  A polyhedron in $K^{d \times d}$ is a spectrahedron in $K^{d \times d}$.
+  %%% OLD STATEMENT
+  %%% A polyhedron is a spectrahedron.
+A polyhedron in $K^n$ is a spectrahedron in $K^n$.
 \end{proposition}
 \begin{proof}
-  Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
-  be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
-  and $L = \{x \in K^n : \val(m_j) = +\infty, j=1,\ldots,e\}$.
-  First, denote by $A(x) = \ell_1 \oplus \cdots \oplus \ell_d \in K[x]^{d\times d}_1$,
-  so that $A(x) = A_0+x_1A_1+\cdots+x_nA_n$ for some (diagonal) $A_i \in K^{d\times d}$.
-  We might assume that $A_0,A_1,\ldots,A_n$ are affinely independent, so that the mapping
-  $\varphi(x) = A(x)$ is injective. 
-  First, remark that $Q=S_A$ and thus $\varphi(Q) = \mathcal{L} \cap K^{d\times d}$, with
-  $\mathcal{L} = A_0+\span{A_1,\ldots,A_n}$ is a spectrahedron.
-  Next, remark that $L \subset K^n$ is the affine space defined by equations $m_1=\ldots=m_e=0$,
-  hence $\varphi(L) \subset K^{d\times d}$ is an affine space. Since $\varphi$ is injective,
-  one has $\varphi(P) = \varphi(Q \cap L) = \varphi(Q) \cap \varphi(L)$ which is the intersection
-  of a spectrahedron with an affine space, thus a spectrahedron.
-  %Define $B = m_1 \oplus \cdots \oplus m_e \in K[x]^{e\times e}_1$
+  Let $P$ be a polyhedron in $K^n$. We show that there exist $d \in \mathbb{N}$ and
+  $A_0,A_1,\ldots,A_n \in K^{d \times d}$ such that $P = S_A$. Assume $P = L \cap M$ with
+  \begin{equation*}
+    \begin{aligned}
+    L &= \{x \in K^n : \val \ell_i(x) \geq 0, i=1, \ldots, d\} \\
+    M &= \{x \in K^n : \val m_j(x) = +\infty, j=1, \ldots, e\}
+    \end{aligned}
+  \end{equation*}
+  for some $d, e \in \mathbb{N}$. Let $\eta \leq n$ be the dimension of $M$ as vector subspace of
+  $K^n$, and let $y=(y_1, \ldots, y_\eta) \in K^{\eta}$ be variables on $M$, with $y = Tx$
+  for some $T \in K^{\eta \times n}$ with $\text{rank}(T) = \eta$. Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$
+  be such that
+  $$
+  A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
+  $$
+  One has that
+  $$
+  P = \{x \in \}
+  $$
+  {\bf à terminer -- Simone}  
+%%% OLD PROOF
+%  Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
+%  be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
+%  and $L = \{x \in K^n : \val(m_j) = +\infty, j=1,\ldots,e\}$.
+%  First, denote by $A(x) = \ell_1 \oplus \cdots \oplus \ell_d \in K[x]^{d\times d}_1$,
+%  so that $A(x) = A_0+x_1A_1+\cdots+x_nA_n$ for some (diagonal) $A_i \in K^{d\times d}$.
+%  We might assume that $A_0,A_1,\ldots,A_n$ are affinely independent, so that the mapping
+%  $\varphi(x) = A(x)$ is injective. 
+%  First, remark that $Q=S_A$ and thus $\varphi(Q) = \mathcal{L} \cap K^{d\times d}$, with
+%  $\mathcal{L} = A_0+\span{A_1,\ldots,A_n}$ is a spectrahedron.
+%  Next, remark that $L \subset K^n$ is the affine space defined by equations $m_1=\ldots=m_e=0$,
+%  hence $\varphi(L) \subset K^{d\times d}$ is an affine space. Since $\varphi$ is injective,
+%  one has $\varphi(P) = \varphi(Q \cap L) = \varphi(Q) \cap \varphi(L)$ which is the intersection
+%  of a spectrahedron with an affine space, thus a spectrahedron.
+%  %Define $B = m_1 \oplus \cdots \oplus m_e \in K[x]^{e\times e}_1$
 \end{proof}
 
 \begin{definition}
