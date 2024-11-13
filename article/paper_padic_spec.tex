@@ -779,26 +779,27 @@ Furthermore, $K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ where $\chi$ is the function
 
 \begin{remark}
   As in the real case, one often abuses of notation, saying that the preimage
-  $S = \varphi^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$
-  of $K^{d \times d}_+$ under the map $\varphi(x) = A_0+x_1A_1+\cdots+x_nA_n$, is a \emph{spectrahedron
-  in $K^n$}.
+  $S_A = \varphi_A^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$
+  of $K^{d \times d}_+$ under the map $\varphi_A : K^n \to K^{d \times d}$, defined as
+  $\varphi_A(x) = A_0+x_1A_1+\cdots+x_nA_n$, is a \emph{spectrahedron
+  in $K^n$}. Remark that the map $\varphi_A$ is in general not injective, unless $A_1,\ldots,A_n$ are linearly
+  indepedent.
 \end{remark}
 
-
 \begin{remark}
-  The class of spectrahedra is closed under intersection. Indeed, for affine spaces $\mathcal{L}_1,\mathcal{L}_2$
-  one has $(\mathcal{L}_1 \cap K^{d \times d}_+) \cap (\mathcal{L}_2 \cap K^{d \times d}_+) =
-  (\mathcal{L}_1 \cap \mathcal{L}_2) \cap K^{d \times d}_+$. Now
-  assuming $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = B_0+\span{B_1,\ldots,B_n}$,
-  then $S_A \cap S_B = S_{A \oplus B}$ (indeed both $A \succeq 0$ and $B \succeq 0$ if and only if
-  $A \oplus B \succeq 0$).
+  The class of spectrahedra in $K^{d \times d}$ (or in $K^n$) is closed under intersection: indeed one
+  has $(\mathcal{L}_1 \cap K^{d \times d}_+) \cap (\mathcal{L}_2 \cap K^{d \times d}_+) =
+  (\mathcal{L}_1 \cap \mathcal{L}_2) \cap K^{d \times d}_+$ and
+  $S_A \cap S_B = S_{\diag(A,B)}$, for two affine spaces $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$
+  et $\mathcal{L}_2 = A_0+\span{B_1,\ldots,B_n}$.
 \end{remark}
 
 %\begin{remark}
 %	As in the real case, the spectrahedron associated with the affine plan $\mathcal{L}$ will often be identified with its preimage in $K^s$ (i.e. the set of vectors $x \in K ^s$ so that the linear matrix $A(x) = A_0 + x_1A_1 + \ldots + x_sA_s$ is positive semidefinite with $A_0,A_1,\ldots,A_s$ spanning $\mathcal{L}$). 
 %\end{remark}
+
 \begin{proposition}
-  A polyhedron is a spectrahedron.
+  A polyhedron in $K^{d \times d}$ is a spectrahedron in $K^{d \times d}$.
 \end{proposition}
 \begin{proof}
   Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
