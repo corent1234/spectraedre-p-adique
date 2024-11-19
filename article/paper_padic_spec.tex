@@ -797,30 +797,36 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in t
   $(\mathbb{Q}_5)^{2 \times 2}_+ \not\subset (\mathbb{Z}_5)^{2 \times 2}$.
 \end{example}
 
-\begin{proposition}
-  {\color{blue} [Peut être une hypothèse à rajouter, par exemple $K$ à valuation discrete]}
-  The set $K^{d \times d}_+$ is both open and closed.
-\end{proposition}
-\begin{proof}
-Firstly, $\OK[X]$ is closed and open in $K[X]$ equipped with the infinitiy norm $\|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to \sup |a_k|$. $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ that induces a discrete distance for which open balls are also closed sets.
-Furthermore, $K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps a matrix to its characteristic polynomial which is continuous.
-\end{proof}
-
 \begin{definition}
   A \emph{cone} of $K^d$ is a subset that is closed under multiplication by elements of $\OK$.   
 \end{definition}
 
-\begin{remark}
-  \corentin{Pas nécessairement très important, à voir}
-  If $C$ is a cone that is furthermore closed under addition (what shall be called a convex cone in the real case) then $C$ is a $\OK$-module.
-\end{remark}
-
 \begin{proposition}
-  The set $K^{d \times d}_+$ is a cone.
+%  {\color{blue} [Peut être une hypothèse à rajouter, par exemple $K$ à valuation discrete]}
+  $K^{d \times d}_+$ is a cone.
+  If $\val$ is discrete, then it is both open and closed.
 \end{proposition}
 \begin{proof}
-  The result is immediate following the definiton of $K^{d \times d}_+$.
+  The fact that $K^{d \times d}_+$ is a cone is immediate from the definition.
+  Next, remark that $\OK[X]$ is closed and open in $K[X]$ equipped with the infinity norm
+  $$
+  \|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to
+  \max_{1 \leq k \leq n} |a_k|,
+  $$
+  {where $|\cdot|$ is any norm induced by $\val$}:
+  $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ that induces a discrete distance for
+  which open balls are also closed sets.
+  Furthermore, $K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps a
+  matrix to its characteristic polynomial which is continuous.
+  Thus $K^{d\times d}_+$ is both open and closed, too.
 \end{proof}
+
+
+%\begin{remark}
+%  \corentin{Pas nécessairement très important, à voir}
+%  If $C$ is a cone that is furthermore closed under addition (what shall be called a convex cone in the real case) then $C$ is a $\OK$-module.
+%\end{remark}
+
 
 
 \subsection{Definition of spectrahedra}
@@ -840,17 +846,16 @@ Furthermore, $K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ where $\chi$ is the function
   $S_A = \varphi_A^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$
   of $K^{d \times d}_+$ under the map $\varphi_A : K^n \to \mathcal{L} \subset K^{d \times d}$, defined as
   $\varphi_A(x) = A_0+x_1A_1+\cdots+x_nA_n$, is a \emph{spectrahedron
-  in $K^n$}. Remark that the map $\varphi_A$ is in general not injective, unless $A_1,\ldots,A_n$ are linearly
-  indepedent.
+  in $K^n$}. Remark that the map $\varphi_A$ is onto $\mathcal{L}$ but not injective,
+  unless $A_1,\ldots,A_n$ are linearly indepedent.
 \end{remark}
 
-\begin{remark}
-  The class of spectrahedra in $K^{d \times d}$ (or in $K^n$) is closed under intersection: indeed one
-  has $(\mathcal{L}_1 \cap K^{d \times d}_+) \cap (\mathcal{L}_2 \cap K^{d \times d}_+) =
-  (\mathcal{L}_1 \cap \mathcal{L}_2) \cap K^{d \times d}_+$ and
-  $S_A \cap S_B = S_{\diag(A,B)}$, for two affine spaces $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$
-  et $\mathcal{L}_2 = A_0+\span{B_1,\ldots,B_n}$.
-\end{remark}
+The class of spectrahedra in $K^{d \times d}$ (or in $K^n$) is closed under intersection: indeed one
+has $(\mathcal{L}_1 \cap K^{d \times d}_+) \cap (\mathcal{L}_2 \cap K^{d \times d}_+) =
+(\mathcal{L}_1 \cap \mathcal{L}_2) \cap K^{d \times d}_+$ and
+$S_A \cap S_B = S_{\diag(A,B)}$, for two affine spaces $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$
+et $\mathcal{L}_2 = A_0+\span{B_1,\ldots,B_n}$.
+Moreover this class contains polyhedra in $K^n$.
 
 %\begin{remark}
 %	As in the real case, the spectrahedron associated with the affine plan $\mathcal{L}$ will often be identified with its preimage in $K^s$ (i.e. the set of vectors $x \in K ^s$ so that the linear matrix $A(x) = A_0 + x_1A_1 + \ldots + x_sA_s$ is positive semidefinite with $A_0,A_1,\ldots,A_s$ spanning $\mathcal{L}$). 
@@ -904,22 +909,23 @@ A polyhedron in $K^n$ is a spectrahedron in $K^n$.
 \end{definition}
 
 \begin{proposition}
-  Spectrahedra are semialgebraic sets. 
+  Spectrahedra in $K^n$ are semialgebraic sets. 
 \end{proposition}
 
 \begin{proof}
-  Let $S$ be spectrahedron and $A$ a linear matrix such that $S={x \in K^n : A(x) \succeq 0}$. 
-  We denote as $p_i(x)$ the $i$-th coefficient of $\chi_{M(x)}$. The map $p_i	: x \to p_i(x)$ is polynomial and $x \in S$ if and only if $\val(p_i(x)) \geq 0$ for $i=0,...,d$.
-  
-  Finally, by \ref{caracsdp}, $S = \{x \in K^n : \chi_{M(x)} \in \OK(T)\} = \bigcap\limits_{i=0}^d \{x \in K^n : \val(p_i(x)) \geq 0\}$.
+  Let $S = S_A \subset K^n$ be spectrahedron, for some linear matrix $A(x) = A_0+\sum_{i=1}^n x_i A_i$. 
+  Denote by $p_i(x) \in K[x]$ the $i$-th coefficient of $\chi_{A(x)}$, $i=0,\ldots,d$.
+  By \Cref{caracsdp} one has:
+  $$
+  S = \left\{x \in K^n : \chi_{A(x)} \in \OK[T]\right\}
+  = \bigcap_{i=0}^d \{x \in K^n : \val(p_i(x)) \geq 0\}.
+  $$
 \end{proof}
 
-\corentin{ Une autre définition qu'il pourrait être intéressant d'explorer. Attention! Pas les mêmes propriétés.}
-\begin{definition}[Alternative definition]
-  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$. 
-  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$. 
-  The set $S_A,B := S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
-\end{definition}
+%\corentin{ Une autre définition qu'il pourrait être intéressant d'explorer. Attention! Pas les mêmes propriétés.}
+%\begin{definition}[Alternative definition]
+%  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$.  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$.   The set $S_A,B := S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
+%\end{definition}
 
 \subsection{Annuli}
 
