@@ -843,57 +843,59 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in t
   $A_0,A_1,\ldots,A_n \in K^{d\times d}$.
 \end{definition}
 
-\begin{remark}
-  As in the real case, one often abuses of notation, saying that the preimage
-  $S_A = \varphi_A^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$
-  of $K^{d \times d}_+$ under the map $\varphi_A : K^n \to \mathcal{L} \subset K^{d \times d}$, defined as
-  $\varphi_A(x) = A_0+x_1A_1+\cdots+x_nA_n$, is a \emph{spectrahedron
-  in $K^n$}. Remark that the map $\varphi_A$ is onto $\mathcal{L}$ but not injective,
-  unless $A_1,\ldots,A_n$ are linearly independent.
+In the real case, one often abuses of the definition of spectrahedra, saying that the set
+$\{x \in \mathbb{R}^n : A_0+\sum_{i=1}^n x_iA_i \succeq 0\}$ is also a spectrahedron.
+Remark that this also yields that every affine subset of $\mathbb{R}^n$ is also
+a spectrahedron: indeed an affine equation $\ell(x) = 0$ is equivalent to the two inequalities
+$\ell(x) \geq 0 \leq -\ell(x)$. Over a valuation field it is necessary to give the following
+definition in order to include affine sets in the family of spectrahedra.
+
+\begin{definition}
+  \label{def_spectrahedra_Kn}
+  A \emph{spectrahedron in $K^n$} is any affine section of a set of the form
+  $$
+  S_A = \varphi_A^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}
+  $$
+  where $\varphi_A : K^n \to \mathcal{L} \subset K^{d \times d}$ is the map
+  $\varphi_A(x) = A_0+x_1A_1+\cdots+x_nA_n$.
 \end{remark}
+
+Remark that the map $\varphi_A$ in \Cref{def_spectrahedra_Kn} is onto $\mathcal{L}$ but not
+injective, unless $A_1,\ldots,A_n$ are linearly independent. Moreover $K^n$ (and thus every affine
+subset of $K^n$) is itself a spectrahedron, choosing $A_0 \succeq 0$ and $A_1=A_2=\cdots=A_n=0$.
 
 The class of spectrahedra in $K^{d \times d}$ (or in $K^n$) is closed under intersection: indeed one
 has $(\mathcal{L}_1 \cap K^{d \times d}_+) \cap (\mathcal{L}_2 \cap K^{d \times d}_+) =
-(\mathcal{L}_1 \cap \mathcal{L}_2) \cap K^{d \times d}_+$ and
-$S_A \cap S_B = S_{\diag(A,B)}$, for two affine spaces $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$
-et $\mathcal{L}_2 = A_0+\span{B_1,\ldots,B_n}$.
+(\mathcal{L}_1 \cap \mathcal{L}_2) \cap K^{d \times d}_+$
+, for two affine spaces
+$\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = A_0+\span{B_1,\ldots,B_n}$,
+and
+$(L_1 \cap S_A) \cap (L_2 \cap S_B) = (L_1\cap L_2) \cap S_{\diag(A,B)}$ for
+two affine spaces $L_1,L_2 \subset K^n$.
 Moreover this class contains polyhedra in $K^n$.
 
-%\begin{remark}
-%	As in the real case, the spectrahedron associated with the affine plan $\mathcal{L}$ will often be identified with its preimage in $K^s$ (i.e. the set of vectors $x \in K ^s$ so that the linear matrix $A(x) = A_0 + x_1A_1 + \ldots + x_sA_s$ is positive semidefinite with $A_0,A_1,\ldots,A_s$ spanning $\mathcal{L}$). 
-%\end{remark}
-
 \begin{proposition}
-  %%% OLD STATEMENT
-  %%% A polyhedron is a spectrahedron.
-A polyhedron in $K^n$ is a spectrahedron in $K^n$.
+  A polyhedron in $K^n$ is a spectrahedron in $K^n$.
 \end{proposition}
 \begin{proof}
-  Let $P = L \cap M$ be a polyhedron in $K^n$, with
-  \begin{equation*}
-    \begin{aligned}
-    L &= \{x \in K^n : \val \ell_i(x) \geq 0, i=1, \ldots, d\} \\
-    M &= \{x \in K^n : \val m_j(x) = +\infty, j=1, \ldots, e\}
-    \end{aligned}
-  \end{equation*}
+  Assume $P = L \cap M$ be a polyhedron in $K^n$, with
+  $L = \{x \in K^n : \val \ell_i(x) \geq 0, i=1, \ldots, d\}$
+  and $M = \{x \in K^n : \val m_j(x) = +\infty, j=1, \ldots, e\}$,
   for some $d, e \in \mathbb{N}$.
-  %Let $T : K^{\eta} \to K^n$ be a surjective linear map such that
-  %$\text{im}(T) = M$, with $\eta = \dim(M)$.
-  %Let $y = (y_1, \ldots, y_\eta)^T \in K^{\eta}$ be variables on $M$, so that $x \in M$ iff
-  %$x = Ty$ for some $y \in K^{\eta}$.
   Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$ be such that
   $$
   \varphi_A(x) := A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
   $$
-  One has $L = \varphi_A^{-1}(K^{d \times d}_+)$.
-  %and hence
-  %$$
-  %P = \{x \in K^n : x = Ty \in M, \varphi_A(x) \succeq 0\}.
-  %$$
-
-  \vspace{1cm}
-  In other words, we showed that there exist $d \in \mathbb{N}$ and
-  $A_0,A_1,\ldots,A_n \in K^{d \times d}$ such that $P = S_A$, as stated.
+  One has $L = S_A = \varphi_A^{-1}(K^{d \times d}_+)$. Since $M \subset K^n$ is affine, 
+  $P$ is a spectrahedron in $K^n$.
+%  %and hence
+%  %$$
+%  %P = \{x \in K^n : x = Ty \in M, \varphi_A(x) \succeq 0\}.
+%  %$$
+%
+%  \vspace{1cm}
+%  In other words, we showed that there exist $d \in \mathbb{N}$ and
+%  $A_0,A_1,\ldots,A_n \in K^{d \times d}$ such that $P = S_A$, as stated.
 %%% OLD PROOF
 %  Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
 %  be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
