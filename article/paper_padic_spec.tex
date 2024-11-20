@@ -737,7 +737,7 @@ as such does not admit a solution.
   The characteristic polynomial of a matrix $M \in K^{d\times d}$ is denoted $\chi_M \in K[T]$.
 \end{definition}
 
-Recall that the {\it Newton polygon} $\mathcal{P}$ of a polynomial $P = \sum_{i=0}^{d} a_i T^i \in K[T]$ is
+Recall that the \emph{Newton polygon} $\mathcal{P}$ of a polynomial $P = \sum_{i=0}^{d} a_i T^i \in K[T]$ is
 defined as the inferior convex hull of the set $\{(i, \val a_i) \,|\, 0 \le i \le d\}$, {\it i.e.} the
 graph of the greatest convex function $\mathcal{P} : [0,d] \to \R$ such that $\mathcal{P}(i) \leq \val a_i$
 for $i=1,\ldots,d$. This function is piecewise affine and its slopes are exactly the opposites of the valuations
@@ -836,7 +836,8 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in t
   \label{def_spectrahedra}
   A \emph{spectrahedron in $K^{d\times d}$} is a set of the form
   $$
-  \mathcal{S} = \mathcal{L} \cap K^{d\times d}_+ = \left\{X \in K^{d \times d} : \exists \, x \in K^n, X = A_0+\sum_{x_i A_i}, X \succeq 0\right\}
+  \mathcal{S} = \mathcal{L} \cap K^{d\times d}_+ = \left\{X \in K^{d \times d} :
+  \exists \, x \in K^n, X = A_0 + \sum_{i=1}^n x_i A_i, X \succeq 0\right\}
   $$
   where $\mathcal{L} = A_0+\span{A_1,\ldots,A_n} \subset K^{d \times d}$ is an affine space, for some
   $A_0,A_1,\ldots,A_n \in K^{d\times d}$.
@@ -848,7 +849,7 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in t
   of $K^{d \times d}_+$ under the map $\varphi_A : K^n \to \mathcal{L} \subset K^{d \times d}$, defined as
   $\varphi_A(x) = A_0+x_1A_1+\cdots+x_nA_n$, is a \emph{spectrahedron
   in $K^n$}. Remark that the map $\varphi_A$ is onto $\mathcal{L}$ but not injective,
-  unless $A_1,\ldots,A_n$ are linearly indepedent.
+  unless $A_1,\ldots,A_n$ are linearly independent.
 \end{remark}
 
 The class of spectrahedra in $K^{d \times d}$ (or in $K^n$) is closed under intersection: indeed one
@@ -868,26 +869,31 @@ Moreover this class contains polyhedra in $K^n$.
 A polyhedron in $K^n$ is a spectrahedron in $K^n$.
 \end{proposition}
 \begin{proof}
-  Let $P$ be a polyhedron in $K^n$. We show that there exist $d \in \mathbb{N}$ and
-  $A_0,A_1,\ldots,A_n \in K^{d \times d}$ such that $P = S_A$. Assume $P = L \cap M$ with
+  Let $P = L \cap M$ be a polyhedron in $K^n$, with
   \begin{equation*}
     \begin{aligned}
     L &= \{x \in K^n : \val \ell_i(x) \geq 0, i=1, \ldots, d\} \\
     M &= \{x \in K^n : \val m_j(x) = +\infty, j=1, \ldots, e\}
     \end{aligned}
   \end{equation*}
-  for some $d, e \in \mathbb{N}$. Let $T : K^{\eta} \to K^n$ be a surjective linear map such that
-  $\text{im}(T) = M$, with $\eta = \dim(M)$.
-  Let $y = (y_1, \ldots, y_\eta)^T \in K^{\eta}$ be variables on $M$, so that $x \in M$ iff
-  $x = Ty$ for some $y \in K^{\eta}$. Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$
-  be such that
+  for some $d, e \in \mathbb{N}$.
+  %Let $T : K^{\eta} \to K^n$ be a surjective linear map such that
+  %$\text{im}(T) = M$, with $\eta = \dim(M)$.
+  %Let $y = (y_1, \ldots, y_\eta)^T \in K^{\eta}$ be variables on $M$, so that $x \in M$ iff
+  %$x = Ty$ for some $y \in K^{\eta}$.
+  Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$ be such that
   $$
-  A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
+  \varphi_A(x) := A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
   $$
-  One has that
-  $$
-  P = L \cap M = \{x \in K^n : x = Ty \in M, A_0+\sum_{i=1}^n x_iA_i \succeq 0\}.
-  $$
+  One has $L = \varphi_A^{-1}(K^{d \times d}_+)$.
+  %and hence
+  %$$
+  %P = \{x \in K^n : x = Ty \in M, \varphi_A(x) \succeq 0\}.
+  %$$
+
+  \vspace{1cm}
+  In other words, we showed that there exist $d \in \mathbb{N}$ and
+  $A_0,A_1,\ldots,A_n \in K^{d \times d}$ such that $P = S_A$, as stated.
 %%% OLD PROOF
 %  Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
 %  be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
