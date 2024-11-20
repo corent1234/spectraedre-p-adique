@@ -876,18 +876,18 @@ A polyhedron in $K^n$ is a spectrahedron in $K^n$.
     M &= \{x \in K^n : \val m_j(x) = +\infty, j=1, \ldots, e\}
     \end{aligned}
   \end{equation*}
-  for some $d, e \in \mathbb{N}$. Let $\eta \leq n$ be the dimension of $M$ as vector subspace of
-  $K^n$, and let $y = (y_1, \ldots, y_\eta)^T \in K^{\eta}$ be variables on $M$, with $Ty = x$
-  for some $T \in K^{n \times \eta}$ with $\text{rank}(T) = \eta$. Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$
+  for some $d, e \in \mathbb{N}$. Let $T : K^{\eta} \to K^n$ be a surjective linear map such that
+  $\text{im}(T) = M$, with $\eta = \dim(M)$.
+  Let $y = (y_1, \ldots, y_\eta)^T \in K^{\eta}$ be variables on $M$, so that $x \in M$ iff
+  $x = Ty$ for some $y \in K^{\eta}$. Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$
   be such that
   $$
   A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
   $$
   One has that
   $$
-  P = \{x \in K^n : x \in M, \}
+  P = L \cap M = \{x \in K^n : x = Ty \in M, A_0+\sum_{i=1}^n x_iA_i \succeq 0\}.
   $$
-  {\bf à terminer -- Simone}  
 %%% OLD PROOF
 %  Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
 %  be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
