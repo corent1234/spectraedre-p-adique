@@ -76,7 +76,7 @@
 
 %\title{\bf Title}
 %\title{\bf On polyhedra and spectrahedra over valuation fields}
-\title{\bf On semidefinite representable sets over valuation fields}
+\title{\bf On semidefinite-representable sets over valuation fields}
 
 \begin{document}
 
@@ -93,10 +93,10 @@
 \begin{abstract}
   \noindent
   Real polyhedra and real spectrahedra (or their projections) are respectively the feasible sets
-  of linear programming (LP) and semidefinite programming (SDP). 
-  This paper investigates versions of these sets and of
+  of linear programming (LP) and semidefinite programming (SDP) and form the family of
+  semidefinite-representable sets. This paper investigates versions of these sets and of
   the related optimization problems with data over a field $K$ with valuation.
-  DIRE CE QU'ON FAIT.
+  We prove that basic properties of semidefinite-representable sets generalize to this setting.
   We showcase examples of non-polyhedral $K$-spectrahedra and of sets that are semidefinite
   representable over $K$ but are not $K$-spectrahedra.
 \end{abstract}
@@ -237,10 +237,11 @@ bounds are known based either on general quantifier elimination \cite{ramana1997
 or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
 
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
-called \emph{semidefinite representable sets} (or spectrahedral shadows): these are sets of the form
+called \emph{semidefinite representable sets}: these are sets of the form
 $$
-P = \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^p, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^p y_j B_j \succeq 0\right\}
+P = \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}
 $$
+when $m>0$, the set $P$ is also called a \emph{spectrahedral shadow}.
 
 \begin{example}
 \label{fermat_quartic}
@@ -929,20 +930,36 @@ A polyhedron in $K^n$ is a spectrahedron in $K^n$.
 
 \subsection{Annuli}
 
-$\R^*_+$ denotes the set of positive real numbers.
+Denote by $\R^*_+$ the set of positive real numbers.
 
 \begin{definition}[Annulus]\label{def_annuli}
-  A set of the form $A = \{x \in K \,|\, a \le \val(x) \le b\}$ for $a,b \in \R^*_+$ is called \emph{annulus}.
+  A set of the form $A = \{x \in K \,|\, a \le \val(x) \le b\}$, for $a,b \in \R^*_+$,
+  is called \emph{annulus}.
 \end{definition}
 
+\begin{definition}[Semidefinite-representable set]\label{def_annuli}
+  A set $S \subset K^n$ is called \emph{semide\-fi\-nite-re\-pre\-sen\-ta\-ble (SDR)} if there exist $m,d \in \N$ and
+  matrices $\{A_i,B_j : i = 0, \ldots, n, j = 1, \ldots, m\} \subset K^{d \times d}$ such that
+  $$
+  S = \left\{x \in K^n : \exists y \in K^m, A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j \succeq 0\right\}
+  $$
+  that is $S$ satisfies $x \in S$ if and only if there exists $y \in K^m$ such that
+  $(x,y) \in S_M \subset K^{n+m}$, for $M(x,y) = A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j$.
+  The integer $m$ is called the height of the representation.
+\end{definition}
+
+Of course spectrahedra are SDR sets with height $m=0$.
+In order to distinguish between spectrahedra and possibly non-spectrahedral semidefinite-representable sets
+we usually call \emph{spectrahedral shadows} the SDR sets with height $m>0$.
+
 \begin{theorem}
-Annuli are spectrahedral shadows.
-\end{theorem} 
+Annuli are spectrahedral shadows with height $m=1$.
+\end{theorem}
 \begin{proof}
   Let $A$ be as in \Cref{def_annuli}, for some $a,b \in \R^*_+$, assume $a<b$. Consider the spectrahedron
-  $\mathcal{S} \subset K^2$ defined by
+  $S_M \subset K^2$ defined by
   $$
-  \mathcal{S}= \left\{(x,y) \in K^2 : M(x,y) := \diag\left(\pi^ax, \pi^{-b}y, \begin{bmatrix} \pi^{-1} & -\pi^{-1}x \\ \pi^{-1}y & - \pi^{-1}  \\ \end{bmatrix}\right) \succeq 0\right\}.
+  S_M= \left\{(x,y) \in K^2 : M(x,y) := \diag\left(\pi^ax, \pi^{-b}y, \begin{bmatrix} \pi^{-1} & -\pi^{-1}x \\ \pi^{-1}y & - \pi^{-1}  \\ \end{bmatrix}\right) \succeq 0\right\}.
   $$
 We will show that $x \in A$ if and only if  there exists $y\in K$ such that $(x,y) \in \mathcal{S}$.
 Let $x,y \in K$. By \Cref{caracsdp}, $M(x,y) \succeq 0$ if and only if $(x,y)$ is a solution of
