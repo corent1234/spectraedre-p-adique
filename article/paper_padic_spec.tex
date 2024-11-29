@@ -856,8 +856,9 @@ definition in order to include affine sets in the family of spectrahedra.
   $$
   S_A = \varphi_A^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}
   $$
+  for some $d\in \mathbb{N}$,
   where $\varphi_A : K^n \to \mathcal{L} \subset K^{d \times d}$ is the map
-  $\varphi_A(x) = A_0+x_1A_1+\cdots+x_nA_n$.
+  $\varphi_A(x) = A_0+x_1A_1+\cdots+x_nA_n$, and $\mathcal{L} = A_0+\span{A_1,\ldots,A_n}$.
 \end{definition}
 
 Remark that the map $\varphi_A$ in \Cref{def_spectrahedra_Kn} is onto $\mathcal{L}$ but not
@@ -936,13 +937,14 @@ Moreover this class contains polyhedra in $K^n$.
 %  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$.  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$.   The set $S_A,B := S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
 %\end{definition}
 
-\subsection{Annuli}
+\subsection{Polyannuli}
 
 Denote by $\R^*_+$ the set of positive real numbers.
 
-\begin{definition}[Annulus]\label{def_annuli}
-  A set of the form $A = \{x \in K \,|\, a \le \val(x) \le b\}$, for $a,b \in \R^*_+$,
-  is called \emph{annulus}.
+\begin{definition}[Polyannulus]\label{def_annuli}
+  A set of the form $C = \{x \in K \,|\, a \le \val(x) \le b\}$, for $a,b \in \R^*_+$,
+  is called \emph{annulus}. A product $C_1 \times C_2 \times \cdots \times C_n \subset K^n$,
+  where each $C_i \subset K$ is an annulus, is called a \emph{polyannulus}.
 \end{definition}
 
 \begin{definition}[Semidefinite-representable set]\label{def_annuli}
@@ -951,20 +953,25 @@ Denote by $\R^*_+$ the set of positive real numbers.
   $$
   S = \left\{x \in K^n : \exists y \in K^m, A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j \succeq 0\right\}
   $$
-  that is $S$ satisfies $x \in S$ if and only if there exists $y \in K^m$ such that
+  that is, $x \in S$ if and only if there exists $y \in K^m$ such that
   $(x,y) \in S_M \subset K^{n+m}$, for $M(x,y) = A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j$.
-  The integer $m$ is called the height of the representation.
+  The integer $m$ is called the \emph{height} of the representation and $d$ its \emph{degree}.
 \end{definition}
 
-Of course spectrahedra are SDR sets with height $m=0$.
-In order to distinguish between spectrahedra and possibly non-spectrahedral semidefinite-representable sets
+Of course a spectrahedron $S_A = \varphi_A^{-1}(K^{d \times d})$ is SDR with height $m=0$ and degree
+$d$. In order to distinguish between spectrahedra and possibly non-spectrahedral semidefinite-representable sets
 we usually call \emph{spectrahedral shadows} the SDR sets with height $m>0$.
 
 \begin{theorem}
-Annuli are spectrahedral shadows with height $m=1$.
+Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n$.
 \end{theorem}
 \begin{proof}
-  Let $A$ be as in \Cref{def_annuli}, for some $a,b \in \R^*_+$, assume $a<b$. Consider the spectrahedron
+  Let $C = C_1 \times \cdots \times C_n \subset K^n$ be as in \Cref{def_annuli},
+  for some annuli $C_1,\ldots,C_n \subset K$. We claim that each $C_i$ is a spectrahedral
+  shadow of height $1$ and degree $4$. Assume $C_i = \{x \in K : a_i \leq \val(x) \leq b_i\}$
+  for some $a_i, b_i \in \R^*_+$ with $a_i < b_i$. Consider the spectrahedron
+
+  %%% ARRIVATO QUI
   $S_M \subset K^2$ defined by
   $$
   S_M= \left\{(x,y) \in K^2 : M(x,y) := \diag\left(\pi^ax, \pi^{-b}y, \begin{bmatrix} \pi^{-1} & -\pi^{-1}x \\ \pi^{-1}y & - \pi^{-1}  \\ \end{bmatrix}\right) \succeq 0\right\}.
