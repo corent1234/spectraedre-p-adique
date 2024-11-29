@@ -968,35 +968,49 @@ Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n
 \begin{proof}
   Let $C = C_1 \times \cdots \times C_n \subset K^n$ be as in \Cref{def_annuli},
   for some annuli $C_1,\ldots,C_n \subset K$. We claim that each $C_i$ is a spectrahedral
-  shadow of height $1$ and degree $4$. Assume $C_i = \{x \in K : a_i \leq \val(x) \leq b_i\}$
+  shadow of height $1$ and degree $4$. Assume $C_i = \{x_i \in K : a_i \leq \val(x_i) \leq b_i\}$
   for some $a_i, b_i \in \R^*_+$ with $a_i < b_i$. Consider the spectrahedron
-
-  %%% ARRIVATO QUI
-  $S_M \subset K^2$ defined by
+  $S_{M^{(i)}} \subset K^2$ defined by
   $$
-  S_M= \left\{(x,y) \in K^2 : M(x,y) := \diag\left(\pi^ax, \pi^{-b}y, \begin{bmatrix} \pi^{-1} & -\pi^{-1}x \\ \pi^{-1}y & - \pi^{-1}  \\ \end{bmatrix}\right) \succeq 0\right\}.
+  S_{M^{(i)}} = \left\{(x_i,y_i) \in K^2 :
+  M^{(i)}(x_i,y_i) := \diag\left(\pi^a x_i, \pi^{-b} y_i,
+  \begin{bmatrix}
+    \pi^{-1} & -\pi^{-1} x_i  \\
+    \pi^{-1} y_i & - \pi^{-1} \\
+  \end{bmatrix}\right) \succeq 0
+  \right\}.
   $$
-We claim that $x \in A$ if and only if there exists $y \in K$ such that $(x,y) \in S_M$.
-
-Let $x,y \in K$. By \Cref{caracsdp}, $M(x,y) \succeq 0$ if and only if $(x,y)$ is a solution of
-\eqref{eq:annulussyst}:
-\begin{equation}
-  \label[type]{eq:annulussyst}
-\begin{cases}
-  \val(\pi^ax) \ge 0 \\
-  \val(\pi^{-b}y) \ge 0\\
+  We claim that $x_i \in C_i$ if and only if there exists $y_i \in K$ such that $(x_i,y_i) \in S_{M^{(i)}}$.
+  Indeed, by \Cref{caracsdp}, $M^{(i)}(x_i,y_i) \succeq 0$ if and only if $(x_i,y_i)$ is a solution of the system
+  of inequalities:
+  \begin{equation}
+    \label[type]{eq:annulussyst}
+    \begin{cases}
+      \val(\pi^a x_i) \ge 0 \\
+  \val(\pi^{-b} y_i) \ge 0\\
   \val(\pi^{-1}- \pi^{-1}) = +\infty \ge 0\\
-  \val(\pi^{-2}\left( xy-1 \right))  \ge 0 
+  \val(\pi^{-2}\left( x_iy_i-1 \right))  \ge 0 
 \end{cases}
 \iff	
 \begin{cases} 
-		\val\left(x\right)\ge a\\
-		\val\left(y\right)\ge -b\\
-		\val\left( xy-1 \right) \ge 2
-	\end{cases}
+  \val\left(x_i\right)\ge a\\
+  \val\left(y_i\right)\ge -b\\
+  \val\left(x_iy_i-1 \right) \ge 2
+\end{cases}
 \end{equation}
-Therefore, if $(x, y)$ verifies \eqref{eq:annulussyst} then $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ and $ \left( xy-1 \right) \ge 2$. The last inequality implies that $\val\left(x\right)+\val\left(y\right)=\val\left(xy\right) = \val\left(-1\right) =0$ and therefore that $\val\left(x\right)=-\val\left(y\right)\le -(-b)  =b$, so $x \in C$. 
-Reciprocally if $x \in C$ then $(x,x^{-1}) $ is a solution of \eqref{eq:annulussyst}.
+  %Therefore, if $(x, y)$ verifies \eqref{eq:annulussyst} then $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ and $ \left( xy-1 \right) \ge 2$.
+  The last inequality implies that $\val\left(x_i\right)+\val\left(y_i\right)=\val\left(x_iy_i\right) = \val\left(-1\right) =0$ and therefore that $\val\left(x_i\right)=-\val\left(y_i\right)\le -(-b) = b$, so $x_i \in C_i$. 
+Reciprocally if $x_i \in C_i$ then $(x_i,x_i^{-1})$ is a solution of \eqref{eq:annulussyst}.
+This proves our claim.
+Finally, since $C = C_1 \times \cdots \times C_n$, one has
+\begin{equation*}
+  \begin{aligned}
+    C &=
+    \{x=(x_1,\ldots,x_n) \in K^n : \exists y = (y_1,\ldots,y_n) \in K^n, (x_i,y_i) \in S_{M^{(i)}}, i=1,\ldots,n\} \\
+    &= \{x \in K^n : \exists y \in K^n, (x,y) \in S_M\}
+  \end{aligned}
+\end{equation*}
+with $S_M = \diag\left(M^{(1)}, M^{(2)}, \ldots, M^{(n)}\right) \in K[x,y]^{4n \times 4n}.$
 \end{proof}
 
 
