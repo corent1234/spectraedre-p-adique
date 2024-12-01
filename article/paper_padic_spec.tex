@@ -566,6 +566,35 @@ is a polyhedron.
 This concludes the proof.
 \end{proof}
 
+\begin{proposition}[Caracterisation of polyhedron] \label{prop:carac}
+    Polyhedra are either empty or the image of polydiscs  under a linear mapping.
+\end{proposition}
+
+\begin{proof}
+    Let $\mathcal{P}$ be a polyhedron in $K^n$. Then $\mathcal{P} = \{x \in K^n : Ax+B \ge 0, Dx = e\}$ for some $A \in K^{d \times n}, b \in K ^d,  D\in  K^{m\times n}, e \in K^m$.
+
+    If $\mathcal{P}$ is nonempty then there exists $x_0 \in K^n$ such that $Dx_0=e$. Let $J \in K^{n \times R}$ such that $\textrm{Im} J = \ker D$ where $R$ denotes the dimension of $\ker D$. Then $\mathcal{P} = x_0 + J\mathcal{P}'$ where $A' := AJ$ $b' := Ax_0 + b$ and  $\mathcal{P'} := \{y \in K ^R: A'y + b' \ge 0 \}$.
+
+    Now let $S \in K^{n\times R}$ be the SNF of $A'$ and $Q \in \mathbf{GL}_n\left(\mathcal{O}_K\right)$ and $P \in \mathbf{GL}_R\left(\mathcal{O}_K\right)$ such that $A'= Q S P^{-1}$.
+    Then $\mathcal{P'} = \{y \in K^R : QSP^{-1}y + b' \ge  0\} = P\{z \in K^R : Sz + Q^{-1}b' \ge 0 \}$.
+    Let $b'':=Q^{-1}b$ then $P' = P \{z \in K^R : s_i z_i + b''_i \ge 0, i= 1\ldots R\}$. The set $\{z \in K^R : s_i z_i + b_i \ge 0\}$ is either empty or a polydisc (with eventually infinite radii) and $\mathcal{P} = x_0 + JP \{z \in K^R: s_i z_i + b_i \ge  0, i=1,\ldots,R\}$ which concludes the proof.
+
+
+\end{proof}
+
+\begin{corollary} \label{cor:caracdim1}
+   If $\mathcal{P}$ is a polyhedron in $K$ then $\mathcal{P}$ is either empty or a ball (eventually with infinite radius).
+\end{corollary}
+
+\begin{proof}
+    Let $\mathcal{P}$ be such polyhedron. We assume that $\mathcal{P} \neq \emptyset$. By \ref{prop:carac} there exist a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\mathcal{P} = f(D)$.
+    Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, with no loss of generality, that the $a_i$'s are nonzero. 
+
+
+If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\mathcal{P} = f(D) = K$ and $\mathcal{P}$ is a ball of infinite radius. Otherwise, we have $D = \{x \in K^n : x_i = \frac{b_i}{s_i} + O\left( \pi^{-val s_i} \right), i=1,\ldots,n \}$ and therefore for all $x \in  K$, $x \in P$ if and only if $x = a_0 + \sum_{i=1}^{n}( \frac{a_i b_i}{s_i} + O\left( \pi^{\val a_i - \val s_i} \right))= a_0  + \sum_{i=1}^{n} \frac{a_i b_i}{s_i} + O(\pi^d)$ where $d = \min \limits_{i = 1,\ldots,n} \val a_i - \val s_i$. Thus $\mathcal{P} = \{x \in K : \val (x - a_0 - \sum_{i=1}^{n} \frac{a_i b_i}{s_i}) \ge d \}$ is a ball.
+
+\end{proof}
+
 
 %%%%% old section by Corentin
 %%%%%\input{old_LP_section.tex}
@@ -914,6 +943,18 @@ Moreover this class contains polyhedra in $K^n$.
 %  %Define $B = m_1 \oplus \cdots \oplus m_e \in K[x]^{e\times e}_1$
 \end{proof}
 
+\begin{example}
+    The spectrahedron
+\[
+    \mathcal{S} = \left\{x \in K ; M(x) := \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}
+\] 
+    is not a polyhedron.
+\end{example}
+    \begin{proof}
+        By \ref{caracsdp} $S = \{x \in K, \val( x (x + \pi^{-1})) \ge 0\} = \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$which is not a ball. Therefore, by \ref{cor:caracdim1}, $S$ is not a polyhedron.
+
+    \end{proof}
+    
 \begin{definition}
   A subset $S$ of $K^n$ is said \emph{semialgebraic} if it is defined by finite unions and intersections of sets defined by polynomial equalities of the form $\{ x \in K^n  : P( x) = 0 \}$ and of sets defined by polynomial inequalities of the form $\{ x\in K^n : \val P(x) \geq 0 \}$.
 \end{definition}
@@ -1033,5 +1074,6 @@ The second author acknowledges support from the ANR Project ``HYPERSPACE'' (ANR-
 
 
 \printbibliography
+
 
 \end{document}
