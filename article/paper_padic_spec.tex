@@ -15,18 +15,18 @@
 \usepackage{cleveref}
 
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}{Lemma}
-\newtheorem{proposition}{Proposition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{algorithm}{Algorithm}
-\newtheorem{conjecture}{Conjecture}
-\newtheorem{condition}{Condition}
-\newtheorem{definition}{Definition}
-\newtheorem{assumption}{Assumption}
-\newtheorem{remark}{Remark}
-\newtheorem{problem}{Problem}
-\newtheorem{example}{Example}
-\newtheorem{notation}{Notation}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
 \usepackage{booktabs}
 
 \textheight235mm
@@ -122,7 +122,7 @@
 
 Throughout the paper, $K$ refers to a complete,
 discrete valuation field, $\val : K \twoheadrightarrow \ZZ \cup \{+\infty\}$ to its valuation,
-$\OK$ its ring of integers and $\pi$ a uniformizer.
+$\OK$ its ring of integers, $\kappa$ its residue field and $\pi$ a uniformizer.
 For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
 A typical example of $K$ as above is the field of $p$-adic numbers 
 $\QQ_p$ (equipped with the $p$-adic valuation). For this example, we 
@@ -988,7 +988,7 @@ Denote by $\R^*_+$ the set of positive real numbers.
   where each $C_i \subset K$ is an annulus, is called a \emph{polyannulus}.
 \end{definition}
 
-\begin{definition}[Semidefinite-representable set]\label{def_annuli}
+\begin{definition}[Semidefinite-representable set]\label{def_semi_def_rep_set}
   A set $S \subset K^n$ is called \emph{semide\-fi\-nite-re\-pre\-sen\-ta\-ble (SDR)} if there exist $m,d \in \N$ and
   matrices $\{A_i,B_j : i = 0, \ldots, n, j = 1, \ldots, m\} \subset K^{d \times d}$ such that
   $$
@@ -1054,6 +1054,43 @@ Finally, since $C = C_1 \times \cdots \times C_n$, one has
 with $S_M = \diag\left(M^{(1)}, M^{(2)}, \ldots, M^{(n)}\right) \in K[x,y]^{4n \times 4n}.$
 \end{proof}
 
+
+\begin{proposition}
+If the residue field $\kappa$ is infinite, then
+no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
+\end{proposition}
+\begin{proof}
+By Definition \ref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
+can be defined as the set $\{x \in K : A_0+x_1A_1 \succeq 0\}$
+for some integer $n$ and matrices $A_0$ and $A_1$ in $K^{n \times n}$.
+Thanks to Theorem \ref{caracsdp},
+this set corresponds to an intersection of the form
+$\cap_{i=0}^{n-1} \{ x \in K : \val(a_i(x)) \geq 0 \},$
+for some polynomials $a_i$'s, univariate over $K$.
+
+Following Julian Rüth's PhD thesis \cite{ruth_models_2015},
+the set $\{ x \in K : \val(a_i(x)) \geq 0 \}$
+is denoted by $\textrm{Disk}(a_i,0)$ and is called 
+a diskoid.
+By \cite[Lemma 4.44]{ruth_models_2015}, the intersection
+of two diskoids is either empty or a diskoid.
+Consequently, spectrahedra of $K$ are diskoids.
+
+By \cite[Lemma 4.43]{ruth_models_2015}, if $K$
+contains the roots of $\Phi$ then the diskoid
+$D=\textrm{Disk}(\Phi, \lambda)$ is the finite union
+of closed balls of equal radius centered at the roots of $f$ (and their common radius can be made explicit).
+
+Finally, if $\kappa$ is infinite, one can remark that the sphere
+$\{x \in K \,|\,  \val(x) =0\}$ is equal to the infinite disjoint union $\amalg_{l \in \kappa} B(b_l, \vert \pi \vert)$ for some 
+representatives $b_l \in O_K$ of the classes of $O_K / \pi O_K=\kappa.$
+It thus can not be covered by a finite amount of balls of radius $\vert \pi \vert$
+and if one take any ball of radius $1$ centered at a point of the sphere, then one gets the whole
+$B(0,1).$
+A direct generalization of this argument proves that
+if $\kappa$ is infinite, no (non trivial) annulus can be equal to
+a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and finally, no (non trivial) annulus can be a spectrahedron.
+\end{proof}
 
 %\subsection{Polyhedrality}
 %Cf. \cite{bhardwaj2015deciding}
