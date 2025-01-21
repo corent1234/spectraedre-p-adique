@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt]{article}
+\documentclass[a4paper,12pt]{article}
 
 %%%\newenvironment{proof}{\hbox{}\vspace{-0.8cm} {\bf Proof:}}{\hfill $\Box$ \vspace{0.2cm}}
 
@@ -316,19 +316,21 @@ $\val(\ell_i(x))<+\infty$.
 %  diviser la proposition en plusieures parties pour la rendre plus lisible, par exemple une
 %  première proposition avec la projection.}
 
-In this section we show that the image of a polyhedron by a linear mappingA is a polyhedron. 
+In this section we show that the image of a polyhedron by a linear mapping is a polyhedron. 
 We first prove the result in the cases of authomorphisms of $\OK^n$ and diagonal endomorphisms of $K^n$.
-Then we use these particular cases to prove the result for projections of the form $(x_1,\dots,x_n) \mapsto (x_1,\dots, x_{n-1})$
-and finally for the general case.
+Then we use these particular cases to prove the result for projections of the form
+$(x_1,\dots,x_n) \mapsto (x_1,\dots, x_{n-1})$ and finally for the general case.
 
 \begin{remark}
- First, let $f : K^n \to K^m$ be a linear map and $\PP \subset K^n$ be a polyhedron defined by 
+  First, let $f : K^n \to K^m$ be a linear map and let $\PP \subset K^n$ be a polyhedron defined by 
 $\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, m_i(x)=0, \textrm{ for } i \in I, j \in J \right\rbrace$ 
-for some finite sets $I \subset \N$ and $J \subset \mathbb{N}$ and $m_j, l_i \in K[x]_1$, for $i \in I$  and $j \in J$.
+  for some finite sets $I \subset \N$ and $J \subset \mathbb{N}$ and $m_j, l_i \in K[x]_1$, for $i \in I$  and
+  $j \in J$.
 Then  $\PP = \PP_i \cap \PP_e$ where $\PP_i := \{x \in K^n : \val(l_i(x)) \ge 0, i = 1,\dots,d\}$
 and $\PP_e := \{x \in K^n : m_j(x) = 0, j = 1,\dots,e\}$.
 
-Thus, we have  $f(\PP) = f(\PP_i) \cap f(\PP_e)$.
+Thus, we have\footnote{\simone{attention, ça est vrai si $f$ est injective, en général on a seulement
+$\subset$}}  $f(\PP) = f(\PP_i) \cap f(\PP_e)$.
 However, $\PP_e$ is either empty or an affine subspace of $K^n$ and therefore 
 $f(\PP_e)$ is either empty or an affine subspace of $K^m$, so it is a polyhedron.
 Hence, as the class of polyhedron is closed under intersection to prove that
