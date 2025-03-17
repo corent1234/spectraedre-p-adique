@@ -351,8 +351,10 @@ $(x_1,\dots,x_n) \mapsto (x_1,\dots, x_{n-1})$ and finally for the general case.
   Then $P = P_I \cap P_E$ where $P_I := \{x \in K^n : \val(l_i(x)) \geq 0, 1 \leq i \leq d\}$
   and $P_E := \{x \in K^n : m_j(x) = 0, 1 \leq j \leq e\}$.
 
-  Thus we have\footnote{\simone{Est-ce vrai parce que $P_E$ est affine? Car en général il faut que
-    $f$ soit injective}} $f(P) = f(P_I) \cap f(P_E)$. However $P_E$ is either empty or an affine subspace of
+  Thus we have\footnote{\simone{Ça n'est pas vrai en général, il faut que $f$ soit injective.
+    Il faut peut être d'abord factoriser $f = g \circ h$ avec $h : K^n \to im(f)$ et
+    $g : im(f) \subset K^m$.}}
+  $f(P) = f(P_I) \cap f(P_E)$. However $P_E$ is either empty or an affine subspace of
   $K^n$ and therefore $f(P_E)$ is either empty or an affine subspace of $K^m$, so it is a polyhedron.
   Hence, as the class of polyhedra is closed under intersection, in order to prove that
   $f(P)$ is a polyhedron, it is sufficient to prove that this holds for $f(P_I)$.
@@ -394,7 +396,7 @@ The two above results allows us to demonstrate the following proposition, which 
 \end{proposition}
 
 
-  \begin{proof}
+\begin{proof}
       
 We assume that $\PP \neq \emptyset$.
 As discussed above we can assume that
@@ -607,6 +609,8 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
   $P_1 + P_2 = \{z \in K^n : x \in P_1, y \in P_2, x+y=z\}.$
 \end{proof}
 
+
+
 \begin{proposition}[Characterization of polyhedra] \label{prop:carac}
     Polyhedra are either empty or the image of polydiscs under a linear mapping.
 \end{proposition}
@@ -637,6 +641,8 @@ If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\mathcal{
 
 %%%%% old section by Corentin
 %%%%%\input{old_LP_section.tex}
+
+
 
 
 \subsection{Linear programming}
