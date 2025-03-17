@@ -867,7 +867,7 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in t
 \begin{example}
   Let
   $$
-  M = \begin{bmatrix} 5 + \frac{3}{5} & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{bmatrix}.
+  M = \begin{bmatrix} \frac{3}{5}+5 & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{bmatrix}.
   $$
   The characteristic polynomial of $M$
   is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$: then $M \in (\mathbb{Q}_5)^{2 \times 2}_+$, nevertheless $M \not\in (\mathbb{Z}_5)^{2\times 2}$, hence
@@ -990,18 +990,21 @@ Moreover this class contains polyhedra in $K^n$.
 %  %Define $B = m_1 \oplus \cdots \oplus m_e \in K[x]^{e\times e}_1$
 \end{proof}
 
-\begin{example}
-    The spectrahedron
-\[
-    \mathcal{S} = \left\{x \in K ; M(x) := \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}
-\] 
-    is not a polyhedron.
-\end{example}
-    \begin{proof}
-        By \ref{caracsdp} $S = \{x \in K, \val( x (x + \pi^{-1})) \ge 0\} = \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$which is not a ball. Therefore, by \ref{cor:caracdim1}, $S$ is not a polyhedron.
+Spectrahedra form a strict generalization of polyhedra:
 
-    \end{proof}
-    
+\begin{example}
+  The spectrahedron
+  \[
+  S = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}
+  \] 
+  is not a polyhedron.
+\end{example}
+\begin{proof}
+  By \Cref{caracsdp}, one has $S = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
+  \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$ which is not a ball.
+  Therefore, by \Cref{cor:caracdim1}, $S$ is not a polyhedron.
+\end{proof}
+
 \begin{definition}
   A subset $S$ of $K^n$ is said \emph{semialgebraic} if it is defined by finite unions and intersections of sets defined by polynomial equalities of the form $\{ x \in K^n  : P( x) = 0 \}$ and of sets defined by polynomial inequalities of the form $\{ x\in K^n : \val P(x) \geq 0 \}$.
 \end{definition}
@@ -1011,11 +1014,11 @@ Moreover this class contains polyhedra in $K^n$.
 \end{proposition}
 
 \begin{proof}
-  Let $S = S_A \subset K^n$ be spectrahedron, for some linear matrix $A(x) = A_0+\sum_{i=1}^n x_i A_i$. 
-  Denote by $p_i(x) \in K[x]$ the $i$-th coefficient of $\chi_{A(x)}$, $i=0,\ldots,d$.
+  Let $S = S_A \subset K^n$ be spectrahedron, for some linear matrix $A = A_0+\sum_{i=1}^n x_i A_i$. 
+  Denote by $p_i \in K[x]$ the $i$-th coefficient of $\chi_{A}$, $i=0,\ldots,d$.
   By \Cref{caracsdp} one has:
   $$
-  S = \left\{x \in K^n : \chi_{A(x)} \in \OK[T]\right\}
+  S = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
   = \bigcap_{i=0}^d \{x \in K^n : \val(p_i(x)) \geq 0\}.
   $$
 \end{proof}
