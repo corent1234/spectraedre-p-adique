@@ -115,10 +115,11 @@
 \section{Introduction}
 
 The study of polyhedra and of linear programming (LP) is at the heart of convex geometry and optimization,
-inasmuch as several optimization problems can be cast as, or relaxed to LP. An important generalization of LP
+inasmuch as several optimization problems can be cast as, or reduced to LP. An important generalization of LP
 is semidefinite programming (SDP), namely the problem of minimizing an affine polynomial over the set of
-positive semidefinite affine combinations of a given collection of real symmetric matrices.
-
+positive semidefinite affine combinations of a given collection of real symmetric matrices. The latter problem 
+has interested the community of polynomial optimization because of the relaxation method known as moment-SOS
+(or Lasserre) hierarchy \cite{henrion2020moment}.
 
 Contrary to the LP case, the complexity status of SDP is widely open.
 In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
@@ -338,29 +339,26 @@ $\val(\ell_i(x))<+\infty$.
 %  diviser la proposition en plusieures parties pour la rendre plus lisible, par exemple une
 %  première proposition avec la projection.}
 
-In this section we show that the image of a polyhedron by a linear mapping is a polyhedron. 
+In this section we show that the image of a polyhedron by a linear mapping is a polyhedron,
+and discuss some consequences.
 We first prove the result in the cases of authomorphisms of $\OK^n$ and diagonal endomorphisms of $K^n$.
 Then we use these particular cases to prove the result for projections of the form
 $(x_1,\dots,x_n) \mapsto (x_1,\dots, x_{n-1})$ and finally for the general case.
 
 \begin{remark}
-  First, let $f : K^n \to K^m$ be a linear map and let $\PP \subset K^n$ be a polyhedron defined by 
-$\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, m_i(x)=0, \textrm{ for } i \in I, j \in J \right\rbrace$ 
-  for some finite sets $I \subset \N$ and $J \subset \mathbb{N}$ and $m_j, l_i \in K[x]_1$, for $i \in I$  and
-  $j \in J$.
-Then  $\PP = \PP_i \cap \PP_e$ where $\PP_i := \{x \in K^n : \val(l_i(x)) \ge 0, i = 1,\dots,d\}$
-and $\PP_e := \{x \in K^n : m_j(x) = 0, j = 1,\dots,e\}$.
+  Let $f : K^n \to K^m$ be a linear map and let
+  $P = \{x \in K^n : \val(l_i(x)) \geq 0, m_i(x) = 0, 1 \leq i \leq d, 1 \leq j \leq e\}$.
+  Then $P = P_I \cap P_E$ where $P_I := \{x \in K^n : \val(l_i(x)) \geq 0, 1 \leq i \leq d\}$
+  and $P_E := \{x \in K^n : m_j(x) = 0, 1 \leq j \leq e\}$.
 
-Thus, we have\footnote{\simone{attention, ça est vrai si $f$ est injective, en général on a seulement
-$\subset$}}  $f(\PP) = f(\PP_i) \cap f(\PP_e)$.
-However, $\PP_e$ is either empty or an affine subspace of $K^n$ and therefore 
-$f(\PP_e)$ is either empty or an affine subspace of $K^m$, so it is a polyhedron.
-Hence, as the class of polyhedron is closed under intersection to prove that
-$f(\PP)$ is a polyhedron it is sufficient to prove that $f(\PP_i)$ is one.
+  Thus we have\footnote{\simone{Est-ce vrai parce que $P_E$ est affine? Car en général il faut que
+    $f$ soit injective}} $f(P) = f(P_I) \cap f(P_E)$. However $P_E$ is either empty or an affine subspace of
+  $K^n$ and therefore $f(P_E)$ is either empty or an affine subspace of $K^m$, so it is a polyhedron.
+  Hence, as the class of polyhedra is closed under intersection, in order to prove that
+  $f(P)$ is a polyhedron, it is sufficient to prove that this holds for $f(P_I)$.
 \end{remark}
 
-Therefore, we can only consider the image of polyhedron of the form 
-$\left\lbrace x \in K^n : \val (l_i (x) ) \geq 0 \textrm{ for } i \in I \right\rbrace$.
+Therefore below we consider polyhedra of the form as in \Cref{def_polyhedra} with $e=0$.
 
 \begin{proposition}
   Let $\PP \subset K^n$ be a polyhedron and $f : K^n \to K^n$ be a linear mapping.
@@ -599,10 +597,19 @@ is a polyhedron.
 This concludes the proof.
 \end{proof}
 
-\begin{proposition}[Caracterisation of polyhedron] \label{prop:carac}
-    Polyhedra are either empty or the image of polydiscs  under a linear mapping.
-\end{proposition}
+We recall that the Minkowski sum of two sets $A$ and $B$ is $A+B = \{a+b : a \in A, b \in B\}$.
 
+\begin{corollary}
+The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
+\end{corollary}
+\begin{proof}
+  Straightforward from the equality
+  $P_1 + P_2 = \{z \in K^n : x \in P_1, y \in P_2, x+y=z\}.$
+\end{proof}
+
+\begin{proposition}[Characterization of polyhedra] \label{prop:carac}
+    Polyhedra are either empty or the image of polydiscs under a linear mapping.
+\end{proposition}
 \begin{proof}
     Let $\mathcal{P}$ be a polyhedron in $K^n$. Then $\mathcal{P} = \{x \in K^n : Ax+B \ge 0, Dx = e\}$ for some $A \in K^{d \times n}, b \in K ^d,  D\in  K^{m\times n}, e \in K^m$.
 
@@ -628,9 +635,9 @@ If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\mathcal{
 
 \end{proof}
 
-
 %%%%% old section by Corentin
 %%%%%\input{old_LP_section.tex}
+
 
 \subsection{Linear programming}
 
