@@ -114,12 +114,21 @@
 
 \section{Introduction}
 
-Linear programming 
+The study of polyhedra and of linear programming (LP) is at the heart of convex geometry and optimization,
+inasmuch as several optimization problems can be cast as, or relaxed to LP. An important generalization of LP
+is semidefinite programming (SDP), namely the problem of minimizing an affine polynomial over the set of
+positive semidefinite affine combinations of a given collection of real symmetric matrices.
 
-A natural generalization of LP is {\it semidefinite programming}
 
-Contrary to the LP case, the complexity status of SDP is mostly open.
+Contrary to the LP case, the complexity status of SDP is widely open.
+In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
+number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the
+precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of a solution,
+cf. \cite[Sec.1.9]{deKlerk}. In exact arithmetic, the complexity status of SDP is essentially open but complexity
+bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity}
+or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
 
+In this paper we 
 Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral}.
 
 %\subsection{Context and motivations}
@@ -250,12 +259,13 @@ Real polyhedra (subsets of $\R^n$ defined by finitely many affine inequalities) 
 spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that $A(x) =
 \ell_1(x) \oplus \cdots \oplus \ell_d(x)$. In other words, SDP is a generalization of Linear Programming (LP).
 
-In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
-number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the
-precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of a solution,
-cf. \cite[Sec.1.9]{deKlerk}. In exact arithmetic, the complexity status of SDP is essentially open but complexity
-bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity}
-or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
+% IN INTRODUCTION
+%In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
+%number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the
+%precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of a solution,
+%cf. \cite[Sec.1.9]{deKlerk}. In exact arithmetic, the complexity status of SDP is essentially open but complexity
+%bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity}
+%or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
 
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
 called \emph{semidefinite representable sets}: these are sets of the form
