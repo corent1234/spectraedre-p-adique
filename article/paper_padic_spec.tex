@@ -739,16 +739,17 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$, with $S = \mathrm{SNF}(M)$.
    \end{enumerate}
 \end{proposition}
 \begin{proof}
-  First of all, $Ax+b = AP^{-1}y +b \geq 0$ if and only if $Q(AP^{-1}y + b) = Sy + b' \geq 0$ because
-  $Q \in GL_m(\OK)$, which yields \Cref{solsLP_item1}. Next, for all $c \in K^n$, we have $\langle c,
+  First, since $Q \in \GL_m(\OK)$, one has that $Ax+b = AP^{-1}y +b \geq 0$
+  if and only if $Q(AP^{-1}y + b) = Sy + b' \geq 0$; this yields \Cref{solsLP_item1}.
+  Next, for all $c \in K^n$, we have $\langle c,
   x\rangle = \langle c, P^{-1}Px \rangle = \langle \left(P^{-1}\right)^T c, Px \rangle = \langle c',y\rangle$,
   which proves \Cref{solsLP_item2}.
 \end{proof}
 
 
 \begin{proposition}\label{prop:reduc}
-  Let $(A,b,c), (S,b',c') \in \allmat_{d,n}(K) \times K^d \times K^n$ be as in \Cref{solsLP}, where
-  $S=\mathrm{SNF}(A)$. Then
+  Let $(A,b,c), (S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP},
+  where $S = \mathrm{SNF}(A)$. Then
   \begin{enumerate}
   \item \label{prop:reduc_it1}
     \eqref{LP} with data $(S,b',c',0,0)$ is feasible if and only if the $d-r$ last coefficients
@@ -772,13 +773,13 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$, with $S = \mathrm{SNF}(M)$.
   Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $e^i$ whose only non-zero
   coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c',0,0)$,
   for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$.
-  In particular, for all $n \in \mathbb{N}$ if we set $\alpha = -\frac{\langle c', y^* \rangle + \pi^{-n}}{c'_i}$, we have $\val \left( \langle c', y^* + \alpha e ^i \rangle\right) = \val \pi^{-n} = -n$. Therefore, the problem is unbounded as $p^* = + \infty$. 
+  In particular, for all $n \in \mathbb{N}$ if we set $\alpha = -\frac{\langle c', y^* \rangle + \pi^{-n}}{c'_i}$, we have $\val \left( \langle c', y^* + \alpha e ^i \rangle\right) = \val \pi^{-n} = -n$. Therefore, the problem is unbounded as $p^* = -\infty$\footnote{\simone{avant c'était ``Therefore, the problem is unbounded as $p^* = +\infty$'' ce qui ne me paraît pas correct.}}. 
 \end{proof}
 
-From now on, we will only consider iterations of diagonal linear programs which have solutions.
-By \Cref{prop:reduc} we can then reduce the problem by only taking account the first $r$ coefficients of
-$y, b', c'$ and the submatrix of $S$ made with only by the $r$ first rows and columns and whose coefficients
-are exactly the nonzero invariants factors.
+From now on, we only consider iterations of diagonal linear programs admitting a solution.
+By \Cref{prop:reduc} one can simplify the problem by only taking account the first $r$
+coefficients of $y, b', c'$ and the submatrix of $S$ made by the $r$ first rows and
+columns corresponding to the nonzero invariants factors.
 
 The feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$ of the diagonal LP can be written as the set of vectors
 $y \in K^n$ that verifies $s_i y_i + b'_i \in \OK$ for $i=1,...,r$ {\it i.e.}:
