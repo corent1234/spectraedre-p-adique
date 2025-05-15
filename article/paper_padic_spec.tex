@@ -666,8 +666,8 @@ as:
 with $c \in K^n$ a fixed vector of size $n$ that represents the cost,
 $A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, $e \in K^m$ 
 and $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$.
-When $A$ is a diagonal matrix\footnote{\simone{J'ai supprimé la contrainte ``and
-$D=0$'', car elle ne me semble pas nécessaire pour définir le ``diagonal LP''.}},
+When $A$ is a diagonal matrix\footnote{\simone{J'ai supprimé ``and
+$D=0$'', car cela ne me semble pas nécessaire pour définir le ``diagonal LP''.}},
 we often refer to \eqref{LP} as a \emph{diagonal} linear program.
 We denote the \emph{feasible set} of \eqref{LP} by
 \begin{equation*}
@@ -825,22 +825,39 @@ We formalize the algorithm described previously in \Cref{algo_LP}:
     \caption{SOLVELP($A,b,c,D,e$)}\label{algo_LP}
     \begin{algorithmic}
       \REQUIRE
-      $A \in K^{d\times n}$, $b \in K^d$, $D \in K^{m \times n}$ and $e \in K^m$
-      \ENSURE A feasibility type (INFEAS, FEAS) and a solution (if FEAS)
+      $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
+      \ENSURE [TYPE, $x$], where:
+      \vspace{-0.25cm}
+      \begin{itemize}
+      \item[]
+        TYPE $=$ INFEAS and $x=[]$ if and only if \eqref{LP} is infeasible
+      \vspace{-0.25cm}
+      \item[]
+        TYPE $=$ UNBOUND and $x=[]$ if and only if \eqref{LP} is feasible and unbounded
+      \vspace{-0.25cm}
+      \item[]
+        TYPE $=$ FEAS if and only if \eqref{LP} is feasible and has a solution $x$
+      \end{itemize}
+      \vspace{-0.1cm}
+      \hrule
       \vspace{0.1cm}
-      \hline
-      \vspace{0.1cm}
-      \STATE $\mathrm{SOLVELP} (f_i,w_i,o_j)$
-      \FOR{epochs = $1$ to $N$}
-      \WHILE{$(j\le m)$}
-      \STATE Randomly initialize $w_i=\{w_1,w_2,\dots,w_n\}$
-      \STATE input $o_j=\{o_1,o_2,\dots,o_m\}$ in the input layer
-      \STATE forward propagate $(f_i\cdot w_i)$ through layers until getting the predicted result $y$
-      \STATE compute $e=y-y^2$
-      \STATE back propagate $e$ from right to left through layers
-      \STATE update $w_i$
-      \ENDWHILE
-      \ENDFOR
+      \IF{$Dx = e$ has no solution}
+      \RETURN [INFEAS, []]
+      \ENDIF
+      \IF{$D \neq {\bf 0}$}
+      \STATE $[\mathrm{STATUS}, y] \leftarrow $
+      \RETURN 
+      \ENDIF
+      %\FOR{epochs = $1$ to $N$}
+      %\WHILE{$(j\le m)$}
+      %\STATE Randomly initialize $w_i=\{w_1,w_2,\dots,w_n\}$
+      %\STATE input $o_j=\{o_1,o_2,\dots,o_m\}$ in the input layer
+      %\STATE forward propagate $(f_i\cdot w_i)$ through layers until getting the predicted result $y$
+      %\STATE compute $e=y-y^2$
+      %\STATE back propagate $e$ from right to left through layers
+      %\STATE update $w_i$
+      %\ENDWHILE
+      %\ENDFOR
     \end{algorithmic}
 \end{algorithm}
 
