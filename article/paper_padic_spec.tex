@@ -670,26 +670,36 @@ We denote the \emph{feasible set} of \eqref{LP} by
 A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$ is called a \emph{solution} to \eqref{LP} if $p^* = \val\left\langle c,x^*\right\rangle$, namely, if the infimum in \eqref{LP} is attained at $x^*$.
 
 \begin{remark}
-The valuation $\val$ is discrete. Thus if \eqref{LP} admits feasible vectors, $p^*$ is either $- \infty$ or reached by a certain solution $x^*$.
+  Assume $\val$ is a discrete valuation. Then if \eqref{LP} admits feasible vectors,
+  $p^*$ is either $-\infty$ or attained at some solution $x^*$.
 \end{remark}
 
-In this section we present an algorithm for solving \eqref{LP} which starts by eliminating the constraint forced by $D$ and $e$ by operating a substitution. Then it reduces the matrix $A$ to
-Smith Normal Form, thus reducing a general linear program to a diagonal linear program. The latter problem being easily solved by simple calulations in $K$.
+In this section we present an algorithm for solving \eqref{LP} which starts by
+eliminating the equality constraint defined by $D$ and $e$ by operating a substitution.
+Then the algorithm reduces the matrix $A$ to Smith Normal Form, thus reducing a general
+linear program to a diagonal linear program. The reduced problem is then easily solved
+by simple calulations in $K$\footnote{\simone{changer formulation}}.
 
-The first proposition we prove  allows to consider only iterations of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
+The first result allows us to consider only iterations of~\eqref{LP} with data of the
+form $(A,b,c,0,0)$. When $Dx=e$ has no solution, \eqref{LP} is infeasible, thus
+we only consider the case when $Dx=e$ has a solution.
 
 \begin{proposition}\label{reducD}
-  Let $A \in \allmat_{d,n}(K), b \in K^d, c\in K^n$, $D \in \allmat_{m,n}$, $e \in K^m$ and let $J \in \allmat_{n,R}\left( K \right) $ be a matrix such that ${\rm Im } J = \ker D$ where $R$ denotes the dimension of $\ker D$. 
-  Additionally, we assume the existence of $x_0 \in K^n$ that verifies $D x_0 =e$ as if
-  there are no such vector the problem~\ref{LP} with data $(A,b,c,D,e)$ is not solvable.
-
-  Let $x \in \{x \in K^n : Dx=e\} = x_0 + \ker D $ and let $y \in K^R$ denote the unique element of
-  $K^n$ such that $x = x_0 + J y$, then :
+  Let $A \in K^{d \times n}, b \in K^d, c\in K^n$, $D \in K^{m\times n}$,
+  $e \in K^m$ and let $J \in K^{n \times R}$ be a matrix such that
+  ${\rm Im}\, J = \ker D$ and $R = \dim \ker D$.
+  Assume there exists $x_0 \in K^n$ such that $D x_0 = e$, and let
+  $x \in \{z \in K^n : Dz = e\} = x_0 + \ker D$.
+  Let $y \in K^R$ denote the unique element of $K^n$ such that
+  $x = x_0 + J y$. Then:
   \begin{enumerate}
-    \item\label{reducD_item1} $x$ is feasible for~\eqref{LP} with data $(A,b,c,D,e)$ if and only if 
-      $y$ is feasible for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,0,0)$.
-    \item\label{reducD_item2} $x$ is a solution for~\eqref{LP} with data $(A,b,c,D)$ if and only if 
-      $y$ is a solution for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,0,0)$ and $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$.
+  \item\label{reducD_item1}
+    $x$ is feasible for~\eqref{LP} with data $(A,b,c,D,e)$ if and only if 
+    $y$ is feasible for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,0,0)$.
+  \item\label{reducD_item2}
+    $x$ is a solution for~\eqref{LP} with data $(A,b,c,D,e)$ if and only if 
+    $y$ is a solution for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,0,0)$ and
+    $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$.
   \end{enumerate}
 \end{proposition}
 
