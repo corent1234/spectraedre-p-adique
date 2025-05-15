@@ -703,7 +703,10 @@ we only consider the case when $Dx=e$ has a solution.
   \item\label{reducD_item2}
     $x$ is a solution for~\eqref{LP} with data $(A,b,c,D,e)$ if and only if 
     $y$ is a solution for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,0,0)$ and
-    $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$.
+    $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$\footnote{\simone{Est-ce que
+    c'est bien $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$ ou plutôt la condition
+    plus faible $\val \langle c,x^* \rangle = \val \langle J^T c,y^* \rangle$ ?
+  Même question pour \Cref{solsLP}.}}.
   \end{enumerate}
 \end{proposition}
 
@@ -713,17 +716,18 @@ we only consider the case when $Dx=e$ has a solution.
   Next, for all $c \in K^n$, $\langle c,x\rangle = \langle c, Jy\rangle = \langle J^T c,y\rangle$, which proves \Cref{reducD_item2}.
 \end{proof}
  
-Concerning the usage of SNF in the resolution of \eqref{LP}, note that the transition matrices are invertible in $\OK$ and as such they preserve inequalities.
+Concerning the usage of SNF in the resolution of \eqref{LP}, note that the transition matrices $P$ and $Q$ defining SNF$(M)$ in \Cref{smith_nf} are invertible in $\OK$ and as such they preserve inequalities.
 %%%%Indeed, for all $z \in K^n$ and $M \in \allmat_n(\OK)$ if $z \geq 0$, then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$.
-Therefore, for all matrix $M \in K^{n\times n}$ with $S = \mathrm{SNF}(M)$
-and for all $z \in K^n$,
-then $Mz \geq 0$ if and only if $Sz \geq 0$.
+Therefore, for all matrix $M \in K^{n\times n}$ and vector $z \in K^n$,
+then $Mz \geq 0$ if and only if $Sz \geq 0$, with $S = \mathrm{SNF}(M)$.
 
 \Cref{solsLP} allows us to reduce \eqref{LP} to diagonal linear programs.
 
 \begin{proposition} \label{solsLP}
-  Let $A \in \allmat_{d,n}(K), b \in K^d, c\in K^n$ and let $S = \mathrm{SNF}(A) = QAP^{-1} \in \allmat_{d,n}(K)$, with
-  transition matrices $P \in \GL_d(\OK)$ and $Q\in \GL_d(\OK)$. Define $b' = Qb$ and $c' = (P^{-1})^Tc$.
+  Let $A \in K^{d\times n}$, $b \in K^d$, $c\in K^n$ and let
+  $S = \mathrm{SNF}(A) = QAP^{-1} \in K^{d\times n}$, with
+  $P \in \GL_d(\OK)$ and $Q\in \GL_d(\OK)$.
+  Define $b' = Qb$ and $c' = (P^{-1})^Tc$.
   Then
    \begin{enumerate}
    \item \label{solsLP_item1}
