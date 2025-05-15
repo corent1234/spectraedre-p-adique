@@ -179,15 +179,15 @@ We recall the definition of Smith Normal Form, in our context.
   Let $M \in K^{m \times n}$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
-  SNF(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r}).
+  \mathrm{SNF}(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r}).
   $$
-  The matrix $SNF(M)$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
+  The matrix $\mathrm{SNF}(M)$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
   \emph{invariant factors}.
 \end{definition}
 \begin{remark}
-  The valuation of the first invariant factor of $SNF(M)$ of a matrix
+  The valuation of the first invariant factor of $\mathrm{SNF}(M)$ of a matrix
   $M \in K^{n \times n}$ is the minimum of the valuations of the entries of
-  $M$. In particular, $SNF(M) \in \OK^{n \times n}$.
+  $M$. In particular, $\mathrm{SNF}(M) \in \OK^{n \times n}$.
 \end{remark}
 
 
@@ -554,7 +554,7 @@ finite sets $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
 Thanks to Definition \ref{smith_nf}, (the matrix of) $f$
 can be written $f=Q^{-1} \Delta P$
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta = SNF(f)\in \allmat_{m,n}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
+and $\Delta = \mathrm{SNF}(f)\in \allmat_{m,n}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
   where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
 
   %Now, we turn our attention to the $\Delta$ part of $f$.
@@ -690,7 +690,11 @@ we only consider the case when $Dx=e$ has a solution.
   ${\rm Im}\, J = \ker D$ and $R = \dim \ker D$.
   Assume there exists $x_0 \in K^n$ such that $D x_0 = e$, and let
   $x \in \{z \in K^n : Dz = e\} = x_0 + \ker D$.
-  Let $y \in K^R$ denote the unique element of $K^n$ such that
+  Let $y \in K^R$ denote the unique\footnote{\simone{pas sur que ce soit unique,
+    la mappe $y\mapsto Jy$ est surjective sur $Im J=\ker D$, non pas injective, non ?
+    Il y a un seul élément de $\ker D$, mais il peut y avoir plusieurs fibres.
+    En tous cas, a-t-on a besoin de l'unicité dans la preuve ?}}
+  element of $K^n$ such that
   $x = x_0 + J y$. Then:
   \begin{enumerate}
   \item\label{reducD_item1}
@@ -709,17 +713,16 @@ we only consider the case when $Dx=e$ has a solution.
   Next, for all $c \in K^n$, $\langle c,x\rangle = \langle c, Jy\rangle = \langle J^T c,y\rangle$, which proves \Cref{reducD_item2}.
 \end{proof}
  
-The most interesting aspect of the SNF regarding the resolution of~\eqref{LP} is that the transition matrices are
-invertible in $\OK$ and as such they preserve inequalities. %Indeed, for all $z \in K^n$ and $M \in \allmat_n(\OK)$ if $z \geq 0$, then $Mz \geq 0$.
-%The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is
-%invertible in $\OK$. 
-Therefore, for all matrix $M \in \allmat_{n,n}(K)$ with $S=SNF(M)$ and for all $z \in K^n$,
+Concerning the usage of SNF in the resolution of \eqref{LP}, note that the transition matrices are invertible in $\OK$ and as such they preserve inequalities.
+%%%%Indeed, for all $z \in K^n$ and $M \in \allmat_n(\OK)$ if $z \geq 0$, then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$.
+Therefore, for all matrix $M \in K^{n\times n}$ with $S = \mathrm{SNF}(M)$
+and for all $z \in K^n$,
 then $Mz \geq 0$ if and only if $Sz \geq 0$.
 
 \Cref{solsLP} allows us to reduce \eqref{LP} to diagonal linear programs.
 
 \begin{proposition} \label{solsLP}
-  Let $A \in \allmat_{d,n}(K), b \in K^d, c\in K^n$ and let $S = SNF(A) = QAP^{-1} \in \allmat_{d,n}(K)$, with
+  Let $A \in \allmat_{d,n}(K), b \in K^d, c\in K^n$ and let $S = \mathrm{SNF}(A) = QAP^{-1} \in \allmat_{d,n}(K)$, with
   transition matrices $P \in \GL_d(\OK)$ and $Q\in \GL_d(\OK)$. Define $b' = Qb$ and $c' = (P^{-1})^Tc$.
   Then
    \begin{enumerate}
@@ -741,7 +744,7 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$.
 
 \begin{proposition}\label{prop:reduc}
   Let $(A,b,c), (S,b',c') \in \allmat_{d,n}(K) \times K^d \times K^n$ be as in \Cref{solsLP}, where
-  $S=SNF(A)$. Then
+  $S=\mathrm{SNF}(A)$. Then
   \begin{enumerate}
   \item \label{prop:reduc_it1}
     \eqref{LP} with data $(S,b',c',0,0)$ is feasible if and only if the $d-r$ last coefficients
