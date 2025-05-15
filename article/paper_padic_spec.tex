@@ -170,18 +170,17 @@ The $K$-vector space of polynomials of degree $\leq d$ on $x=(x_1,\ldots,x_n)$
 with coefficients in $K$ is denoted by $K[x]_{d}$. The ring of matrices of
 size $p \times q$ with entries in a ring $R$ is $R^{p \times q}$ and the general
 linear group in $R^{n \times n}$ is $\GL_n(R)$.
-For the sake
-of ease of writing, block-diagonal matrices with blocks $B_1,\ldots,B_d$ are denoted by
-$\diag(B_1, \ldots, B_d)$.
+For the sake of ease of writing, block-diagonal matrices with blocks
+$B_1,\ldots,B_d$ are denoted by $\diag(B_1, \ldots, B_d)$, the null square
+matrix of size $t$ by ${\bf 0}_{t}$, and the identity matrix by $I_t$.
 
 We recall the definition of Smith Normal Form, in our context.
 \begin{definition}[Smith Normal Form]\label{smith_nf}
   Let $M \in K^{m \times n}$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
-  SNF(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r})
+  SNF(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r}).
   $$
-  where ${\bf 0}_{t}$ is a null square matrix of size $t$.
   The matrix $SNF(M)$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
   \emph{invariant factors}.
 \end{definition}
@@ -649,7 +648,7 @@ If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\mathcal{
 \subsection{Linear programming}
 
 
-A \emph{linear programming problem} (or simply \emph{linear program}) \emph{with data $(A,b,c,D,e)$} is defined
+A \emph{linear programming problem} (or \emph{linear program}) \emph{with data $(A,b,c,D,e)$} is defined
 as:
 \begin{equation}
   \tag{LP}\label{LP}
