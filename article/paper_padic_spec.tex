@@ -15,7 +15,8 @@
 \usepackage{cleveref}
 
 % --------- ALGORITHMS ---------- <<:
-\usepackage[noend]{algpseudocode}      %%% this is for the algorithms
+\usepackage{algorithm,algorithmic}
+%\usepackage[noend]{algpseudocode}      %%% this is for the algorithms
 \renewcommand{\algorithmicrequire}{\textbf{Input:}} % require --> input
 \renewcommand{\algorithmicensure}{\textbf{Output:}} % ensure --> output
 % :>> ALGORITHMS
@@ -24,7 +25,7 @@
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{algorithm}[theorem]{Algorithm}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{condition}[theorem]{Condition}
 \newtheorem{definition}[theorem]{Definition}
@@ -818,24 +819,30 @@ The only difference being that if $\val\left( \lambda\right) < v$ the problem is
 and as such does not admit a solution. 
 \end{remark}
 
-\begin{algorithm}
-  \begin{algorithmic}[1]
-    \Require{
-      \Statex \textbullet
-      \Statex \textbullet
-      \Statex \textbullet
-     }
-    \Ensure{
-    }
-    \State 
-    \State 
-    \State 
-    %\label{algo:GBViaProduct:premin}
-    %\Comment{\cref{algo:PreMinimize}, gives \(J\) as in \cref{thm:product_gb}}
-    \State \Return
-  \end{algorithmic}
-\end{algorithm}
+We formalize the algorithm described previously in \Cref{algo_LP}:
 
+\begin{algorithm}
+    \caption{SOLVELP($A,b,c,D,e$)}\label{algo_LP}
+    \begin{algorithmic}
+      \REQUIRE
+      $A \in K^{d\times n}$, $b \in K^d$, $D \in K^{m \times n}$ and $e \in K^m$
+      \ENSURE A feasibility type (INFEAS, FEAS) and a solution (if FEAS)
+      \vspace{0.1cm}
+      \hline
+      \vspace{0.1cm}
+      \STATE $\mathrm{SOLVELP} (f_i,w_i,o_j)$
+      \FOR{epochs = $1$ to $N$}
+      \WHILE{$(j\le m)$}
+      \STATE Randomly initialize $w_i=\{w_1,w_2,\dots,w_n\}$
+      \STATE input $o_j=\{o_1,o_2,\dots,o_m\}$ in the input layer
+      \STATE forward propagate $(f_i\cdot w_i)$ through layers until getting the predicted result $y$
+      \STATE compute $e=y-y^2$
+      \STATE back propagate $e$ from right to left through layers
+      \STATE update $w_i$
+      \ENDWHILE
+      \ENDFOR
+    \end{algorithmic}
+\end{algorithm}
 
 
 
