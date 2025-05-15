@@ -1,15 +1,6 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,oneside,11pt]{article}
 
 %%%\newenvironment{proof}{\hbox{}\vspace{-0.8cm} {\bf Proof:}}{\hfill $\Box$ \vspace{0.2cm}}
-
-\usepackage{geometry}
-\geometry{
- a4paper,
- %total={170mm,257mm},
- left=35mm,
- top=40mm,
- bottom=20mm
-}
 
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -83,10 +74,20 @@
 \newtheorem{notation}[theorem]{Notation}
 \usepackage{booktabs}
 
-\textheight235mm
-\textwidth165mm
-\voffset-10mm
-\hoffset-12.5mm
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ %total={170mm,257mm},
+ left=30mm,
+ right=30mm,
+ top=30mm,
+ bottom=30mm
+}
+
+%\textheight235mm
+%\textwidth165mm
+%\voffset-10mm
+%\hoffset-12.5mm
 \parindent0.8cm
 \parskip0mm
 
