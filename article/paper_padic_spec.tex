@@ -23,6 +23,51 @@
 
 \usepackage{cleveref}
 
+% --------- ALGORITHMS ---------- <<:
+\usepackage[noend]{algpseudocode}      %%% this is for the algorithms
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} % require --> input
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % ensure --> output
+\algrenewcomment[1]{\hfill \(\triangleright\) \emph{\small #1}} % to italicize text in comments
+\algnewcommand{\CommentLine}[1]{\(\triangleright\) \emph{\small #1}} % whole line comment
+\algnewcommand{\InlineIf}[2]{ % single line if-then
+  \State \algorithmicif\ #1\ \algorithmicthen\ #2}
+\algnewcommand{\InlineIfElse}[3]{ % single line if-then-else
+  \State \algorithmicif\ #1\ \algorithmicthen\ #2\ \algorithmicelse\ #3}
+\algnewcommand{\InlineFor}[2]{\algorithmicfor\ #1\ \algorithmicdo\ #2} % single line for loop
+%% Change call to put a clickable link, and ensure no parentheses if
+%% no argument is given
+%% Original command from package for reference:
+%% \algnewcommand\Call[2]{\textproc{#1}\ifthenelse{\equal{#2}{}}{}{(#2)}}
+\algrenewcommand\Call[2]{\nameref{#1}\ifthenelse{\equal{#2}{}}{}{\ensuremath{(#2)}}}%
+\newcommand{\algoName}[1]{Algorithm \nameref{#1}}
+%% make sure the arguments of the algorithm are not stored in nameref
+\makeatletter
+\newcommand{\algoCaptionLabel}[2]{%
+     \NR@gettitle{\textproc{#1}}% % NR@gettitle to have nameref work fine with algos
+     \caption[\textproc{#1}]{\textproc{#1}\ifthenelse{\equal{#2}{}}{}{$(#2)$}}%
+     \label{algo:#1}
+     }%
+\makeatother
+%% to fix references to algo lines (problem is because of load order in siamonline cls)
+\makeatletter
+  \g@addto@macro\ALG@step{%
+    \addtocounter{ALG@line}{-1}%
+    \refstepcounter{ALG@line}%
+    \expandafter\@cref@getprefix\cref@currentlabel\@nil\cref@currentprefix%
+    \xdef\cref@currentprefix{\cref@currentprefix}}%
+  \g@addto@macro\ALG@beginalgorithmic{%
+    \def\cref@currentlabel{%
+      [line][\arabic{ALG@line}][\cref@currentprefix]\theALG@line}}%
+\makeatother
+%% to be able to use statex with some indentation, typically in an if statement
+%% from https://tex.stackexchange.com/questions/33979/include-a-line-break-in-algorithmic-while-maintaining-indentation/33995#33995
+\makeatletter
+\newcommand{\StateX}[1]{%
+  \setlength\@tempdima{\algorithmicindent}%
+  \Statex\hskip\dimexpr#1\@tempdima\relax}
+\makeatother
+% :>> ALGORITHMS
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
