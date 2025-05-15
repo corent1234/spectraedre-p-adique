@@ -631,9 +631,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 \end{corollary}
 
 \begin{proof}
-    Let $\mathcal{P}$ be such polyhedron. We assume that $\mathcal{P} \neq \emptyset$. By \ref{prop:carac} there exist a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\mathcal{P} = f(D)$.
-    Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, with no loss of generality, that the $a_i$'s are nonzero. 
-
+    Let $\mathcal{P}$ be such polyhedron. We assume that $\mathcal{P} \neq \emptyset$. By \ref{prop:carac} there exist a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\mathcal{P} = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, with no loss of generality, that the $a_i$'s are nonzero. 
 
 If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\mathcal{P} = f(D) = K$ and $\mathcal{P}$ is a ball of infinite radius. Otherwise, we have $D = \{x \in K^n : x_i = \frac{b_i}{s_i} + O\left( \pi^{-val s_i} \right), i=1,\ldots,n \}$ and therefore for all $x \in  K$, $x \in P$ if and only if $x = a_0 + \sum_{i=1}^{n}( \frac{a_i b_i}{s_i} + O\left( \pi^{\val a_i - \val s_i} \right))= a_0  + \sum_{i=1}^{n} \frac{a_i b_i}{s_i} + O(\pi^d)$ where $d = \min \limits_{i = 1,\ldots,n} \val a_i - \val s_i$. Thus $\mathcal{P} = \{x \in K : \val (x - a_0 - \sum_{i=1}^{n} \frac{a_i b_i}{s_i}) \ge d \}$ is a ball.
 
@@ -660,7 +658,10 @@ as:
 \end{equation}
 with $c \in K^n$ a fixed vector of size $n$ that represents the cost,
 $A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, $e \in K^m$ 
-and $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$. When $A$ is a diagonal matrix and $D = 0$\footnote{\simone{pourquoi la contrainte $D=0$ ?}}, we often refer to \eqref{LP} as a \emph{diagonal} linear program.
+and $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$.
+When $A$ is a diagonal matrix\footnote{\simone{J'ai supprimé la contrainte ``and
+$D=0$'', car elle ne me semble pas nécessaire pour définir le ``diagonal LP''.}},
+we often refer to \eqref{LP} as a \emph{diagonal} linear program.
 We denote the \emph{feasible set} of \eqref{LP} by
 \begin{equation*}
 \begin{aligned}
@@ -677,8 +678,8 @@ A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A 
 In this section we present an algorithm for solving \eqref{LP} which starts by
 eliminating the equality constraint defined by $D$ and $e$ by operating a substitution.
 Then the algorithm reduces the matrix $A$ to Smith Normal Form, thus reducing a general
-linear program to a diagonal linear program. The reduced problem is then easily solved
-by simple calulations in $K$\footnote{\simone{changer formulation}}.
+linear program to a diagonal linear program. The original problem is then easily solved
+by looking at valuations of input data of the reduced problem.
 
 The first result allows us to consider only iterations of~\eqref{LP} with data of the
 form $(A,b,c,0,0)$. When $Dx=e$ has no solution, \eqref{LP} is infeasible, thus
@@ -761,8 +762,8 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$, with $S = \mathrm{SNF}(M)$.
 \end{proposition}
 \begin{proof}
   %%%%\corentin{préciser les notations}. 
-  A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for \eqref{LP} with data $(S,b',c',0)$
-  if and only if $\val(s_i y_i + b_i) \geq 0$ for all $i = 1,\ldots,n$.
+  A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for \eqref{LP} with data
+  $(S,b',c',0)$ if and only if $\val(s_i y_i + b_i) \geq 0$ for\footnote{\simone{Ce n'est pas plutôt $\val(s_i y_i + b'_i) \geq 0$ ? Car c'est $b'$ et non pas $b$.}} all $i = 1,\ldots,n$.
   However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b',c',0)$ is feasible,
   necessarily the $d-r$ last coefficients of $b'$ have nonnegative valuation.
   Conversely, if the $d-r$ last coefficients of $b'$ are zero, the vector $y \in K^n$ such that
@@ -776,19 +777,16 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$, with $S = \mathrm{SNF}(M)$.
   In particular, for all $n \in \mathbb{N}$ if we set $\alpha = -\frac{\langle c', y^* \rangle + \pi^{-n}}{c'_i}$, we have $\val \left( \langle c', y^* + \alpha e ^i \rangle\right) = \val \pi^{-n} = -n$. Therefore, the problem is unbounded as $p^* = -\infty$\footnote{\simone{avant c'était ``Therefore, the problem is unbounded as $p^* = +\infty$'' ce qui ne me paraît pas correct.}}. 
 \end{proof}
 
-From now on, we only consider iterations of diagonal linear programs admitting a solution.
-By \Cref{prop:reduc} one can simplify the problem by only taking account the first $r$
-coefficients of $y, b', c'$ and the submatrix of $S$ made by the $r$ first rows and
-columns corresponding to the nonzero invariants factors.
+The previous results imply that we can consider iterations of diagonal linear programs admitting a solution. By \Cref{prop:reduc} one can simplify the problem by only taking account the first $r$ coefficients of $y, b', c'$ and the submatrix of $S$ made by the $r$ first rows and columns corresponding to the nonzero invariants factors.
 
 The feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$ of the diagonal LP can be written as the set of vectors
 $y \in K^n$ that verifies $s_i y_i + b'_i \in \OK$ for $i=1,...,r$ {\it i.e.}:
 $$
 \PP' = \left\{\left[\begin{smallmatrix} y_1\\ \vdots\\ y_n \end{smallmatrix}\right] \in K^n :
-y_i \in -\frac{b`_i}{s_i} + \frac{1}{s_i} \OK, 1\le i\le r\right\}.
+y_i \in -\frac{b'_i}{s_i} + \frac{1}{s_i} \OK, 1\le i\le r\right\}.
 $$
 
-Solving the diagonal \Cref{LP} consists -by definition- in minimizing the linear map $y \mapsto \val\left(\left\langle
+Solving the diagonal \eqref{LP} consists -- by definition -- in minimizing the linear map $y \mapsto \val\left(\left\langle
 c',y \right\rangle\right)$ over $\PP'$. The image of $\PP'$ by $y \mapsto \left\langle c',y \right\rangle$ is
 \[
 \left\langle c',\PP' \right\rangle = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right) = \lambda + \pi^{v} \OK
