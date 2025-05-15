@@ -653,21 +653,21 @@ as:
 \begin{equation}
   \tag{LP}\label{LP}
 \begin{array}{rcll}
-  p^* & := & \inf_{x \in K^n} & \val(\left\langle c, x \right\rangle) \\
+  p^* & := & \inf_{x \in K^n} & \val \left\langle c, x \right\rangle \\
   &    & \text{s.t.}         & A x + b \geq 0\\
   & & & D x = e
 \end{array}
 \end{equation}
-with $c \in K^n$ a fixed vector of size $n$ that represents the cost, $A \in \allmat_{d,n}(K)$, $b \in K^d$, $D \in \allmat_{m,n}$, $e \in K^m$ 
-and $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$. When $A$ is a diagonal matrix and $D = 0$, we often
-refer to \eqref{LP} as a \emph{diagonal} linear program. We denote the \emph{feasible set} of \eqref{LP} by
+with $c \in K^n$ a fixed vector of size $n$ that represents the cost,
+$A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, $e \in K^m$ 
+and $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$. When $A$ is a diagonal matrix and $D = 0$\footnote{\simone{pourquoi la contrainte $D=0$ ?}}, we often refer to \eqref{LP} as a \emph{diagonal} linear program.
+We denote the \emph{feasible set} of \eqref{LP} by
 \begin{equation*}
 \begin{aligned}
   \PP  &= \{x \in K^n : Ax + b \geq 0, Dx = e\}.
 \end{aligned}
 \end{equation*}
-A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$
-is called a \emph{solution} to \eqref{LP} if $p^* = \left\langle c,x^*\right\rangle$.
+A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$ is called a \emph{solution} to \eqref{LP} if $p^* = \val\left\langle c,x^*\right\rangle$, namely, if the infimum in \eqref{LP} is attained at $x^*$.
 
 \begin{remark}
 The valuation $\val$ is discrete. Thus if \eqref{LP} admits feasible vectors, $p^*$ is either $- \infty$ or reached by a certain solution $x^*$.
