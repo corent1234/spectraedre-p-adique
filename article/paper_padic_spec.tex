@@ -695,7 +695,7 @@ in the reduced problem.
 We first give a formal description of our algorithm:
 
 \begin{algorithm}
-    \caption{SOLVELP($A,b,c,D,e$)}\label{algo_LP}
+    \caption{\textbf{SOLVELP}($A,b,c,D,e$)}\label{algo_LP}
     \begin{algorithmic}[1]
       \REQUIRE
       $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
@@ -720,19 +720,12 @@ We first give a formal description of our algorithm:
       \IF{$D \neq {\bf 0}$}
       \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
       \STATE find $x_0$ such that $Dx_0=e$
-      \STATE $[\mathrm{STATUS}, y] \leftarrow \text{SOLVELP}(AJ,b+A x_0,J^T c,0,0)$
+      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELP}(AJ,b+A x_0,J^T c,0,0)$
       \RETURN $[\mathrm{STATUS}, y]$
       \ENDIF
-      %\FOR{epochs = $1$ to $N$}
-      %\WHILE{$(j\le m)$}
-      %\STATE Randomly initialize $w_i=\{w_1,w_2,\dots,w_n\}$
-      %\STATE input $o_j=\{o_1,o_2,\dots,o_m\}$ in the input layer
-      %\STATE forward propagate $(f_i\cdot w_i)$ through layers until getting the predicted result $y$
-      %\STATE compute $e=y-y^2$
-      %\STATE back propagate $e$ from right to left through layers
-      %\STATE update $w_i$
-      %\ENDWHILE
-      %\ENDFOR
+      \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
+      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELP}(S,Qb,(P^{-1})^Tc,0,0)$
+      \RETURN $[\mathrm{STATUS}, P^{-1}y]$
     \end{algorithmic}
 \end{algorithm}
 
@@ -776,7 +769,8 @@ of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
  
 %%%%Indeed, for all $z \in K^n$ and $M \in \allmat_n(\OK)$ if $z \geq 0$, then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$.
 
-\Cref{solsLP} allows us to reduce \eqref{LP} to diagonal linear programs.
+\Cref{solsLP} allows us to reduce Problem \eqref{LP} without linear equations
+to diagonal linear programs.
 
 \begin{proposition} \label{solsLP}
   Let $A \in K^{d\times n}$, $b \in K^d$, $c\in K^n$ and let
