@@ -684,14 +684,12 @@ A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A 
   $p^*$ is either $-\infty$ or attained at some solution $x^*$.
 \end{remark}
 
-In this section we present an algorithm for solving Problem \eqref{LP}.
+In this section we present \Cref{algo_LP}, \textbf{SOLVELP}, for solving Problem \eqref{LP}.
 The algorithm starts by eliminating the equality constraint defined by $D$ and $e$
 by variable substitution. Then the matrix $A$ is replaced by its Smith Normal Form,
 and the general linear program is consequently reduced to a diagonal linear program.
 The original \eqref{LP} is then easily solved by looking at valuations of input data
 in the reduced problem.
-
-We first give a formal description of our algorithm:
 
 \begin{algorithm}
     \caption{\textbf{SOLVELP}($A,b,c,D,e$)}\label{algo_LP}
@@ -729,10 +727,11 @@ We first give a formal description of our algorithm:
       \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$}
       \STATE STATUS $\leftarrow$ FEAS
       \STATE give solution in this case
-      \ENDIF
+      \ELSE
       \STATE
       \STATE
       \RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
+      \ENDIF
       \ENDIF
     \end{algorithmic}
 \end{algorithm}
