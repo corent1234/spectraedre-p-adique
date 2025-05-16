@@ -718,8 +718,10 @@ We first give a formal description of our algorithm:
       \RETURN [INFEAS, []]
       \ENDIF
       \IF{$D \neq {\bf 0}$}
-      \STATE $[\mathrm{STATUS}, y] \leftarrow $
-      \RETURN 
+      \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
+      \STATE find $x_0$ such that $Dx_0=e$
+      \STATE $[\mathrm{STATUS}, y] \leftarrow \text{SOLVELP}(AJ,b+A x_0,J^T c,0,0)$
+      \RETURN $[\mathrm{STATUS}, y]$
       \ENDIF
       %\FOR{epochs = $1$ to $N$}
       %\WHILE{$(j\le m)$}
@@ -796,9 +798,8 @@ of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
   and as such they preserve inequalities: $Mz \geq 0$ if and only if $Nz \geq 0$, with
   $N = \mathrm{SNF}(M)$. Thus one has that $Ax+b = AP^{-1}y +b \geq 0$ if and only if
   $Q(AP^{-1}y + b) = Sy + b' \geq 0$; this yields \Cref{solsLP_item1}.
-
-  Next, for all $c \in K^n$, we have $\langle c, x\rangle = \langle c, P^{-1}Px \rangle =
-  \langle \left(P^{-1}\right)^T c, Px \rangle = \langle c',y\rangle$, which proves
+  Moreover, for all $c \in K^n$, we have $\langle c, x\rangle = \langle c, P^{-1}Px \rangle =
+  \langle (P^{-1})^T c, Px \rangle = \langle c',y\rangle$, which proves
   \Cref{solsLP_item2}.
 \end{proof}
 
