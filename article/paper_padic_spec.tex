@@ -684,7 +684,7 @@ A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A 
   $p^*$ is either $-\infty$ or attained at some solution $x^*$.
 \end{remark}
 
-In this section we present \Cref{algo_LP}, \textbf{SOLVELP}, for solving Problem \eqref{LP}.
+In this section we present \Cref{algo_LP}, \textbf{SOLVELPval}, for solving Problem \eqref{LP}.
 The algorithm starts by eliminating the equality constraint defined by $D$ and $e$
 by variable substitution. Then the matrix $A$ is replaced by its Smith Normal Form,
 and the general linear program is consequently reduced to a diagonal linear program.
@@ -692,7 +692,7 @@ The original \eqref{LP} is then easily solved by looking at valuations of input 
 in the reduced problem.
 
 \begin{algorithm}
-    \caption{\textbf{SOLVELP}($A,b,c,D,e$)}\label{algo_LP}
+    \caption{\textbf{SOLVELPval}($A,b,c,D,e$)}\label{algo_LP}
     \begin{algorithmic}[1]
       \REQUIRE
       $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
@@ -717,13 +717,14 @@ in the reduced problem.
       \IF{$D \neq {\bf 0}$}
       \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
       \STATE find $x_0$ such that $Dx_0=e$
-      \RETURN $\textbf{SOLVELP}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \hfill {\color{olive} \# \Cref{reducD}}
+      \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \hfill {\color{olive} \# \Cref{reducD}}
       \ENDIF
       \IF{$A$ not in Smith Normal Form}
       \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
-      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELP}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$
+      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$
       \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill {\color{olive} \# \Cref{solsLP}}
       \ELSE
+      \STATE $r \leftarrow \text{rank}(A)$
       \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$}
       \STATE STATUS $\leftarrow$ FEAS
       \STATE give solution in this case
@@ -827,7 +828,7 @@ to checking the valuations of input data:
   However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b',c',0)$ is feasible,
   necessarily the $d-r$ last coefficients of $b'$ have nonnegative valuation.
   Conversely, if the $d-r$ last coefficients of $b'$ are zero, the vector $y \in K^n$ such that
-  $y_i = -\frac{-b'_i}{s_i}$ if $1 \leq i \leq r$, and $y_i =0$ otherwise, is feasible for \eqref{LP}
+  $y_i = {-b'_i}/{s_i}$ if $1 \leq i \leq r$, and $y_i =0$ otherwise, is feasible for \eqref{LP}
   with data $(S,b',c',{\bf 0},0)$.
 
   Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for \eqref{LP} with data $(S,b',c',{\bf 0},0)$.
