@@ -720,12 +720,15 @@ We first give a formal description of our algorithm:
       \IF{$D \neq {\bf 0}$}
       \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
       \STATE find $x_0$ such that $Dx_0=e$
-      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELP}(AJ,b+A x_0,J^T c,0,0)$
-      \RETURN $[\mathrm{STATUS}, y]$
+      \RETURN $\textbf{SOLVELP}(AJ,b+A x_0,J^T c,0,0)$
       \ENDIF
       \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
+      \IF{$S \neq A$}
       \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELP}(S,Qb,(P^{-1})^Tc,0,0)$
       \RETURN $[\mathrm{STATUS}, P^{-1}y]$
+      \ELSE
+      \STATE
+      \ENDIF
     \end{algorithmic}
 \end{algorithm}
 
@@ -736,7 +739,7 @@ thus from now on we only consider the case when $Dx=e$ has a solution.
 We first prove a reduction result, allowing to consider only iterations
 of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
 
-\begin{proposition}\label{reducD}
+\begin{lemma}\label{reducD}
   Let $A \in K^{d \times n}, b \in K^d, c\in K^n$, $D \in K^{m\times n}$,
   $e \in K^m$ and let $J \in K^{n \times R}$ be a matrix such that
   ${\rm Im}\, J = \ker D$ and $R = \dim \ker D$.
@@ -756,8 +759,7 @@ of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
     plus faible $\val \langle c,x^* \rangle = \val \langle J^T c,y^* \rangle$ ?
   Même question pour \Cref{solsLP}.}}.
   \end{enumerate}
-\end{proposition}
-
+\end{lemma}
 \begin{proof}
   %The existence and uniqueness of $y$ are granted by the fact that $x \in x_0 + \ker D =x_0+ {\rm Im } J$  and $\ker J = \{0\}$. 
   First, if $D={\bf 0}$, then by the assumptions one must have $e=0$, and the problem
@@ -772,7 +774,7 @@ of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
 \Cref{solsLP} allows us to reduce Problem \eqref{LP} without linear equations
 to diagonal linear programs.
 
-\begin{proposition} \label{solsLP}
+\begin{lemma} \label{solsLP}
   Let $A \in K^{d\times n}$, $b \in K^d$, $c\in K^n$ and let
   $S = \mathrm{SNF}(A) = QAP^{-1} \in K^{d\times n}$, with
   $P \in \GL_d(\OK)$ and $Q\in \GL_d(\OK)$.
@@ -786,7 +788,7 @@ to diagonal linear programs.
      $x^* \in K^n$ is a solution to \eqref{LP} with data $(A,b,c,0,0)$ if and only if $y^* = P x^*$ is
      a solution to \eqref{LP} with data $(S,b',c',0,0)$ and $\langle c,x^* \rangle = \langle c',y^* \rangle$.
    \end{enumerate}
-\end{proposition}
+\end{lemma}
 \begin{proof}
   Note that the transition matrices $P$ and $Q$ defining SNF$(A)$ are invertible in $\OK$
   and as such they preserve inequalities: $Mz \geq 0$ if and only if $Nz \geq 0$, with
@@ -797,9 +799,12 @@ to diagonal linear programs.
   \Cref{solsLP_item2}.
 \end{proof}
 
-\begin{proposition}\label{prop:reduc}
-  Let $(A,b,c), (S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP},
-  where $S = \mathrm{SNF}(A)$. Then
+Finally we show in \Cref{prop:reduc} that solving a diagonal \eqref{LP} amounts
+to checking the valuations of input data:
+
+\begin{lemma}\label{prop:reduc}
+  Let $(A,b,c), (S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
+  Then:
   \begin{enumerate}
   \item \label{prop:reduc_it1}
     \eqref{LP} with data $(S,b',c',0,0)$ is feasible if and only if the $d-r$ last coefficients
@@ -808,7 +813,7 @@ to diagonal linear programs.
     Assume at least one of the $n-r$ last coefficients of $c'$ is non-zero. If \eqref{LP} with
     data $(S,b',c')$ is feasible, then it is unbounded and does not admit solutions.
   \end{enumerate}
-\end{proposition}
+\end{lemma}
 \begin{proof}
   %%%%\corentin{préciser les notations}. 
   A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for \eqref{LP} with data
