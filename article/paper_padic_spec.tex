@@ -689,11 +689,11 @@ and the general linear program is consequently reduced to a diagonal linear prog
 The original \eqref{LP} is then easily solved by looking at valuations of input data
 in the reduced problem.
 
-We first give a formal description of our algorithm and then prove its correctness:
+We first give a formal description of our algorithm:
 
 \begin{algorithm}
     \caption{SOLVELP($A,b,c,D,e$)}\label{algo_LP}
-    \begin{algorithmic}
+    \begin{algorithmic}[1]
       \REQUIRE
       $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
       \ENSURE [TYPE, $x$], where:
@@ -731,11 +731,12 @@ We first give a formal description of our algorithm and then prove its correctne
     \end{algorithmic}
 \end{algorithm}
 
+In order to prove correctness of \Cref{algo_LP}, we proceed step-by-step.
+When the system $Dx=e$ has no solution, \eqref{LP} is infeasible and
+thus from now on we only consider the case when $Dx=e$ has a solution.
 
-
-The first result allows us to consider only iterations of~\eqref{LP} with data of the
-form $(A,b,c,0,0)$. When $Dx=e$ has no solution, \eqref{LP} is infeasible, thus
-we only consider the case when $Dx=e$ has a solution.
+We first prove a reduction result, allowing to consider only iterations
+of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
 
 \begin{proposition}\label{reducD}
   Let $A \in K^{d \times n}, b \in K^d, c\in K^n$, $D \in K^{m\times n}$,
@@ -799,7 +800,6 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$, with $S = \mathrm{SNF}(M)$.
   which proves \Cref{solsLP_item2}.
 \end{proof}
 
-
 \begin{proposition}\label{prop:reduc}
   Let $(A,b,c), (S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP},
   where $S = \mathrm{SNF}(A)$. Then
@@ -851,6 +851,13 @@ If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \ri
   Otherwise, if $\val(\lambda) \ge v$, then $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$
   of $\PP'$ such that $\left<c',y \right> \in \pi^v$.
 
+  We conclude with a correctness theorem.
+  
+  \begin{theorem} \Cref{algo_LP} is correct.
+  \end{theorem}
+  \begin{proof}
+  \end{proof}
+  
 \begin{remark}
 	If $\val \lambda \ge v$ and $i_0 \in \{1,\ldots, n\} $ is such that $v = \val \frac{c_{i_0}'}{s_{i_0}²} $ 
   then the vector $e^{i_0} \in K$ is a solution of \ref{LP}, 
