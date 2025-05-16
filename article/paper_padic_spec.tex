@@ -682,11 +682,56 @@ A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A 
   $p^*$ is either $-\infty$ or attained at some solution $x^*$.
 \end{remark}
 
-In this section we present an algorithm for solving \eqref{LP} which starts by
-eliminating the equality constraint defined by $D$ and $e$ by operating a substitution.
-Then the algorithm reduces the matrix $A$ to Smith Normal Form, thus reducing a general
-linear program to a diagonal linear program. The original problem is then easily solved
-by looking at valuations of input data of the reduced problem.
+In this section we present an algorithm for solving Problem \eqref{LP}.
+The algorithm starts by eliminating the equality constraint defined by $D$ and $e$
+by variable substitution. Then the matrix $A$ is replaced by its Smith Normal Form,
+and the general linear program is consequently reduced to a diagonal linear program.
+The original \eqref{LP} is then easily solved by looking at valuations of input data
+in the reduced problem.
+
+We first give a formal description of our algorithm and then prove its correctness:
+
+\begin{algorithm}
+    \caption{SOLVELP($A,b,c,D,e$)}\label{algo_LP}
+    \begin{algorithmic}
+      \REQUIRE
+      $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
+      \ENSURE [TYPE, $x$], where:
+      \vspace{-0.25cm}
+      \begin{itemize}
+      \item[]
+        TYPE $=$ INFEAS and $x=[]$ if and only if \eqref{LP} is infeasible
+      \vspace{-0.25cm}
+      \item[]
+        TYPE $=$ UNBOUND and $x=[]$ if and only if \eqref{LP} is feasible and unbounded
+      \vspace{-0.25cm}
+      \item[]
+        TYPE $=$ FEAS if and only if \eqref{LP} is feasible and has a solution $x$
+      \end{itemize}
+      \vspace{-0.1cm}
+      \hrule
+      \vspace{0.1cm}
+      \IF{$Dx = e$ has no solution}
+      \RETURN [INFEAS, []]
+      \ENDIF
+      \IF{$D \neq {\bf 0}$}
+      \STATE $[\mathrm{STATUS}, y] \leftarrow $
+      \RETURN 
+      \ENDIF
+      %\FOR{epochs = $1$ to $N$}
+      %\WHILE{$(j\le m)$}
+      %\STATE Randomly initialize $w_i=\{w_1,w_2,\dots,w_n\}$
+      %\STATE input $o_j=\{o_1,o_2,\dots,o_m\}$ in the input layer
+      %\STATE forward propagate $(f_i\cdot w_i)$ through layers until getting the predicted result $y$
+      %\STATE compute $e=y-y^2$
+      %\STATE back propagate $e$ from right to left through layers
+      %\STATE update $w_i$
+      %\ENDWHILE
+      %\ENDFOR
+    \end{algorithmic}
+\end{algorithm}
+
+
 
 The first result allows us to consider only iterations of~\eqref{LP} with data of the
 form $(A,b,c,0,0)$. When $Dx=e$ has no solution, \eqref{LP} is infeasible, thus
@@ -819,47 +864,6 @@ The only difference being that if $\val\left( \lambda\right) < v$ the problem is
 and as such does not admit a solution. 
 \end{remark}
 
-We formalize the algorithm described previously in \Cref{algo_LP}:
-
-\begin{algorithm}
-    \caption{SOLVELP($A,b,c,D,e$)}\label{algo_LP}
-    \begin{algorithmic}
-      \REQUIRE
-      $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
-      \ENSURE [TYPE, $x$], where:
-      \vspace{-0.25cm}
-      \begin{itemize}
-      \item[]
-        TYPE $=$ INFEAS and $x=[]$ if and only if \eqref{LP} is infeasible
-      \vspace{-0.25cm}
-      \item[]
-        TYPE $=$ UNBOUND and $x=[]$ if and only if \eqref{LP} is feasible and unbounded
-      \vspace{-0.25cm}
-      \item[]
-        TYPE $=$ FEAS if and only if \eqref{LP} is feasible and has a solution $x$
-      \end{itemize}
-      \vspace{-0.1cm}
-      \hrule
-      \vspace{0.1cm}
-      \IF{$Dx = e$ has no solution}
-      \RETURN [INFEAS, []]
-      \ENDIF
-      \IF{$D \neq {\bf 0}$}
-      \STATE $[\mathrm{STATUS}, y] \leftarrow $
-      \RETURN 
-      \ENDIF
-      %\FOR{epochs = $1$ to $N$}
-      %\WHILE{$(j\le m)$}
-      %\STATE Randomly initialize $w_i=\{w_1,w_2,\dots,w_n\}$
-      %\STATE input $o_j=\{o_1,o_2,\dots,o_m\}$ in the input layer
-      %\STATE forward propagate $(f_i\cdot w_i)$ through layers until getting the predicted result $y$
-      %\STATE compute $e=y-y^2$
-      %\STATE back propagate $e$ from right to left through layers
-      %\STATE update $w_i$
-      %\ENDWHILE
-      %\ENDFOR
-    \end{algorithmic}
-\end{algorithm}
 
 
 
