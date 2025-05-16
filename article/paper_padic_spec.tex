@@ -772,10 +772,7 @@ of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
   $c \in K^n$, $\langle c,x\rangle = \langle c, Jy\rangle = \langle J^T c,y\rangle$, which proves \Cref{reducD_item2}.
 \end{proof}
  
-Concerning the usage of SNF in the resolution of \eqref{LP}, note that the transition matrices $P$ and $Q$ defining SNF$(M)$ in \Cref{smith_nf} are invertible in $\OK$ and as such they preserve inequalities.
 %%%%Indeed, for all $z \in K^n$ and $M \in \allmat_n(\OK)$ if $z \geq 0$, then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$.
-Therefore, for all matrix $M \in K^{n\times n}$ and vector $z \in K^n$,
-then $Mz \geq 0$ if and only if $Sz \geq 0$, with $S = \mathrm{SNF}(M)$.
 
 \Cref{solsLP} allows us to reduce \eqref{LP} to diagonal linear programs.
 
@@ -795,11 +792,14 @@ then $Mz \geq 0$ if and only if $Sz \geq 0$, with $S = \mathrm{SNF}(M)$.
    \end{enumerate}
 \end{proposition}
 \begin{proof}
-  First, since $Q \in \GL_m(\OK)$, one has that $Ax+b = AP^{-1}y +b \geq 0$
-  if and only if $Q(AP^{-1}y + b) = Sy + b' \geq 0$; this yields \Cref{solsLP_item1}.
-  Next, for all $c \in K^n$, we have $\langle c,
-  x\rangle = \langle c, P^{-1}Px \rangle = \langle \left(P^{-1}\right)^T c, Px \rangle = \langle c',y\rangle$,
-  which proves \Cref{solsLP_item2}.
+  Note that the transition matrices $P$ and $Q$ defining SNF$(A)$ are invertible in $\OK$
+  and as such they preserve inequalities: $Mz \geq 0$ if and only if $Nz \geq 0$, with
+  $N = \mathrm{SNF}(M)$. Thus one has that $Ax+b = AP^{-1}y +b \geq 0$ if and only if
+  $Q(AP^{-1}y + b) = Sy + b' \geq 0$; this yields \Cref{solsLP_item1}.
+
+  Next, for all $c \in K^n$, we have $\langle c, x\rangle = \langle c, P^{-1}Px \rangle =
+  \langle \left(P^{-1}\right)^T c, Px \rangle = \langle c',y\rangle$, which proves
+  \Cref{solsLP_item2}.
 \end{proof}
 
 \begin{proposition}\label{prop:reduc}
