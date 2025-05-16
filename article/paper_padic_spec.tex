@@ -726,6 +726,10 @@ We first give a formal description of our algorithm:
       \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELP}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$
       \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill {\color{olive} \# \Cref{solsLP}}
       \ELSE
+      \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$}
+      \STATE STATUS $\leftarrow$ FEAS
+      \STATE give solution in this case
+      \ENDIF
       \STATE
       \STATE
       \RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
@@ -831,7 +835,9 @@ to checking the valuations of input data:
   Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $e^i$ whose only non-zero
   coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c',{\bf 0},0)$,
   for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$.
-  In particular, for all $n \in \mathbb{N}$ if we set $\alpha = -\frac{\langle c', y^* \rangle + \pi^{-n}}{c'_i}$, we have $\val \left( \langle c', y^* + \alpha e ^i \rangle\right) = \val \pi^{-n} = -n$. Therefore, the problem is unbounded as $p^* = -\infty$\footnote{\simone{avant c'était ``Therefore, the problem is unbounded as $p^* = +\infty$'' ce qui ne me paraît pas correct.}}. 
+  In particular, for all $n \in \mathbb{N}$ if we set $\alpha_n = -({\langle c', y^* \rangle + \pi^{-n}})/{c'_i}$,
+  we have $\val \left(\langle c', y^* + \alpha_n e ^i \rangle\right) = \val \pi^{-n} = -n$.
+  Therefore, the problem is unbounded as $p^* = -\infty$\footnote{\simone{avant c'était ``Therefore, the problem is unbounded as $p^* = +\infty$'' ce qui ne me paraît pas correct.}}.
 \end{proof}
 
 The previous results imply that we can consider iterations of diagonal linear programs admitting a solution. By \Cref{prop:reduc} one can simplify the problem by only taking account the first $r$ coefficients of $y, b', c'$ and the submatrix of $S$ made by the $r$ first rows and columns corresponding to the nonzero invariants factors.
