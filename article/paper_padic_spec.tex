@@ -8,7 +8,7 @@
 \usepackage{amsfonts}
 \usepackage{mathrsfs} 
 \usepackage{graphicx}
-\usepackage{color}
+\usepackage{color,xcolor}
 \usepackage{ulem}
 \usepackage{bm}
 
@@ -179,15 +179,15 @@ with coefficients in $K$ is denoted by $K[x]_{d}$. The ring of matrices of
 size $p \times q$ with entries in a ring $R$ is $R^{p \times q}$ and the general
 linear group in $R^{n \times n}$ is $\GL_n(R)$.
 For the sake of ease of writing, block-diagonal matrices with blocks
-$B_1,\ldots,B_d$ are denoted by $\diag(B_1, \ldots, B_d)$, the null square
-matrix of size $t$ by ${\bf 0}_{t}$, and the identity matrix by $I_t$.
+$B_1,\ldots,B_d$ are denoted by $\diag(B_1, \ldots, B_d)$, the null matrix of
+size $p \times q$ by ${\bf 0}_{p,q}$, and the identity matrix by $I_t$.
 
 We recall the definition of Smith Normal Form, in our context.
 \begin{definition}[Smith Normal Form]\label{smith_nf}
   Let $M \in K^{m \times n}$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
-  \mathrm{SNF}(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{\min(m,n)-r}).
+  \mathrm{SNF}(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{m-r,n-r}).
   $$
   The matrix $\mathrm{SNF}(M)$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
   \emph{invariant factors}.
@@ -264,8 +264,8 @@ The optimization problem of miminizing a linear function over a real spectrahedr
 \end{array}
 \end{equation}
 Real polyhedra (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
-spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that $A(x) =
-\ell_1(x) \oplus \cdots \oplus \ell_d(x)$. In other words, SDP is a generalization of Linear Programming (LP).
+spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that
+$A = \diag(\ell_1,\ldots, \ell_d)$. In other words, SDP is a generalization of Linear Programming (LP).
 
 % IN INTRODUCTION
 %In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
@@ -558,7 +558,6 @@ We assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $\al
 As seen above, we can assume that $\PP$ is of the form $\left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I\right\rbrace$ for some
 finite sets $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
 
-
 Thanks to Definition \ref{smith_nf}, (the matrix of) $f$
 can be written $f=Q^{-1} \Delta P$
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
@@ -668,7 +667,7 @@ $A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, $e \in K^m$
 and $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$.
 When $A$ is a diagonal matrix\footnote{\simone{J'ai supprimé ``and
 $D=0$'', car cela ne me semble pas nécessaire pour définir le ``diagonal LP''.}},
-we often refer to \eqref{LP} as a \emph{diagonal} linear program.
+we refer to \eqref{LP} as a \emph{diagonal} linear program.
 We denote the \emph{feasible set} of \eqref{LP} by
 \begin{equation*}
 \begin{aligned}
@@ -720,14 +719,16 @@ We first give a formal description of our algorithm:
       \IF{$D \neq {\bf 0}$}
       \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
       \STATE find $x_0$ such that $Dx_0=e$
-      \RETURN $\textbf{SOLVELP}(AJ,b+A x_0,J^T c,0,0)$
+      \RETURN $\textbf{SOLVELP}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \hfill {\color{olive} \# \Cref{reducD}}
       \ENDIF
+      \IF{$A$ not in Smith Normal Form}
       \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
-      \IF{$S \neq A$}
-      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELP}(S,Qb,(P^{-1})^Tc,0,0)$
-      \RETURN $[\mathrm{STATUS}, P^{-1}y]$
+      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELP}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$
+      \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill {\color{olive} \# \Cref{solsLP}}
       \ELSE
       \STATE
+      \STATE
+      \RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
       \ENDIF
     \end{algorithmic}
 \end{algorithm}
@@ -737,7 +738,7 @@ When the system $Dx=e$ has no solution, \eqref{LP} is infeasible and
 thus from now on we only consider the case when $Dx=e$ has a solution.
 
 We first prove a reduction result, allowing to consider only iterations
-of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
+of~\eqref{LP} with data of the form $(A,b,c,{\bf 0},0)$.
 
 \begin{lemma}\label{reducD}
   Let $A \in K^{d \times n}, b \in K^d, c\in K^n$, $D \in K^{m\times n}$,
@@ -750,10 +751,10 @@ of~\eqref{LP} with data of the form $(A,b,c,0,0)$.
   \begin{enumerate}
   \item\label{reducD_item1}
     $x$ is feasible for~\eqref{LP} with data $(A,b,c,D,e)$ if and only if 
-    $y$ is feasible for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,0,0)$.
+    $y$ is feasible for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,{\bf 0},0)$.
   \item\label{reducD_item2}
     $x$ is a solution for~\eqref{LP} with data $(A,b,c,D,e)$ if and only if 
-    $y$ is a solution for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,0,0)$ and
+    $y$ is a solution for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,{\bf 0},0)$ and
     $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$\footnote{\simone{Est-ce que
     c'est bien $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$ ou plutôt la condition
     plus faible $\val \langle c,x^* \rangle = \val \langle J^T c,y^* \rangle$ ?
@@ -782,11 +783,11 @@ to diagonal linear programs.
   Then
    \begin{enumerate}
    \item \label{solsLP_item1}
-     $x \in K^n$ is feasible for \eqref{LP} with data $(A,b,c,0,0)$ if and only if $y = P x \in K^n$ is
-     feasible for \eqref{LP} with data $(S,b',c',0,0)$.
+     $x \in K^n$ is feasible for \eqref{LP} with data $(A,b,c,{\bf 0},0)$ if and only if $y = P x \in K^n$ is
+     feasible for \eqref{LP} with data $(S,b',c',{\bf 0},0)$.
    \item \label{solsLP_item2}
-     $x^* \in K^n$ is a solution to \eqref{LP} with data $(A,b,c,0,0)$ if and only if $y^* = P x^*$ is
-     a solution to \eqref{LP} with data $(S,b',c',0,0)$ and $\langle c,x^* \rangle = \langle c',y^* \rangle$.
+     $x^* \in K^n$ is a solution to \eqref{LP} with data $(A,b,c,{\bf 0},0)$ if and only if $y^* = P x^*$ is
+     a solution to \eqref{LP} with data $(S,b',c',{\bf 0},0)$ and $\langle c,x^* \rangle = \langle c',y^* \rangle$.
    \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -803,11 +804,11 @@ Finally we show in \Cref{prop:reduc} that solving a diagonal \eqref{LP} amounts
 to checking the valuations of input data:
 
 \begin{lemma}\label{prop:reduc}
-  Let $(A,b,c), (S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
+  Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
   Then:
   \begin{enumerate}
   \item \label{prop:reduc_it1}
-    \eqref{LP} with data $(S,b',c',0,0)$ is feasible if and only if the $d-r$ last coefficients
+    \eqref{LP} with data $(S,b',c',{\bf 0},0)$ is feasible if and only if the $d-r$ last coefficients
     of $b'$ have nonnegative valuation, for $r = {\rm rank}\,S$.
   \item \label{prop:reduc_it2}
     Assume at least one of the $n-r$ last coefficients of $c'$ is non-zero. If \eqref{LP} with
@@ -817,16 +818,18 @@ to checking the valuations of input data:
 \begin{proof}
   %%%%\corentin{préciser les notations}. 
   A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for \eqref{LP} with data
-  $(S,b',c',0)$ if and only if $\val(s_i y_i + b_i) \geq 0$ for\footnote{\simone{Ce n'est pas plutôt $\val(s_i y_i + b'_i) \geq 0$ ? Car c'est $b'$ et non pas $b$.}} all $i = 1,\ldots,n$.
+  $(S,b',c',0)$ if and only if $\val(s_i y_i + b'_i) \geq 0$ for\footnote{\simone{J'ai mis
+    $\val(s_i y_i + b'_i) \geq 0$ au lieu de $\val(s_i y_i + b_i) \geq 0$ car c'est $b'$
+    et non pas $b$.}} all $i = 1,\ldots,n$.
   However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b',c',0)$ is feasible,
   necessarily the $d-r$ last coefficients of $b'$ have nonnegative valuation.
   Conversely, if the $d-r$ last coefficients of $b'$ are zero, the vector $y \in K^n$ such that
   $y_i = -\frac{-b'_i}{s_i}$ if $1 \leq i \leq r$, and $y_i =0$ otherwise, is feasible for \eqref{LP}
-  with data $(S,b',c',0,0)$.
+  with data $(S,b',c',{\bf 0},0)$.
 
-  Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for \eqref{LP} with data $(S,b',c',0,0)$.
+  Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for \eqref{LP} with data $(S,b',c',{\bf 0},0)$.
   Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $e^i$ whose only non-zero
-  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c',0,0)$,
+  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c',{\bf 0},0)$,
   for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$.
   In particular, for all $n \in \mathbb{N}$ if we set $\alpha = -\frac{\langle c', y^* \rangle + \pi^{-n}}{c'_i}$, we have $\val \left( \langle c', y^* + \alpha e ^i \rangle\right) = \val \pi^{-n} = -n$. Therefore, the problem is unbounded as $p^* = -\infty$\footnote{\simone{avant c'était ``Therefore, the problem is unbounded as $p^* = +\infty$'' ce qui ne me paraît pas correct.}}. 
 \end{proof}
