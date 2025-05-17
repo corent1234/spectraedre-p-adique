@@ -712,30 +712,41 @@ in the reduced problem.
       \hrule
       \vspace{0.1cm}
       \IF{$Dx = e$ has no solution}
-      \RETURN [INFEAS, []] \label{step:linear_empty}
+        \RETURN [INFEAS, []] \label{step:linear_empty}
       \ENDIF
       \IF{$D \neq {\bf 0}$} \label{step:reducD:begin}
-      \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
-      \STATE find $x_0$ such that $Dx_0=e$ \label{step:reducD:end}
-      \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \label{step:reducD} \hfill {\color{olive} \# \Cref{reducD}}
+        \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
+        \STATE find $x_0$ such that $Dx_0=e$ \label{step:reducD:end}
+        \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \label{step:reducD} \hfill {\color{olive} \# \Cref{reducD}}
       \ENDIF
       \IF{$A$ not in Smith Normal Form} \label{step:solsLP:begin}
-      \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
-      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
-      \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill {\color{olive} \# \Cref{solsLP}} \label{step:solsLP}
-      \ELSE
-      \STATE $r \leftarrow \text{rank}(A)$
+        \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
+        \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
+        \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill {\color{olive} \# \Cref{solsLP}} \label{step:solsLP}
+      \ENDIF
+      \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
       \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$}
-      \STATE STATUS $\leftarrow$ FEAS
-      \STATE $\lambda \leftarrow \sum_{i=1}^r -c_i b_i / s_i$
-      \STATE $v \leftarrow $
-      \STATE 
-      \ELSE
-      \STATE
-      \STATE
-      \RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
+        \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
+        \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}}
+        \ELSE
+          %\STATE STATUS $\leftarrow$ FEAS
+          \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
+          \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
+          \IF{$\val \lambda < v$}
+            \STATE choose $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
+            \RETURN [FEAS, $y$]
+          \ELSE
+            \STATE find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
+            and $\langle c,y\rangle = \pi^v\OK$
+            \RETURN [FEAS, $y$]
+          \ENDIF
+        \ENDIF 
       \ENDIF
-      \ENDIF
+        %\STATE
+        %\STATE
+        %\RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
+      %\ENDIF \label{step:core:end}
+      \RETURN [INFEAS, []]
     \end{algorithmic}
 \end{algorithm}
 
@@ -856,28 +867,29 @@ c',y \right\rangle\right)$ over $\PP'$. The image of $\PP'$ by $y \mapsto \left\
 \[
 \left\langle c',\PP' \right\rangle = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right) = \lambda + \pi^{v} \OK
 \]
-where $\lambda = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
+where $\lambda = -\sum_{i=1}^r c'_i \frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
 
 Two cases can occur depending on $v$ and the valuation of $\lambda$.
-If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$
-  is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
-  Otherwise, if $\val(\lambda) \ge v$, then $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$
-  of $\PP'$ such that $\left<c',y \right> \in \pi^v$.
+If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$ is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
+Otherwise, if $\val(\lambda) \ge v$, then $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$ of $\PP'$ such that\footnote{\simone{J'imagine que c'est plutôt
+$\left<c',y \right> \in \pi^v\OK$ ?}} $\left<c',y \right> \in \pi^v$.
 
-  We conclude with a correctness theorem.
+We conclude with a correctness theorem for \Cref{algo_LP}.
   
   \begin{theorem} \Cref{algo_LP} is correct.
   \end{theorem}
   \begin{proof}
     If the linear system $Dx=e$, Problem \eqref{LP} is infeasible
-    and \Cref{algo_LP} outputs correct answer at Step \ref{step:linear_empty}.
+    and \Cref{algo_LP} outputs correct answer at step \ref{step:linear_empty}.
     Else, by \Cref{reducD} the input problem can be reduced to a new linear
-    program with $D={\bf 0}$ and $e=0$, which is done on Steps
+    program with $D={\bf 0}$ and $e=0$, which is done at steps
     \ref{step:reducD:begin}-\ref{step:reducD:end},
-    and the correct output is given at Step \ref{step:reducD}.
+    and the correct output is given at step \ref{step:reducD}.
     The reduction based on SNF from \Cref{solsLP} is performed at
-    Steps \ref{step:solsLP:begin}-\ref{step:solsLP:end} and the output
-    is on Step \ref{step:solsLP}.
+    steps \ref{step:solsLP:begin}-\ref{step:solsLP:end} and the output
+    is given at step \ref{step:solsLP}.
+
+    The core of \Cref{algo_LP} is on steps \ref{step:core:begin}-\ref{step:core:end}.
 
     TO BE CONTINUED.
   \end{proof}
