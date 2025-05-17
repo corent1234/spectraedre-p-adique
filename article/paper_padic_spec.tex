@@ -719,10 +719,10 @@ in the reduced problem.
       \STATE find $x_0$ such that $Dx_0=e$ \label{step:reducD:end}
       \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \label{step:reducD} \hfill {\color{olive} \# \Cref{reducD}}
       \ENDIF
-      \IF{$A$ not in Smith Normal Form}
+      \IF{$A$ not in Smith Normal Form} \label{step:solsLP:begin}
       \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
-      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$
-      \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill {\color{olive} \# \Cref{solsLP}}
+      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
+      \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill {\color{olive} \# \Cref{solsLP}} \label{step:solsLP}
       \ELSE
       \STATE $r \leftarrow \text{rank}(A)$
       \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$}
@@ -875,19 +875,23 @@ If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \ri
     program with $D={\bf 0}$ and $e=0$, which is done on Steps
     \ref{step:reducD:begin}-\ref{step:reducD:end},
     and the correct output is given at Step \ref{step:reducD}.
+    The reduction based on SNF from \Cref{solsLP} is performed at
+    Steps \ref{step:solsLP:begin}-\ref{step:solsLP:end} and the output
+    is on Step \ref{step:solsLP}.
   \end{proof}
-  
+
 \begin{remark}
-	If $\val \lambda \ge v$ and $i_0 \in \{1,\ldots, n\} $ is such that $v = \val \frac{c_{i_0}'}{s_{i_0}²} $ 
-  then the vector $e^{i_0} \in K$ is a solution of \ref{LP}, 
-  where $e^{i_0}$ denotes the vector of $K^n$ whose only non-zero coefficient is the $i_0$-th which is $1$.
+  If $\val \lambda \ge v$ and $i_0 \in \{1,\ldots, n\} $ is such that
+  $v = \val \frac{c_{i_0}'}{s_{i_0}²} $ then the vector $e^{i_0} \in K$ is a solution of \ref{LP}, 
+  where $e^{i_0}$ denotes the vector of $K^n$ whose only non-zero coefficient is the $i_0$-th
+  which is $1$.
 \end{remark}
 
 \begin{remark}
-To maximize the valuation of a linear map over a polyhedron instead of minimizing it 
-(which is equivalent to minimize the absolute value) the same reasoning can be applied. 
-The only difference being that if $\val\left( \lambda\right) < v$ the problem is unbounded
-and as such does not admit a solution. 
+  To maximize the valuation of a linear map over a polyhedron instead of minimizing it 
+  (which is equivalent to minimize the absolute value) the same reasoning can be applied. 
+  The only difference being that if $\val\left( \lambda\right) < v$ the problem is unbounded
+  and as such does not admit a solution. 
 \end{remark}
 
 
