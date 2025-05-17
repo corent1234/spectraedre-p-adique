@@ -712,12 +712,12 @@ in the reduced problem.
       \hrule
       \vspace{0.1cm}
       \IF{$Dx = e$ has no solution}
-      \RETURN [INFEAS, []]
+      \RETURN [INFEAS, []] \label{step:linear_empty}
       \ENDIF
-      \IF{$D \neq {\bf 0}$}
+      \IF{$D \neq {\bf 0}$} \label{step:reducD:begin}
       \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
-      \STATE find $x_0$ such that $Dx_0=e$
-      \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \hfill {\color{olive} \# \Cref{reducD}}
+      \STATE find $x_0$ such that $Dx_0=e$ \label{step:reducD:end}
+      \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \label{step:reducD} \hfill {\color{olive} \# \Cref{reducD}}
       \ENDIF
       \IF{$A$ not in Smith Normal Form}
       \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
@@ -727,7 +727,9 @@ in the reduced problem.
       \STATE $r \leftarrow \text{rank}(A)$
       \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$}
       \STATE STATUS $\leftarrow$ FEAS
-      \STATE give solution in this case
+      \STATE $\lambda \leftarrow \sum_{i=1}^r -c_i b_i / s_i$
+      \STATE $v \leftarrow $
+      \STATE 
       \ELSE
       \STATE
       \STATE
@@ -867,6 +869,12 @@ If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \ri
   \begin{theorem} \Cref{algo_LP} is correct.
   \end{theorem}
   \begin{proof}
+    If the linear system $Dx=e$, Problem \eqref{LP} is infeasible
+    and \Cref{algo_LP} outputs correct answer at Step \ref{step:linear_empty}.
+    Else, by \Cref{reducD} the input problem can be reduced to a new linear
+    program with $D={\bf 0}$ and $e=0$, which is done on Steps
+    \ref{step:reducD:begin}-\ref{step:reducD:end},
+    and the correct output is given at Step \ref{step:reducD}.
   \end{proof}
   
 \begin{remark}
