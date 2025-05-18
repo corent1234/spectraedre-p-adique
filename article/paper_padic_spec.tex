@@ -736,9 +736,10 @@ in the reduced problem.
             \STATE choose $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
             \RETURN [FEAS, $y$]
           \ELSE
-            \STATE find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
-            and $\langle c,y\rangle = \pi^v\OK$
-            \RETURN [FEAS, $y$]
+          \STATE $i \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
+          %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
+          %and $\langle c,y\rangle = \pi^v\OK$
+            \RETURN [FEAS, ${\bf e}_i$]
           \ENDIF
         \ENDIF 
       \ENDIF
@@ -853,8 +854,14 @@ to checking the valuations of input data:
   Therefore, the problem is unbounded as $p^* = -\infty$\footnote{\simone{avant c'était ``Therefore, the problem is unbounded as $p^* = +\infty$'' ce qui ne me paraît pas correct.}}.
 \end{proof}
 
-The previous results imply that we can consider iterations of diagonal linear programs admitting a solution. By \Cref{prop:reduc} one can simplify the problem by only taking account the first $r$ coefficients of $y, b', c'$ and the submatrix of $S$ made by the $r$ first rows and columns corresponding to the nonzero invariants factors.
+%The previous results imply that we can consider iterations of diagonal linear programs admitting a solution. By \Cref{prop:reduc} one can simplify the problem by only taking account the first $r$ coefficients of $y, b', c'$ and the submatrix of $S$ made by the $r$ first rows and columns corresponding to the nonzero invariants factors.
 
+We conclude by the following Lemma:
+\begin{lemma}\label{solutions}
+  Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
+  Let $\lambda = -\sum_{i=1}^r c'_i \frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}}$.
+\end{lemma}
+\begin{proof}
 The feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$ of the diagonal LP can be written as the set of vectors
 $y \in K^n$ that verifies $s_i y_i + b'_i \in \OK$ for $i=1,...,r$ {\it i.e.}:
 $$
@@ -873,26 +880,27 @@ Two cases can occur depending on $v$ and the valuation of $\lambda$.
 If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$ is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
 Otherwise, if $\val(\lambda) \ge v$, then $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$ of $\PP'$ such that\footnote{\simone{J'imagine que c'est plutôt
 $\left<c',y \right> \in \pi^v\OK$ ?}} $\left<c',y \right> \in \pi^v$.
+\end{proof}
 
-We conclude with a correctness theorem for \Cref{algo_LP}.
+We are now able to state a correctness theorem for \Cref{algo_LP}.
   
-  \begin{theorem} \Cref{algo_LP} is correct.
-  \end{theorem}
-  \begin{proof}
-    If the linear system $Dx=e$, Problem \eqref{LP} is infeasible
-    and \Cref{algo_LP} outputs correct answer at step \ref{step:linear_empty}.
-    Else, by \Cref{reducD} the input problem can be reduced to a new linear
-    program with $D={\bf 0}$ and $e=0$, which is done at steps
-    \ref{step:reducD:begin}-\ref{step:reducD:end},
-    and the correct output is given at step \ref{step:reducD}.
-    The reduction based on SNF from \Cref{solsLP} is performed at
-    steps \ref{step:solsLP:begin}-\ref{step:solsLP:end} and the output
-    is given at step \ref{step:solsLP}.
-
-    The core of \Cref{algo_LP} is on steps \ref{step:core:begin}-\ref{step:core:end}.
-
-    TO BE CONTINUED.
-  \end{proof}
+\begin{theorem} \Cref{algo_LP} is correct.
+\end{theorem}
+\begin{proof}
+  If the linear system $Dx=e$, Problem \eqref{LP} is infeasible
+  and \Cref{algo_LP} outputs correct answer at step \ref{step:linear_empty}.
+  Else, by \Cref{reducD} the input problem can be reduced to a new linear
+  program with $D={\bf 0}$ and $e=0$, which is done at steps
+  \ref{step:reducD:begin}-\ref{step:reducD:end},
+  and the correct output is given at step \ref{step:reducD}.
+  The reduction based on SNF from \Cref{solsLP} is performed at
+  steps \ref{step:solsLP:begin}-\ref{step:solsLP:end} and the output
+  is given at step \ref{step:solsLP}.
+  
+  The core of \Cref{algo_LP} is on steps \ref{step:core:begin}-\ref{step:core:end}.
+  
+  TO BE CONTINUED.
+\end{proof}
 
 \begin{remark}
   If $\val \lambda \ge v$ and $i_0 \in \{1,\ldots, n\} $ is such that
