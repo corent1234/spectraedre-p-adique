@@ -856,10 +856,14 @@ to checking the valuations of input data:
 
 %The previous results imply that we can consider iterations of diagonal linear programs admitting a solution. By \Cref{prop:reduc} one can simplify the problem by only taking account the first $r$ coefficients of $y, b', c'$ and the submatrix of $S$ made by the $r$ first rows and columns corresponding to the nonzero invariants factors.
 
-We conclude by the following Lemma:
+We conclude by giving explicit solutions to the reduced \eqref{LP}:
+
 \begin{lemma}\label{solutions}
-  Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
-  Let $\lambda = -\sum_{i=1}^r c'_i \frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}}$.
+  Assume \eqref{LP} with data $(S,b',c',{\bf 0}, 0)$ be as in \Cref{solsLP} is feasible,
+  with feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$.
+  Let $\lambda = -\sum_{i=1}^r c'_i b'_i/s_i$ and $v = \min_{1\le i\le r} \val (c'_i/s_i)$.
+  If $\val \lambda < v$, the minimum is $\val \lambda$ and is attained on every $x \in \mathcal{P}'$;
+  if $\val \lambda \geq v$, the minimum is $v$ and is attained on ${\bf e}_i = (0,\ldots,0,1,0,\ldots,0}$.
 \end{lemma}
 \begin{proof}
 The feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$ of the diagonal LP can be written as the set of vectors
