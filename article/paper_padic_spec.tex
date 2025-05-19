@@ -722,10 +722,10 @@ in the reduced problem.
       \IF{$A$ not in Smith Normal Form} \label{step:solsLP:begin}
         \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
         \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
-        \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill {\color{olive} \# \Cref{solsLP}} \label{step:solsLP}
+        \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
       \ENDIF
       \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
-      \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$}
+      \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} 
         \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
         \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}}
         \ELSE
@@ -734,20 +734,20 @@ in the reduced problem.
           \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
           \IF{$\val \lambda < v$}
             \STATE choose $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
-            \RETURN [FEAS, $y$]
+            \RETURN [FEAS, $y$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it1}}
           \ELSE
-          \STATE $i \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
+          \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
           %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
           %and $\langle c,y\rangle = \pi^v\OK$
-            \RETURN [FEAS, ${\bf e}_i$]
+            \RETURN [FEAS, ${\bf e}_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
           \ENDIF
         \ENDIF 
-      \ENDIF
+      \ENDIF 
         %\STATE
         %\STATE
         %\RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
       %\ENDIF \label{step:core:end}
-      \RETURN [INFEAS, []]
+      \RETURN [INFEAS, []] \label{step:core:end}
     \end{algorithmic}
 \end{algorithm}
 
@@ -859,31 +859,45 @@ to checking the valuations of input data:
 We conclude by giving explicit solutions to the reduced \eqref{LP}:
 
 \begin{lemma}\label{solutions}
-  Assume \eqref{LP} with data $(S,b',c',{\bf 0}, 0)$ be as in \Cref{solsLP} is feasible,
-  with feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$.
-  Let $\lambda = -\sum_{i=1}^r c'_i b'_i/s_i$ and $v = \min_{1\le i\le r} \val (c'_i/s_i)$.
-  If $\val \lambda < v$, the minimum is $\val \lambda$ and is attained on every $x \in \mathcal{P}'$;
-  if $\val \lambda \geq v$, the minimum is $v$ and is attained on ${\bf e}_i = (0,\ldots,0,1,0,\ldots,0)$.
+  Let $(S,b',c',{\bf 0}, 0)$ be as in \Cref{solsLP} and assume \eqref{LP} is feasible.
+  %%%$\PP' \neq \emptyset$.
+  %%%= \{y \in K^n : Sy+b' \geq 0\}
+  For $\lambda = -\sum_{i=1}^r c'_i b'_i/s_i$ and $v = \min_{1\le i\le r} \val (c'_i/s_i)$,
+  one has:
+  \begin{enumerate}
+  \item
+    if $\val \lambda < v$, the minimum is $\val \lambda$ and is attained on the whole feasible
+    set; \label{solutions:it1}
+  \item
+    if $\val \lambda \geq v$, the minimum is $v$ and is attained on
+    ${\bf e}_j \in K^n$, the vector with all $0$'s except with a $1$ on the $j$-th component,
+    with $j$ satisfying $\val (c'_j/s_j) = v$. \label{solutions:it2}
+  \end{enumerate}
+  %One has
+  %$$
+  %\langle c',\mathcal{P}'\rangle = \lambda + \pi^v\OK.
+  %$$
+  %If attained on every $x \in \mathcal{P}'$;
 \end{lemma}
 \begin{proof}
-The feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$ of the diagonal LP can be written as the set of vectors
-$y \in K^n$ that verifies $s_i y_i + b'_i \in \OK$ for $i=1,...,r$ {\it i.e.}:
-$$
-\PP' = \left\{\left[\begin{smallmatrix} y_1\\ \vdots\\ y_n \end{smallmatrix}\right] \in K^n :
-y_i \in -\frac{b'_i}{s_i} + \frac{1}{s_i} \OK, 1\le i\le r\right\}.
-$$
-
-Solving the diagonal \eqref{LP} consists -- by definition -- in minimizing the linear map $y \mapsto \val\left(\left\langle
-c',y \right\rangle\right)$ over $\PP'$. The image of $\PP'$ by $y \mapsto \left\langle c',y \right\rangle$ is
-\[
-\left\langle c',\PP' \right\rangle = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right) = \lambda + \pi^{v} \OK
-\]
-where $\lambda = -\sum_{i=1}^r c'_i \frac{b'_i}{s_i}$ and $v = \min\limits_{1\le i\le r} \val \frac{c'_{i}}{s_{i}} $.
-
-Two cases can occur depending on $v$ and the valuation of $\lambda$.
-If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$ is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
-Otherwise, if $\val(\lambda) \ge v$, then $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$ of $\PP'$ such that\footnote{\simone{J'imagine que c'est plutôt
-$\left<c',y \right> \in \pi^v\OK$ ?}} $\left<c',y \right> \in \pi^v$.
+  The feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$ of the diagonal LP can be written
+  as the set of vectors $y \in K^n$ that verifies $s_i y_i + b'_i \in \OK$ for $i=1,...,r$.
+  In other words:
+  $$
+  \PP' = \left\{\left[\begin{smallmatrix} y_1\\ \vdots\\ y_n \end{smallmatrix}\right] \in K^n :
+  y_i \in -\frac{b'_i}{s_i} + \frac{1}{s_i} \OK, 1\le i\le r\right\}.
+  $$
+  The minimum in \eqref{LP} is the minimum of
+  $y \mapsto \val\left(\left\langle c',y \right\rangle\right)$ on $\PP'$.
+  The image of $\PP'$ by $y \mapsto \left\langle c',y \right\rangle$ is
+  \[
+  \left\langle c',\PP' \right\rangle = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right) = \lambda + \pi^{v} \OK.
+  \]
+  Two cases can occur depending on $v$ and the valuation of $\lambda$.
+  If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$ is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
+  Otherwise, $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$ of $\PP'$ such that\footnote{\simone{J'imagine que c'est plutôt
+    $\left<c',y \right> \in \pi^v\OK$ ? Avant c'etait $\left<c',y \right> \in \pi^v$.}}
+  $\left<c',y \right> \in \pi^v\OK$.
 \end{proof}
 
 We are now able to state a correctness theorem for \Cref{algo_LP}.
@@ -896,10 +910,10 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
   Else, by \Cref{reducD} the input problem can be reduced to a new linear
   program with $D={\bf 0}$ and $e=0$, which is done at steps
   \ref{step:reducD:begin}-\ref{step:reducD:end},
-  and the correct output is given at step \ref{step:reducD}.
+  and the correct recursion is given at step \ref{step:reducD}.
   The reduction based on SNF from \Cref{solsLP} is performed at
   steps \ref{step:solsLP:begin}-\ref{step:solsLP:end} and the output
-  is given at step \ref{step:solsLP}.
+  at step \ref{step:solsLP} is correct.
   
   The core of \Cref{algo_LP} is on steps \ref{step:core:begin}-\ref{step:core:end}.
   
