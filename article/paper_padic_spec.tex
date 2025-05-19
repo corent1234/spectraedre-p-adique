@@ -725,9 +725,9 @@ in the reduced problem.
         \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
       \ENDIF
       \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
-      \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} 
+      \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} \label{step:condition}
         \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
-        \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}}
+        \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
         \ELSE
           %\STATE STATUS $\leftarrow$ FEAS
           \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
@@ -916,8 +916,18 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
   at step \ref{step:solsLP} is correct.
   
   The core of \Cref{algo_LP} is on steps \ref{step:core:begin}-\ref{step:core:end}.
-  
-  TO BE CONTINUED.
+  If $\val(b_i) \geq 0$, for all $i=1,\ldots,r+1$, with $r = \mathrm{rank}(A)$,
+  by \Cref{prop:reduc}, item \ref{prop:reduc_it1}, the problem \eqref{LP} is feasible.
+  Two cases can occur under this assumption:
+  either at least one of the $n-r$ last coefficients of $c'$ is non-zero,
+  in which case,
+  by \Cref{prop:reduc}, item \ref{prop:reduc_it2}, the problem is
+  unbounded and has no solution, thus the output on step \ref{step:unbound} is correct;
+  or all the $n-r$ last coefficients of $c'$ are null. In this case the solutions
+  are explicitely constructed according to \Cref{solutions}.
+
+  If the condition on step \ref{step:condition} is not satisfied, the problem
+  is infeasible by \Cref{prop:reduc} (step \ref{step:core:end}).
 \end{proof}
 
 %\begin{remark}
