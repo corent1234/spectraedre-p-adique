@@ -125,15 +125,21 @@
 \section{Introduction}
 
 The study of polyhedra and of linear programming (LP) is at the heart of convex geometry and optimization,
-inasmuch as several optimization problems can be cast as, or reduced to LP. An important generalization of LP
+inasmuch as several optimization problems can be cast as, or relaxed to LP. An important generalization of LP
 is semidefinite programming (SDP), namely the problem of minimizing an affine polynomial over the set of
 positive semidefinite affine combinations of a given collection of real symmetric matrices. The latter problem 
-has interested the community of polynomial optimization because of the relaxation method known as moment-SOS
-(or Lasserre) hierarchy \cite{henrion2020moment}.
+has interested the community of real algebraic geometry and polynomial optimization, mostly because of the
+relaxation method known as moment-SOS (or Lasserre) hierarchy \cite{henrion2020moment}.
 
 Contrary to the LP case, the complexity status of SDP is widely open. In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size, number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of a solution, cf. \cite[Sec.1.9]{deKlerk}. In exact arithmetic, the complexity status of SDP is essentially open but complexity bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity} or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
 
-In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The main example is the field of $p$-adic numbers with $p$-adic valuation. Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}.
+In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The main example is the field of $p$-adic numbers with $p$-adic valuation.
+
+POLYHEDRA
+
+
+SPECTRAHEDRA
+Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}.
 
 %\subsection{Context and motivations}
 %Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
