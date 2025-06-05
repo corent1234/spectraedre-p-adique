@@ -149,14 +149,15 @@ The prototype of valued field we target is the field of $p$-adic numbers with $p
 
 Throughout the paper, $(K,\val)$ refers to a complete valued field, namely $K$ is a field
 and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, $\Gamma$ an
-ordered abelian group. The valuation is often assumed to be discrete ({\it i.e.} $\Gamma=\ZZ$).
-The ring of integers of $K$ is
+ordered abelian group. The valuation is often assumed to be discrete ({\it i.e.} $\Gamma=\ZZ$)
+with $\pi \in K$ a uniformizer. The ring of integers of $K$ is
 $$
 \OK = \{x \in K : \val(x) \geq 0\},
 $$
 $\kappa = \OK/\mathfrak{m}_K$ its residue field, with
-$\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$, and $\pi$ a uniformizer.
-For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
+$\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$.
+For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$\footnote{\simone{voir si on
+  utilise cette notation}}.
 A typical example of $K$ as above is the field of $p$-adic numbers 
 $\QQ_p$ equipped with the $p$-adic valuation. For this example, we 
 have $\OK = \ZZ_p$. Another example is the field of Laurent series
@@ -177,7 +178,9 @@ size $p \times q$ by ${\bf 0}_{p,q}$, and the identity matrix by $I_t$.
 
 We recall the definition of Smith Normal Form, in our context.
 \begin{definition}[Smith Normal Form]\label{smith_nf}
-  Let $M \in K^{m \times n}$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
+  Assume $(K,\val)$ is a discrete valued field with uniformizer $\pi$.
+  Let $M \in K^{m \times n}$ be of rank $r$. There exist unique integers
+  $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
   \mathrm{SNF}(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{m-r,n-r}).
