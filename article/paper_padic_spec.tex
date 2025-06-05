@@ -145,19 +145,21 @@ The prototype of valued field we target is the field of $p$-adic numbers with $p
 \section{Preliminaries}
 
 
-
-
-
 \subsection{Notation}
 
-Throughout the paper, $K$ refers to a complete,
-discrete valued field, $\val : K \twoheadrightarrow \ZZ \cup \{+\infty\}$ to its valuation,
-$\OK$ its ring of integers, $\kappa$ its residue field and $\pi$ a uniformizer.
+Throughout the paper, $(K,\val)$ refers to a complete valued field, namely $K$ is a field
+and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, $\Gamma$ an
+ordered abelian group. The valuation is often assumed to be discrete ({\it i.e.} $\Gamma=\ZZ$).
+The ring of integers of $K$ is
+$$
+\OK = \{x \in K : \val(x) \geq 0\},
+$$
+$\kappa = \OK/\mathfrak{m}_K$ its residue field, with
+$\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$, and $\pi$ a uniformizer.
 For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
 A typical example of $K$ as above is the field of $p$-adic numbers 
-$\QQ_p$ (equipped with the $p$-adic valuation). For this example, we 
-have $\OK = \ZZ_p$.
-Another example is the field of Laurent series
+$\QQ_p$ equipped with the $p$-adic valuation. For this example, we 
+have $\OK = \ZZ_p$. Another example is the field of Laurent series
 $K=\QQ(\!(t)\!)$ equiped with $t$-adic valuation,
 in which case $\OK = \QQ \llbracket t \rrbracket$.
 We refer to \cite{Serre:1979,engler2005valued} for a
