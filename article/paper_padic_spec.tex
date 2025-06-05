@@ -643,7 +643,7 @@ If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\mathcal{
 
 
 
-\subsection{Linear programming}
+\section{Linear programming}
 
 A \emph{linear programming problem} (or \emph{linear program}) \emph{with data $(A,b,c,D,e)$} is defined
 as:
@@ -685,19 +685,20 @@ The original \eqref{LP} is then easily solved by looking at valuations of input 
 in the reduced problem.
 
 \begin{algorithm}
+  {\footnotesize
     \caption{\textbf{SOLVELPval}($A,b,c,D,e$)}\label{algo_LP}
     \begin{algorithmic}[1]
       \REQUIRE
       $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
       \ENSURE [TYPE, $x$], where:
-      \vspace{-0.25cm}
+      \vspace{-0.1cm}
       \begin{itemize}
       \item[]
         TYPE $=$ INFEAS and $x=[]$ if and only if \eqref{LP} is infeasible
-      \vspace{-0.25cm}
+        \vspace{-0.1cm}
       \item[]
         TYPE $=$ UNBOUND and $x=[]$ if and only if \eqref{LP} is feasible and unbounded
-      \vspace{-0.25cm}
+        \vspace{-0.1cm}
       \item[]
         TYPE $=$ FEAS if and only if \eqref{LP} is feasible and has a solution $x$
       \end{itemize}
@@ -705,43 +706,44 @@ in the reduced problem.
       \hrule
       \vspace{0.1cm}
       \IF{$Dx = e$ has no solution}
-        \RETURN [INFEAS, []] \label{step:linear_empty}
+      \RETURN [INFEAS, []] \label{step:linear_empty}
       \ENDIF
       \IF{$D \neq {\bf 0}$} \label{step:reducD:begin}
-        \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
-        \STATE find $x_0$ such that $Dx_0=e$ \label{step:reducD:end}
-        \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \label{step:reducD} \hfill {\color{olive} \# \Cref{reducD}}
+      \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
+      \STATE find $x_0$ such that $Dx_0=e$ \label{step:reducD:end}
+      \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \label{step:reducD} \hfill {\color{olive} \# \Cref{reducD}}
       \ENDIF
       \IF{$A$ not in Smith Normal Form} \label{step:solsLP:begin}
-        \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
-        \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
-        \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
+      \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
+      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
+      \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
       \ENDIF
       \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
       \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} \label{step:condition}
-        \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
-        \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
-        \ELSE
+      \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
+      \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
+      \ELSE
           %\STATE STATUS $\leftarrow$ FEAS
-          \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
-          \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
-          \IF{$\val \lambda < v$}
-            \STATE choose $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
-            \RETURN [FEAS, $y$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it1}}
-          \ELSE
-          \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
-          %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
-          %and $\langle c,y\rangle = \pi^v\OK$
-            \RETURN [FEAS, ${\bf e}_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
-          \ENDIF
-        \ENDIF 
+      \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
+      \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
+      \IF{$\val \lambda < v$}
+      \STATE choose $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
+      \RETURN [FEAS, $y$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it1}}
+      \ELSE
+      \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
+      %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
+      %and $\langle c,y\rangle = \pi^v\OK$
+      \RETURN [FEAS, ${\bf e}_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
+      \ENDIF
       \ENDIF 
-        %\STATE
-        %\STATE
-        %\RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
+      \ENDIF 
+      %\STATE
+      %\STATE
+      %\RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
       %\ENDIF \label{step:core:end}
       \RETURN [INFEAS, []] \label{step:core:end}
     \end{algorithmic}
+  }
 \end{algorithm}
 
 In order to prove correctness of \Cref{algo_LP}, we proceed step-by-step.
