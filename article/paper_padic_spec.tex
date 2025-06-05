@@ -684,10 +684,11 @@ and the general linear program is consequently reduced to a diagonal linear prog
 The original \eqref{LP} is then easily solved by looking at valuations of input data
 in the reduced problem.
 
-\begin{algorithm}
-  {\footnotesize
+\begin{algorithm}[!ht]
+    {\footnotesize
     \caption{\textbf{SOLVELPval}($A,b,c,D,e$)}\label{algo_LP}
     \begin{algorithmic}[1]
+    %%%\algsetup{linenosize=\tiny}
       \REQUIRE
       $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
       \ENSURE [TYPE, $x$], where:
