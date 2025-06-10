@@ -144,9 +144,6 @@ The prototype of valued field we target is the field of $p$-adic numbers with $p
 %\newpage
 \section{Preliminaries}
 
-
-\subsection{Notation}
-
 Throughout the paper, $(K,\val)$ refers to a complete valued field, namely $K$ is a field
 and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, $\Gamma$ an
 ordered abelian group. The valuation is often assumed to be discrete ({\it i.e.} $\Gamma=\ZZ$)
@@ -194,16 +191,8 @@ We recall the definition of Smith Normal Form, in our context.
   $M$. In particular, $\mathrm{SNF}(M) \in \OK^{n \times n}$.
 \end{remark}
 
-
-\subsection{Real spectrahedra}
-
 Let $\sym_d(\R) \subset \R^{d\times d}$ be the vector space of $d \times d$ real symmetric
-matrices. A matrix $M \in \sym_d(\R)$
-is called \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic
-form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$
-if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors
-of $M$ being nonnegative. The set of positive semidefinite matrices, denoted $\sym_d^+(\R) \subset \sym_d(\R)$,
-is a closed convex cone with non-empty interior in $\sym_d(\R)$.
+matrices. A matrix $M \in \sym_d(\R)$ is \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$ if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors of $M$ being nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$.
 
 Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
 containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we might assume
