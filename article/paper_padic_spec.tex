@@ -12,6 +12,11 @@
 \usepackage{ulem}
 \usepackage{bm}
 
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+\usepackage{hyperref}
+
 \usepackage{cleveref}
 
 % --------- ALGORITHMS ---------- <<:
@@ -339,81 +344,97 @@ $\val(\ell_i(x))<+\infty$.
   $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$. %%%%%(its affine hull is indeed the whole $K^n$).
 \end{example}
 
-\subsection{Projections of polyhedra}
+\subsection{Projections and direct image of polyhedra}
 
 %{\color{blue} Normalement avec la nouvelle definition, ça devrait aller, il faut par contre
 %  partir d'un polyedre defini aussi par des égalités. Peut être il faudrait aussi
 %  diviser la proposition en plusieures parties pour la rendre plus lisible, par exemple une
 %  première proposition avec la projection.}
 
-In this section we show that the image of a polyhedron by a linear mapping is a polyhedron,
-and discuss some consequences.
-We first prove the result in the cases of authomorphisms of $\OK^n$ and diagonal endomorphisms of $K^n$.
-Then we use these particular cases to prove the result for projections of the form
-$(x_1,\dots,x_n) \mapsto (x_1,\dots, x_{n-1})$ and finally for the general case.
+In this section, we prove that the class of polyhedra is stable
+by applying affine maps:
 
-\begin{remark}
-  Let $f : K^n \to K^m$ be a linear map and let
-  $P = \{x \in K^n : \val(l_i(x)) \geq 0, m_i(x) = 0, 1 \leq i \leq d, 1 \leq j \leq e\}$.
-  Then $P = P_I \cap P_E$ where $P_I := \{x \in K^n : \val(l_i(x)) \geq 0, 1 \leq i \leq d\}$
-  and $P_E := \{x \in K^n : m_j(x) = 0, 1 \leq j \leq e\}$.
+\begin{theorem}[DI] 
+Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron of $K^n.$
+Then $f(\PP)$ is a polyhedron. \label{theo:DI}
+\end{theorem}
 
-  Thus we have\footnote{\simone{Ça n'est pas vrai en général, il faut que $f$ soit injective.
-    Il faut peut être d'abord factoriser $f = g \circ h$ avec $h : K^n \to im(f)$ et
-    $g : im(f) \subset K^m$.}}
-  $f(P) = f(P_I) \cap f(P_E)$. However $P_E$ is either empty or an affine subspace of
-  $K^n$ and therefore $f(P_E)$ is either empty or an affine subspace of $K^m$, so it is a polyhedron.
-  Hence, as the class of polyhedra is closed under intersection, in order to prove that
-  $f(P)$ is a polyhedron, it is sufficient to prove that this holds for $f(P_I)$.
-\end{remark}
+We prove the result by reducing to particular cases.
+The strategy to deduce the main theorem DI 
+is the following:
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  node distance=1cm and 1cm,
+  box/.style={draw, rounded corners, minimum width=2.2cm, minimum height=1cm, align=center},
+  thickarrow/.style={->, >=Stealth, line width=1.2pt},
+]
 
-Therefore below we consider polyhedra of the form as in \Cref{def_polyhedra} with $e=0$.
+% Nodes
+\node[box] (DIdiag) {DI${}_{diag}$};
+\node[box, right=of DIdiag] (DIproj) {DI${}_{proj}$};
+\node[box, right=of DIproj] (DIl) {DI${}_{l}$};
+\node[box, right=of DIl] (DIi) {DI${}_{i}$};
+\node[box, right=of DIi] (DI) {DI};
 
-\begin{proposition}\simone{l'enoncé est incomplet}
-  Let $P \subset K^n$ be a polyhedron and let $f : K^n \to K^n$ be a linear mapping.
-  If $f \in \GL_n(\OK)$ or if there exists $\lambda_1, \dots, \lambda_n \in K$ such that
-  $(x_1,\dots,x_{n-1}, x_n) \mapsto (x_1,\dots, x_{n-1})$.
-\end{proposition}
+\node[box, above=of DIproj] (DIimm) {DI${}_{imm}$};
+\node[box, below=of DIproj] (DIaut) {DI${}_{aut}$};
 
+% Arrows
+\draw[thickarrow] (DIdiag) -- (DIproj);
+\draw[thickarrow] (DIproj) -- (DIl);
+\draw[thickarrow] (DIl) -- (DIi);
+\draw[thickarrow] (DIi) -- (DI);
+
+\draw[thickarrow] (DIimm) -- (DIl);
+\draw[thickarrow] (DIaut) -- (DIl);
+
+\end{tikzpicture}
+\caption{Strategy of proof of Theorem \ref{theo:DI}.}
+\label{fig:di-properties}
+\end{figure}
+
+
+
+We begin by the cases of linear maps in $GL_n(O_K)$.
+
+\begin{lemma}[DI${}_{aut}$]
+Let $f \in GL_n(O_K)$ and $\PP$ a polyhedron of $K^n$.
+Then $f(\PP)$ is a polyhedron. \label{lem:DIaut}
+If in addition, $\PP$ is defined only by inequalities,
+then so is $f(\PP)$.
+\end{lemma}
 \begin{proof}
-We assume that $\PP \neq \emptyset$
-As discussed above we can assume that
-$\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0,\textrm{ for } i \in I \right\rbrace$ for some
-finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
-
-First, if $f \in \GL_n(\OK)$ then, $x \in f(P)$ if and only if for all $i \in I$, 
-$\val(l_i (f^{-1}(x))) \geq 0$.
-The $l_i \circ f^{-1}$ are clearly in $K[x]_1$
-and $f(P)$ is a polyhedron.
-
-Similarly, if $f:K^n \rightarrow K^n$ is of the form
-$f(x_1,\dots,x_n)=(\lambda_1 x_1,\dots,\lambda_n x_n)$
-for some $\lambda_1,\ldots, \lambda_n \in K$,
-then of course $f(P)$
-can be defined by $\val (\widetilde{l_i}(x)) \geq 0$, $i \in I$
-with the $\widetilde{l_i}$'s obtained from the $l_i$'s by an
-obvious change of variables.
+If $\PP$ is defined (in matrix form) by \[\left\lbrace X \in K^n,  AX+B \geq 0, CX+D=0 \right\rbrace\] and $U$ is the matrix of $f$ in the canonical basis of $K^n$, 
+let $\Qc$ be defined by \[\left\lbrace Y \in K^n,  AU^{-1} Y+B \geq 0, CU^{-1} Y+D=0 \right\rbrace.\]
+Then it is clear that $\Qc$ is a polyhedron and $f(\PP)=\Qc.$
+It is also clear that if $\PP$ is defined only by inequalities,
+then so is $f(\PP)$.
 \end{proof}
 
-The two above results\footnote{\simone{il y en an un}}
-allows us to demonstrate the following proposition, which we will use to prove the general case. 
+If $f$ is diagonal, we can also conclude.
 
-\begin{proposition}
-      Let $\PP \subset K^n$ be a polyhedron and $p : K^n \to K^{n-1}$ be the projection $p : (x_1,\dots,x_{n-1},x_n) \mapsto (x_1, \dots, x_{n-1})$.
-       Then $p(\PP)$ is a spectrahedron.
-\end{proposition}
-
-
+\begin{lemma}[DI${}_{diag}$]
+Let $f : K^n \to K^n$ be a linear map and $\PP$ a polyhedron of $K^n$ defined only by inequalities. We assume that the matrix of $f$ in the canonical basis of $K^n$ is diagonal.
+Then $f(\PP)$ is a polyhedron. \label{lem:DIdiag}
+\end{lemma}
 \begin{proof}
-      
-We assume that $\PP \neq \emptyset$.
-As discussed above we can assume that
-  $\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0,\textrm{ for } i \in I \right\rbrace$ for some
-finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
+As in the proof of Lemma \ref{lem:DIaut} DI${}_{aut}$, an obvious change
+of variable is enough to conclude.
+\end{proof}
 
+
+We now treat the case where $f$ is a projection erasing the last coordinate.
+
+\begin{lemma}[DI${}_{proj}$]
+Let $f : K^n \to K^n, \: (x_1,\dots,x_{n-1},x_n) \mapsto (x_1,\dots,x_{n-1})$ and $\PP$ a polyhedron of $K^n$ defined only by inequalities. 
+Then $f(\PP)$ is a polyhedron defined only by inequalities. \label{lem:DIproj}
+\end{lemma}
+\begin{proof}
+We assume that $\PP \neq \emptyset$.
 Let us write the conditions defining $\PP$
 in matrix form:
-$\val(A X+B) \geq 0$ and 
+$\val(A X+B) \geq 0$ 
 with $A \in M_{q,n}(K)$, $B \in K^q$
 and $X=(x_1,\dots,x_n)^\intercal$. 
 
@@ -437,13 +458,13 @@ with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n.$
 
 Multiplying on the left by $Q_A^{\pm 1}$ does not
 modify whether the valuation inequalities are satisfied.
-Moreover, thanks to our previous on the case when $f$ is an automorphism,
+Moreover, thanks to Lemma \ref{lem:DIaut} DI${}_{aut}$,
 $\PP$ can be written
 $\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \subset K^n$
 and we are reduced to proving that
-$f(\PP_2)$ is polyhedron for $p$ still the canonical projection
+$f(\PP_2)$ is polyhedron for $p$ still the projection
 $K^n \rightarrow K^{n-1}$ and $\PP_2$
-defined by the linear matrix inequality (for some $B_2 \in K^q$):
+defined by the following linear matrix inequality (for some $B_2 \in K^q$):
 \[  \begin{bmatrix}
 \delta_1	& 		& 			&   &		 &  &a_1	\\
 			& \ddots& 			& 0	&		 &	&		\\
@@ -461,7 +482,7 @@ defined by the linear matrix inequality (for some $B_2 \in K^q$):
 We remark that 
 $a_s x_n + b_s \geq 0$
 if and only if $x_n = -a_s^{-1} b_s + O(\pi^{- \val(a_s)}).$
-This exactly corresponds to $x_n \in B(-a_s^{-1} b_s, 2^{\val(a_s)}).$
+This exactly corresponds to $x_n \in B(-a_s^{-1} b_s,\val(a_s)).$
 Since the conditions have to be compatible (we have assumed
 $\PP$ not empty), and thanks to ultrametricity,  
 the intersection of these conditions for 
@@ -471,7 +492,7 @@ Let us assume it is the one defined for $l=n.$
 The only condition on $x_n$
 is then $\val(a_nx_n +b_n) \geq 0.$
 
-Thanks to the above discussion on diagonal mapping,
+Thanks to Lemma \ref{lem:DIdiag} DI${}_{diag}$,
 we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
 and are reduce to $\PP_2$ defined by the linear matrix inequality :
 \[  \begin{bmatrix}
@@ -487,7 +508,7 @@ and are reduce to $\PP_2$ defined by the linear matrix inequality :
 Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
 We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
 
-Let us first assume that $\val(a_1) \geq 0$
+Let us first assume that $\val(a_1) \geq 0$.
 
 Let $x \in \PP_2$.
 Then $x_n=-b_n+O(1)$
@@ -498,7 +519,7 @@ $x_i-a_ib_n+b_i=O(1)+O(\pi^{\val(a_i)})=O(1).$
 
 We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
  for all $i \in \llbracket 1,n-1 \rrbracket,$
-$\val(x_i-a_ib_n+b_i) \geq 0.$
+$\val(x_i-a_ib_n+b_i) \geq 0$.
 
 Then the previous computations prove that $p(\PP_2)\subset \Qc.$
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
@@ -542,69 +563,354 @@ which means that $(x_1,\dots,x_{n-1}) \in p(\PP_2).$
 Thus $p(\PP_2)= \Qc$ and $p(\PP_2)$ is a polyhedron,
 and it has been proved in both cases.
 
-Therefore,$p(\PP)$ is a polyhedron.
-
+Therefore, $p(\PP)$ is a polyhedron (and inequalities are enough to define $p(\PP_2)$ as a polyhedron).
 \end{proof}
 
-We can finally prove that the image of polyhedron under a linear mapping is a polyhedron.
-\begin{proposition}
-Let $\PP \subset K^n$ be a polyhedron and $f: K^n \rightarrow K^m$
-be a linear mapping. Then $f(\PP)$ is a polyhedron.
-\end{proposition}
-
+\begin{lemma}[DI${}_{imm}$]
+Let $f : K^l \to K^n$ be the immersion $(x_1,\dots, x_l) \mapsto (x_1,\dots, x_l,0,\dots, 0)$ and $\PP$ a polyhedron of $K^l$
+Then $f(\PP)$ is a polyhedron. \label{lem:DIimm}
+\end{lemma}
 \begin{proof}
+Adding the equalities $x_{l+1}=0, \dots, x_n=0$ to the equations and inequations in
+$x_1,\dots, x_l$ defining $\PP$, the result is clear.
+\end{proof}
 
-We assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $\allmat_{n,n}(K)$.
-As seen above, we can assume that $\PP$ is of the form $\left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I\right\rbrace$ for some
+We can now generalize to linear mappings and
+polyhedron defined only by inequalities.
+
+\begin{proposition}[DI${}_l$]
+Let $f : K^n \to K^m$ be a linear map and $\PP$ a polyhedron of $K^n$ defined only by inequalities.
+Then $f(\PP)$ is a polyhedron. \label{prop:DIl}
+\end{proposition}
+\begin{proof}
+We assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $\allmat_{n,m}(K)$.
+We assume that $\PP$ is defined as $\left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I\right\rbrace$ for some
 finite sets $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
 
 Thanks to Definition \ref{smith_nf}, (the matrix of) $f$
 can be written $f=Q^{-1} \Delta P$
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta = \mathrm{SNF}(f)\in \allmat_{m,n}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
+and $\Delta = \mathrm{SNF}(f)\in \allmat_{n,m}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
   where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
 
-  %Now, we turn our attention to the $\Delta$ part of $f$.
-We have previously proven that if $f \in \GL_n(\OK)$ then $f(\PP)$ is a polyhedron.
-It is also clear that
-if $f$ is the immersion 
-$K^l \rightarrow K^n$
-$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0)$ 
-and $\PP$ is a polyhedron in $K^n$,
-then $f(\PP)$ is a polyhedron.
+By Lemma \ref{lem:DIaut} DI${}_{aut}$,
+$P(\PP)$ is a polyhedron defined only by inequalities.
 
-
-We now prove that for
-$\Delta$ a Smith Normal Form
-and $\PP$ a polyhedron,
-$\Delta(\PP)$ is a polyhedron.
-Then $\Delta$ is the composition
+Let $\Qc= P(\PP)$
+We now prove that $\Delta (\Qc)$ is a polyhedron.
+One can write that $\Delta$ is the composition
 of the immersion 
-$K^l \rightarrow K^n$
-$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0),$ 
+$K^r \rightarrow K^n$
+$(x_1,\dots,x_r)\mapsto (x_1,\dots,x_r,0,\dots,0),$ 
  the diagonal invertible mapping
 $K^l \rightarrow K^l$,
-$(x_1,\dots,x_l)\mapsto (\delta_1,\dots,\delta_l x_l)$,
+$(x_1,\dots,x_r)\mapsto (\delta_1,\dots,\delta_r x_r)$,
 and the projections
-$(x_1,\dots,x_{l+1})\mapsto (x_1,\dots,x_{l}),$
- $(x_1,\dots,x_{l+2})\mapsto (x_1,\dots,x_{l+1}),$
+$(x_1,\dots,x_{r+1})\mapsto (x_1,\dots,x_{r}),$
+ $(x_1,\dots,x_{r+2})\mapsto (x_1,\dots,x_{r+1}),$
  $\dots,$
  $(x_1,\dots,x_{n})\mapsto (x_1,\dots,x_{n-1}).$
- Thus $\Delta(\PP)$ is a polyhedron thanks to the previous 
- results on image of polyhedron.
+ Thus, thanks to Lemmas \ref{lem:DIimm} DI${}_{imm}$, \ref{lem:DIproj} DI${}_{proj}$ and \ref{lem:DIaut} DI${}_{aut}$, $\Delta (\Qc)$ is a polyhedron.
+ One can note that it is only when applying the immersion as the last mapping in the composition chain that equalities are needed to define the last polyhedron.
 
-Finally, if $f: K^n \rightarrow K^m$
-is a linear mapping and
-$f=Q^{-1} \Delta P$ is its Smith Normal Form
-with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta \in \allmat_{n,m}(K)$,
-then
-$P(\PP)$ is a polyhedron,
-$\Delta (P(\PP))$ also,
-and finally $f(\PP)=Q^{-1} (\Delta (P(\PP)))$
-is a polyhedron.
+
+
+Finally, thanks to Lemma \ref{lem:DIaut} DI${}_{aut}$,
+$Q^{-1} \left( \Delta (\Qc) \right)$ is a polyhedron.
 This concludes the proof.
 \end{proof}
+
+We can generalize from linear mappings to affine mappings.
+\begin{proposition}[DI${}_i$]
+Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron of $K^n$ defined only by inequalities.
+Then $f(\PP)$ is a polyhedron. \label{prop:DIi}
+\end{proposition}
+\begin{proof}
+Let $P \in K^m$. One can see by immediate change of variables that $\Qc$ is a polyhedron of $K^m$ if and only if
+$\Qc+P$ is a polyhedron of $K^m$.
+Consequently, translating by $-f(O)$ in the codomain, one can reduce
+to the case of Proposition \ref{prop:DIl}   DI${}_l$.
+\end{proof}
+
+We can now conclude with the proof of the main result
+of this section.
+
+\begin{proof}[Proof of Theorem \ref{theo:DI} DI]
+Here, $f : K^n \to K^m$ is an affine map and $\PP$ a polyhedron of $K^n.$
+Let us write $\PP = \PP_I \cap \PP_E$
+with $\PP_I := \left\lbrace X \in K^n,  AX+B \geq 0 \right\rbrace$
+and $\PP_E := \left\lbrace X \in K^n,  CX+D=0 \right\rbrace = P + \overrightarrow{\PP_E}.$ 
+
+Then $f(\PP) = f_{\PP_E}(\PP_I).$
+
+By a translation of $-P$ in $K^n$, we can assume that
+$\PP_E$ is a linear vector space: we are reduced to proving that, if $\tilde{f}: \PP_E \to K^m$ is an affine map and $\PP_I$ is a polyhedron of the vector space $\PP_E$ defined only by inequalities, then  $\tilde{f}(\PP_I)$ is a polyhedron.
+This is the case thanks to Proposition \ref{prop:DIi} DI$_i$
+and the theorem is proven.
+\end{proof}
+
+
+
+%
+%In this section we show that the image of a polyhedron by a linear mapping is a polyhedron,
+%and discuss some consequences.
+%We first prove the result in the cases of authomorphisms of $\OK^n$ and diagonal endomorphisms of $K^n$.
+%Then we use these particular cases to prove the result for projections of the form
+%$(x_1,\dots,x_n) \mapsto (x_1,\dots, x_{n-1})$ and finally for the general case.
+%
+%\begin{remark}
+%  Let $f : K^n \to K^m$ be a linear map and let
+%  $P = \{x \in K^n : \val(l_i(x)) \geq 0, m_i(x) = 0, 1 \leq i \leq d, 1 \leq j \leq e\}$.
+%  Then $P = P_I \cap P_E$ where $P_I := \{x \in K^n : \val(l_i(x)) \geq 0, 1 \leq i \leq d\}$
+%  and $P_E := \{x \in K^n : m_j(x) = 0, 1 \leq j \leq e\}$.
+%
+%  Thus we have\footnote{\simone{Ça n'est pas vrai en général, il faut que $f$ soit injective.
+%    Il faut peut être d'abord factoriser $f = g \circ h$ avec $h : K^n \to im(f)$ et
+%    $g : im(f) \subset K^m$.}}
+%  $f(P) = f(P_I) \cap f(P_E)$. However $P_E$ is either empty or an affine subspace of
+%  $K^n$ and therefore $f(P_E)$ is either empty or an affine subspace of $K^m$, so it is a polyhedron.
+%  Hence, as the class of polyhedra is closed under intersection, in order to prove that
+%  $f(P)$ is a polyhedron, it is sufficient to prove that this holds for $f(P_I)$.
+%\end{remark}
+%
+%Therefore below we consider polyhedra of the form as in \Cref{def_polyhedra} with $e=0$.
+%
+%\begin{proposition}\simone{l'enoncé est incomplet}
+%  Let $P \subset K^n$ be a polyhedron and let $f : K^n \to K^n$ be a linear mapping.
+%  If $f \in \GL_n(\OK)$ or if there exists $\lambda_1, \dots, \lambda_n \in K$ such that
+%  $(x_1,\dots,x_{n-1}, x_n) \mapsto (x_1,\dots, x_{n-1})$.
+%\end{proposition}
+%
+%\begin{proof}
+%We assume that $\PP \neq \emptyset$
+%As discussed above we can assume that
+%$\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0,\textrm{ for } i \in I \right\rbrace$ for some
+%finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
+%
+%First, if $f \in \GL_n(\OK)$ then, $x \in f(P)$ if and only if for all $i \in I$, 
+%$\val(l_i (f^{-1}(x))) \geq 0$.
+%The $l_i \circ f^{-1}$ are clearly in $K[x]_1$
+%and $f(P)$ is a polyhedron.
+%
+%Similarly, if $f:K^n \rightarrow K^n$ is of the form
+%$f(x_1,\dots,x_n)=(\lambda_1 x_1,\dots,\lambda_n x_n)$
+%for some $\lambda_1,\ldots, \lambda_n \in K$,
+%then of course $f(P)$
+%can be defined by $\val (\widetilde{l_i}(x)) \geq 0$, $i \in I$
+%with the $\widetilde{l_i}$'s obtained from the $l_i$'s by an
+%obvious change of variables.
+%\end{proof}
+%
+%The two above results\footnote{\simone{il y en an un}}
+%allows us to demonstrate the following proposition, which we will use to prove the general case. 
+%
+%\begin{proposition}
+%      Let $\PP \subset K^n$ be a polyhedron and $p : K^n \to K^{n-1}$ be the projection $p : (x_1,\dots,x_{n-1},x_n) \mapsto (x_1, \dots, x_{n-1})$.
+%       Then $p(\PP)$ is a spectrahedron.
+%\end{proposition}
+%
+%
+%\begin{proof}
+%      
+%We assume that $\PP \neq \emptyset$.
+%As discussed above we can assume that
+%  $\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0,\textrm{ for } i \in I \right\rbrace$ for some
+%finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
+%
+%Let us write the conditions defining $\PP$
+%in matrix form:
+%$\val(A X+B) \geq 0$ and 
+%with $A \in M_{q,n}(K)$, $B \in K^q$
+%and $X=(x_1,\dots,x_n)^\intercal$. 
+%
+%
+%We can compute a Smith Normal Form
+%of the $q \times (n-1)$ matrix defined by the 
+%$n-1$ first columns of $A$
+%to obtain a decomposition of the form:
+%\[ Q_A A P_A^{-1} = \begin{bmatrix}
+%\delta_1	& 		& 			&   &		 &  &a_1	\\
+%			& \ddots& 			& 0	&		 &	&		\\
+%			&		& \delta_l  &   & 		 &	&		\\
+%			&		&			&0  & 		 &	& 		\\
+%			&		&			&   & \ddots &	&		\\
+%			&		&			&	&		 & 0&a_{n-1} \\
+%			&		&			&	&		 &	&a_n 	\\
+%			&		&			&	&		 &	&    	\\
+%			&		&			&	&		 &	&a_q 	\\			
+%\end{bmatrix},\]
+%with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n.$
+%
+%Multiplying on the left by $Q_A^{\pm 1}$ does not
+%modify whether the valuation inequalities are satisfied.
+%Moreover, thanks to our previous on the case when $f$ is an automorphism,
+%$\PP$ can be written
+%$\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \subset K^n$
+%and we are reduced to proving that
+%$f(\PP_2)$ is polyhedron for $p$ still the canonical projection
+%$K^n \rightarrow K^{n-1}$ and $\PP_2$
+%defined by the linear matrix inequality (for some $B_2 \in K^q$):
+%\[  \begin{bmatrix}
+%\delta_1	& 		& 			&   &		 &  &a_1	\\
+%			& \ddots& 			& 0	&		 &	&		\\
+%			&		& \delta_l  &   & 		 &	& \vdots\\
+%			&		&			&0  & 		 &	& 		\\
+%			&		&			&   & \ddots &	&		\\
+%			&		&			&	&		 & 0&a_{n-1} \\
+%			&		&			&	&		 &	&a_n 	\\
+%			&		&			&	&		 &	& \vdots   	\\
+%			&		&			&	&		 &	&a_q 	\\			
+%\end{bmatrix} \begin{bmatrix} x_1 \\ \\ \\ \\ \\ \vdots \\ \\ \\ \\ x_n \\ \end{bmatrix} + B_2 \geq 0.\]
+%
+%
+%
+%We remark that 
+%$a_s x_n + b_s \geq 0$
+%if and only if $x_n = -a_s^{-1} b_s + O(\pi^{- \val(a_s)}).$
+%This exactly corresponds to $x_n \in B(-a_s^{-1} b_s, 2^{\val(a_s)}).$
+%Since the conditions have to be compatible (we have assumed
+%$\PP$ not empty), and thanks to ultrametricity,  
+%the intersection of these conditions for 
+%$s \in \llbracket l+1,q \rrbracket$
+%is then given by the smallest of these balls.
+%Let us assume it is the one defined for $l=n.$
+%The only condition on $x_n$
+%is then $\val(a_nx_n +b_n) \geq 0.$
+%
+%Thanks to the above discussion on diagonal mapping,
+%we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
+%and are reduce to $\PP_2$ defined by the linear matrix inequality :
+%\[  \begin{bmatrix}
+%1	& 		& 			&   &		 &  &a_1	\\
+%			& \ddots& 			& 0	&		 &	&		\\
+%			&		& 1  &   & 		 &	& \\
+%			&		&			&0  & 		 &	& 	\vdots	\\
+%			&		&			&   & \ddots &	&		\\
+%			&		&			&	&		 & 0&a_{n-1} \\
+%			&		&			&	&		 &	&1 	\\
+%		
+%\end{bmatrix} \begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}  \geq 0.\]
+%Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
+%We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
+%
+%Let us first assume that $\val(a_1) \geq 0$
+%
+%Let $x \in \PP_2$.
+%Then $x_n=-b_n+O(1)$
+%and $x_1+a_1 x_n+b_1=O(1).$
+%Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(1).$
+%Similarly, for all $i \in \llbracket 2,n-1 \rrbracket,$
+%$x_i-a_ib_n+b_i=O(1)+O(\pi^{\val(a_i)})=O(1).$
+%
+%We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
+% for all $i \in \llbracket 1,n-1 \rrbracket,$
+%$\val(x_i-a_ib_n+b_i) \geq 0.$
+%
+%Then the previous computations prove that $p(\PP_2)\subset \Qc.$
+%Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
+%Then let $x_n := -b_n.$
+%
+%We check that for $i \in \llbracket 1,n-1 \rrbracket,$
+%$x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
+%and $x_n+b_n=O(1)$. Hence $(x_1,\dots,x_n) \in \PP_2$
+%which means that $(x_1,\dots,x_{n-1}) \in p(\PP_2).$
+%Thus $p(\PP_2)= \Qc$ and $p(\PP_2)$ is a polyhedron.
+%
+%We now deal with the second case, with $\val(a_1)<0.$
+%Let $x \in \PP_2$.
+%Then $x_n=-b_n+O(1)$
+%and $x_1+a_1 x_n+b_1=O(1).$
+%Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)}).$
+%Thus $a_1^{-1}x_1- b_n +a_1^{-1}b_1=O(1)$.
+%%and $x_n=-a_1^{-1}(x_1+b_1)+O(1).$
+%In addition, $x_n=-a_1^{-1}(x_1+b_1)+O(\pi^{-\val(a_1)}).$
+%We plug this equality in 
+%$x_i+a_i x_n+b_i=O(1)$ to get
+%$x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)+O(\pi^{\val(a_i)-\val(a_1)})=O(1)$
+%using that $\val(a_i) \geq \val (a_1).$
+%
+%We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
+%$\val(a_1^{-1}x_1- b_n +a_1^{-1}b_1) \geq 0$ and for all $i \in \llbracket 2,n-1 \rrbracket,$
+%$\val(x_i-a_1^{-1}a_i(x_1+b_1)+b_i) \geq 0.$
+%
+%Then the previous computations prove that $p(\PP_2)\subset \Qc.$
+%Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
+%Let $x_n := -a_1^{-1}(x_1+b_1).$
+%Then
+%$x_1+a_1 x_n+b_1=0=O(1).$
+%Let $i \in \llbracket 2,n-1 \rrbracket,$
+%then $x_i+a_i x_n+b_i=x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)$
+%since $(x_1,\dots,x_{n-1}) \in \Qc.$
+%Finally, 
+%$x_n+b_n=-a_1^{-1}(x_1+b_1)+b_n=O(1)$ thanks to the inequality satisfied by $x_1.$
+%Hence $(x_1,\dots,x_n) \in \PP_2$
+%which means that $(x_1,\dots,x_{n-1}) \in p(\PP_2).$
+%Thus $p(\PP_2)= \Qc$ and $p(\PP_2)$ is a polyhedron,
+%and it has been proved in both cases.
+%
+%Therefore,$p(\PP)$ is a polyhedron.
+%
+%\end{proof}
+%
+%We can finally prove that the image of polyhedron under a linear mapping is a polyhedron.
+%\begin{proposition}
+%Let $\PP \subset K^n$ be a polyhedron and $f: K^n \rightarrow K^m$
+%be a linear mapping. Then $f(\PP)$ is a polyhedron.
+%\end{proposition}
+%
+%\begin{proof}
+%
+%We assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $\allmat_{n,n}(K)$.
+%As seen above, we can assume that $\PP$ is of the form $\left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I\right\rbrace$ for some
+%finite sets $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
+%
+%Thanks to Definition \ref{smith_nf}, (the matrix of) $f$
+%can be written $f=Q^{-1} \Delta P$
+%with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
+%and $\Delta = \mathrm{SNF}(f)\in \allmat_{m,n}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
+%  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
+%
+%  %Now, we turn our attention to the $\Delta$ part of $f$.
+%We have previously proven that if $f \in \GL_n(\OK)$ then $f(\PP)$ is a polyhedron.
+%It is also clear that
+%if $f$ is the immersion 
+%$K^l \rightarrow K^n$
+%$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0)$ 
+%and $\PP$ is a polyhedron in $K^n$,
+%then $f(\PP)$ is a polyhedron.
+%
+%
+%We now prove that for
+%$\Delta$ a Smith Normal Form
+%and $\PP$ a polyhedron,
+%$\Delta(\PP)$ is a polyhedron.
+%Then $\Delta$ is the composition
+%of the immersion 
+%$K^l \rightarrow K^n$
+%$(x_1,\dots,x_l)\mapsto (x_1,\dots,x_l,0,\dots,0),$ 
+% the diagonal invertible mapping
+%$K^l \rightarrow K^l$,
+%$(x_1,\dots,x_l)\mapsto (\delta_1,\dots,\delta_l x_l)$,
+%and the projections
+%$(x_1,\dots,x_{l+1})\mapsto (x_1,\dots,x_{l}),$
+% $(x_1,\dots,x_{l+2})\mapsto (x_1,\dots,x_{l+1}),$
+% $\dots,$
+% $(x_1,\dots,x_{n})\mapsto (x_1,\dots,x_{n-1}).$
+% Thus $\Delta(\PP)$ is a polyhedron thanks to the previous 
+% results on image of polyhedron.
+%
+%Finally, if $f: K^n \rightarrow K^m$
+%is a linear mapping and
+%$f=Q^{-1} \Delta P$ is its Smith Normal Form
+%with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
+%and $\Delta \in \allmat_{n,m}(K)$,
+%then
+%$P(\PP)$ is a polyhedron,
+%$\Delta (P(\PP))$ also,
+%and finally $f(\PP)=Q^{-1} (\Delta (P(\PP)))$
+%is a polyhedron.
+%This concludes the proof.
+%\end{proof}
 
 We recall that the Minkowski sum of two sets $A$ and $B$ is $A+B = \{a+b : a \in A, b \in B\}$.
 
