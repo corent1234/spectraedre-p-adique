@@ -1,4 +1,4 @@
-\documentclass[a4paper,oneside,11pt]{article}
+\documentclass[a4paper,oneside,10pt]{article}
 
 %%%\newenvironment{proof}{\hbox{}\vspace{-0.8cm} {\bf Proof:}}{\hfill $\Box$ \vspace{0.2cm}}
 
@@ -9,7 +9,7 @@
 \usepackage{mathrsfs} 
 \usepackage{graphicx}
 \usepackage{color,xcolor}
-\usepackage{ulem}
+%\usepackage{ulem}
 \usepackage{bm}
 
 \usepackage{tikz}
@@ -80,6 +80,7 @@
 \newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
 \newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
 \newcommand{\tristan}[1]{{\color{red} #1}} % tristan's comments
+\newcommand{\todo}[1]{{\color{blue}\bf \text{TODO: } #1}} % TODOs
 
 %p-adic commands
 \DeclareMathOperator{\val}{val}
@@ -96,9 +97,7 @@
 \usepackage{biblatex}
 \addbibresource{../rapport/bibstage.bib}
 
-%\title{\bf Title}
-%\title{\bf On polyhedra and spectrahedra over valuation fields}
-\title{\bf On semidefinite-representable sets over valuation fields}
+\title{\Large \bf On semidefinite-representable sets over valued fields}
 
 \begin{document}
 
@@ -117,33 +116,25 @@
   Real polyhedra and real spectrahedra (or their projections) are respectively the feasible sets
   of linear and semidefinite programming, and form the family of
   semidefinite-representable sets. This paper investigates versions of these sets and of
-  the related optimization problems with data over a field $K$ with valuation.
+  the related optimization problems with data over a valued field $K$.
+  For $K$-polyhedra and linear programming over $K$ we give an algorithm based on computation
+  of Smith normal forms.
   We prove that basic properties of semidefinite-representable sets generalize to this setting.
-  We showcase examples of non-polyhedral $K$-spectrahedra and of sets that are semidefinite
-  representable over $K$ but are not $K$-spectrahedra.
+  In particular, we showcase examples of non-polyhedral $K$-spectrahedra and of sets that are
+  semidefinite representable over $K$ but are not $K$-spectrahedra.
 \end{abstract}
 
 %\tableofcontents
 
 \section{Introduction}
 
-The study of polyhedra and of linear programming (LP) is at the heart of convex geometry and optimization,
-inasmuch as several optimization problems can be cast as, or reduced to LP. An important generalization of LP
-is semidefinite programming (SDP), namely the problem of minimizing an affine polynomial over the set of
-positive semidefinite affine combinations of a given collection of real symmetric matrices. The latter problem 
-has interested the community of polynomial optimization because of the relaxation method known as moment-SOS
-(or Lasserre) hierarchy \cite{henrion2020moment}.
+The study of polyhedra and of linear programming (LP) is at the heart of convex geometry and optimization, inasmuch as several optimization problems can be cast as, or relaxed to LP. An important generalization of LP is semidefinite programming (SDP), namely the problem of minimizing a linear function over the set of positive semidefinite affine combinations of some real symmetric matrices. The latter problem has interested the community of real algebraic geometry and polynomial optimization, mostly because of the relaxation method known as moment-SOS (or Lasserre) hierarchy \cite{henrion2020moment}.
 
-Contrary to the LP case, the complexity status of SDP is widely open.
-In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
-number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the
-precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of a solution,
-cf. \cite[Sec.1.9]{deKlerk}. In exact arithmetic, the complexity status of SDP is essentially open but complexity
-bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity}
-or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
+The main motivation for studying the effective aspects of SDP is the fact that, despite several properties of LP extend to SDP, the complexity status of SDP is, contrary to the LP case, widely open. Ramana's construction \cite{ramana1997exact} implies a series of general results: in the Blum-Shub-Smale real numbers machines model \cite{blum1989theory}, the feasibility of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be in NP in the Turing model; checking boundedness, attainability and optimality can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}. Assuming the input data belongs to an effective field $K$ (\emph{e.g.} $K = \QQ$) then a solution can be described and computed as element of a vector space over some algebraic extension of $K$. For exact computation, complexity bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist based on a dedicated application of the so-called critical point method, and exploiting the determinantal structure of the constraints \cite{henrion2016exact,NALDI2018206}. A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
-In this paper we 
-Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral}.
+In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. In this context a polyhedron is 
+
+The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation. \todo{Give motivations for p-adic precision of LP/SDP.} Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}.
 
 %\subsection{Context and motivations}
 %Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
@@ -158,25 +149,25 @@ Similar generalizations have been recently proposed in the context of tropical g
 %\newpage
 \section{Preliminaries}
 
-
-
-
-
-\subsection{Notation}
-
-Throughout the paper, $K$ refers to a complete,
-discrete valuation field, $\val : K \twoheadrightarrow \ZZ \cup \{+\infty\}$ to its valuation,
-$\OK$ its ring of integers, $\kappa$ its residue field and $\pi$ a uniformizer.
-For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
+Throughout the paper, $(K,\val)$ refers to a complete valued field, namely $K$ is a field
+and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, $\Gamma$ an
+ordered abelian group. The valuation is often assumed to be discrete ({\it i.e.} $\Gamma=\ZZ$)
+with $\pi \in K$ a uniformizer. The ring of integers of $K$ is
+$$
+\OK = \{x \in K : \val(x) \geq 0\},
+$$
+$\kappa = \OK/\mathfrak{m}_K$ its residue field, with
+$\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$.
+For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$\footnote{\simone{voir si on
+  utilise cette notation}}.
 A typical example of $K$ as above is the field of $p$-adic numbers 
-$\QQ_p$ (equipped with the $p$-adic valuation). For this example, we 
-have $\OK = \ZZ_p$.
-Another example is the field of Laurent series
+$\QQ_p$ equipped with the $p$-adic valuation. For this example, we 
+have $\OK = \ZZ_p$. Another example is the field of Laurent series
 $K=\QQ(\!(t)\!)$ equiped with $t$-adic valuation,
 in which case $\OK = \QQ \llbracket t \rrbracket$.
-We refer to \cite{Serre:1979} for a
+We refer to \cite{Serre:1979,engler2005valued} for a
 general introduction to such fields
-and to Caruso's course on $p$-adic computations \cite{caruso_computations_2017}
+and to \cite{caruso_computations_2017}
 for an introduction to effective computations over $p$-adic numbers.
 
 The $K$-vector space of polynomials of degree $\leq d$ on $x=(x_1,\ldots,x_n)$
@@ -189,7 +180,9 @@ size $p \times q$ by ${\bf 0}_{p,q}$, and the identity matrix by $I_t$.
 
 We recall the definition of Smith Normal Form, in our context.
 \begin{definition}[Smith Normal Form]\label{smith_nf}
-  Let $M \in K^{m \times n}$ be of rank $r$. There exist unique integers $a_1 \leq \cdots \leq a_r$, and
+  Assume $(K,\val)$ is a discrete valued field with uniformizer $\pi$.
+  Let $M \in K^{m \times n}$ be of rank $r$. There exist unique integers
+  $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
   \mathrm{SNF}(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{m-r,n-r}).
@@ -203,16 +196,8 @@ We recall the definition of Smith Normal Form, in our context.
   $M$. In particular, $\mathrm{SNF}(M) \in \OK^{n \times n}$.
 \end{remark}
 
-
-\subsection{Real spectrahedra}
-
 Let $\sym_d(\R) \subset \R^{d\times d}$ be the vector space of $d \times d$ real symmetric
-matrices. A matrix $M \in \sym_d(\R)$
-is called \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic
-form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$
-if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors
-of $M$ being nonnegative. The set of positive semidefinite matrices, denoted $\sym_d^+(\R) \subset \sym_d(\R)$,
-is a closed convex cone with non-empty interior in $\sym_d(\R)$.
+matrices. A matrix $M \in \sym_d(\R)$ is \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$ if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors of $M$ being nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$.
 
 Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
 containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we might assume
@@ -317,7 +302,7 @@ $$
 
 \section{Polyhedra}
 
-In this section, we define polyhedra over a complete discrete valuation field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. We end by presenting an algorithm for solving linear optimization problems over $K$.
+In this section, we define polyhedra over a complete discrete valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. We end by presenting an algorithm for solving linear optimization problems over $K$.
 
 \begin{definition}
   \label{def_polyhedra}
@@ -956,7 +941,7 @@ If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\mathcal{
 
 
 
-\subsection{Linear programming}
+\section{Linear programming}
 
 A \emph{linear programming problem} (or \emph{linear program}) \emph{with data $(A,b,c,D,e)$} is defined
 as:
@@ -997,20 +982,22 @@ and the general linear program is consequently reduced to a diagonal linear prog
 The original \eqref{LP} is then easily solved by looking at valuations of input data
 in the reduced problem.
 
-\begin{algorithm}
+\begin{algorithm}[!ht]
+    {\footnotesize
     \caption{\textbf{SOLVELPval}($A,b,c,D,e$)}\label{algo_LP}
     \begin{algorithmic}[1]
+    %%%\algsetup{linenosize=\tiny}
       \REQUIRE
       $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
       \ENSURE [TYPE, $x$], where:
-      \vspace{-0.25cm}
+      \vspace{-0.1cm}
       \begin{itemize}
       \item[]
         TYPE $=$ INFEAS and $x=[]$ if and only if \eqref{LP} is infeasible
-      \vspace{-0.25cm}
+        \vspace{-0.1cm}
       \item[]
         TYPE $=$ UNBOUND and $x=[]$ if and only if \eqref{LP} is feasible and unbounded
-      \vspace{-0.25cm}
+        \vspace{-0.1cm}
       \item[]
         TYPE $=$ FEAS if and only if \eqref{LP} is feasible and has a solution $x$
       \end{itemize}
@@ -1018,43 +1005,44 @@ in the reduced problem.
       \hrule
       \vspace{0.1cm}
       \IF{$Dx = e$ has no solution}
-        \RETURN [INFEAS, []] \label{step:linear_empty}
+      \RETURN [INFEAS, []] \label{step:linear_empty}
       \ENDIF
       \IF{$D \neq {\bf 0}$} \label{step:reducD:begin}
-        \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
-        \STATE find $x_0$ such that $Dx_0=e$ \label{step:reducD:end}
-        \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \label{step:reducD} \hfill {\color{olive} \# \Cref{reducD}}
+      \STATE find $J \in K^{n \times R}$, with $R = \dim\ker D$, such that $\text{Im}\, J = \ker D$
+      \STATE find $x_0$ such that $Dx_0=e$ \label{step:reducD:end}
+      \RETURN $\textbf{SOLVELPval}(AJ,b+A x_0,J^T c, {\bf 0},0)$ \label{step:reducD} \hfill {\color{olive} \# \Cref{reducD}}
       \ENDIF
       \IF{$A$ not in Smith Normal Form} \label{step:solsLP:begin}
-        \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
-        \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
-        \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
+      \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
+      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
+      \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
       \ENDIF
       \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
       \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} \label{step:condition}
-        \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
-        \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
-        \ELSE
+      \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
+      \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
+      \ELSE
           %\STATE STATUS $\leftarrow$ FEAS
-          \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
-          \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
-          \IF{$\val \lambda < v$}
-            \STATE choose $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
-            \RETURN [FEAS, $y$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it1}}
-          \ELSE
-          \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
-          %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
-          %and $\langle c,y\rangle = \pi^v\OK$
-            \RETURN [FEAS, ${\bf e}_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
-          \ENDIF
-        \ENDIF 
+      \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
+      \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
+      \IF{$\val \lambda < v$}
+      \STATE choose $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
+      \RETURN [FEAS, $y$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it1}}
+      \ELSE
+      \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
+      %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
+      %and $\langle c,y\rangle = \pi^v\OK$
+      \RETURN [FEAS, ${\bf e}_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
+      \ENDIF
       \ENDIF 
-        %\STATE
-        %\STATE
-        %\RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
+      \ENDIF 
+      %\STATE
+      %\STATE
+      %\RETURN ... \hfill {\color{olive} \# \Cref{prop:reduc}}
       %\ENDIF \label{step:core:end}
       \RETURN [INFEAS, []] \label{step:core:end}
     \end{algorithmic}
+  }
 \end{algorithm}
 
 In order to prove correctness of \Cref{algo_LP}, we proceed step-by-step.
@@ -1275,7 +1263,7 @@ for $i=1,\ldots,d$. This function is piecewise affine and its slopes are exactly
 of the roots of $P$.
 
 The following result shows that testing positive semidefiniteness of matrices over
-valuation fields reduces to checking whether the coefficients of $\chi_M$ are integers.
+valued fields reduces to checking whether the coefficients of $\chi_M$ are integers.
 
 \begin{theorem}
   \label{caracsdp}
@@ -1378,7 +1366,7 @@ In the real case, one often abuses of the definition of spectrahedra, saying tha
 $\{x \in \mathbb{R}^n : A_0+\sum_{i=1}^n x_iA_i \succeq 0\}$ is also a spectrahedron.
 Remark that this also yields that every affine subset of $\mathbb{R}^n$ is also
 a spectrahedron: indeed an affine equation $\ell(x) = 0$ is equivalent to the two inequalities
-$\ell(x) \geq 0 \leq -\ell(x)$. Over a valuation field it is necessary to give the following
+$\ell(x) \geq 0 \leq -\ell(x)$. Over a valued field it is necessary to give the following
 definition in order to include affine sets in the family of spectrahedra.
 
 \begin{definition}
@@ -1613,7 +1601,6 @@ a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and fin
 \section*{Acknowledgments}
 
 The second author acknowledges support from the ANR Project ``HYPERSPACE'' (ANR-21-CE48-0006-01).
-
 
 \printbibliography
 

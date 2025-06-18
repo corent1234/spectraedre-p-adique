@@ -11,4 +11,4 @@
 *.fls
 *.synctex.gz
 *.log
-*.pdf
+# *.pdf
