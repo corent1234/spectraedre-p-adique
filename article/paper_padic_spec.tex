@@ -269,16 +269,16 @@ $A = \diag(\ell_1,\ldots, \ell_d)$. In other words, SDP is a generalization of L
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
 called \emph{semidefinite representable sets}: these are sets of the form
 $$
-P = \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}.
+\left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}.
 $$
-When $m>0$, the set $P$ is also called a \emph{spectrahedral shadow}.
+When $m>0$, the set is also called a \emph{spectrahedral shadow}.
 
 \begin{example}
 \label{fermat_quartic}
-The basic closed semialgebraic set $P = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron
+The basic closed semialgebraic set $\mathcal{R} = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron
 but it is semidefinite representable:
 $$
-P = \left\{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \in \R^2 :
+\mathcal{R} = \left\{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \in \R^2 :
 \exists\,
 \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} \in \R^2, \,
 \diag\left(
@@ -626,7 +626,6 @@ Here, $f : K^n \to K^m$ is an affine map and $\PP$ a polyhedron of $K^n.$
 Let us write $\PP = \PP_I \cap \PP_E$
 with $\PP_I := \left\lbrace X \in K^n,  AX+B \geq 0 \right\rbrace$
 and $\PP_E := \left\lbrace X \in K^n,  CX+D=0 \right\rbrace = P + \overrightarrow{\PP_E}.$ 
-
 Then $f(\PP) = f_{\PP_E}(\PP_I).$
 
 By a translation of $-P$ in $K^n$, we can assume that
@@ -918,7 +917,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 
     If $\mathcal{P}$ is nonempty then there exists $x_0 \in K^n$ such that $Dx_0=e$. Let $J \in K^{n \times R}$ such that $\textrm{Im} J = \ker D$ where $R$ denotes the dimension of $\ker D$. Then $\mathcal{P} = x_0 + J\mathcal{P}'$ where $A' := AJ$ $b' := Ax_0 + b$ and  $\mathcal{P'} := \{y \in K ^R: A'y + b' \ge 0 \}$.
 
-    Now let $S \in K^{n\times R}$ be the SNF of $A'$ and $Q \in \mathbf{GL}_n\left(\mathcal{O}_K\right)$ and $P \in \mathbf{GL}_R\left(\mathcal{O}_K\right)$ such that $A'= Q S P^{-1}$.
+    Now let $S \in K^{n\times R}$ be the SNF of $A'$ and $Q \in \GL_n\left(\mathcal{O}_K\right)$ and $P \in \GL_R\left(\mathcal{O}_K\right)$ such that $A'= Q S P^{-1}$.
     Then $\mathcal{P'} = \{y \in K^R : QSP^{-1}y + b' \ge  0\} = P\{z \in K^R : Sz + Q^{-1}b' \ge 0 \}$.
     Let $b'':=Q^{-1}b$ then $P' = P \{z \in K^R : s_i z_i + b''_i \ge 0, i= 1\ldots R\}$. The set $\{z \in K^R : s_i z_i + b_i \ge 0\}$ is either empty or a polydisc (with eventually infinite radii) and $\mathcal{P} = x_0 + JP \{z \in K^R: s_i z_i + b_i \ge  0, i=1,\ldots,R\}$ which concludes the proof.
 
@@ -957,8 +956,7 @@ as:
 with $c \in K^n$ a fixed vector of size $n$ that represents the cost,
 $A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, $e \in K^m$ 
 and $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$.
-When $A$ is a diagonal matrix\footnote{\simone{J'ai supprimé ``and
-$D=0$'', car cela ne me semble pas nécessaire pour définir le ``diagonal LP''.}},
+When $A$ is a diagonal matrix,
 we refer to \eqref{LP} as a \emph{diagonal} linear program.
 We denote the \emph{feasible set} of \eqref{LP} by
 \begin{equation*}
@@ -969,10 +967,8 @@ We denote the \emph{feasible set} of \eqref{LP} by
 A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$ is called a \emph{solution} to \eqref{LP} if $p^* = \val\left\langle c,x^*\right\rangle$, namely, if the infimum in \eqref{LP} is attained at $x^*$.
 
 \begin{remark}
-  Assume $\val$ is a discrete valuation. Then\footnote{\simone{Cela voudrait dire que
-    si la valuation n'est pas discrète, on pourrait avoir un problème LP qui est admissible
-    (c'est-à-dire l'ensemble admissible est non-vide) et où $p^* \in \R$, mais $p^*$ n'est
-  pas atteint. C'est ça ? A-t-on des exemples ?}} if \eqref{LP} admits feasible vectors,
+  Assume $\val$ is a discrete valuation. Then
+  if \eqref{LP} admits feasible vectors,
   $p^*$ is either $-\infty$ or attained at some solution $x^*$.
 \end{remark}
 
@@ -1068,10 +1064,7 @@ of~\eqref{LP} with data of the form $(A,b,c,{\bf 0},0)$.
   \item\label{reducD_item2}
     $x$ is a solution for~\eqref{LP} with data $(A,b,c,D,e)$ if and only if 
     $y$ is a solution for~\eqref{LP} with data $(AJ,b+A x_0,J^T c,{\bf 0},0)$ and
-    $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$\footnote{\simone{Est-ce que
-    c'est bien $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$ ou plutôt la condition
-    plus faible $\val \langle c,x^* \rangle = \val \langle J^T c,y^* \rangle$ ?
-  Même question pour \Cref{solsLP}.}}.
+    $\langle c,x^* \rangle = \langle J^T c,y^* \rangle$.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -1131,9 +1124,7 @@ to checking the valuations of input data:
 \begin{proof}
   %%%%\corentin{préciser les notations}. 
   A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for \eqref{LP} with data
-  $(S,b',c',0)$ if and only if $\val(s_i y_i + b'_i) \geq 0$ for\footnote{\simone{J'ai mis
-    $\val(s_i y_i + b'_i) \geq 0$ au lieu de $\val(s_i y_i + b_i) \geq 0$ car c'est $b'$
-    et non pas $b$.}} all $i = 1,\ldots,n$.
+  $(S,b',c',0)$ if and only if $\val(s_i y_i + b'_i) \geq 0$ for all $i = 1,\ldots,n$.
   However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b',c',0)$ is feasible,
   necessarily the $d-r$ last coefficients of $b'$ have nonnegative valuation.
   Conversely, if the $d-r$ last coefficients of $b'$ are zero, the vector $y \in K^n$ such that
@@ -1146,7 +1137,7 @@ to checking the valuations of input data:
   for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$.
   In particular, for all $n \in \mathbb{N}$ if we set $\alpha_n = -({\langle c', y^* \rangle + \pi^{-n}})/{c'_i}$,
   we have $\val \left(\langle c', y^* + \alpha_n e ^i \rangle\right) = \val \pi^{-n} = -n$.
-  Therefore, the problem is unbounded as $p^* = -\infty$\footnote{\simone{avant c'était ``Therefore, the problem is unbounded as $p^* = +\infty$'' ce qui ne me paraît pas correct.}}.
+  Therefore, the problem is unbounded as $p^* = -\infty$.
 \end{proof}
 
 %The previous results imply that we can consider iterations of diagonal linear programs admitting a solution. By \Cref{prop:reduc} one can simplify the problem by only taking account the first $r$ coefficients of $y, b', c'$ and the submatrix of $S$ made by the $r$ first rows and columns corresponding to the nonzero invariants factors.
@@ -1190,8 +1181,7 @@ We conclude by giving explicit solutions to the reduced \eqref{LP}:
   \]
   Two cases can occur depending on $v$ and the valuation of $\lambda$.
   If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$ is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
-  Otherwise, $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$ of $\PP'$ such that\footnote{\simone{J'imagine que c'est plutôt
-    $\left<c',y \right> \in \pi^v\OK$ ? Avant c'etait $\left<c',y \right> \in \pi^v$.}}
+  Otherwise, $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$ of $\PP'$ such that
   $\left<c',y \right> \in \pi^v\OK$.
 \end{proof}
 
@@ -1257,7 +1247,7 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
   The characteristic polynomial of a matrix $M \in K^{d\times d}$ is denoted $\chi_M \in K[T]$.
 \end{definition}
 
-Recall that the \emph{Newton polygon} $\mathcal{P}$ of a polynomial $P = \sum_{i=0}^{d} a_i T^i \in K[T]$ is
+Recall that the \emph{Newton polygon} of a polynomial $P = \sum_{i=0}^{d} a_i T^i \in K[T]$ is
 defined as the inferior convex hull of the set $\{(i, \val a_i) \,|\, 0 \le i \le d\}$, {\it i.e.} the
 graph of the greatest convex function $\mathcal{P} : [0,d] \to \R$ such that $\mathcal{P}(i) \leq \val a_i$
 for $i=1,\ldots,d$. This function is piecewise affine and its slopes are exactly the opposites of the valuations
@@ -1374,7 +1364,7 @@ definition in order to include affine sets in the family of spectrahedra.
   \label{def_spectrahedra_Kn}
   A \emph{spectrahedron in $K^n$} is any affine section of a set of the form
   $$
-  S_A = \varphi_A^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}
+  \mathcal{S}_A = \varphi_A^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}
   $$
   for some $d\in \mathbb{N}$,
   where $\varphi_A : K^n \to \mathcal{L} \subset K^{d \times d}$ is the map
@@ -1391,7 +1381,7 @@ has $(\mathcal{L}_1 \cap K^{d \times d}_+) \cap (\mathcal{L}_2 \cap K^{d \times 
 , for two affine spaces
 $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = A_0+\span{B_1,\ldots,B_n}$,
 and
-$(L_1 \cap S_A) \cap (L_2 \cap S_B) = (L_1\cap L_2) \cap S_{\diag(A,B)}$ for
+$(L_1 \cap \mathcal{S}_A) \cap (L_2 \cap S_B) = (L_1\cap L_2) \cap S_{\diag(A,B)}$ for
 two affine spaces $L_1,L_2 \subset K^n$.
 Moreover this class contains polyhedra in $K^n$.
 
@@ -1407,7 +1397,7 @@ Moreover this class contains polyhedra in $K^n$.
   $$
   \varphi_A(x) := A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
   $$
-  One has $L = S_A = \varphi_A^{-1}(K^{d \times d}_+)$. Since $M \subset K^n$ is affine, 
+  One has $L = \mathcal{S}_A = \varphi_A^{-1}(K^{d \times d}_+)$. Since $M \subset K^n$ is affine, 
   $P$ is a spectrahedron in $K^n$.
 %  %and hence
 %  %$$
@@ -1416,7 +1406,7 @@ Moreover this class contains polyhedra in $K^n$.
 %
 %  \vspace{1cm}
 %  In other words, we showed that there exist $d \in \mathbb{N}$ and
-%  $A_0,A_1,\ldots,A_n \in K^{d \times d}$ such that $P = S_A$, as stated.
+%  $A_0,A_1,\ldots,A_n \in K^{d \times d}$ such that $P = \mathcal{S}_A$, as stated.
 %%% OLD PROOF
 %  Let $\ell_i,m_j \in K[x]_1$, for $i=1,\ldots,d$ and $j=1,\ldots,e$, and let $P = Q \cap L \subset K^n$
 %  be a polyhedron as in \Cref{def_polyhedra}, for $Q = \{x \in K^n : \val(\ell_i) \geq 0, i=1,\ldots,d\}$
@@ -1425,7 +1415,7 @@ Moreover this class contains polyhedra in $K^n$.
 %  so that $A(x) = A_0+x_1A_1+\cdots+x_nA_n$ for some (diagonal) $A_i \in K^{d\times d}$.
 %  We might assume that $A_0,A_1,\ldots,A_n$ are affinely independent, so that the mapping
 %  $\varphi(x) = A(x)$ is injective. 
-%  First, remark that $Q=S_A$ and thus $\varphi(Q) = \mathcal{L} \cap K^{d\times d}$, with
+%  First, remark that $Q=\mathcal{S}_A$ and thus $\varphi(Q) = \mathcal{L} \cap K^{d\times d}$, with
 %  $\mathcal{L} = A_0+\span{A_1,\ldots,A_n}$ is a spectrahedron.
 %  Next, remark that $L \subset K^n$ is the affine space defined by equations $m_1=\ldots=m_e=0$,
 %  hence $\varphi(L) \subset K^{d\times d}$ is an affine space. Since $\varphi$ is injective,
@@ -1439,14 +1429,14 @@ Spectrahedra form a strict generalization of polyhedra:
 \begin{example}
   The spectrahedron
   \[
-  S = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}
+  \mathcal{S} = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}
   \] 
   is not a polyhedron.
 \end{example}
 \begin{proof}
-  By \Cref{caracsdp}, one has $S = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
+  By \Cref{caracsdp}, one has $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
   \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$ which is not a ball.
-  Therefore, by \Cref{cor:caracdim1}, $S$ is not a polyhedron.
+  Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
 \end{proof}
 
 \begin{definition}
@@ -1456,13 +1446,12 @@ Spectrahedra form a strict generalization of polyhedra:
 \begin{proposition}
   Spectrahedra in $K^n$ are semialgebraic sets. 
 \end{proposition}
-
 \begin{proof}
-  Let $S = S_A \subset K^n$ be spectrahedron, for some linear matrix $A = A_0+\sum_{i=1}^n x_i A_i$. 
+  Let $\mathcal{S}_A \subset K^n$ be a spectrahedron, for some linear matrix $A = A_0+\sum_{i=1}^n x_i A_i$. 
   Denote by $p_i \in K[x]$ the $i$-th coefficient of $\chi_{A}$, $i=0,\ldots,d$.
   By \Cref{caracsdp} one has:
   $$
-  S = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
+  \mathcal{S}_A = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
   = \bigcap_{i=0}^d \{x \in K^n : \val(p_i(x)) \geq 0\}.
   $$
 \end{proof}
@@ -1477,23 +1466,24 @@ Spectrahedra form a strict generalization of polyhedra:
 Denote by $\R^*_+$ the set of positive real numbers.
 
 \begin{definition}[Polyannulus]\label{def_annuli}
-  A set of the form $C = \{x \in K \,|\, a \le \val(x) \le b\}$, for $a,b \in \R^*_+$,
-  is called \emph{annulus}. A product $C_1 \times C_2 \times \cdots \times C_n \subset K^n$,
+  A set of the form $\mathcal{C} = \{x \in K \,|\, a \le \val(x) \le b\}$, for $a,b \in \R^*_+$,
+  is called \emph{annulus}. A product $\mathcal{C}_1 \times \mathcal{C}_2 \times \cdots \times \mathcal{C}_n \subset K^n$,
   where each $C_i \subset K$ is an annulus, is called a \emph{polyannulus}.
 \end{definition}
 
 \begin{definition}[Semidefinite-representable set]\label{def_semi_def_rep_set}
-  A set $S \subset K^n$ is called \emph{semide\-fi\-nite-re\-pre\-sen\-ta\-ble (SDR)} if there exist $m,d \in \N$ and
+  A set $\mathcal{R} \subset K^n$ is called
+  \emph{semide\-fi\-nite-re\-pre\-sen\-ta\-ble (SDR)} if there exist $m,d \in \N$ and
   matrices $\{A_i,B_j : i = 0, \ldots, n, j = 1, \ldots, m\} \subset K^{d \times d}$ such that
   $$
-  S = \left\{x \in K^n : \exists y \in K^m, A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j \succeq 0\right\}
+  \mathcal{R} = \left\{x \in K^n : \exists y \in K^m, A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j \succeq 0\right\}
   $$
-  that is, $x \in S$ if and only if there exists $y \in K^m$ such that
-  $(x,y) \in S_M \subset K^{n+m}$, for $M(x,y) = A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j$.
+  that is, $x \in \mathcal{R}$ if and only if there exists $y \in K^m$ such that
+  $(x,y) \in S_M \subset K^{n+m}$, for some pencil $M(x,y) = A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j$.
   The integer $m$ is called the \emph{height} of the representation and $d$ its \emph{degree}.
 \end{definition}
 
-Of course a spectrahedron $S_A = \varphi_A^{-1}(K^{d \times d})$ is SDR with height $m=0$ and degree
+Of course a spectrahedron $\mathcal{S}_A = \varphi_A^{-1}(K^{d \times d})$ is SDR with height $m=0$ and degree
 $d$. In order to distinguish between spectrahedra and possibly non-spectrahedral semidefinite-representable sets
 we usually call \emph{spectrahedral shadows} the SDR sets with height $m>0$.
 
@@ -1501,13 +1491,13 @@ we usually call \emph{spectrahedral shadows} the SDR sets with height $m>0$.
 Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n$.
 \end{theorem}
 \begin{proof}
-  Let $C = C_1 \times \cdots \times C_n \subset K^n$ be as in \Cref{def_annuli},
-  for some annuli $C_1,\ldots,C_n \subset K$. We claim that each $C_i$ is a spectrahedral
-  shadow of height $1$ and degree $4$. Assume $C_i = \{x_i \in K : a_i \leq \val(x_i) \leq b_i\}$
+  Let $\mathcal{C} = \mathcal{C}_1 \times \cdots \times \mathcal{C}_n \subset K^n$ be as in \Cref{def_annuli},
+  for some annuli $\mathcal{C}_1,\ldots,\mathcal{C}_n \subset K$. We claim that each $\mathcal{C}_i$ is a spectrahedral
+  shadow of height $1$ and degree $4$. Assume $\mathcal{C}_i = \{x_i \in K : a_i \leq \val(x_i) \leq b_i\}$
   for some $a_i, b_i \in \R^*_+$ with $a_i < b_i$. Consider the spectrahedron
-  $S_{M^{(i)}} \subset K^2$ defined by
+  $\mathcal{S}_{M^{(i)}} \subset K^2$ defined by
   $$
-  S_{M^{(i)}} = \left\{(x_i,y_i) \in K^2 :
+  \mathcal{S}_{M^{(i)}} = \left\{(x_i,y_i) \in K^2 :
   M^{(i)}(x_i,y_i) := \diag\left(\pi^a x_i, \pi^{-b} y_i,
   \begin{bmatrix}
     \pi^{-1} & -\pi^{-1} x_i  \\
@@ -1515,7 +1505,8 @@ Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n
   \end{bmatrix}\right) \succeq 0
   \right\}.
   $$
-  We claim that $x_i \in C_i$ if and only if there exists $y_i \in K$ such that $(x_i,y_i) \in S_{M^{(i)}}$.
+  We claim that $x_i \in \mathcal{C}_i$ if and only if there exists $y_i \in K$ such that $(x_i,y_i) \in
+  \mathcal{S}_{M^{(i)}}$.
   Indeed, by \Cref{caracsdp}, $M^{(i)}(x_i,y_i) \succeq 0$ if and only if $(x_i,y_i)$ is a solution of the system
   of inequalities:
   \begin{equation}
@@ -1532,26 +1523,27 @@ Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n
   \val\left(y_i\right)\ge -b\\
   \val\left(x_iy_i-1 \right) \ge 2
 \end{cases}
-\end{equation}
+\end{equation} 
   %Therefore, if $(x, y)$ verifies \eqref{eq:annulussyst} then $\val\left(x\right)\ge a$, $\val\left(y\right)\ge -b$ and $ \left( xy-1 \right) \ge 2$.
-  The last inequality implies that $\val\left(x_i\right)+\val\left(y_i\right)=\val\left(x_iy_i\right) = \val\left(-1\right) =0$ and therefore that $\val\left(x_i\right)=-\val\left(y_i\right)\le -(-b) = b$, so $x_i \in C_i$. 
-Reciprocally if $x_i \in C_i$ then $(x_i,x_i^{-1})$ is a solution of \eqref{eq:annulussyst}.
+  The last inequality implies that $\val\left(x_i\right)+\val\left(y_i\right)=\val\left(x_iy_i\right) = \val\left(-1\right) =0$ and therefore that $\val\left(x_i\right)=-\val\left(y_i\right)\le -(-b) = b$, so $x_i \in \mathcal{C}_i$. 
+Reciprocally if $x_i \in \mathcal{C}_i$ then $(x_i,x_i^{-1})$ is a solution of \eqref{eq:annulussyst}.
 This proves our claim.
-Finally, since $C = C_1 \times \cdots \times C_n$, one has
+Finally, since $\mathcal{C} = \mathcal{C}_1 \times \cdots \times \mathcal{C}_n$, one has
 \begin{equation*}
   \begin{aligned}
-    C &=
-    \{x=(x_1,\ldots,x_n) \in K^n : \exists y = (y_1,\ldots,y_n) \in K^n, (x_i,y_i) \in S_{M^{(i)}}, i=1,\ldots,n\} \\
-    &= \{x \in K^n : \exists y \in K^n, (x,y) \in S_M\}
+    \mathcal{C} &=
+    \{x=(x_1,\ldots,x_n) \in K^n : \exists y = (y_1,\ldots,y_n) \in K^n, (x_i,y_i) \in
+    \mathcal{S}_{M^{(i)}}, i=1,\ldots,n\} \\
+    &= \{x \in K^n : \exists y \in K^n, (x,y) \in \mathcal{S}_M\}
   \end{aligned}
 \end{equation*}
-with $S_M = \diag\left(M^{(1)}, M^{(2)}, \ldots, M^{(n)}\right) \in K[x,y]^{4n \times 4n}.$
+with $\mathcal{S}_M = \diag\left(M^{(1)}, M^{(2)}, \ldots, M^{(n)}\right) \in K[x,y]^{4n \times 4n}.$
 \end{proof}
 
+We conclude proving that, in general, annuli are not spectrahedral.
 
 \begin{proposition}
-If the residue field $\kappa$ is infinite, then
-no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
+If the residue field $\kappa$ is infinite, then no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
 \end{proposition}
 \begin{proof}
 By Definition \ref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
