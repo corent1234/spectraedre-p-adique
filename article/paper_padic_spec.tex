@@ -132,9 +132,9 @@ The study of polyhedra and of linear programming (LP) is at the heart of convex 
 
 The main motivation for studying the effective aspects of SDP is the fact that, despite several properties of LP extend to SDP, the complexity status of SDP is, contrary to the LP case, widely open. Ramana's construction \cite{ramana1997exact} implies a series of general results: in the Blum-Shub-Smale real numbers machines model \cite{blum1989theory}, the feasibility of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be in NP in the Turing model; checking boundedness, attainability and optimality can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}. Assuming the input data belongs to an effective field $K$ (\emph{e.g.} $K = \QQ$) then a solution can be described and computed as element of a vector space over some algebraic extension of $K$. For exact computation, complexity bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist based on a dedicated application of the so-called critical point method, and exploiting the determinantal structure of the constraints \cite{henrion2016exact,NALDI2018206}. A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
-In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. In this context a polyhedron is 
-
-The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation. \todo{Give motivations for p-adic precision of LP/SDP.} Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}.
+In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. In this context a polyhedron is defined as a set of vectors such that some linear forms have nonnegative or infinite vluation ({\it cf.} \Cref{def_polyhedra}). The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation.
+%%%\todo{Give motivations for p-adic precision of LP/SDP.}
+Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}.
 
 %\subsection{Context and motivations}
 %Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
@@ -158,8 +158,7 @@ $$
 $$
 $\kappa = \OK/\mathfrak{m}_K$ its residue field, with
 $\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$.
-For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$\footnote{\simone{voir si on
-  utilise cette notation}}.
+For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
 A typical example of $K$ as above is the field of $p$-adic numbers 
 $\QQ_p$ equipped with the $p$-adic valuation. For this example, we 
 have $\OK = \ZZ_p$. Another example is the field of Laurent series
