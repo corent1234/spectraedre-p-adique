@@ -195,6 +195,7 @@ We recall the definition of Smith Normal Form, in our context.
   $M$. In particular, $\mathrm{SNF}(M) \in \OK^{n \times n}$.
 \end{remark}
 
+Let us now give a short introduction to classical ({\it i.e.} real) polyhedra and spectrahedra.
 Let $\sym_d(\R) \subset \R^{d\times d}$ be the vector space of $d \times d$ real symmetric
 matrices. A matrix $M \in \sym_d(\R)$ is \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$ if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors of $M$ being nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$.
 
@@ -244,15 +245,16 @@ minors of the defining matrix as well as sign conditions on the coefficients of 
   1-x_1^2 \geq 0, \,\,\, 1-x_2^2 \geq 0, \,\,\, 1-x_3^2 \geq 0 \,\,\, \text{ and } \,\,\, 1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0.$$ \exend
 \end{example}
 
-The optimization problem of miminizing a linear function over a real spectrahedron is called \emph{semidefinite programming} (SDP). Given $c \in \R^n$ and $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, the corresponding semidefinite program is defined (in standard dual form) as
-\begin{equation}
-  \label{SDP}
-\begin{array}{rcll}
-  p^* & := & \inf_{x \in \R^n} & \left\langle c, x \right\rangle \\
-  &    & \text{s.t.}         & A_0+\sum_{i=1}^n x_i A_i \succeq 0.
-\end{array}
-\end{equation}
-Real polyhedra (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
+The optimization problem of miminizing a linear function over a real spectrahedron is called \emph{semidefinite programming} (SDP).
+%Given $c \in \R^n$ and $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, the corresponding semidefinite program is defined (in standard dual form) as
+%\begin{equation}
+%  \label{SDP}
+%\begin{array}{rcll}
+%  p^* & := & \inf_{x \in \R^n} & \left\langle c, x \right\rangle \\
+%  &    & \text{s.t.}         & A_0+\sum_{i=1}^n x_i A_i \succeq 0.
+%\end{array}
+%\end{equation}
+{\it Real polyhedra} (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
 spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that
 $A = \diag(\ell_1,\ldots, \ell_d)$. In other words, SDP is a generalization of Linear Programming (LP).
 
@@ -267,9 +269,9 @@ $A = \diag(\ell_1,\ldots, \ell_d)$. In other words, SDP is a generalization of L
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
 called \emph{semidefinite representable sets}: these are sets of the form
 $$
-P = \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}
+P = \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}.
 $$
-when $m>0$, the set $P$ is also called a \emph{spectrahedral shadow}.
+When $m>0$, the set $P$ is also called a \emph{spectrahedral shadow}.
 
 \begin{example}
 \label{fermat_quartic}
@@ -403,8 +405,8 @@ Let $f : K^n \to K^n$ be a linear map and $\PP$ a polyhedron of $K^n$ defined on
 Then $f(\PP)$ is a polyhedron. \label{lem:DIdiag}
 \end{lemma}
 \begin{proof}
-As in the proof of Lemma \ref{lem:DIaut} DI${}_{aut}$, an obvious change
-of variable is enough to conclude.
+As in the proof of Lemma \ref{lem:DIaut} DI${}_{aut}$, a trivial change
+of variables is enough to conclude.
 \end{proof}
 
 
@@ -446,7 +448,7 @@ Moreover, thanks to Lemma \ref{lem:DIaut} DI${}_{aut}$,
 $\PP$ can be written
 $\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \subset K^n$
 and we are reduced to proving that
-$f(\PP_2)$ is polyhedron for $p$ still the projection
+$f(\PP_2)$ is a polyhedron for $p$ the projection
 $K^n \rightarrow K^{n-1}$ and $\PP_2$
 defined by the following linear matrix inequality (for some $B_2 \in K^q$):
 \[  \begin{bmatrix}
@@ -478,7 +480,7 @@ is then $\val(a_nx_n +b_n) \geq 0.$
 
 Thanks to Lemma \ref{lem:DIdiag} DI${}_{diag}$,
 we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
-and are reduce to $\PP_2$ defined by the linear matrix inequality :
+and are reduce to $\PP_2$ defined by the linear matrix inequality:
 \[  \begin{bmatrix}
 1	& 		& 			&   &		 &  &a_1	\\
 			& \ddots& 			& 0	&		 &	&		\\
@@ -1598,10 +1600,9 @@ a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and fin
 
 
 \section*{Acknowledgments}
-
 The second author acknowledges support from the ANR Project ``HYPERSPACE'' (ANR-21-CE48-0006-01).
 
-\printbibliography
 
+\printbibliography
 
 \end{document}
