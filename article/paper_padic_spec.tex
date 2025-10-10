@@ -132,7 +132,7 @@ The study of polyhedra and of linear programming (LP) is at the heart of convex 
 
 The main motivation for studying the effective aspects of SDP is the fact that, despite several properties of LP extend to SDP, the complexity status of SDP is, contrary to the LP case, widely open. Ramana's construction \cite{ramana1997exact} implies a series of general results: in the Blum-Shub-Smale real numbers machines model \cite{blum1989theory}, the feasibility of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be in NP in the Turing model; checking boundedness, attainability and optimality can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}. Assuming the input data belongs to an effective field $K$ (\emph{e.g.} $K = \QQ$) then a solution can be described and computed as element of a vector space over some algebraic extension of $K$. For exact computation, complexity bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist based on a dedicated application of the so-called critical point method, and exploiting the determinantal structure of the constraints \cite{henrion2016exact,NALDI2018206}. A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
-In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. In this context a polyhedron is defined as a set of vectors such that some linear forms have nonnegative or infinite vluation ({\it cf.} \Cref{def_polyhedra}). The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation.
+In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. In this context a polyhedron is defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation.
 %%%\todo{Give motivations for p-adic precision of LP/SDP.}
 Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}.
 
@@ -152,12 +152,12 @@ Similar generalizations have been recently proposed in the context of tropical g
 Throughout the paper, $(K,\val)$ refers to a complete valued field, namely $K$ is a field
 and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, $\Gamma$ an
 ordered abelian group. The valuation is often assumed to be discrete ({\it i.e.} $\Gamma=\ZZ$)
-with $\pi \in K$ a uniformizer. The ring of integers of $K$ is
+with $\pi \in K$ a uniformizer. The valuation ring of $K$ is
 $$
 \OK = \{x \in K : \val(x) \geq 0\},
 $$
 $\kappa = \OK/\mathfrak{m}_K$ its residue field, with
-$\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$.
+$\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$. An element of $\OK$ is called integral (at $\val$).
 For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
 A typical example of $K$ as above is the field of $p$-adic numbers 
 $\QQ_p$ equipped with the $p$-adic valuation. For this example, we 
@@ -175,7 +175,7 @@ size $p \times q$ with entries in a ring $R$ is $R^{p \times q}$ and the general
 linear group in $R^{n \times n}$ is $\GL_n(R)$.
 For the sake of ease of writing, block-diagonal matrices with blocks
 $B_1,\ldots,B_d$ are denoted by $\diag(B_1, \ldots, B_d)$, the null matrix of
-size $p \times q$ by ${\bf 0}_{p,q}$, and the identity matrix by $I_t$.
+size $p \times q$ by ${\bf 0}_{p,q}$, and the identity matrix of size $t \times t$ by $I_t$.
 
 We recall the definition of Smith Normal Form, in our context.
 \begin{definition}[Smith Normal Form]\label{smith_nf}
@@ -325,8 +325,8 @@ $\val(\ell_i(x))<+\infty$.
 \begin{example}
   The \emph{closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
   polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} =
-  \max_i\{x_i\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
-  In other words, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
+  \max_i\{\vert x_i \vert\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
+  As such, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
   $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$. %%%%%(its affine hull is indeed the whole $K^n$).
 \end{example}
 
@@ -407,7 +407,7 @@ of variables is enough to conclude.
 We now treat the case where $f$ is a projection erasing the last coordinate.
 
 \begin{lemma}[DI${}_{proj}$]
-Let $f : K^n \to K^n, \: (x_1,\dots,x_{n-1},x_n) \mapsto (x_1,\dots,x_{n-1})$ and $\PP$ a polyhedron in $K^n$ defined only by inequalities. 
+Let $f : K^n \to K^{n-1}, \: (x_1,\dots,x_{n-1},x_n) \mapsto (x_1,\dots,x_{n-1})$ and $\PP$ a polyhedron in $K^n$ defined only by inequalities. 
 Then $f(\PP)$ is a polyhedron defined only by inequalities. \label{lem:DIproj}
 \end{lemma}
 \begin{proof}
@@ -584,7 +584,7 @@ $K^r \rightarrow K^n$
 $(x_1,\dots,x_r)\mapsto (x_1,\dots,x_r,0,\dots,0),$ 
  the diagonal invertible mapping
 $K^l \rightarrow K^l$,
-$(x_1,\dots,x_r)\mapsto (\delta_1,\dots,\delta_r x_r)$,
+$(x_1,\dots,x_r)\mapsto (\delta_1 x_1,\dots,\delta_r x_r)$,
 and the projections
 $(x_1,\dots,x_{r+1})\mapsto (x_1,\dots,x_{r}),$
  $(x_1,\dots,x_{r+2})\mapsto (x_1,\dots,x_{r+1}),$
@@ -924,7 +924,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 \end{corollary}
 
 \begin{proof}
-    Let $\PP$ be such polyhedron. We assume that $\PP \neq \emptyset$. By \ref{prop:carac} there exist a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\PP = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, with no loss of generality, that the $a_i$'s are nonzero. 
+    Let $\PP$ be such polyhedron. We assume that $\PP \neq \emptyset$. By \ref{prop:carac} there exist a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\PP = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, without loss of generality, that the $a_i$'s are nonzero. 
 
 If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\PP = f(D) = K$ and $\PP$ is a ball of infinite radius. Otherwise, we have $D = \{x \in K^n : x_i = \frac{b_i}{s_i} + O\left( \pi^{-val s_i} \right), i=1,\ldots,n \}$ and therefore for all $x \in  K$, $x \in P$ if and only if $x = a_0 + \sum_{i=1}^{n}( \frac{a_i b_i}{s_i} + O\left( \pi^{\val a_i - \val s_i} \right))= a_0  + \sum_{i=1}^{n} \frac{a_i b_i}{s_i} + O(\pi^d)$ where $d = \min \limits_{i = 1,\ldots,n} \val a_i - \val s_i$. Thus $\PP = \{x \in K : \val (x - a_0 - \sum_{i=1}^{n} \frac{a_i b_i}{s_i}) \ge d \}$ is a ball.
 
@@ -1186,8 +1186,8 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
 \begin{theorem} \Cref{algo_LP} is correct.
 \end{theorem}
 \begin{proof}
-  If the linear system $Dx=e$, Problem \eqref{LP} is infeasible
-  and \Cref{algo_LP} outputs correct answer at step \ref{step:linear_empty}.
+  If the linear system $Dx=e$ has no solution, Problem \eqref{LP} is infeasible
+  and \Cref{algo_LP} outputs the correct answer at step \ref{step:linear_empty}.
   Else, by \Cref{reducD} the input problem can be reduced to a new linear
   program with $D={\bf 0}$ and $e=0$, which is done at steps
   \ref{step:reducD:begin}-\ref{step:reducD:end},
@@ -1244,13 +1244,13 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
 \end{definition}
 
 Recall that the \emph{Newton polygon} of a polynomial $P = \sum_{i=0}^{d} a_i T^i \in K[T]$ is
-defined as the inferior convex hull of the set $\{(i, \val a_i) \,|\, 0 \le i \le d\}$, {\it i.e.} the
+defined as the lower convex hull of the set $\{(i, \val a_i) \,|\, 0 \le i \le d\}$, {\it i.e.} the
 graph of the greatest convex function $\PP : [0,d] \to \R$ such that $\PP(i) \leq \val a_i$
 for $i=1,\ldots,d$. This function is piecewise affine and its slopes are exactly the opposites of the valuations
 of the roots of $P$.
 
 The following result shows that testing positive semidefiniteness of matrices over
-valued fields reduces to checking whether the coefficients of $\chi_M$ are integers.
+valued fields reduces to checking whether the coefficients of $\chi_M$ are integral.
 
 \begin{theorem}
   \label{caracsdp}
@@ -1283,7 +1283,7 @@ valued fields reduces to checking whether the coefficients of $\chi_M$ are integ
   the Newton polygon of $\chi_M$ is positive, so that $\chi_M$ has a root with negative valuation.
 \end{proof}
 
-As a consequence, matrices with integer coefficients are positive semidefinite.
+As a consequence, matrices with integral coefficients are positive semidefinite.
 
 \begin{corollary}\label{cor_caracsdp}
   $\OK^{d\times d} \subset K^{d\times d}_+$.
@@ -1300,7 +1300,7 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in t
   M = \begin{bmatrix} \frac{3}{5}+5 & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{bmatrix}.
   $$
   The characteristic polynomial of $M$
-  is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$: then $M \in (\mathbb{Q}_5)^{2 \times 2}_+$, nevertheless $M \not\in (\mathbb{Z}_5)^{2\times 2}$, hence
+  is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$. As such $M \in (\mathbb{Q}_5)^{2 \times 2}_+$, while nevertheless $M \not\in (\mathbb{Z}_5)^{2\times 2}$, and hence
   $(\mathbb{Q}_5)^{2 \times 2}_+ \not\subset (\mathbb{Z}_5)^{2 \times 2}$.
 \end{example}
 
@@ -1349,9 +1349,9 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in t
   $A_0,A_1,\ldots,A_n \in K^{d\times d}$.
 \end{definition}
 
-In the real case, one often abuses of the definition of spectrahedra, saying that the set
+In the real case, one often abuses the definition of spectrahedra, saying that the set
 $\{x \in \mathbb{R}^n : A_0+\sum_{i=1}^n x_iA_i \succeq 0\}$ is also a spectrahedron.
-Remark that this also yields that every affine subset of $\mathbb{R}^n$ is also
+Remark that this yields that every affine subset of $\mathbb{R}^n$ is also
 a spectrahedron: indeed an affine equation $\ell(x) = 0$ is equivalent to the two inequalities
 $\ell(x) \geq 0 \leq -\ell(x)$. Over a valued field it is necessary to give the following
 definition in order to include affine sets in the family of spectrahedra.
@@ -1379,7 +1379,7 @@ $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = A_0+\span{B_1,\
 and
 $(L_1 \cap \mathcal{S}_A) \cap (L_2 \cap S_B) = (L_1\cap L_2) \cap S_{\diag(A,B)}$ for
 two affine spaces $L_1,L_2 \subset K^n$.
-Moreover this class contains polyhedra in $K^n$.
+Moreover this class contains the polyhedra in $K^n$.
 
 \begin{proposition}
   A polyhedron in $K^n$ is a spectrahedron in $K^n$.
@@ -1466,7 +1466,7 @@ Denote by $\R^*_+$ the set of positive real numbers.
 
 \begin{definition}[Polyannulus]\label{def_annuli}
   A set of the form $\mathcal{C} = \{x \in K \,|\, a \le \val(x) \le b\}$, for $a,b \in \R^*_+$,
-  is called \emph{annulus}. A product $\mathcal{C}_1 \times \mathcal{C}_2 \times \cdots \times \mathcal{C}_n \subset K^n$,
+  is called an \emph{annulus}. A product $\mathcal{C}_1 \times \mathcal{C}_2 \times \cdots \times \mathcal{C}_n \subset K^n$,
   where each $C_i \subset K$ is an annulus, is called a \emph{polyannulus}.
 \end{definition}
 
@@ -1497,7 +1497,7 @@ Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n
   $\mathcal{S}_{M^{(i)}} \subset K^2$ defined by
   $$
   \mathcal{S}_{M^{(i)}} = \left\{(x_i,y_i) \in K^2 :
-  M^{(i)}(x_i,y_i) := \diag\left(\pi^a x_i, \pi^{-b} y_i,
+  M^{(i)}(x_i,y_i) := \diag\left(\pi^{-a} x_i, \pi^{b} y_i,
   \begin{bmatrix}
     \pi^{-1} & -\pi^{-1} x_i  \\
     \pi^{-1} y_i & - \pi^{-1} \\
@@ -1511,8 +1511,8 @@ Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n
   \begin{equation}
     \label[type]{eq:annulussyst}
     \begin{cases}
-      \val(\pi^a x_i) \ge 0 \\
-  \val(\pi^{-b} y_i) \ge 0\\
+      \val(\pi^{-a} x_i) \ge 0 \\
+  \val(\pi^{b} y_i) \ge 0\\
   \val(\pi^{-1}- \pi^{-1}) = +\infty \ge 0\\
   \val(\pi^{-2}\left( x_iy_i-1 \right))  \ge 0 
 \end{cases}
@@ -1539,7 +1539,7 @@ Finally, since $\mathcal{C} = \mathcal{C}_1 \times \cdots \times \mathcal{C}_n$,
 with $\mathcal{S}_M = \diag\left(M^{(1)}, M^{(2)}, \ldots, M^{(n)}\right) \in K[x,y]^{4n \times 4n}.$
 \end{proof}
 
-We conclude proving that, in general, annuli are not spectrahedral.
+We conclude proving that, in general, annuli are not spectrahedra.
 
 \begin{proposition}
 If the residue field $\kappa$ is infinite, then no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
