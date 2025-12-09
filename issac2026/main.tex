@@ -1,0 +1,124 @@
+\documentclass[sigconf]{acmart}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs} 
+\usepackage{graphicx}
+\usepackage{color,xcolor}
+%\usepackage{ulem}
+\usepackage{bm}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+\usepackage{hyperref}
+
+\usepackage{cleveref}
+
+% --------- ALGORITHMS ---------- <<:
+\usepackage{algorithm,algorithmic}
+%\usepackage[noend]{algpseudocode}      %%% this is for the algorithms
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} % require --> input
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % ensure --> output
+% :>> ALGORITHMS
+
+\usepackage{stmaryrd} %for double brackets
+
+\newcommand{\R}{\mathbb{R}} % real numbers
+\newcommand{\C}{\mathbb{C}} % complex numbers
+\newcommand{\N}{\mathbb{N}} % integers
+\newcommand{\allmat}{\mathbb{M}} % matrices
+\newcommand{\sym}{\mathbb{S}} % matrices symétriques
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\Qc}{\mathcal{Q}}
+\renewcommand{\span}[1]{{\text{span}(#1)}} % simone's comments
+\newcommand{\aff}[1]{{\text{aff}(#1)}} % simone's comments
+\newcommand{\relint}[1]{{\text{relint}(#1)}} % simone's comments
+\newcommand{\calL}{\mathcal{L}} % simone's comments
+
+\newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
+\newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
+\newcommand{\tristan}[1]{{\color{red} #1}} % tristan's comments
+\newcommand{\todo}[1]{{\color{blue}\bf \text{TODO: } #1}} % TODOs
+
+%p-adic commands
+\DeclareMathOperator{\val}{val}
+\def\QQ{\ensuremath{\mathbb{Q}}}
+\def\ZZ{\ensuremath{\mathbb{Z}}}
+\newcommand{\OK}{\mathcal{O}_K}
+\def\diag{\mathrm{diag}}
+
+\newcommand{\GL}{\mathrm{GL}}
+
+\newcommand{\exend}{\hfill $\blacksquare$}
+
+%\usepackage{biblatex}
+%\addbibresource{../rapport/bibstage.bib}
+
+\title{On semidefinite-representable sets over valued fields}
+
+\author{Simone Naldi}
+\affiliation{
+    \institution{Université de Limoges, CNRS, XLIM}
+    \city{Limoges}
+    \country{France}
+}
+
+\author{Tristan Vaccon}
+\affiliation{
+    \institution{Université de Limoges, CNRS, XLIM}
+    \city{Limoges}
+    \country{France}
+}
+
+\author{Corentin Cornou}
+\affiliation{
+    \institution{}
+    \city{}
+    \country{France}
+}
+
+\copyrightyear{2026}
+\acmYear{2026}
+\setcopyright{cc}
+\setcctype{by}
+\acmConference[ISSAC '26]{International Symposium on Symbolic and Algebraic Computation}{Date}{Place}
+\acmBooktitle{International Symposium on Symbolic and Algebraic Computation (ISSAC '26), date, place}\acmDOI{}
+\acmISBN{}
+
+%\begin{CCSXML}
+%<ccs2012>
+%   <concept>
+%       <concept_id>10010147.10010148.10010149.10010150</concept_id>
+%       <concept_desc>Computing methodologies~Algebraic algorithms</concept_desc>
+%       <concept_significance>500</concept_significance>
+%       </concept>
+% </ccs2012>
+%\end{CCSXML}
+
+%\ccsdesc[500]{Computing methodologies~Algebraic algorithms}
+
+\keywords{keywords}
+
+\begin{abstract}
+  Real polyhedra and real spectrahedra (or their projections) are respectively the feasible sets
+  of linear and semidefinite programming, and form the family of
+  semidefinite-representable sets. This paper investigates versions of these sets and of
+  the related optimization problems with data over a valued field $K$.
+  For $K$-polyhedra and linear programming over $K$ we give an algorithm based on computation
+  of Smith normal forms.
+  We prove that basic properties of semidefinite-representable sets generalize to this setting.
+  In particular, we showcase examples of non-polyhedral $K$-spectrahedra and of sets that are
+  semidefinite representable over $K$ but are not $K$-spectrahedra.
+\end{abstract}
+
+\begin{document}
+\maketitle
+
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{refs}
+
+\end{document}
