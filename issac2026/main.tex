@@ -14,7 +14,6 @@
 \usetikzlibrary{arrows.meta, positioning}
 
 \usepackage{hyperref}
-
 \usepackage{cleveref}
 
 % --------- ALGORITHMS ---------- <<:
@@ -357,10 +356,11 @@ is given in \Cref{fig:di-properties}.
 
 \begin{figure}[!ht] 
 \centering
+\scalebox{0.5}{
 \begin{tikzpicture}[
   node distance=1cm and 1cm,
   box/.style={draw, rounded corners, minimum width=2.2cm, minimum height=1cm, align=center},
-  thickarrow/.style={->, >=Stealth, line width=1.2pt},
+  thickarrow/.style={->, >=Stealth, line width=1.2pt}
 ]
 % Nodes
 \node[box] (DIdiag) {DI${}_{diag}$};
@@ -378,6 +378,7 @@ is given in \Cref{fig:di-properties}.
 \draw[thickarrow] (DIimm) -- (DIl);
 \draw[thickarrow] (DIaut) -- (DIl);
 \end{tikzpicture}
+}
 \caption{Strategy of proof of Theorem \ref{theo:DI}.}
 \label{fig:di-properties}
 \end{figure}
@@ -1602,6 +1603,5 @@ The second author acknowledges support from the ANR Project ``HYPERSPACE'' (ANR-
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}
-\printbibliography
 
 \end{document}
