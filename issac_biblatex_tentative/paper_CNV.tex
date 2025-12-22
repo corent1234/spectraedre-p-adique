@@ -57,13 +57,13 @@
 %% the commands and values with those provided to you when you
 %% complete the rights form.
 \setcopyright{acmlicensed}
-\copyrightyear{2018}
-\acmYear{2018}
+\copyrightyear{2026}
+\acmYear{2026}
 \acmDOI{XXXXXXX.XXXXXXX}
 %% These commands are for a PROCEEDINGS abstract or paper.
-\acmConference[Conference acronym 'XX]{Make sure to enter the correct
-  conference title from your rights confirmation email}{June 03--05,
-  2018}{Woodstock, NY}
+\acmConference[ISSAC 2026]{the International Symposium
+on Symbolic and Algebraic Computation}{July 13--17,
+  2026}{Oldenburg, Germany}
 %%
 %%  Uncomment \acmBooktitle if the title of the proceedings is different
 %%  from ``Proceedings of ...''!
@@ -106,8 +106,7 @@
 %% Bibliography style
 \RequirePackage[
   datamodel=acmdatamodel,
-  style=acmnumeric,
-  ]{biblatex}
+  style=acmnumeric]{biblatex}
 
 %% Declare bibliography sources (one \addbibresource command per source)
 \addbibresource{refs.bib}
@@ -225,15 +224,18 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  Real polyhedra and real spectrahedra (or their projections) are respectively the feasible sets
-  of linear and semidefinite programming, and form the family of
-  semidefinite-representable sets. This paper investigates versions of these sets and of
+  Polyhedra and spectrahedra over the real numbers or, more generally,
+  their images through linear maps, are respectively the feasible sets
+  of linear and semidefinite
+  programming, and form the family of semidefinite-representable sets.
+  This paper investigates versions of these sets and of
   the related optimization problems with data over a valued field $K$.
-  For $K$-polyhedra and linear programming over $K$ we give an algorithm based on computation
-  of Smith normal forms.
-  We prove that basic properties of semidefinite-representable sets generalize to this setting.
-  In particular, we showcase examples of non-polyhedral $K$-spectrahedra and of sets that are
-  semidefinite representable over $K$ but are not $K$-spectrahedra.
+  For $K$-polyhedra and linear programming over $K$ we give an algorithm
+  based on computation of Smith normal forms.
+  We prove that basic properties of semidefinite-representable sets generalize
+  to the valued setting.
+  In particular, we showcase examples of non-polyhedral $K$-spectrahedra and
+  of sets that are semidefinite representable over $K$ but are not $K$-spectrahedra.
 \end{abstract}
 
 %%
@@ -287,14 +289,26 @@
 
 \section{Introduction}
 
-The study of polyhedra and of linear programming (LP) is at the heart of convex geometry and optimization, inasmuch as several optimization problems can be cast as, or relaxed to LP. An important generalization of LP is semidefinite programming (SDP), namely the problem of minimizing a linear function over the set of positive semidefinite affine combinations of some real symmetric matrices. The latter problem has interested the community of real algebraic geometry and polynomial optimization, mostly because of the relaxation method known as moment-SOS (or Lasserre) hierarchy \cite{henrion2020moment}.
+The study of real polyhedra and of linear programming (LP) is at
+the heart of convex geometry and optimization, inasmuch as several
+optimization problems can be cast as, or relaxed to LP.
+An important generalization of LP is semidefinite programming (SDP),
+namely the problem of minimizing a linear function over the set of
+positive semidefinite affine combinations of some real symmetric matrices.
+The latter problem has interested the community of real algebraic
+geometry and polynomial optimization, mostly because of the relaxation
+method known as moment-SOS (or Lasserre) hierarchy \cite{henrion2020moment}.
 
-The main motivation for studying the effective aspects of SDP is the fact that, despite several properties of LP extend to SDP, the complexity status of SDP is, contrary to the LP case, widely open. Ramana's construction \cite{ramana1997exact} implies a series of general results: in the Blum-Shub-Smale real numbers machines model \cite{blum1989theory}, the feasibility of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be in NP in the Turing model; checking boundedness, attainability and optimality can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}. Assuming the input data belongs to an effective field $K$ (\emph{e.g.} $K = \QQ$) then a solution can be described and computed as element of a vector space over some algebraic extension of $K$. For exact computation, complexity bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist based on a dedicated application of the so-called critical point method, and exploiting the determinantal structure of the constraints \cite{henrion2016exact,NALDI2018206}. A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
+The main motivation for studying the effective aspects of SDP is the fact
+that, despite several properties of LP extend to SDP, the complexity status of SDP is, contrary to the LP case, widely open. Ramana's construction \cite{ramana1997exact} implies a series of general results: in the Blum-Shub-Smale real numbers machines model \cite{blum1989theory}, the feasibility of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be in NP in the Turing model; checking boundedness, attainability and optimality can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}. Assuming the input data belongs to an effective field $K$ (\emph{e.g.} $K = \QQ$) then a solution can be described and computed as element of a vector space over some algebraic extension of $K$. For exact computation, complexity bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist based on a dedicated application of the so-called critical point method, and exploiting the determinantal structure of the constraints \cite{henrion2016exact,NALDI2018206}.
+%%% CE PARAGRAPHE ME PARAIT MOINS PRIORITAIRE
+% A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
 In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. In this context a polyhedron is defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation.
 %%%\todo{Give motivations for p-adic precision of LP/SDP.}
 Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}.
 
+\paragraph{Outline.}
 %\subsection{Context and motivations}
 %Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
 %\begin{itemize}
@@ -308,15 +322,17 @@ Similar generalizations have been recently proposed in the context of tropical g
 %\newpage
 \section{Preliminaries}
 
-Throughout the paper, $(K,\val)$ refers to a complete valued field, namely $K$ is a field
+Throughout the paper, $(K,\val)$ refers to a complete valued field, {\it i.e.} $K$ is a field
 and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, $\Gamma$ an
-ordered abelian group. The valuation is often assumed to be discrete ({\it i.e.} $\Gamma=\ZZ$)
-with $\pi \in K$ a uniformizer. The valuation ring of $K$ is
+ordered abelian group. The valuation is often assumed to be discrete ($\Gamma=\ZZ$)
+with uniformizer $\pi \in K$. The valuation ring of $K$ is
 $$
 \OK = \{x \in K : \val(x) \geq 0\},
 $$
-$\kappa = \OK/\mathfrak{m}_K$ its residue field, with
-$\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$. An element of $\OK$ is called integral (at $\val$).
+and $\kappa = \OK/\mathfrak{m}_K$ its residue field, with
+$\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$.
+An element of $\OK$ is called integral (at\footnote{Je comprends pas, c'est bien integral
+à la valuation?} $\val$).
 For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
 A typical example of $K$ as above is the field of $p$-adic numbers 
 $\QQ_p$ equipped with the $p$-adic valuation. For this example, we 
@@ -328,15 +344,17 @@ general introduction to such fields
 and to \cite{caruso_computations_2017}
 for an introduction to effective computations over $p$-adic numbers.
 
-The $K$-vector space of polynomials of degree $\leq d$ on $x=(x_1,\ldots,x_n)$
+The $K$-vector space of polynomials of degree $\leq d$ on variables
+$x=(x_1,\ldots,x_n)$
 with coefficients in $K$ is denoted by $K[x]_{d}$. The ring of matrices of
 size $p \times q$ with entries in a ring $R$ is $R^{p \times q}$ and the general
 linear group in $R^{n \times n}$ is $\GL_n(R)$.
 For the sake of ease of writing, block-diagonal matrices with blocks
 $B_1,\ldots,B_d$ are denoted by $\diag(B_1, \ldots, B_d)$, the null matrix of
-size $p \times q$ by ${\bf 0}_{p,q}$, and the identity matrix of size $t \times t$ by $I_t$.
+size $p \times q$ by ${\bf 0}_{p,q}$, and the $t \times t$ identity matrix by $I_t$.
 
 We recall the definition of Smith Normal Form, in our context.
+
 \begin{definition}[Smith Normal Form]\label{smith_nf}
   Assume $(K,\val)$ is a discrete valued field with uniformizer $\pi$.
   Let $M \in K^{m \times n}$ be of rank $r$. There exist unique integers
@@ -354,7 +372,8 @@ We recall the definition of Smith Normal Form, in our context.
   $M$. In particular, $\mathrm{SNF}(M) \in \OK^{n \times n}$.
 \end{remark}
 
-Let us now give a short introduction to classical ({\it i.e.} real) polyhedra and spectrahedra.
+Let us now give a short introduction to classical ({\it i.e.} real) polyhedra and
+spectrahedra.
 Let $\sym_d(\R) \subset \R^{d\times d}$ be the vector space of $d \times d$ real symmetric
 matrices. A matrix $M \in \sym_d(\R)$ is \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$ if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors of $M$ being nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$.
 
@@ -373,35 +392,40 @@ minors of the defining matrix as well as sign conditions on the coefficients of 
 (cf. \Cref{ell3}).
 
 \begin{example}\label{ell3}
-  Let $d=n=3$. The $3$-elliptope is the three-dimensional spectrahedron given by
+  Let $d=n=3$. The $3$-elliptope is the three-di\-men\-sio\-nal spectrahedron
+  $\mathcal{E}_3$ given by
   $$
-  \mathcal{E}_3 :=
   \left\{
   x
   \in \R^3 :
-  \begin{bmatrix}
+  \left[
+  \begin{smallmatrix}
     1 & x_1 & x_2 \\
     x_1 & 1 & x_3 \\
     x_2 & x_3 & 1
-  \end{bmatrix}
+  \end{smallmatrix}
+  \right]
   \succeq 0
   \right\}
   =
   \left\{
   x
   \in \R^3 :
-  \begin{array}{r}
-    3-x_1^2-x_2^2-x_3^2 \geq 0 \\
-    1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0
+  \begin{array}{l}
+    {\footnotesize 3-\sum x_i^2 \geq 0} \\
+    {\footnotesize 1+2x_1x_2x_3-\sum x_i^2 \geq 0}
   \end{array}
   \right\}.
   $$
-  The polynomials on the right are the (non-constant) coefficients of the univariate polynomial
-  $p(t) = \det(A(x)+t I_3)$,
-  whose roots are the opposites of the eigenvalues of the defining matrix. Equivalently $\mathcal{E}_3$
+  The polynomials on the right are the (non-constant) coefficients of the
+  univariate polynomial $p(t) = \det(A(x)+t I_3)$. Equivalently $\mathcal{E}_3$
   is defined by positivity of the principal minors of the defining matrix:
   $$
-  1-x_1^2 \geq 0, \,\,\, 1-x_2^2 \geq 0, \,\,\, 1-x_3^2 \geq 0 \,\,\, \text{ and } \,\,\, 1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0.$$ \exend
+  1-x_i^2 \geq 0, \, i=1,2,3, \,\,\, \text{ and } \,\,\,
+  1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0
+  \vspace{-0.3cm}
+  $$
+  \exend
 \end{example}
 
 The optimization problem of miminizing a linear function over a real spectrahedron is called \emph{semidefinite programming} (SDP).
@@ -415,7 +439,7 @@ The optimization problem of miminizing a linear function over a real spectrahedr
 %\end{equation}
 {\it Real polyhedra} (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
 spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that
-$A = \diag(\ell_1,\ldots, \ell_d)$. In other words, SDP is a generalization of Linear Programming (LP).
+$A = \diag(\ell_1,\ldots, \ell_d)$ for some affine functions $\ell_i$. In other words, SDP generalizes LP.
 
 % IN INTRODUCTION
 %In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
@@ -434,25 +458,41 @@ When $m>0$, the set is also called a \emph{spectrahedral shadow}.
 
 \begin{example}
 \label{fermat_quartic}
-The basic closed semialgebraic set $\mathcal{R} = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron
-but it is semidefinite representable:
+The basic closed semialgebraic set $\mathcal{R} = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron but it is semidefinite representable with representation:
 $$
-\mathcal{R} = \left\{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \in \R^2 :
+%%\mathcal{R} =
+\left\{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \in \R^2 :
 \exists\,
 \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} \in \R^2, \,
+%\left[
+%  \begin{smallmatrix}
+%    1+y_1 & y_2   &   0 &   0 & 0 & 0 \\
+%      y_2 & 1-y_1 &   0 &   0 & 0 & 0 \\
+%        0 &     0 &   1 & x_1 & 0 & 0 \\
+%        0 &     0 & x_1 & y_1 & 0 & 0 \\
+%        0 &     0 &   0 &   0 & 1 & x_2 \\
+%        0 &     0 &   0 &   0 & x_2 & y_2
+%  \end{smallmatrix}
+%  \right]
 \diag\left(
-\begin{bmatrix}
+\left[
+\begin{smallmatrix}
   1+y_1 & y_2 \\
   y_2 & 1-y_1
-\end{bmatrix},
-\begin{bmatrix}
+\end{smallmatrix}
+\right],
+\left[
+\begin{smallmatrix}
   1 & x_1 \\
   x_1 & y_1
-\end{bmatrix},
-\begin{bmatrix}
+\end{smallmatrix}
+\right],
+\left[
+\begin{smallmatrix}
   1 & x_2 \\
   x_2 & y_2
-\end{bmatrix}
+\end{smallmatrix}
+\right]
 \right)
 \succeq 0
 \right\}
