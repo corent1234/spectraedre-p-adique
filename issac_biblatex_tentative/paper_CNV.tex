@@ -361,7 +361,7 @@ We recall the definition of Smith Normal Form, in our context.
   $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
-  \mathrm{SNF}(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{m-r,n-r}).
+  \mathrm{SNF}(M) \coloneq QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{m-r,n-r}).
   $$
   The matrix $\mathrm{SNF}(M)$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
   \emph{invariant factors}.
@@ -381,7 +381,7 @@ Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A
 containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we might assume
 to be linearly independent). The intersection
 $$
-\calL \cap \sym_d^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_d(\R) :
+\calL \cap \sym_d^+(\R) = \left\{A(x) \coloneq A_0+\sum_i x_i A_i \in \sym_d(\R) :
 A(x) \succeq 0\right\},
 $$
 or equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
@@ -433,7 +433,7 @@ The optimization problem of miminizing a linear function over a real spectrahedr
 %\begin{equation}
 %  \label{SDP}
 %\begin{array}{rcll}
-%  p^* & := & \inf_{x \in \R^n} & \left\langle c, x \right\rangle \\
+%  p^* & \coloneq & \inf_{x \in \R^n} & \left\langle c, x \right\rangle \\
 %  &    & \text{s.t.}         & A_0+\sum_{i=1}^n x_i A_i \succeq 0.
 %\end{array}
 %\end{equation}
@@ -508,8 +508,14 @@ In this section, we define polyhedra over a complete discrete valued field $K$ w
   \label{def_polyhedra}
   A \emph{polyhedron} is a subset $\PP \subset K^n$ of the form
   $$
-  \PP = \{x \in K^n : \val(\ell_i(x)) \geq 0, i=1,\ldots,d \text{ and }
-  \val(m_j(x)) = +\infty, j=1,\ldots,e\},
+  \PP =
+  \left\{
+  x \in K^n :
+  \begin{array}{ll}
+    \val(\ell_i(x)) \geq 0 & i=1,\ldots,d \\
+    \val(m_j(x)) = +\infty & j=1,\ldots,e
+  \end{array}
+    \right\},
   $$
   for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
 \end{definition}
@@ -523,7 +529,7 @@ $\val(\ell_i(x))<+\infty$.
 
 \begin{example}
   The \emph{closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
-  polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} =
+  polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} \coloneq
   \max_i\{\vert x_i \vert\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   As such, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
   $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$. %%%%%(its affine hull is indeed the whole $K^n$).
@@ -704,7 +710,7 @@ $\val(x_i-a_ib_n+b_i) \geq 0$.
 
 Then the previous computations prove that $p(\PP_2)\subset \Qc.$
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-Then let $x_n := -b_n.$
+Then let $x_n \coloneq -b_n.$
 
 We check that for $i \in \llbracket 1,n-1 \rrbracket,$
 $x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
@@ -731,7 +737,7 @@ $\val(x_i-a_1^{-1}a_i(x_1+b_1)+b_i) \geq 0.$
 
 Then the previous computations prove that $p(\PP_2)\subset \Qc.$
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-Let $x_n := -a_1^{-1}(x_1+b_1).$
+Let $x_n \coloneq -a_1^{-1}(x_1+b_1).$
 Then
 $x_1+a_1 x_n+b_1=0=O(1).$
 Let $i \in \llbracket 2,n-1 \rrbracket,$
@@ -819,8 +825,8 @@ of this section.
 \begin{proof}[Proof of Theorem \ref{theo:DI} DI]
 Here, $f : K^n \to K^m$ is an affine map and $\PP$ a polyhedron in $K^n.$
 Let us write $\PP = \PP_I \cap \PP_E$
-with $\PP_I := \left\lbrace X \in K^n,  AX+B \geq 0 \right\rbrace$
-and $\PP_E := \left\lbrace X \in K^n,  CX+D=0 \right\rbrace = P + \overrightarrow{\PP_E}.$ 
+with $\PP_I \coloneq \left\lbrace X \in K^n,  AX+B \geq 0 \right\rbrace$
+and $\PP_E \coloneq \left\lbrace X \in K^n,  CX+D=0 \right\rbrace = P + \overrightarrow{\PP_E}.$ 
 Then $f(\PP) = f_{\PP_E}(\PP_I).$
 
 By a translation of $-P$ in $K^n$, we can assume that
@@ -841,8 +847,8 @@ and the theorem is proven.
 %\begin{remark}
 %  Let $f : K^n \to K^m$ be a linear map and let
 %  $P = \{x \in K^n : \val(l_i(x)) \geq 0, m_i(x) = 0, 1 \leq i \leq d, 1 \leq j \leq e\}$.
-%  Then $P = P_I \cap P_E$ where $P_I := \{x \in K^n : \val(l_i(x)) \geq 0, 1 \leq i \leq d\}$
-%  and $P_E := \{x \in K^n : m_j(x) = 0, 1 \leq j \leq e\}$.
+%  Then $P = P_I \cap P_E$ where $P_I \coloneq \{x \in K^n : \val(l_i(x)) \geq 0, 1 \leq i \leq d\}$
+%  and $P_E \coloneq \{x \in K^n : m_j(x) = 0, 1 \leq j \leq e\}$.
 %
 %  Thus we have\footnote{\simone{Ça n'est pas vrai en général, il faut que $f$ soit injective.
 %    Il faut peut être d'abord factoriser $f = g \circ h$ avec $h : K^n \to im(f)$ et
@@ -988,7 +994,7 @@ and the theorem is proven.
 %
 %Then the previous computations prove that $p(\PP_2)\subset \Qc.$
 %Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-%Then let $x_n := -b_n.$
+%Then let $x_n \coloneq -b_n.$
 %
 %We check that for $i \in \llbracket 1,n-1 \rrbracket,$
 %$x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
@@ -1015,7 +1021,7 @@ and the theorem is proven.
 %
 %Then the previous computations prove that $p(\PP_2)\subset \Qc.$
 %Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-%Let $x_n := -a_1^{-1}(x_1+b_1).$
+%Let $x_n \coloneq -a_1^{-1}(x_1+b_1).$
 %Then
 %$x_1+a_1 x_n+b_1=0=O(1).$
 %Let $i \in \llbracket 2,n-1 \rrbracket,$
@@ -1110,12 +1116,12 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 \begin{proof}
     Let $\PP$ be a polyhedron in $K^n$. Then $\PP = \{x \in K^n : Ax+B \ge 0, Dx = e\}$ for some $A \in K^{d \times n}, b \in K ^d,  D\in  K^{m\times n}, e \in K^m$.
 
-    If $\PP$ is nonempty then there exists $x_0 \in K^n$ such that $Dx_0=e$. Let $J \in K^{n \times R}$ such that $\textrm{Im} J = \ker D$ where $R$ denotes the dimension of $\ker D$. Then $\PP = x_0 + J\PP'$ where $A' := AJ$ $b' := Ax_0 + b$ and
-    $\PP' := \{y \in K ^R: A'y + b' \ge 0 \}$.
+    If $\PP$ is nonempty then there exists $x_0 \in K^n$ such that $Dx_0=e$. Let $J \in K^{n \times R}$ such that $\textrm{Im} J = \ker D$ where $R$ denotes the dimension of $\ker D$. Then $\PP = x_0 + J\PP'$ where $A' \coloneq AJ$ $b' \coloneq Ax_0 + b$ and
+    $\PP' \coloneq \{y \in K ^R: A'y + b' \ge 0 \}$.
 
     Now let $S \in K^{n\times R}$ be the SNF of $A'$ and $Q \in \GL_n\left(\mathcal{O}_K\right)$ and $P \in \GL_R\left(\mathcal{O}_K\right)$ such that $A'= Q S P^{-1}$.
     Then $\PP' = \{y \in K^R : QSP^{-1}y + b' \ge  0\} = P\{z \in K^R : Sz + Q^{-1}b' \ge 0 \}$.
-    Let $b'':=Q^{-1}b$ then $P' = P \{z \in K^R : s_i z_i + b''_i \ge 0, i= 1\ldots R\}$. The set $\{z \in K^R : s_i z_i + b_i \ge 0\}$ is either empty or a polydisc (possibly with infinite radii) and $\PP = x_0 + JP \{z \in K^R: s_i z_i + b_i \ge  0, i=1,\ldots,R\}$ which concludes the proof.
+    Let $b'' \coloneq Q^{-1}b$ then $P' = P \{z \in K^R : s_i z_i + b''_i \ge 0, i= 1\ldots R\}$. The set $\{z \in K^R : s_i z_i + b_i \ge 0\}$ is either empty or a polydisc (possibly with infinite radii) and $\PP = x_0 + JP \{z \in K^R: s_i z_i + b_i \ge  0, i=1,\ldots,R\}$ which concludes the proof.
 
 
 \end{proof}
@@ -1144,14 +1150,14 @@ as:
 \begin{equation}
   \tag{LP}\label{LP}
 \begin{array}{rcll}
-  p^* & := & \inf_{x \in K^n} & \val \left\langle c, x \right\rangle \\
+  p^* & \coloneq & \inf_{x \in K^n} & \val \left\langle c, x \right\rangle \\
   &    & \text{s.t.}         & A x + b \geq 0\\
   & & & D x = e
 \end{array}
 \end{equation}
 with $c \in K^n$ a fixed vector of size $n$ that represents the cost,
 $A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, $e \in K^m$ 
-and $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$.
+and $\left\langle c, x \right\rangle \coloneq c_1 x_1+\cdots +c_n x_n$.
 When $A$ is a diagonal matrix,
 we refer to \eqref{LP} as a \emph{diagonal} linear program.
 We denote the \emph{feasible set} of \eqref{LP} by
@@ -1592,7 +1598,7 @@ Moreover this class contains the polyhedra in $K^n$.
   for some $d, e \in \mathbb{N}$.
   Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$ be such that
   $$
-  \varphi_A(x) := A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
+  \varphi_A(x) \coloneq A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
   $$
   One has $L = \mathcal{S}_A = \varphi_A^{-1}(K^{d \times d}_+)$. Since $M \subset K^n$ is affine, 
   $P$ is a spectrahedron in $K^n$.
@@ -1658,7 +1664,7 @@ Spectrahedra form a strict generalization of polyhedra:
 
 %\corentin{ Une autre définition qu'il pourrait être intéressant d'explorer. Attention! Pas les mêmes propriétés.}
 %\begin{definition}[Alternative definition]
-%  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$.  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$.   The set $S_A,B := S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
+%  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$.  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$.   The set $S_A,B \coloneq S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
 %\end{definition}
 
 \subsection{Polyannuli}
@@ -1698,7 +1704,7 @@ Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n
   $\mathcal{S}_{M^{(i)}} \subset K^2$ defined by
   $$
   \mathcal{S}_{M^{(i)}} = \left\{(x_i,y_i) \in K^2 :
-  M^{(i)}(x_i,y_i) := \diag\left(\pi^{-a} x_i, \pi^{b} y_i,
+  M^{(i)}(x_i,y_i) \coloneq \diag\left(\pi^{-a} x_i, \pi^{b} y_i,
   \begin{bmatrix}
     \pi^{-1} & -\pi^{-1} x_i  \\
     \pi^{-1} y_i & - \pi^{-1} \\
