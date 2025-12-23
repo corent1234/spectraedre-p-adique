@@ -458,12 +458,13 @@ When $m>0$, the set is also called a \emph{spectrahedral shadow}.
 
 \begin{example}
 \label{fermat_quartic}
-The basic closed semialgebraic set $\mathcal{R} = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron but it is semidefinite representable with representation:
+The basic closed semialgebraic set $\mathcal{R} = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron but it is a spectrahedral shadow with semidefinite representation
 $$
 %%\mathcal{R} =
-\left\{\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \in \R^2 :
-\exists\,
-\begin{bmatrix} y_1 \\ y_2 \end{bmatrix} \in \R^2, \,
+\left\{x \in \R^2 :
+%%\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \in \R^2 :
+\exists\, y \in \R^2,
+%%\begin{bmatrix} y_1 \\ y_2 \end{bmatrix} \in \R^2, \,
 %\left[
 %  \begin{smallmatrix}
 %    1+y_1 & y_2   &   0 &   0 & 0 & 0 \\
@@ -543,9 +544,9 @@ $\val(\ell_i(x))<+\infty$.
 %  première proposition avec la projection.}
 
 In this section, we prove that the class of polyhedra is stable
-by applying affine maps:
+under application of affine maps:
 
-\begin{theorem}[DI] 
+\begin{theorem}[direct image (DI)] 
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
 Then $f(\PP)$ is a polyhedron. \label{theo:DI}
 \end{theorem}
@@ -556,7 +557,7 @@ is given in \Cref{fig:di-properties}.
 
 \begin{figure}[!ht] 
 \centering
-\scalebox{0.5}{
+\scalebox{0.55}{
 \begin{tikzpicture}[
   node distance=1cm and 1cm,
   box/.style={draw, rounded corners, minimum width=2.2cm, minimum height=1cm, align=center},
@@ -584,6 +585,7 @@ is given in \Cref{fig:di-properties}.
 \end{figure}
 
 We begin with the case of linear maps in $\GL_n(O_K)$.
+We often fix a linear basis $e_1,\ldots,e_n$ of $K^n$ which we call canonical\footnote{j'ai rajouté ça}.
 
 \begin{lemma}[DI${}_{aut}$]
 Let $f \in GL_n(O_K)$ and $\PP$ a polyhedron in $K^n$.
@@ -592,55 +594,75 @@ If in addition, $\PP$ is defined only by inequalities,
 then so is $f(\PP)$.
 \end{lemma}
 \begin{proof}
-If $\PP$ is defined (in matrix form) by \[\left\lbrace X \in K^n,  AX+B \geq 0, CX+D=0 \right\rbrace\] and $U$ is the matrix of $f$ in the canonical basis of $K^n$, 
-let $\Qc$ be defined by \[\left\lbrace Y \in K^n,  AU^{-1} Y+B \geq 0, CU^{-1} Y+D=0 \right\rbrace.\]
-Then it is clear that $\Qc$ is a polyhedron and $f(\PP)=\Qc.$
-It is also clear that if $\PP$ is defined only by inequalities,
-then so is $f(\PP)$.
+  If $\PP$ is defined (in matrix form) by
+  \[
+  \PP=\left\lbrace x \in K^n,  Ax+B \geq 0, Cx+D=0 \right\rbrace
+  \] and $U$ is the matrix of
+  $f$ in the canonical basis of $K^n$, 
+  let
+  \[\Qc=\left\lbrace y \in K^n,  AU^{-1} y+B \geq 0, CU^{-1} y+D=0 \right\rbrace.\]
+  Then it follow that $\Qc$ is a polyhedron and $f(\PP)=\Qc.$
+  It is also clear that if $\PP$ is defined only by inequalities,
+  then so is $f(\PP)$.
 \end{proof}
 
 If $f$ is diagonal, we can also conclude.
 
 \begin{lemma}[DI${}_{diag}$]
-Let $f : K^n \to K^n$ be a linear map and $\PP$ a polyhedron in $K^n$ defined only by inequalities. We assume that the matrix of $f$ in the canonical basis of $K^n$ is diagonal.
-Then $f(\PP)$ is a polyhedron. \label{lem:DIdiag}
+  Let $f : K^n \to K^n$ be a linear map and $\PP$ a polyhedron in $K^n$ defined only by inequalities.
+  If the matrix of $f$ in the canonical basis of $K^n$ is diagonal,
+  then $f(\PP)$ is a polyhedron. \label{lem:DIdiag}
 \end{lemma}
 \begin{proof}
-As in the proof of Lemma \ref{lem:DIaut} DI${}_{aut}$, a trivial change
+As in Lemma \ref{lem:DIaut}, a change
 of variables is enough to conclude.
 \end{proof}
 
 
-We now treat the case where $f$ is a projection erasing the last coordinate.
+We assume now $f$ is a projection erasing the last coordinate.
 
 \begin{lemma}[DI${}_{proj}$]
-Let $f : K^n \to K^{n-1}, \: (x_1,\dots,x_{n-1},x_n) \mapsto (x_1,\dots,x_{n-1})$ and $\PP$ a polyhedron in $K^n$ defined only by inequalities. 
-Then $f(\PP)$ is a polyhedron defined only by inequalities. \label{lem:DIproj}
+  Let $f : K^n \to K^{n-1}, \: (x_1,\dots,x_{n-1},x_n) \mapsto (x_1,\dots,x_{n-1})$, and let
+  $\PP$ be a polyhedron in $K^n$ defined only by inequalities. 
+  Then $f(\PP)$ is a polyhedron defined only by inequalities. \label{lem:DIproj}
 \end{lemma}
 \begin{proof}
 We assume that $\PP \neq \emptyset$.
 Let us write the conditions defining $\PP$
 in matrix form:
-$\val(A X+B) \geq 0$ 
-with $A \in M_{q,n}(K)$, $B \in K^q$
-and $X=(x_1,\dots,x_n)^\intercal$. 
+$\val(A x+B) \geq 0$ 
+with $A \in M_{q,n}(K)$, $B \in K^q$,
+and $x=(x_1,\dots,x_n)$ a column vector. 
 
 
-We can compute a Smith Normal Form
-of the $q \times (n-1)$ matrix defined by the 
+We can compute a Smith Normal Form SNF($A'$)
+of the $q \times (n-1)$ matrix $A'$ defined by the 
 $n-1$ first columns of $A$
+\[
+\mathrm{SNF}(A') = \diag(\delta_1,\ldots,\delta_r,{\bf 0}_{q-r,n-1-r})
+\]
+
 to obtain a decomposition of the form:
-\[ Q_A A P_A^{-1} = \begin{bmatrix}
-\delta_1	& 		& 			&   &		 &  &a_1	\\
-			& \ddots& 			& 0	&		 &	&		\\
-			&		& \delta_l  &   & 		 &	&		\\
-			&		&			&0  & 		 &	& 		\\
-			&		&			&   & \ddots &	&		\\
-			&		&			&	&		 & 0&a_{n-1} \\
-			&		&			&	&		 &	&a_n 	\\
-			&		&			&	&		 &	&    	\\
-			&		&			&	&		 &	&a_q 	\\			
-\end{bmatrix},\]
+\[
+Q_A A P_A^{-1} =
+\begin{bmatrix}
+  &                  & & a_1 \\
+  & \mathrm{SNF}(A') & & \vdots \\
+  &                  & & a_{n-1} \\
+  &                  & &
+\end{bmatrix}
+%\begin{bmatrix}
+%  \delta_1	& 		& 			&   &		 &  &a_1	\\
+%  & \ddots& 			& 0	&		 &	&		\\
+%  &		& \delta_l  &   & 		 &	&		\\
+%  &		&			&0  & 		 &	& 		\\
+%  &		&			&   & \ddots &	&		\\
+%  &		&			&	&		 & 0&a_{n-1} \\
+%  &		&			&	&		 &	&a_n 	\\
+%  &		&			&	&		 &	&    	\\
+%  &		&			&	&		 &	&a_q 	\\			
+%\end{bmatrix},
+\]
 with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n.$
 
 Multiplying on the left by $Q_A^{\pm 1}$ does not
