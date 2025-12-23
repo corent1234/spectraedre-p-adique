@@ -646,9 +646,7 @@ to obtain a decomposition of the form:
 \[
 Q_A A P_A^{-1} =
 \begin{bmatrix}
-  &                  & a_1 \\
-  & \mathrm{SNF}(A') & \vdots \\
-  &                  & a_{q} \\
+ \mathrm{SNF}(A') & a
 \end{bmatrix}
 %\begin{bmatrix}
 %  \delta_1	& 		& 			&   &		 &  &a_1	\\
@@ -662,37 +660,43 @@ Q_A A P_A^{-1} =
 %  &		&			&	&		 &	&a_q 	\\			
 %\end{bmatrix},
 \]
-with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n.$
+with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n$,
+and $a = (a_1,\ldots,a_q)^\intercal$
 
 Multiplying on the left by $Q_A^{\pm 1}$ does not
 modify whether the valuation inequalities are satisfied.
-Moreover, thanks to Lemma \ref{lem:DIaut} DI${}_{aut}$,
-$\PP$ can be written
+Moreover, thanks to Lemma \ref{lem:DIaut},
+$\PP$ can be written as
 $\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \subset K^n$
 and we are reduced to proving that
-$f(\PP_2)$ is a polyhedron for $p$ the projection
-$K^n \rightarrow K^{n-1}$ and $\PP_2$
+$f(\PP_2)$ is a polyhedron for $\PP_2$
 defined by the following linear matrix inequality (for some $B_2 \in K^q$):
-\[  \begin{bmatrix}
-\delta_1	& 		& 			&   &		 &  &a_1	\\
-			& \ddots& 			& 0	&		 &	&		\\
-			&		& \delta_l  &   & 		 &	& \vdots\\
-			&		&			&0  & 		 &	& 		\\
-			&		&			&   & \ddots &	&		\\
-			&		&			&	&		 & 0&a_{n-1} \\
-			&		&			&	&		 &	&a_n 	\\
-			&		&			&	&		 &	& \vdots   	\\
-			&		&			&	&		 &	&a_q 	\\			
-\end{bmatrix} \begin{bmatrix} x_1 \\ \\ \\ \\ \\ \vdots \\ \\ \\ \\ x_n \\ \end{bmatrix} + B_2 \geq 0.\]
-
-
-
+\[
+Q_A A P_A^{-1}
+%\begin{bmatrix}
+%\delta_1	& 		& 			&   &		 &  &a_1	\\
+%			& \ddots& 			& 0	&		 &	&		\\
+%			&		& \delta_l  &   & 		 &	& \vdots\\
+%			&		&			&0  & 		 &	& 		\\
+%			&		&			&   & \ddots &	&		\\
+%			&		&			&	&		 & 0&a_{n-1} \\
+%			&		&			&	&		 &	&a_n 	\\
+%			&		&			&	&		 &	& \vdots \\
+%			&		&			&	&		 &	&a_q 	\\
+%\end{bmatrix}
+\left[
+  \begin{smallmatrix}
+    x_1 \\ \vdots \\ x_n
+  \end{smallmatrix}
+  \right]
++ B_2 \geq 0.
+\]
 We remark that 
 $a_s x_n + b_s \geq 0$
 if and only if $x_n = -a_s^{-1} b_s + O(\pi^{- \val(a_s)}).$
 This exactly corresponds to $x_n \in B(-a_s^{-1} b_s,\val(a_s)).$
 Since the conditions have to be compatible (we have assumed
-$\PP$ not empty), and thanks to ultrametricity,  
+$\PP\neq\emptyset$), and thanks to ultrametricity,  
 the intersection of these conditions for 
 $s \in \llbracket l+1,q \rrbracket$
 is then given by the smallest of these balls.
@@ -700,19 +704,35 @@ Let us assume it is the one defined for $l=n.$
 The only condition on $x_n$
 is then $\val(a_nx_n +b_n) \geq 0.$
 
-Thanks to Lemma \ref{lem:DIdiag} DI${}_{diag}$,
+Thanks to Lemma \ref{lem:DIdiag},
 we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
 and are reduce to $\PP_2$ defined by the linear matrix inequality:
-\[  \begin{bmatrix}
-1	& 		& 			&   &		 &  &a_1	\\
-			& \ddots& 			& 0	&		 &	&		\\
-			&		& 1  &   & 		 &	& \\
-			&		&			&0  & 		 &	& 	\vdots	\\
-			&		&			&   & \ddots &	&		\\
-			&		&			&	&		 & 0&a_{n-1} \\
-			&		&			&	&		 &	&1 	\\
-		
-\end{bmatrix} \begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}  \geq 0.\]
+\[
+\begin{bmatrix}
+  \diag(I_\ell,{\bf 0}_{n-1-\ell,n-1-\ell}) & a \\
+       {\bf 0}_{1,n-1} & 1 
+\end{bmatrix}
+\left[
+  \begin{smallmatrix}
+    x_1 \\ \vdots \\ x_n
+  \end{smallmatrix}
+  \right]
++
+\left[
+  \begin{smallmatrix}
+    b_1 \\ \vdots \\ b_n
+  \end{smallmatrix}
+  \right]
+%\begin{bmatrix}
+%1	& 		& 			&   &		 &  &a_1	\\
+%			& \ddots& 			& 0	&		 &	&		\\
+%			&		& 1  &   & 		 &	& \\
+%			&		&			&0  & 		 &	& 	\vdots	\\
+%			&		&			&   & \ddots &	&		\\
+%			&		&			&	&		 & 0&a_{n-1} \\
+%			&		&			&	&		 &	&1 	\\
+%\end{bmatrix} \begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}
+\geq 0.\]
 Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
 We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
 
@@ -729,15 +749,15 @@ We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
  for all $i \in \llbracket 1,n-1 \rrbracket,$
 $\val(x_i-a_ib_n+b_i) \geq 0$.
 
-Then the previous computations prove that $p(\PP_2)\subset \Qc.$
+Then the previous computations prove that $f(\PP_2)\subset \Qc.$
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
 Then let $x_n \coloneq -b_n.$
 
 We check that for $i \in \llbracket 1,n-1 \rrbracket,$
 $x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
 and $x_n+b_n=O(1)$. Hence $(x_1,\dots,x_n) \in \PP_2$
-which means that $(x_1,\dots,x_{n-1}) \in p(\PP_2).$
-Thus $p(\PP_2)= \Qc$ and $p(\PP_2)$ is a polyhedron.
+which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
+Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron.
 
 We now deal with the second case, with $\val(a_1)<0.$
 Let $x \in \PP_2$.
@@ -756,7 +776,7 @@ We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
 $\val(a_1^{-1}x_1- b_n +a_1^{-1}b_1) \geq 0$ and for all $i \in \llbracket 2,n-1 \rrbracket,$
 $\val(x_i-a_1^{-1}a_i(x_1+b_1)+b_i) \geq 0.$
 
-Then the previous computations prove that $p(\PP_2)\subset \Qc.$
+Then the previous computations prove that $f(\PP_2)\subset \Qc.$
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
 Let $x_n \coloneq -a_1^{-1}(x_1+b_1).$
 Then
@@ -767,15 +787,17 @@ since $(x_1,\dots,x_{n-1}) \in \Qc.$
 Finally, 
 $x_n+b_n=-a_1^{-1}(x_1+b_1)+b_n=O(1)$ thanks to the inequality satisfied by $x_1.$
 Hence $(x_1,\dots,x_n) \in \PP_2$
-which means that $(x_1,\dots,x_{n-1}) \in p(\PP_2).$
-Thus $p(\PP_2)= \Qc$ and $p(\PP_2)$ is a polyhedron,
+which means that $(x_1,\dots,x_{n-1}) \in f(\PP_2).$
+Thus $f(\PP_2)= \Qc$ and $f(\PP_2)$ is a polyhedron,
 and it has been proved in both cases.
 
-Therefore, $p(\PP)$ is a polyhedron (and inequalities are enough to define $p(\PP_2)$ as a polyhedron).
+Therefore, $f(\PP)$ is a polyhedron (and inequalities are enough to define $f(\PP_2)$ as a
+polyhedron\footnote{$f(\PP_2)$ ou bien $f(\PP)$ ?}).
 \end{proof}
 
 \begin{lemma}[DI${}_{imm}$]
-  Let $f : K^l \to K^n$ be the immersion $(x_1,\dots, x_l) \mapsto (x_1,\dots, x_l,0,\dots, 0)$ and $\PP$
+  Let $f : K^l \to K^n$ be the immersion defined by
+  $(x_1,\dots, x_l) \mapsto (x_1,\dots, x_l,0,\dots, 0)$ and let $\PP$ be
   a polyhedron in $K^l$. Then $f(\PP)$ is a polyhedron. \label{lem:DIimm}
 \end{lemma}
 \begin{proof}
@@ -783,20 +805,21 @@ Adding the equalities $x_{l+1}=0, \dots, x_n=0$ to the equations and inequations
 $x_1,\dots, x_l$ defining $\PP$, the result is clear.
 \end{proof}
 
-We can now generalize to linear mappings and
-polyhedron defined only by inequalities.
+We can now generalize to linear mappings and polyhedra defined only by inequalities.
 
 \begin{proposition}[DI${}_l$]
 Let $f : K^n \to K^m$ be a linear map and $\PP$ a polyhedron in $K^n$ defined only by inequalities.
 Then $f(\PP)$ is a polyhedron. \label{prop:DIl}
 \end{proposition}
 \begin{proof}
-We assume that $\PP \neq \emptyset$, and we identify $f$ with its matrix in $\allmat_{n,m}(K)$.
-We assume that $\PP$ is defined as $\left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I\right\rbrace$ for some
-finite sets $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
+  We identify $f$ with its matrix in $\allmat_{n,m}(K)$, and we
+  assume that $\PP \neq \emptyset$ and that it is defined as
+$$
+\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I\right\rbrace
+$$
+for some finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
 
-Thanks to Definition \ref{smith_nf}, (the matrix of) $f$
-can be written $f=Q^{-1} \Delta P$
+Thanks to Definition \ref{smith_nf}, (the matrix of) $f$ can be written $f = Q^{-1} \Delta P$
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
 and $\Delta = \mathrm{SNF}(f)\in \allmat_{n,m}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
   where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
