@@ -821,32 +821,40 @@ for some finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
 
 Thanks to Definition \ref{smith_nf}, (the matrix of) $f$ can be written $f = Q^{-1} \Delta P$
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and $\Delta = \mathrm{SNF}(f)\in \allmat_{n,m}(K)$ of the form $\diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r})$
-  where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
+and
+$$
+\Delta = \diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r}) \in \mathrm{SNF}(f)\in \allmat_{n,m}(K)
+$$
+where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for
+$\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
 
-By Lemma \ref{lem:DIaut} DI${}_{aut}$,
-$P(\PP)$ is a polyhedron defined only by inequalities.
-
-Let $\Qc= P(\PP)$
+By Lemma \ref{lem:DIaut}, $\Qc = P(\PP)$ is a polyhedron defined only by inequalities.
 We now prove that $\Delta (\Qc)$ is a polyhedron.
 One can write that $\Delta$ is the composition
 of the immersion 
 $K^r \rightarrow K^n$
 $(x_1,\dots,x_r)\mapsto (x_1,\dots,x_r,0,\dots,0),$ 
  the diagonal invertible mapping
-$K^l \rightarrow K^l$,
+$K^r \rightarrow K^r$,
 $(x_1,\dots,x_r)\mapsto (\delta_1 x_1,\dots,\delta_r x_r)$,
 and the projections
-$(x_1,\dots,x_{r+1})\mapsto (x_1,\dots,x_{r}),$
- $(x_1,\dots,x_{r+2})\mapsto (x_1,\dots,x_{r+1}),$
- $\dots,$
- $(x_1,\dots,x_{n})\mapsto (x_1,\dots,x_{n-1}).$
- Thus, thanks to Lemmas \ref{lem:DIimm} DI${}_{imm}$, \ref{lem:DIproj} DI${}_{proj}$ and \ref{lem:DIaut} DI${}_{aut}$, $\Delta (\Qc)$ is a polyhedron.
- One can note that it is only when applying the immersion as the last mapping in the composition chain that equalities are needed to define the last polyhedron.
+\begin{equation*}
+  \begin{aligned}
+    (x_1,\dots,x_{r+1}) &\mapsto (x_1,\dots,x_{r})   \\
+    & \,\,\,\, \vdots \\
+    (x_1,\dots,x_{n}) &\mapsto (x_1,\dots,x_{n-1}).
+  \end{aligned}
+\end{equation*}
+%$(x_1,\dots,x_{r+1})\mapsto (x_1,\dots,x_{r}),$
+%$(x_1,\dots,x_{r+2})\mapsto (x_1,\dots,x_{r+1}),$
+%$\dots,$
+%$(x_1,\dots,x_{n})\mapsto (x_1,\dots,x_{n-1}).$
+Thus, thanks to Lemmas \ref{lem:DIimm}, \ref{lem:DIproj} and \ref{lem:DIaut},
+$\Delta (\Qc)$ is a polyhedron. One can note that it is only when applying the
+immersion as the last mapping in the composition chain that equalities are
+needed to define the last polyhedron.
 
-
-
-Finally, thanks to Lemma \ref{lem:DIaut} DI${}_{aut}$,
+Finally, thanks to Lemma \ref{lem:DIaut},
 $Q^{-1} \left( \Delta (\Qc) \right)$ is a polyhedron.
 This concludes the proof.
 \end{proof}
@@ -857,25 +865,29 @@ Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n$ defined o
 Then $f(\PP)$ is a polyhedron. \label{prop:DIi}
 \end{proposition}
 \begin{proof}
-Let $P \in K^m$. One can see by immediate change of variables that $\Qc$ is a polyhedron in $K^m$ if and only if
-$\Qc+P$ is a polyhedron in $K^m$.
-Consequently, translating by $-f(O)$ in the codomain, one can reduce
-to the case of Proposition \ref{prop:DIl}   DI${}_l$.
+  Let $v \in K^m$. One can see by immediate change
+  of variables that $\Qc$ is a polyhedron in $K^m$ if and only if
+  $\Qc+v$ is a polyhedron in $K^m$.
+  Consequently, translating by $-f(O)$ in the codomain\footnote{Qu'est-ce q'est $O$ ? C'est $v$ ?},
+  one can reduce to the case of Proposition \ref{prop:DIl}.
 \end{proof}
 
 We can now conclude with the proof of the main result
 of this section.
 
-\begin{proof}[Proof of Theorem \ref{theo:DI} DI]
-Here, $f : K^n \to K^m$ is an affine map and $\PP$ a polyhedron in $K^n.$
+\begin{proof}[Proof of Theorem \ref{theo:DI}]
+Recall that here $f : K^n \to K^m$ is an affine map and $\PP \subset K^n$ is a polyhedron.
 Let us write $\PP = \PP_I \cap \PP_E$
-with $\PP_I \coloneq \left\lbrace X \in K^n,  AX+B \geq 0 \right\rbrace$
-and $\PP_E \coloneq \left\lbrace X \in K^n,  CX+D=0 \right\rbrace = P + \overrightarrow{\PP_E}.$ 
-Then $f(\PP) = f_{\PP_E}(\PP_I).$
+with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+B \geq 0 \right\rbrace$
+and $\PP_E \coloneq \left\lbrace x \in K^n,  Cx+D=0 \right\rbrace = v + \overrightarrow{\PP_E}.$
+\footnote{c'est quoi le overrightarrow sur $\PP_E$ ?}
+Then\footnote{je comprends pas la notation $f_{\PP_E}$.}
+$f(\PP) = f_{\PP_E}(\PP_I).$
 
-By a translation of $-P$ in $K^n$, we can assume that
-$\PP_E$ is a linear vector space: we are reduced to proving that, if $\tilde{f}: \PP_E \to K^m$ is an affine map and $\PP_I$ is a polyhedron in the vector space $\PP_E$ defined only by inequalities, then  $\tilde{f}(\PP_I)$ is a polyhedron.
-This is the case thanks to Proposition \ref{prop:DIi} DI$_i$
+By a translation of $-v$ in $K^n$, we can assume that
+$\PP_E$ is a linear vector space: we are reduced to proving that, if
+$\tilde{f}: \PP_E \to K^m$ is an affine map and $\PP_I$ is a polyhedron in the vector space $\PP_E$ defined only by inequalities, then  $\tilde{f}(\PP_I)$ is a polyhedron.
+This is the case thanks to Proposition \ref{prop:DIi}
 and the theorem is proven.
 \end{proof}
 
@@ -1152,10 +1164,8 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
   $P_1 + P_2 = \{z \in K^n : x \in P_1, y \in P_2, x+y=z\}.$
 \end{proof}
 
-
-
 \begin{proposition}[Characterization of polyhedra] \label{prop:carac}
-    Non-empty polyhedra are image of polydiscs under a linear mapping.
+    A non-empty polyhedron is the image of a polydisc under a linear mapping.
 \end{proposition}
 \begin{proof}
     Let $\PP$ be a polyhedron in $K^n$. Then $\PP = \{x \in K^n : Ax+B \ge 0, Dx = e\}$ for some $A \in K^{d \times n}, b \in K ^d,  D\in  K^{m\times n}, e \in K^m$.
@@ -1177,8 +1187,20 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 \begin{proof}
     Let $\PP$ be such polyhedron. We assume that $\PP \neq \emptyset$. By \ref{prop:carac} there exist a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\PP = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, without loss of generality, that the $a_i$'s are nonzero. 
 
-If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\PP = f(D) = K$ and $\PP$ is a ball of infinite radius. Otherwise, we have $D = \{x \in K^n : x_i = \frac{b_i}{s_i} + O\left( \pi^{-val s_i} \right), i=1,\ldots,n \}$ and therefore for all $x \in  K$, $x \in P$ if and only if $x = a_0 + \sum_{i=1}^{n}( \frac{a_i b_i}{s_i} + O\left( \pi^{\val a_i - \val s_i} \right))= a_0  + \sum_{i=1}^{n} \frac{a_i b_i}{s_i} + O(\pi^d)$ where $d = \min \limits_{i = 1,\ldots,n} \val a_i - \val s_i$. Thus $\PP = \{x \in K : \val (x - a_0 - \sum_{i=1}^{n} \frac{a_i b_i}{s_i}) \ge d \}$ is a ball.
-
+    If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\PP = f(D) = K$ and $\PP$ is a ball of infinite radius. Otherwise, we have
+    $$
+    D = \left\{x \in K^n : x_i = \frac{b_i}{s_i} + O\left( \pi^{-val s_i} \right), i=1,\ldots,n\right\}
+    $$
+    and therefore for all $x \in K$, one has $x \in P$ if and only if
+    $$
+    x = a_0 + \sum_{i=1}^{n}\left(\frac{a_i b_i}{s_i} + O( \pi^{\val a_i - \val s_i}) \right)
+    = a_0  + \sum_{i=1}^{n} \frac{a_i b_i}{s_i} + O(\pi^d)
+    $$
+    where $d = \min \limits_{i = 1,\ldots,n} \val a_i - \val s_i$. Thus
+    $\PP$ is the ball described by
+    $$
+    \PP = \{x \in K : \val (x - a_0 - \sum_{i=1}^{n} \frac{a_i b_i}{s_i}) \ge d \}.
+    $$
 \end{proof}
 
 %%%%% old section by Corentin
