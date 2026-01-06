@@ -1256,18 +1256,14 @@ in the reduced problem.
       \REQUIRE
       $A \in K^{d\times n}$, $b \in K^d$, $c \in K^n$, $D \in K^{m \times n}$ and $e \in K^m$
       \ENSURE [TYPE, $x$], where:
-      \vspace{-0.1cm}
       \begin{itemize}
       \item[]
         TYPE $=$ INFEAS and $x=[]$ if and only if \eqref{LP} is infeasible
-        \vspace{-0.1cm}
       \item[]
         TYPE $=$ UNBOUND and $x=[]$ if and only if \eqref{LP} is feasible and unbounded
-        \vspace{-0.1cm}
       \item[]
         TYPE $=$ FEAS if and only if \eqref{LP} is feasible and has a solution $x$
       \end{itemize}
-      \vspace{-0.1cm}
       \hrule
       \vspace{0.1cm}
       \IF{$Dx = e$ has no solution}
