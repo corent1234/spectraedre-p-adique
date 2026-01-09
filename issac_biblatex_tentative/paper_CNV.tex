@@ -594,7 +594,8 @@ If in addition, $\PP$ is defined only by inequalities,
 then so is $f(\PP)$.
 \end{lemma}
 \begin{proof}
-  If $\PP$ is defined (in matrix form) by
+  If $\PP$ is defined (in matrix form\footnote{je pense qu'il faut introduire avant
+  cette notation}) by
   \[
   \PP=\left\lbrace x \in K^n,  Ax+B \geq 0, Cx+D=0 \right\rbrace
   \] and $U$ is the matrix of
@@ -706,7 +707,7 @@ is then $\val(a_nx_n +b_n) \geq 0.$
 
 Thanks to Lemma \ref{lem:DIdiag},
 we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
-and are reduce to $\PP_2$ defined by the linear matrix inequality:
+and we are reduced to $\PP_2$ defined by the linear matrix inequality:
 \[
 \begin{bmatrix}
   \diag(I_\ell,{\bf 0}_{n-1-\ell,n-1-\ell}) & a \\
@@ -769,7 +770,9 @@ Thus $a_1^{-1}x_1- b_n +a_1^{-1}b_1=O(1)$.
 In addition, $x_n=-a_1^{-1}(x_1+b_1)+O(\pi^{-\val(a_1)}).$
 We plug this equality in 
 $x_i+a_i x_n+b_i=O(1)$ to get
-$x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)+O(\pi^{\val(a_i)-\val(a_1)})=O(1)$
+$$
+x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)+O(\pi^{\val(a_i)-\val(a_1)})=O(1)
+$$
 using that $\val(a_i) \geq \val (a_1).$
 
 We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
@@ -1199,7 +1202,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
     where $d = \min \limits_{i = 1,\ldots,n} \val a_i - \val s_i$. Thus
     $\PP$ is the ball described by
     $$
-    \PP = \{x \in K : \val (x - a_0 - \sum_{i=1}^{n} \frac{a_i b_i}{s_i}) \ge d \}.
+    \PP = \left\{x \in K : \val\left(x - a_0 - \sum_{i=1}^{n} \frac{a_i b_i}{s_i}\right) \ge d\right\}.
     $$
 \end{proof}
 
@@ -1211,7 +1214,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 
 \section{Linear programming}
 
-A \emph{linear programming problem} (or \emph{linear program}) \emph{with data $(A,b,c,D,e)$} is defined
+A \emph{linear programming problem} (or \emph{linear program}) \emph{with data $(A,b,c,\allowbreak D,e)$} is defined
 as:
 \begin{equation}
   \tag{LP}\label{LP}
