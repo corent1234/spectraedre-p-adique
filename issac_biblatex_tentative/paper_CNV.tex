@@ -1,56 +1,5 @@
+\documentclass[sigconf]{acmart}
 %%
-%% This is file `sample-sigconf-biblatex.tex',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% samples.dtx  (with options: `all,proceedings,sigconf-biblatex')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from sample-sigconf-biblatex.tex.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file samples.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
-%%
-%%
-%% Commands for TeXCount
-%TC:macro \cite [option:text,text]
-%TC:macro \citep [option:text,text]
-%TC:macro \citet [option:text,text]
-%TC:envir table 0 1
-%TC:envir table* 0 1
-%TC:envir tabular [ignore] word
-%TC:envir displaymath 0 word
-%TC:envir math 0 word
-%TC:envir comment 0 0
-%%
-%% The first command in your LaTeX source must be the \documentclass
-%% command.
-%%
-%% For submission and review of your manuscript please change the
-%% command to \documentclass[manuscript, screen, review]{acmart}.
-%%
-%% When submitting camera ready or to TAPS, please change the command
-%% to \documentclass[sigconf]{acmart} or whichever template is required
-%% for your publication.
-%%
-%%
-\documentclass[sigconf,natbib=false]{acmart}
-%%
-%% \BibTeX command to typeset BibTeX logo in the docs
-\AtBeginDocument{%
-  \providecommand\BibTeX{{%
-    Bib\TeX}}}
-
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
 %% values in them; it is your responsibility as an author to replace
@@ -104,12 +53,10 @@ on Symbolic and Algebraic Computation}{July 13--17,
 %% citations and references.
 %%
 %% Bibliography style
-\RequirePackage[
-  datamodel=acmdatamodel,
-  style=acmnumeric]{biblatex}
+
 
 %% Declare bibliography sources (one \addbibresource command per source)
-\addbibresource{refs.bib}
+
 
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -192,8 +139,8 @@ on Symbolic and Algebraic Computation}{July 13--17,
 
 \author{Corentin Cornou}
 \affiliation{
-    \institution{ENS}
-    \city{Paris}
+    \institution{ENS Paris-Saclay}
+    \city{Gif-sur-Yvette}
     \country{France}
 }
 
@@ -1866,8 +1813,8 @@ a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and fin
 The second author acknowledges support from the ANR Project ``HYPERSPACE'' (ANR-21-CE48-0006-01).
 
 
-\printbibliography
-
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{refs}
 
 \end{document}
 \endinput
