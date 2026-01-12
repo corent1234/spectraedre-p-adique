@@ -818,7 +818,7 @@ Then $f(\PP)$ is a polyhedron. \label{prop:DIi}
   Let $v \in K^m$. One can see by immediate change
   of variables that $\Qc$ is a polyhedron in $K^m$ if and only if
   $\Qc+v$ is a polyhedron in $K^m$.
-  Consequently, translating by $-f(O)$ in the codomain\footnote{Qu'est-ce q'est $O$ ? C'est $v$ ?},
+  Consequently, translating by $-f(O)$ in the codomain\footnote{Qu'est-ce qu'est $O$ ? C'est $v$ ?},
   one can reduce to the case of Proposition \ref{prop:DIl}.
 \end{proof}
 
@@ -1160,7 +1160,6 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 
 
 \section{Linear programming}
-
 A \emph{linear programming problem} (or \emph{linear program}) \emph{with data $(A,b,c,\allowbreak D,e)$} is defined
 as:
 \begin{equation}
@@ -1183,12 +1182,12 @@ We denote the \emph{feasible set} of \eqref{LP} by
 \end{aligned}
 \end{equation*}
 Note that $\PP$ is a polyhedron.
-A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$ is called a \emph{solution} to \eqref{LP} if $p^* = \val\left\langle c,x^*\right\rangle$, namely, if the infimum in \eqref{LP} is attained at $x^*$.
+A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$ is called a \emph{solution} to \eqref{LP} if $p^* = \val\left\langle c,x^*\right\rangle$, {\it i.e.} if the infimum in \eqref{LP} is attained at $x^*$.
 
 \begin{remark}
   Assume $\val$ is a discrete valuation. Then
   if \eqref{LP} admits feasible vectors,
-  $p^*$ is either $-\infty$ or attained at some solution $x^*$.
+  $p^*$ is either $-\infty$ or attained at a solution $x^*$.
 \end{remark}
 
 In this section we present \Cref{algo_LP}, \textbf{SOLVELPval}, for solving Problem \eqref{LP}.
@@ -1713,15 +1712,13 @@ Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n
   for some annuli $\mathcal{C}_1,\ldots,\mathcal{C}_n \subset K$. We claim that each $\mathcal{C}_i$ is a spectrahedral
   shadow of height $1$ and degree $4$. Assume $\mathcal{C}_i = \{x_i \in K : a_i \leq \val(x_i) \leq b_i\}$
   for some $a_i, b_i \in \R^*_+$ with $a_i < b_i$. Consider the spectrahedron
-  $\mathcal{S}_{M^{(i)}} \subset K^2$ defined by
+  $\mathcal{S}_{M^{(i)}} \subset K^2$ defined by $M^{(i)} \succeq 0$ with
   $$
-  \mathcal{S}_{M^{(i)}} = \left\{(x_i,y_i) \in K^2 :
   M^{(i)}(x_i,y_i) \coloneq \diag\left(\pi^{-a} x_i, \pi^{b} y_i,
   \begin{bmatrix}
     \pi^{-1} & -\pi^{-1} x_i  \\
     \pi^{-1} y_i & - \pi^{-1} \\
-  \end{bmatrix}\right) \succeq 0
-  \right\}.
+  \end{bmatrix}\right).
   $$
   We claim that $x_i \in \mathcal{C}_i$ if and only if there exists $y_i \in K$ such that $(x_i,y_i) \in
   \mathcal{S}_{M^{(i)}}$.
@@ -1750,12 +1747,12 @@ Finally, since $\mathcal{C} = \mathcal{C}_1 \times \cdots \times \mathcal{C}_n$,
 \begin{equation*}
   \begin{aligned}
     \mathcal{C} &=
-    \{x=(x_1,\ldots,x_n) \in K^n : \exists y = (y_1,\ldots,y_n) \in K^n, (x_i,y_i) \in
+    \{x \in K^n : \exists y  \in K^n, (x_i,y_i) \in
     \mathcal{S}_{M^{(i)}}, i=1,\ldots,n\} \\
     &= \{x \in K^n : \exists y \in K^n, (x,y) \in \mathcal{S}_M\}
   \end{aligned}
 \end{equation*}
-with $\mathcal{S}_M = \diag\left(M^{(1)}, M^{(2)}, \ldots, M^{(n)}\right) \in K[x,y]^{4n \times 4n}.$
+with $\mathcal{S}_M = \diag(M^{(1)}, M^{(2)}, \ldots, M^{(n)}) \in K[x,y]^{4n \times 4n}.$
 \end{proof}
 
 We conclude proving that, in general, annuli are not spectrahedra.
@@ -1772,7 +1769,7 @@ this set corresponds to an intersection of the form
 $\cap_{i=0}^{n-1} \{ x \in K : \val(a_i(x)) \geq 0 \},$
 for some polynomials $a_i$'s, univariate over $K$.
 
-Following Julian Rüth's PhD thesis \cite{ruth_models_2015},
+Following Rüth's PhD thesis \cite{ruth_models_2015},
 the set $\{ x \in K : \val(a_i(x)) \geq 0 \}$
 is denoted by $\textrm{Disk}(a_i,0)$ and is called 
 a diskoid.
