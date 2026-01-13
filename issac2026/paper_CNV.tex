@@ -455,7 +455,7 @@ In this section, we define polyhedra over a complete discrete valued field $K$ w
 \begin{definition}
   \label{def_polyhedra}
   A \emph{polyhedron} is a subset $\PP \subset K^n$ of the form
-  $$
+  \begin{equation}\label{eq_def_polyhedra}
   \PP =
   \left\{
   x \in K^n :
@@ -464,14 +464,25 @@ In this section, we define polyhedra over a complete discrete valued field $K$ w
     \val(m_j(x)) = +\infty & j=1,\ldots,e
   \end{array}
     \right\},
-  $$
+  \end{equation}
   for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
 \end{definition}
 
+Below we often use\footnote{rajouté notation $\succeq$ et modifié dans le texte}
+the following matrix form (according to notation of
+\Cref{def_polyhedra}) : let $A \in K^{d \times n}$, $B,D \in K^n$, and
+$C \in K^{e \times n}$, be the matrices such that $Ax+B = (\ell_1,\ldots,\ell_d)^T$
+and $Cx+D = (m_1,\ldots,m_e)^T$.
+Then the polyhedron in \eqref{eq_def_polyhedra} is compactly defined as
+\begin{equation}\label{eq_def_polyhedra_compact}
+  \PP = \left\lbrace x \in K^n,  Ax+B \succeq 0, Cx+D = 0 \right\rbrace,
+\end{equation}
+where $v \succeq 0$ means the entries of $v \in K^n$ have nonnegative valuation.
 %%We recall that that the smallest affine space of $K^n$ containing a set $S \subset K^n$ is called its \emph{affine hull} and denoted $\aff{S}$. The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words $\aff{P} = \{x \in K^n : m_j(x) = 0, j=1,\ldots,e\}$ \simone{(il nous faudrait une preuve, du genre: $\val(m(x))=+\infty$ pour tout $x \in P$ si et seulement si $m$ est une combinaison affine de $m_1,\ldots,m_e$.)}
 %%The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$, $\aff{P}=K^n$ and $P$ has dimension $n$). The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d) < +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
 Remark that \Cref{def_polyhedra} includes the case $d=0$ corresponding to affine spaces, as in the real case.
-Moreover by definition the class of polyhedra is closed under intersection. Without loss of generality, one may
+Moreover by definition the class of polyhedra is closed under intersection. Without loss of generality\footnote{je ne
+sais plus si ça est nécessaire, si ce ne l'est pas, je l'enleverais.}, one may
 assume in \Cref{def_polyhedra} that for every $i=1,\ldots,d$ there exists $x \in P$ such that
 $\val(\ell_i(x))<+\infty$.
 
@@ -541,13 +552,9 @@ If in addition, $\PP$ is defined only by inequalities,
 then so is $f(\PP)$.
 \end{lemma}
 \begin{proof}
-  If $\PP$ is defined (in matrix form\footnote{je pense qu'il faut introduire avant
-  cette notation}) by
-  \[
-  \PP=\left\lbrace x \in K^n,  Ax+B \geq 0, Cx+D=0 \right\rbrace
-  \] and $U$ is the matrix of
-  $f$ in the canonical basis of $K^n$, 
-  let
+  Assume $\PP$ is defined in matrix form as in \eqref{eq_def_polyhedra_compact}\footnote{j'ai rajouté
+  avant cette notation}, and let $U$ be the matrix of
+  $f$ in the canonical basis of $K^n$. Let
   \[\Qc=\left\lbrace y \in K^n,  AU^{-1} y+B \geq 0, CU^{-1} y+D=0 \right\rbrace.\]
   Then it follow that $\Qc$ is a polyhedron and $f(\PP)=\Qc.$
   It is also clear that if $\PP$ is defined only by inequalities,
