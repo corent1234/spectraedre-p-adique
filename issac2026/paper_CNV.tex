@@ -470,12 +470,12 @@ In this section, we define polyhedra over a complete discrete valued field $K$ w
 
 Below we often use\footnote{rajouté notation $\succeq$ et modifié dans le texte}
 the following matrix form (according to notation of
-\Cref{def_polyhedra}) : let $A \in K^{d \times n}$, $B,D \in K^n$, and
-$C \in K^{e \times n}$, be the matrices such that $Ax+B = (\ell_1,\ldots,\ell_d)^T$
+\Cref{def_polyhedra}) : let $A \in K^{d \times n}$, $B \in K^d$, $C \in K^{e \times n}$, and
+$D \in K^e$ be the matrices such that $Ax+B = (\ell_1,\ldots,\ell_d)^T$
 and $Cx+D = (m_1,\ldots,m_e)^T$.
 Then the polyhedron in \eqref{eq_def_polyhedra} is compactly defined as
 \begin{equation}\label{eq_def_polyhedra_compact}
-  \PP = \left\lbrace x \in K^n,  Ax+B \succeq 0, Cx+D = 0 \right\rbrace,
+  \PP = \left\lbrace x \in K^n : Ax+B \succeq 0, Cx+D = 0 \right\rbrace,
 \end{equation}
 where $v \succeq 0$ means the entries of $v \in K^n$ have nonnegative valuation.
 %%We recall that that the smallest affine space of $K^n$ containing a set $S \subset K^n$ is called its \emph{affine hull} and denoted $\aff{S}$. The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words $\aff{P} = \{x \in K^n : m_j(x) = 0, j=1,\ldots,e\}$ \simone{(il nous faudrait une preuve, du genre: $\val(m(x))=+\infty$ pour tout $x \in P$ si et seulement si $m$ est une combinaison affine de $m_1,\ldots,m_e$.)}
@@ -491,7 +491,8 @@ $\val(\ell_i(x))<+\infty$.
   polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} \coloneq
   \max_i\{\vert x_i \vert\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   As such, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
-  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$. %%%%%(its affine hull is indeed the whole $K^n$).
+  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$, {\it i.e.} $O_K^n = \{x \in K^n : x \succeq 0\}$.
+  %%%%%(its affine hull is indeed the whole $K^n$).
 \end{example}
 
 \subsection{Projections and direct image of polyhedra}
@@ -555,7 +556,7 @@ then so is $f(\PP)$.
   Assume $\PP$ is defined in matrix form as in \eqref{eq_def_polyhedra_compact}\footnote{j'ai rajouté
   avant cette notation}, and let $U$ be the matrix of
   $f$ in the canonical basis of $K^n$. Let
-  \[\Qc=\left\lbrace y \in K^n,  AU^{-1} y+B \geq 0, CU^{-1} y+D=0 \right\rbrace.\]
+  \[\Qc=\left\lbrace y \in K^n,  AU^{-1} y+B \succeq 0, CU^{-1} y+D=0 \right\rbrace.\]
   Then it follow that $\Qc$ is a polyhedron and $f(\PP)=\Qc.$
   It is also clear that if $\PP$ is defined only by inequalities,
   then so is $f(\PP)$.
@@ -573,7 +574,6 @@ As in Lemma \ref{lem:DIaut}, a change
 of variables is enough to conclude.
 \end{proof}
 
-
 We assume now $f$ is a projection erasing the last coordinate.
 
 \begin{lemma}[DI${}_{proj}$]
@@ -582,13 +582,10 @@ We assume now $f$ is a projection erasing the last coordinate.
   Then $f(\PP)$ is a polyhedron defined only by inequalities. \label{lem:DIproj}
 \end{lemma}
 \begin{proof}
-We assume that $\PP \neq \emptyset$.
-Let us write the conditions defining $\PP$
-in matrix form:
-$\val(A x+B) \geq 0$ 
-with $A \in M_{q,n}(K)$, $B \in K^q$,
-and $x=(x_1,\dots,x_n)$ a column vector. 
-
+  We assume that $\PP \neq \emptyset$ and that it is given in
+  matrix form: $\PP = \{x \in K^n : Ax+B \succeq 0\}$, for some 
+  with $A \in M_{d,n}(K)$, $B \in K^d$,
+  and $x=(x_1,\dots,x_n)$ a column vector. 
 
 We can compute a Smith Normal Form SNF($A'$)
 of the $q \times (n-1)$ matrix $A'$ defined by the 
