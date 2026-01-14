@@ -68,6 +68,15 @@ on Symbolic and Algebraic Computation}{July 13--17,
 %\usepackage{ulem}
 \usepackage{bm}
 
+%%%% pour le "def" sur \leftrightarrow
+\makeatletter
+\newcommand\xleftrightarrow[2][]{%
+  \ext@arrow 9999{\Leftrightarrowfill@}{#1}{#2}}
+\newcommand\longleftrightarrowfill@{%
+  \arrowfill@\leftarrow\relbar\rightarrow}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning}
 
@@ -86,7 +95,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \newcommand{\R}{\mathbb{R}} % real numbers
 \newcommand{\C}{\mathbb{C}} % complex numbers
 \newcommand{\N}{\mathbb{N}} % integers
-\newcommand{\allmat}{\mathbb{M}} % matrices
+%%%\newcommand{\allmat}{\mathbb{M}} % matrices ---> remplacé par K^{m \times n}
 \newcommand{\sym}{\mathbb{S}} % matrices symétriques
 \newcommand{\PP}{\mathcal{P}}
 \newcommand{\Qc}{\mathcal{Q}}
@@ -468,16 +477,24 @@ In this section, we define polyhedra over a complete discrete valued field $K$ w
   for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
 \end{definition}
 
-Below we often use\footnote{rajouté notation $\succeq$ et modifié dans le texte}
-the following matrix form (according to notation of
-\Cref{def_polyhedra}) : let $A \in K^{d \times n}$, $B \in K^d$, $C \in K^{e \times n}$, and
-$D \in K^e$ be the matrices such that $Ax+B = (\ell_1,\ldots,\ell_d)^T$
-and $Cx+D = (m_1,\ldots,m_e)^T$.
-Then the polyhedron in \eqref{eq_def_polyhedra} is compactly defined as
+Below we use\footnote{rajouté notation $\succeq$ et modifié dans le texte}
+the following notation for $v=(v_1,\ldots,v_n) \in K^n$:
+$$
+v \succeq 0
+\,\,\,\,
+\xleftrightarrow{\text{def}}
+\,\,\,\,
+\forall i=1,\ldots,n, \, \val(v_i)\geq 0.
+$$
+yielding the following matrix form for $\PP$ (according to notation of
+\Cref{def_polyhedra}):
 \begin{equation}\label{eq_def_polyhedra_compact}
   \PP = \left\lbrace x \in K^n : Ax+B \succeq 0, Cx+D = 0 \right\rbrace,
 \end{equation}
-where $v \succeq 0$ means the entries of $v \in K^n$ have nonnegative valuation.
+for $A \in K^{d \times n}$, $B \in K^d$, $C \in K^{e \times n}$, and
+$D \in K^e$ such that $Ax+B = (\ell_1,\ldots,\ell_d)^T$
+and $Cx+D = (m_1,\ldots,m_e)^T$.
+%%means the entries of $v \in K^n$ have nonnegative valuation.
 %%We recall that that the smallest affine space of $K^n$ containing a set $S \subset K^n$ is called its \emph{affine hull} and denoted $\aff{S}$. The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words $\aff{P} = \{x \in K^n : m_j(x) = 0, j=1,\ldots,e\}$ \simone{(il nous faudrait une preuve, du genre: $\val(m(x))=+\infty$ pour tout $x \in P$ si et seulement si $m$ est une combinaison affine de $m_1,\ldots,m_e$.)}
 %%The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$, $\aff{P}=K^n$ and $P$ has dimension $n$). The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d) < +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
 Remark that \Cref{def_polyhedra} includes the case $d=0$ corresponding to affine spaces, as in the real case.
@@ -553,8 +570,8 @@ If in addition, $\PP$ is defined only by inequalities,
 then so is $f(\PP)$.
 \end{lemma}
 \begin{proof}
-  Assume $\PP$ is defined in matrix form as in \eqref{eq_def_polyhedra_compact}\footnote{j'ai rajouté
-  avant cette notation}, and let $U$ be the matrix of
+  Assume $\PP$ is defined in matrix form as in \eqref{eq_def_polyhedra_compact},
+  and let $U$ be the matrix of
   $f$ in the canonical basis of $K^n$. Let
   \[\Qc=\left\lbrace y \in K^n,  AU^{-1} y+B \succeq 0, CU^{-1} y+D=0 \right\rbrace.\]
   Then it follow that $\Qc$ is a polyhedron and $f(\PP)=\Qc.$
@@ -584,17 +601,16 @@ We assume now $f$ is a projection erasing the last coordinate.
 \begin{proof}
   We assume that $\PP \neq \emptyset$ and that it is given in
   matrix form: $\PP = \{x \in K^n : Ax+B \succeq 0\}$, for some 
-  with $A \in M_{d,n}(K)$, $B \in K^d$,
+  $A \in K^{d \times n}$, $B \in K^d$,
   and $x=(x_1,\dots,x_n)$ a column vector. 
 
 We can compute a Smith Normal Form SNF($A'$)
-of the $q \times (n-1)$ matrix $A'$ defined by the 
+of the $d \times (n-1)$ matrix $A'$ defined by the 
 $n-1$ first columns of $A$
 \[
-\mathrm{SNF}(A') = \diag(\delta_1,\ldots,\delta_r,{\bf 0}_{q-r,n-1-r})
+\mathrm{SNF}(A') = \diag(\delta_1,\ldots,\delta_r,{\bf 0}_{d-r,n-1-r}) \in K^{d \times (n-1)}
 \]
-
-to obtain a decomposition of the form:
+to obtain a decomposition of the form
 \[
 Q_A A P_A^{-1} =
 \begin{bmatrix}
@@ -612,17 +628,17 @@ Q_A A P_A^{-1} =
 %  &		&			&	&		 &	&a_q 	\\			
 %\end{bmatrix},
 \]
-with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n$,
-and $a = (a_1,\ldots,a_q)^\intercal$
+with $Q_A \in \GL_d(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n$,
+and $a = (a_1,\ldots,a_d)^\intercal$.
 
 Multiplying on the left by $Q_A^{\pm 1}$ does not
 modify whether the valuation inequalities are satisfied.
 Moreover, thanks to Lemma \ref{lem:DIaut},
 $\PP$ can be written as
-$\PP=P_A^{-1}(\PP_2)$ for some polyhedron $\PP_2 \subset K^n$
+$\PP = P_A^{-1}(\PP_2)$ for some polyhedron $\PP' \subset K^n$
 and we are reduced to proving that
-$f(\PP_2)$ is a polyhedron for $\PP_2$
-defined by the following linear matrix inequality (for some $B_2 \in K^q$):
+$f(\PP')$ is a polyhedron for $\PP'$
+defined by the following linear matrix inequality (for some $B' \in K^d$):
 \[
 Q_A A P_A^{-1}
 %\begin{bmatrix}
@@ -641,16 +657,16 @@ Q_A A P_A^{-1}
     x_1 \\ \vdots \\ x_n
   \end{smallmatrix}
   \right]
-+ B_2 \geq 0.
++ B' \succeq 0.
 \]
 We remark that 
-$a_s x_n + b_s \geq 0$
+$a_s x_n + b_s \succeq 0$
 if and only if $x_n = -a_s^{-1} b_s + O(\pi^{- \val(a_s)}).$
 This exactly corresponds to $x_n \in B(-a_s^{-1} b_s,\val(a_s)).$
 Since the conditions have to be compatible (we have assumed
 $\PP\neq\emptyset$), and thanks to ultrametricity,  
 the intersection of these conditions for 
-$s \in \llbracket l+1,q \rrbracket$
+$s \in \llbracket l+1, d \rrbracket$
 is then given by the smallest of these balls.
 Let us assume it is the one defined for $l=n.$
 The only condition on $x_n$
@@ -658,7 +674,8 @@ is then $\val(a_nx_n +b_n) \geq 0.$
 
 Thanks to Lemma \ref{lem:DIdiag},
 we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
-and we are reduced to $\PP_2$ defined by the linear matrix inequality:
+and thus with abuse of notation we assume $\PP'$ is defined by
+the linear matrix inequality:
 \[
 \begin{bmatrix}
   \diag(I_\ell,{\bf 0}_{n-1-\ell,n-1-\ell}) & a \\
@@ -684,7 +701,8 @@ and we are reduced to $\PP_2$ defined by the linear matrix inequality:
 %			&		&			&	&		 & 0&a_{n-1} \\
 %			&		&			&	&		 &	&1 	\\
 %\end{bmatrix} \begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}
-\geq 0.\]
+\succeq 0.
+\] %%ARRIVATO QUI
 Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
 We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
 
@@ -766,10 +784,10 @@ Let $f : K^n \to K^m$ be a linear map and $\PP$ a polyhedron in $K^n$ defined on
 Then $f(\PP)$ is a polyhedron. \label{prop:DIl}
 \end{proposition}
 \begin{proof}
-  We identify $f$ with its matrix in $\allmat_{n,m}(K)$, and we
+  We identify $f$ with its matrix in $K^{m \times n}$, and we
   assume that $\PP \neq \emptyset$ and that it is defined as
 $$
-\PP = \left\lbrace x \in K^n : \val (l_i (x) ) \geq 0, \textrm{ for } i \in I\right\rbrace
+\PP = \left\lbrace x \in K^n : \val (l_i (x)) \geq 0, \textrm{ for } i \in I\right\rbrace
 $$
 for some finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
 
@@ -777,7 +795,7 @@ Thanks to Definition \ref{smith_nf}, (the matrix of) $f$ can be written $f = Q^{
 with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
 and
 $$
-\Delta = \diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r}) \in \mathrm{SNF}(f)\in \allmat_{n,m}(K)
+\Delta = \diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r}) \in \mathrm{SNF}(f)\in K^{m \times n}
 $$
 where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for
 $\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
