@@ -1715,6 +1715,40 @@ Spectrahedra form a strict generalization of polyhedra:
 %  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$.  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$.   The set $S_A,B \coloneq S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
 %\end{definition}
 
+When $n=1$, we can give a more precise
+characterization of the geometry of spectrahedra
+using the notion of diskoid
+defined in Rüth's PhD thesis \cite{ruth_models_2015}.,
+the set $\{ x \in K : \val(a_i(x)) \geq 0 \}$
+is denoted by $\textrm{Disk}(a_i,0)$ and is called 
+a diskoid.
+
+
+\begin{definition}
+A diskoid of $K$ is a set of the form
+\[  \textrm{Disk}(f,r):= \{ x \in K : \val(f(x)) \geq r \},\]
+for some polynomial $f \in K[X]$ and some real number $r \geq 0.$
+\end{definition}
+
+\begin{proposition}
+Spectrahedra of $K$ are diskoids. \label{prop_spectrahedra_dim1_are_diskoids}
+\end{proposition}
+\begin{proof}
+By Definition \ref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
+can be defined as the set $\{x \in K : A_0+x_1A_1 \succeq 0\}$
+for some integer $n$ and matrices $A_0$ and $A_1$ in $K^{n \times n}$.
+Thanks to Theorem \ref{caracsdp},
+this set corresponds to an intersection of the form
+$\cap_{i=0}^{n-1} \{ x \in K : \val(a_i(x)) \geq 0 \},$
+for some polynomials $a_i$'s, univariate over $K$.
+As such, this set is the intersection of the diskoids
+$D(a_i,0).$
+By \cite[Lemma 4.44]{ruth_models_2015}, the intersection
+of two diskoids is either empty or a diskoid.
+Consequently, spectrahedra of $K$ are diskoids.
+\end{proof}
+
+
 \subsection{Polyannuli}
 
 Denote by $\R^*_+$ the set of positive real numbers.
@@ -1798,28 +1832,14 @@ We conclude proving that, in general, annuli are not spectrahedra.
 If the residue field $\kappa$ is infinite, then no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
 \end{proposition}
 \begin{proof}
-By Definition \ref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
-can be defined as the set $\{x \in K : A_0+x_1A_1 \succeq 0\}$
-for some integer $n$ and matrices $A_0$ and $A_1$ in $K^{n \times n}$.
-Thanks to Theorem \ref{caracsdp},
-this set corresponds to an intersection of the form
-$\cap_{i=0}^{n-1} \{ x \in K : \val(a_i(x)) \geq 0 \},$
-for some polynomials $a_i$'s, univariate over $K$.
-
-Following Rüth's PhD thesis \cite{ruth_models_2015},
-the set $\{ x \in K : \val(a_i(x)) \geq 0 \}$
-is denoted by $\textrm{Disk}(a_i,0)$ and is called 
-a diskoid.
-By \cite[Lemma 4.44]{ruth_models_2015}, the intersection
-of two diskoids is either empty or a diskoid.
-Consequently, spectrahedra of $K$ are diskoids.
+By Proposition \ref{prop_spectrahedra_dim1_are_diskoids} spectrahedra of $K$ are diskoids.
 
 By \cite[Lemma 4.43]{ruth_models_2015}, if $K$
 contains the roots of $\Phi$ then the diskoid
 $D=\textrm{Disk}(\Phi, \lambda)$ is the finite union
 of closed balls of equal radius centered at the roots of $f$ (and their common radius can be made explicit).
 
-Finally, if $\kappa$ is infinite, one can remark that the sphere
+In addition, if $\kappa$ is infinite, one can remark that the sphere
 $\{x \in K \,|\,  \val(x) =0\}$ is equal to the infinite disjoint union $\amalg_{l \in \kappa} B(b_l, \vert \pi \vert)$ for some 
 representatives $b_l \in O_K$ of the classes of $O_K / \pi O_K=\kappa.$
 It thus can not be covered by a finite amount of balls of radius $\vert \pi \vert$
