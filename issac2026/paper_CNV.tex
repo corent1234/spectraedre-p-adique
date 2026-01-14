@@ -244,7 +244,6 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \maketitle
 
 \section{Introduction}
-
 The study of real polyhedra and of linear programming (LP) is at
 the heart of convex geometry and optimization, inasmuch as several
 optimization problems can be cast as, or relaxed to LP.
@@ -255,8 +254,24 @@ The latter problem has interested the community of real algebraic
 geometry and polynomial optimization, mostly because of the relaxation
 method known as moment-SOS (or Lasserre) hierarchy \cite{henrion2020moment}.
 
+Most of the properties of polyhedra generalize to spectrahedra, the feasible
+sets of SDP ({\it e.g.} convexity). Nevertheless 
+
 The main motivation for studying the effective aspects of SDP is the fact
-that, despite several properties of LP extend to SDP, the complexity status of SDP is, contrary to the LP case, widely open. Ramana's construction \cite{ramana1997exact} implies a series of general results: in the Blum-Shub-Smale real numbers machines model \cite{blum1989theory}, the feasibility of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be in NP in the Turing model; checking boundedness, attainability and optimality can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}. Assuming the input data belongs to an effective field $K$ (\emph{e.g.} $K = \QQ$) then a solution can be described and computed as element of a vector space over some algebraic extension of $K$. For exact computation, complexity bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist based on a dedicated application of the so-called critical point method, and exploiting the determinantal structure of the constraints \cite{henrion2016exact,NALDI2018206}.
+that the complexity status of SDP is, contrary to the LP case, widely open.
+Ramana's construction \cite{ramana1997exact} implies a series of general
+results: in the Blum-Shub-Smale model \cite{blum1989theory}, the feasibility
+of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
+in NP in the Turing model; checking boundedness, attainability and optimality
+can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}.
+
+Assuming the input data belongs to an effective field $K$ (\emph{e.g.} $K =
+\QQ$) then a solution can be described and computed as element of a vector
+space over some algebraic extension of $K$. For exact computation, complexity
+bounds are known based either on general quantifier elimination
+\cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist
+based on a dedicated application of the so-called critical point method, and
+exploiting the determinantal structure of the constraints \cite{henrion2016exact,NALDI2018206}.
 %%% CE PARAGRAPHE ME PARAIT MOINS PRIORITAIRE
 % A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
@@ -846,8 +861,7 @@ Then $f(\PP)$ is a polyhedron. \label{prop:DIi}
   one can reduce to the case of Proposition \ref{prop:DIl}.
 \end{proof}
 
-We can now conclude with the proof of the main result
-of this section.
+We conclude with the proof of the main result of this section.
 
 \begin{proof}[Proof of Theorem \ref{theo:DI}]
 Recall that here $f : K^n \to K^m$ is an affine map and $\PP \subset K^n$ is a polyhedron.
@@ -856,7 +870,7 @@ with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+B \geq 0 \right\rbrace$
 and $\PP_E \coloneq \left\lbrace x \in K^n,  Cx+D=0 \right\rbrace = v + V$,
 for some vector space $V$.
 %%\overrightarrow{\PP_E}
-Then\footnote{je comprends pas la notation $f_{\PP_E}$, c'est la restriction ? Mais alors c'est $\tilde{f}$ ?}
+Then\footnote{Est-ce que $f_{\PP_E}$ c'est la restriction ? Mais donc c'est $=\tilde{f}$ ?}
 $f(\PP) = f_{\PP_E}(\PP_I).$
 
 By a translation of $-v$ in $K^n$, we can assume that
