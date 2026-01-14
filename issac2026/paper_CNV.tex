@@ -564,7 +564,7 @@ We begin with the case of linear maps in $\GL_n(O_K)$.
 We often fix a linear basis $e_1,\ldots,e_n$ of $K^n$ which we call canonical\footnote{j'ai rajouté ça}.
 
 \begin{lemma}[DI${}_{\mathrm{aut}}$]
-Let $f \in GL_n(O_K)$ and $\PP$ a polyhedron in $K^n$.
+Let $f \in \GL_n(O_K)$ and $\PP$ a polyhedron in $K^n$.
 Then $f(\PP)$ is a polyhedron. \label{lem:DIaut}
 If in addition, $\PP$ is defined only by inequalities,
 then so is $f(\PP)$.
@@ -635,7 +635,7 @@ Multiplying on the left by $Q_A^{\pm 1}$ does not
 modify whether the valuation inequalities are satisfied.
 Moreover, thanks to Lemma \ref{lem:DIaut},
 $\PP$ can be written as
-$\PP = P_A^{-1}(\PP_2)$ for some polyhedron $\PP' \subset K^n$
+$\PP = P_A^{-1}(\PP')$ for some polyhedron $\PP' \subset K^n$
 and we are reduced to proving that
 $f(\PP')$ is a polyhedron for $\PP'$
 defined by the following linear matrix inequality (for some $B' \in K^d$):
@@ -853,9 +853,10 @@ of this section.
 Recall that here $f : K^n \to K^m$ is an affine map and $\PP \subset K^n$ is a polyhedron.
 Let us write $\PP = \PP_I \cap \PP_E$
 with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+B \geq 0 \right\rbrace$
-and $\PP_E \coloneq \left\lbrace x \in K^n,  Cx+D=0 \right\rbrace = v + \overrightarrow{\PP_E}.$
-\footnote{c'est quoi le overrightarrow sur $\PP_E$ ?}
-Then\footnote{je comprends pas la notation $f_{\PP_E}$.}
+and $\PP_E \coloneq \left\lbrace x \in K^n,  Cx+D=0 \right\rbrace = v + V$,
+for some vector space $V$.
+%%\overrightarrow{\PP_E}
+Then\footnote{je comprends pas la notation $f_{\PP_E}$, c'est la restriction ? Mais alors c'est $\tilde{f}$ ?}
 $f(\PP) = f_{\PP_E}(\PP_I).$
 
 By a translation of $-v$ in $K^n$, we can assume that
@@ -1150,16 +1151,14 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
     Now let $S \in K^{n\times R}$ be the SNF of $A'$ and $Q \in \GL_n\left(\mathcal{O}_K\right)$ and $P \in \GL_R\left(\mathcal{O}_K\right)$ such that $A'= Q S P^{-1}$.
     Then $\PP' = \{y \in K^R : QSP^{-1}y + b' \ge  0\} = P\{z \in K^R : Sz + Q^{-1}b' \ge 0 \}$.
     Let $b'' \coloneq Q^{-1}b$ then $P' = P \{z \in K^R : s_i z_i + b''_i \ge 0, i= 1\ldots R\}$. The set $\{z \in K^R : s_i z_i + b_i \ge 0\}$ is either empty or a polydisc (possibly with infinite radii) and $\PP = x_0 + JP \{z \in K^R: s_i z_i + b_i \ge  0, i=1,\ldots,R\}$ which concludes the proof.
-
-
 \end{proof}
 
 \begin{corollary} \label{cor:caracdim1}
-   If $\PP$ is a polyhedron in $K$ then $\PP$ is either empty or a ball (possibly with infinite radius).
+   Polyhedra in $K$ are either the empty set or balls, possibly with infinite radius.
 \end{corollary}
 
 \begin{proof}
-    Let $\PP$ be such polyhedron. We assume that $\PP \neq \emptyset$. By \ref{prop:carac} there exist a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\PP = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, without loss of generality, that the $a_i$'s are nonzero. 
+    Let $\PP \subset K$ be a non-empty polyhedron. By \Cref{prop:carac} there exist a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\PP = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, without loss of generality, that the $a_i$'s are nonzero. 
 
     If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\PP = f(D) = K$ and $\PP$ is a ball of infinite radius. Otherwise, we have
     $$
