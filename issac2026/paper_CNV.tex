@@ -540,13 +540,13 @@ is given in \Cref{fig:di-properties}.
   thickarrow/.style={->, >=Stealth, line width=1.2pt}
 ]
 % Nodes
-\node[box] (DIdiag) {DI${}_{diag}$};
-\node[box, right=of DIdiag] (DIproj) {DI${}_{proj}$};
-\node[box, right=of DIproj] (DIl) {DI${}_{l}$};
-\node[box, right=of DIl] (DIi) {DI${}_{i}$};
+\node[box] (DIdiag) {DI${}_{\mathrm{diag}}$};
+\node[box, right=of DIdiag] (DIproj) {DI${}_{\mathrm{proj}}$};
+\node[box, right=of DIproj] (DIl) {DI${}_{\mathrm{l}}$};
+\node[box, right=of DIl] (DIi) {DI${}_{\mathrm{i}}$};
 \node[box, right=of DIi] (DI) {DI};
-\node[box, above=of DIproj] (DIimm) {DI${}_{imm}$};
-\node[box, below=of DIproj] (DIaut) {DI${}_{aut}$};
+\node[box, above=of DIproj] (DIimm) {DI${}_{\mathrm{imm}}$};
+\node[box, below=of DIproj] (DIaut) {DI${}_{\mathrm{aut}}$};
 % Arrows
 \draw[thickarrow] (DIdiag) -- (DIproj);
 \draw[thickarrow] (DIproj) -- (DIl);
@@ -563,7 +563,7 @@ is given in \Cref{fig:di-properties}.
 We begin with the case of linear maps in $\GL_n(O_K)$.
 We often fix a linear basis $e_1,\ldots,e_n$ of $K^n$ which we call canonical\footnote{j'ai rajouté ça}.
 
-\begin{lemma}[DI${}_{aut}$]
+\begin{lemma}[DI${}_{\mathrm{aut}}$]
 Let $f \in GL_n(O_K)$ and $\PP$ a polyhedron in $K^n$.
 Then $f(\PP)$ is a polyhedron. \label{lem:DIaut}
 If in addition, $\PP$ is defined only by inequalities,
@@ -581,7 +581,7 @@ then so is $f(\PP)$.
 
 If $f$ is diagonal, we can also conclude.
 
-\begin{lemma}[DI${}_{diag}$]
+\begin{lemma}[DI${}_{\mathrm{diag}}$]
   Let $f : K^n \to K^n$ be a linear map and $\PP$ a polyhedron in $K^n$ defined only by inequalities.
   If the matrix of $f$ in the canonical basis of $K^n$ is diagonal,
   then $f(\PP)$ is a polyhedron. \label{lem:DIdiag}
@@ -593,7 +593,7 @@ of variables is enough to conclude.
 
 We assume now $f$ is a projection erasing the last coordinate.
 
-\begin{lemma}[DI${}_{proj}$]
+\begin{lemma}[DI${}_{\mathrm{proj}}$]
   Let $f : K^n \to K^{n-1}, \: (x_1,\dots,x_{n-1},x_n) \mapsto (x_1,\dots,x_{n-1})$, and let
   $\PP$ be a polyhedron in $K^n$ defined only by inequalities. 
   Then $f(\PP)$ is a polyhedron defined only by inequalities. \label{lem:DIproj}
@@ -769,7 +769,7 @@ Therefore, $f(\PP)$ is a polyhedron, and inequalities are enough to define
 $f(\PP')$ as a polyhedron\footnote{$f(\PP')$ ou bien $f(\PP)$ ?}.
 \end{proof}
 
-\begin{lemma}[DI${}_{imm}$]
+\begin{lemma}[DI${}_{\mathrm{imm}}$]
   Let $f : K^l \to K^n$ be the immersion defined by
   $(x_1,\dots, x_l) \mapsto (x_1,\dots, x_l,0,\dots, 0)$ and let $\PP$ be
   a polyhedron in $K^l$. Then $f(\PP)$ is a polyhedron. \label{lem:DIimm}
@@ -781,7 +781,7 @@ $x_1,\dots, x_l$ defining $\PP$, the result is clear.
 
 We can now generalize to linear mappings and polyhedra defined only by inequalities.
 
-\begin{proposition}[DI${}_l$]
+\begin{proposition}[DI${}_{\mathrm{l}}$]
 Let $f : K^n \to K^m$ be a linear map and $\PP$ a polyhedron in $K^n$ defined only by inequalities.
 Then $f(\PP)$ is a polyhedron. \label{prop:DIl}
 \end{proposition}
@@ -834,7 +834,7 @@ This concludes the proof.
 \end{proof}
 
 We can generalize from linear mappings to affine mappings.
-\begin{proposition}[DI${}_i$]
+\begin{proposition}[DI${}_{\mathrm{i}}$]
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n$ defined only by inequalities.
 Then $f(\PP)$ is a polyhedron. \label{prop:DIi}
 \end{proposition}
