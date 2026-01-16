@@ -490,8 +490,7 @@ In this section, we define polyhedra over a complete discrete valued field $K$ w
   for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
 \end{definition}
 
-Below we use\footnote{rajouté notation $\succeq$ et modifié dans le texte}
-the following notation for $v=(v_1,\ldots,v_n) \in K^n$:
+Below we use the following notation for $v=(v_1,\ldots,v_n) \in K^n$:
 $$
 v \succeq 0
 \,\,\,\,
@@ -511,10 +510,9 @@ and $Cx+D = (m_1,\ldots,m_e)^T$.
 %%We recall that that the smallest affine space of $K^n$ containing a set $S \subset K^n$ is called its \emph{affine hull} and denoted $\aff{S}$. The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words $\aff{P} = \{x \in K^n : m_j(x) = 0, j=1,\ldots,e\}$ \simone{(il nous faudrait une preuve, du genre: $\val(m(x))=+\infty$ pour tout $x \in P$ si et seulement si $m$ est une combinaison affine de $m_1,\ldots,m_e$.)}
 %%The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$, $\aff{P}=K^n$ and $P$ has dimension $n$). The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d) < +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
 Remark that \Cref{def_polyhedra} includes the case $d=0$ corresponding to affine spaces, as in the real case.
-Moreover by definition the class of polyhedra is closed under intersection. Without loss of generality\footnote{je ne
-sais plus si ça est nécessaire, si ce ne l'est pas, je l'enleverais.}, one may
-assume in \Cref{def_polyhedra} that for every $i=1,\ldots,d$ there exists $x \in P$ such that
-$\val(\ell_i(x))<+\infty$.
+Moreover by definition the class of polyhedra is closed under intersection.
+%%% VOIR SI NECESSAIRE:
+%%%Without loss of generality\footnote{je ne sais plus si ça est nécessaire, si ce ne l'est pas, je l'enleverais.}, one may assume in \Cref{def_polyhedra} that for every $i=1,\ldots,d$ there exists $x \in P$ such that $\val(\ell_i(x))<+\infty$.
 
 \begin{example}
   The \emph{closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
@@ -567,7 +565,7 @@ is given in \Cref{fig:di-properties}.
 \end{figure}
 
 We begin with the case of linear maps in $\GL_n(O_K)$.
-We often fix a linear basis $e_1,\ldots,e_n$ of $K^n$ which we call canonical\footnote{j'ai rajouté ça}.
+We often fix a linear basis $e_1,\ldots,e_n$ of $K^n$ which we call canonical.
 
 \begin{lemma}[DI${}_{\mathrm{aut}}$]
 Let $f \in \GL_n(O_K)$ and $\PP$ a polyhedron in $K^n$.
@@ -634,7 +632,7 @@ Q_A A P_A^{-1} =
 %  &		&			&	&		 &	&a_q 	\\			
 %\end{bmatrix},
 \]
-with $Q_A \in \GL_d(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n$,
+with $Q_A \in \GL_d(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A e_n = e_n$,
 and $a = (a_1,\ldots,a_d)^\intercal$.
 
 Multiplying on the left by $Q_A^{\pm 1}$ does not
@@ -682,36 +680,52 @@ Thanks to Lemma \ref{lem:DIdiag},
 we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
 and thus with abuse of notation we assume $\PP'$ is defined by
 the linear matrix inequality
-\footnote{
-Je l'avais ré-écrite compactement comme ça, mais pour $\ell=n$ cela n'a pas de sens:
-$$
-\begin{bmatrix}
-  \diag(I_\ell,{\bf 0}_{n-1-\ell,n-1-\ell}) & a \\
-       {\bf 0}_{1,n-1} & 1 
-\end{bmatrix}
+%\footnote{
+%Je l'avais ré-écrite compactement comme ça, mais pour $\ell=n$ cela n'a pas de sens:
+%$$
+%\begin{bmatrix}
+%  \diag(I_\ell,{\bf 0}_{n-1-\ell,n-1-\ell}) & a \\
+%       {\bf 0}_{1,n-1} & 1 
+%\end{bmatrix}
+%\left[
+%  \begin{smallmatrix}
+%    x_1 \\ \vdots \\ x_n
+%  \end{smallmatrix}
+%  \right]
+%+
+%\left[
+%  \begin{smallmatrix}
+%    b_1 \\ \vdots \\ b_n
+%  \end{smallmatrix}
+%  \right]
+%$$
+%}
+:
+\[
 \left[
-  \begin{smallmatrix}
-    x_1 \\ \vdots \\ x_n
-  \end{smallmatrix}
-  \right]
-+
-\left[
-  \begin{smallmatrix}
-    b_1 \\ \vdots \\ b_n
-  \end{smallmatrix}
-  \right]
-$$
-}:
+\begin{smallmatrix}
+1 &        &   &   &        &   & a_1     \\[-.25cm]
+  & \ddots &   &   &        &   &         \\[-.35cm]
+  &	   & 1 &   &        &   &  \vdots \\
+  &	   &   & 0 &        &   &         \\
+  &	   &   &   & \ddots &   &         \\
+  &	   &   &   &	    & 0 & a_{n-1} \\ 
+  &	   &   &   &	    &	& 1 	  \\
+\end{smallmatrix}
+\right]
+\]
+
 \[
 \begin{bmatrix}
-1	& 		& 			&   &		 &  &a_1	\\
-			& \ddots& 			& 0	&		 &	&		\\
-			&		& 1  &   & 		 &	& \\
-			&		&			&0  & 		 &	& 	\vdots	\\
-			&		&			&   & \ddots &	&		\\
-			&		&			&	&		 & 0&a_{n-1} \\
-			&		&			&	&		 &	&1 	\\
-\end{bmatrix} \begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}
+1 &        &   &   &        &   & a_1     \\
+  & \ddots &   & 0 &        &   &         \\
+  &	   & 1 &   &        &   &         \\
+  &	   &   & 0 &        &   & \vdots  \\
+  &	   &   &   & \ddots &   &         \\
+  &	   &   &   &	    & 0 & a_{n-1} \\ 
+  &	   &   &   &	    &	& 1 	  \\
+\end{bmatrix}
+\begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}
 \succeq 0.
 \] %%ARRIVATO QUI
 Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
@@ -772,7 +786,7 @@ which means that $(x_1,\dots,x_{n-1}) \in f(\PP').$
 Thus $f(\PP')= \Qc$ and $f(\PP')$ is a polyhedron.
 
 Therefore, $f(\PP)$ is a polyhedron, and inequalities are enough to define
-$f(\PP')$ as a polyhedron\footnote{$f(\PP')$ ou bien $f(\PP)$ ?}.
+$f(\PP)$ as a polyhedron.
 \end{proof}
 
 \begin{lemma}[DI${}_{\mathrm{imm}}$]
@@ -848,13 +862,14 @@ Then $f(\PP)$ is a polyhedron. \label{prop:DIi}
   Let $v \in K^m$. One can see by immediate change
   of variables that $\Qc$ is a polyhedron in $K^m$ if and only if
   $\Qc+v$ is a polyhedron in $K^m$.
-  Consequently, translating by $-f(O)$ in the codomain\footnote{Qu'est-ce qu'est $O$ ? C'est $v$ ?},
-  one can reduce to the case of Proposition \ref{prop:DIl}.
+  Consequently, translating by $-f(O)$ in the codomain, where
+  $O \in K^n$ is the origin, one can reduce to the case of
+  \Cref{prop:DIl}.
 \end{proof}
 
 We conclude with the proof of the main result of this section.
 
-\begin{proof}[Proof of Theorem \ref{theo:DI}]
+\begin{proof}[Proof of \Cref{theo:DI}]
 Recall that here $f : K^n \to K^m$ is an affine map and $\PP \subset K^n$ is a polyhedron.
 Let us write $\PP = \PP_I \cap \PP_E$
 with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+B \geq 0 \right\rbrace$
@@ -867,7 +882,7 @@ $f(\PP) = f_{\PP_E}(\PP_I).$
 By a translation of $-v$ in $K^n$, we can assume that
 $\PP_E$ is a linear vector space: we are reduced to proving that, if
 $\tilde{f}: \PP_E \to K^m$ is an affine map and $\PP_I$ is a polyhedron in the vector space $\PP_E$ defined only by inequalities, then  $\tilde{f}(\PP_I)$ is a polyhedron.
-This is the case thanks to Proposition \ref{prop:DIi}
+This is the case thanks to \Cref{prop:DIi}
 and the theorem is proven.
 \end{proof}
 
@@ -1725,7 +1740,7 @@ for some polynomial $f \in K[X]$ and some real number $r \geq 0.$
 Spectrahedra of $K$ are diskoids. \label{prop_spectrahedra_dim1_are_diskoids}
 \end{proposition}
 \begin{proof}
-By Definition \ref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
+By \Cref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
 can be defined as the set $\{x \in K : A_0+x_1A_1 \succeq 0\}$
 for some integer $n$ and matrices $A_0$ and $A_1$ in $K^{n \times n}$.
 Thanks to Theorem \ref{caracsdp},
