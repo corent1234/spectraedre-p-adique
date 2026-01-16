@@ -707,27 +707,45 @@ the linear matrix inequality
 1 &        &   &   &        &   & a_1     \\[-.25cm]
   & \ddots &   &   &        &   &         \\[-.35cm]
   &	   & 1 &   &        &   &  \vdots \\
-  &	   &   & 0 &        &   &         \\
+  &	   &   & 0 &        &   &         \\[-.25cm]
   &	   &   &   & \ddots &   &         \\
   &	   &   &   &	    & 0 & a_{n-1} \\ 
   &	   &   &   &	    &	& 1 	  \\
 \end{smallmatrix}
 \right]
+\begin{bmatrix}
+  x_1 \\
+  \vdots \\
+  x_n
+\end{bmatrix}
++
+\begin{bmatrix}
+  b_1 \\
+  \vdots \\
+  b_n
+\end{bmatrix}
+\succeq 0.
 \]
 
-\[
-\begin{bmatrix}
-1 &        &   &   &        &   & a_1     \\
-  & \ddots &   & 0 &        &   &         \\
-  &	   & 1 &   &        &   &         \\
-  &	   &   & 0 &        &   & \vdots  \\
-  &	   &   &   & \ddots &   &         \\
-  &	   &   &   &	    & 0 & a_{n-1} \\ 
-  &	   &   &   &	    &	& 1 	  \\
-\end{bmatrix}
-\begin{bmatrix} x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\ \end{bmatrix} + \begin{bmatrix} b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\ \end{bmatrix}
-\succeq 0.
-\] %%ARRIVATO QUI
+%\[
+%\begin{bmatrix}
+%1 &        &   &   &        &   & a_1     \\
+%  & \ddots &   & 0 &        &   &         \\
+%  &	   & 1 &   &        &   &         \\
+%  &	   &   & 0 &        &   & \vdots  \\
+%  &	   &   &   & \ddots &   &         \\
+%  &	   &   &   &	    & 0 & a_{n-1} \\ 
+%  &	   &   &   &	    &	& 1 	  \\
+%\end{bmatrix}
+%\begin{bmatrix}
+%  x_1 \\ \\  \\ \\ \vdots \\  \\ \\ x_n \\
+%\end{bmatrix}
+%+
+%\begin{bmatrix}
+%  b_1 \\ \\ \\  \\ \vdots  \\ \\ \\ b_n \\
+%\end{bmatrix}
+%\succeq 0.
+%\]
 Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
 We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
 
