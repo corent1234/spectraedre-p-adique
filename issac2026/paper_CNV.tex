@@ -131,14 +131,11 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \def\diag{\mathrm{diag}}
 
 \newcommand{\GL}{\mathrm{GL}}
-
 \newcommand{\exend}{\hfill $\blacksquare$}
-
-
-
 
 %%
 %% end of the preamble, start of the body of the document source.
+
 \begin{document}
 
 %%
@@ -174,7 +171,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 %% other information printed in the page headers. This command allows
 %% the author to define a more concise list
 %% of authors' names for this purpose.
-\renewcommand{\shortauthors}{Cornou et al.}
+\renewcommand{\shortauthors}{C. Cornou, S. Naldi and T. Vaccon}
 
 %%
 %% The abstract is a short summary of the work to be presented in the
@@ -231,8 +228,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{Do, Not, Use, This, Code, Put, the, Correct, Terms, for,
-  Your, Paper}
+\keywords{polyhedra, spectrahedra, valuation, linear programming, semidefinite programming}
 
 \received{20 February 2007}
 \received[revised]{12 March 2009}
@@ -291,9 +287,7 @@ exploiting the determinantal structure of the constraints \cite{henrion2016exact
 Generalizations of spectrahedra and SDP have been proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}. It is worth mentioning that tropical spectrahedra satisfy the Helton-Nie property \cite{allamigeon2019tropical}.
 
 \paragraph{Main contributions.}
-In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. In this context a polyhedron is defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation.
-
-
+In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this context is the following:
 
 \begin{theorem}[direct image (DI)] 
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
