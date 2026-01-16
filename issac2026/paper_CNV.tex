@@ -234,6 +234,8 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \maketitle
 
 \section{Introduction}
+\label{sec:intro}
+
 The study of real polyhedra and of linear programming (LP) is at
 the heart of convex geometry and optimization, inasmuch as several
 optimization problems can be cast as, or relaxed to LP.
@@ -281,16 +283,18 @@ exploiting the determinantal structure of the constraints \cite{henrion2016exact
 Generalizations of spectrahedra and SDP have been proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}. It is worth mentioning that tropical spectrahedra satisfy the Helton-Nie property \cite{allamigeon2019tropical}.
 
 \paragraph{Main contributions.}
-In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this context is the following:
+In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this context is the following theorem proved in \Cref{ssec:projections}:
 
 \begin{theorem}[direct image (DI)] 
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
 Then $f(\PP)$ is a polyhedron. \label{theo:DI}
 \end{theorem}
 
+Next we focus 
 
 %\newpage
 \section{Preliminaries}
+\label{sec:prelim}
 
 Throughout the paper, $(K,\val)$ refers to a complete valued field, {\it i.e.} $K$ is a field
 and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, $\Gamma$ an
@@ -471,6 +475,7 @@ $$
 
 
 \section{Polyhedra}
+\label{sec:polyhedra}
 
 In this section, we define polyhedra over a complete discrete valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. We end by presenting an algorithm for solving linear optimization problems over $K$.
 
@@ -490,22 +495,22 @@ In this section, we define polyhedra over a complete discrete valued field $K$ w
   for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
 \end{definition}
 
-Below we use the following notation for $v=(v_1,\ldots,v_n) \in K^n$:
+Below we use the following notation for $z = (z_1,\ldots,z_d) \in K^d$:
 $$
-v \succeq 0
+z \succeq 0
 \,\,\,\,
 \xleftrightarrow{\text{def}}
 \,\,\,\,
-\forall i=1,\ldots,n, \, \val(v_i)\geq 0.
+\forall i=1,\ldots,d, \, \val(z_i)\geq 0.
 $$
 yielding the following matrix form for $\PP$ (according to notation of
 \Cref{def_polyhedra}):
 \begin{equation}\label{eq_def_polyhedra_compact}
-  \PP = \left\lbrace x \in K^n : Ax+B \succeq 0, Cx+D = 0 \right\rbrace,
+  \PP = \left\lbrace x \in K^n : Ax+v \succeq 0, Bx+w = 0 \right\rbrace,
 \end{equation}
-for $A \in K^{d \times n}$, $B \in K^d$, $C \in K^{e \times n}$, and
-$D \in K^e$ such that $Ax+B = (\ell_1,\ldots,\ell_d)^T$
-and $Cx+D = (m_1,\ldots,m_e)^T$.
+for $A \in K^{d \times n}$, $v \in K^d$, $B \in K^{e \times n}$, and
+$w \in K^e$ such that $Ax+v = (\ell_1,\ldots,\ell_d)^T$
+and $Bx+w = (m_1,\ldots,m_e)^T$.
 %%means the entries of $v \in K^n$ have nonnegative valuation.
 %%We recall that that the smallest affine space of $K^n$ containing a set $S \subset K^n$ is called its \emph{affine hull} and denoted $\aff{S}$. The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words $\aff{P} = \{x \in K^n : m_j(x) = 0, j=1,\ldots,e\}$ \simone{(il nous faudrait une preuve, du genre: $\val(m(x))=+\infty$ pour tout $x \in P$ si et seulement si $m$ est une combinaison affine de $m_1,\ldots,m_e$.)}
 %%The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$, $\aff{P}=K^n$ and $P$ has dimension $n$). The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d) < +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
@@ -524,6 +529,7 @@ Moreover by definition the class of polyhedra is closed under intersection.
 \end{example}
 
 \subsection{Projections and direct image of polyhedra}
+\label{ssec:projections}
 
 %{\color{blue} Normalement avec la nouvelle definition, ça devrait aller, il faut par contre
 %  partir d'un polyedre defini aussi par des égalités. Peut être il faudrait aussi
@@ -577,7 +583,7 @@ then so is $f(\PP)$.
   Assume $\PP$ is defined in matrix form as in \eqref{eq_def_polyhedra_compact},
   and let $U$ be the matrix of
   $f$ in the canonical basis of $K^n$. Let
-  \[\Qc=\left\lbrace y \in K^n,  AU^{-1} y+B \succeq 0, CU^{-1} y+D=0 \right\rbrace.\]
+  \[\Qc=\left\lbrace y \in K^n,  AU^{-1} y+v \succeq 0, BU^{-1} y+w=0 \right\rbrace.\]
   Then it follow that $\Qc$ is a polyhedron and $f(\PP)=\Qc.$
   It is also clear that if $\PP$ is defined only by inequalities,
   then so is $f(\PP)$.
@@ -604,14 +610,14 @@ We assume now $f$ is a projection erasing the last coordinate.
 \end{lemma}
 \begin{proof}
   We assume that $\PP \neq \emptyset$ and that it is given in
-  matrix form: $\PP = \{x \in K^n : Ax+B \succeq 0\}$, for some 
-  $A \in K^{d \times n}$, $B \in K^d$,
+  matrix form: $\PP = \{x \in K^n : Ax+v \succeq 0\}$, for some 
+  $A \in K^{d \times n}$, $v \in K^d$,
   and $x=(x_1,\dots,x_n)$ a column vector. 
-
-We can compute a Smith Normal Form SNF($A'$)
-of the $d \times (n-1)$ matrix $A'$ defined by the 
-$n-1$ first columns of $A$
-\[
+  
+  We can compute a Smith Normal Form SNF($A'$)
+  of the $d \times (n-1)$ matrix $A'$ defined by the 
+  $n-1$ first columns of $A$
+  \[
 \mathrm{SNF}(A') = \diag(\delta_1,\ldots,\delta_r,{\bf 0}_{d-r,n-1-r}) \in K^{d \times (n-1)}
 \]
 to obtain a decomposition of the form
@@ -655,10 +661,10 @@ Multiplying on the left by $Q_A^{\pm 1}$ does not
 modify whether the valuation inequalities are satisfied.
 Moreover, thanks to Lemma \ref{lem:DIaut},
 $\PP$ can be written as
-$\PP = P_A^{-1}(\PP')$ for some polyhedron $\PP' \subset K^n$
+$\PP = P_A^{-1} \PP'$ for some polyhedron $\PP' \subset K^n$
 and we are reduced to proving that
 $f(\PP')$ is a polyhedron for $\PP'$
-defined by the following linear matrix inequality (for some $B' \in K^d$):
+defined by the following linear matrix inequality (for some $v' \in K^d$):
 \[
 Q_A A P_A^{-1}
 %\begin{bmatrix}
@@ -675,25 +681,24 @@ Q_A A P_A^{-1}
 \begin{bmatrix}
   x_1 \\ \vdots \\ x_n
 \end{bmatrix}
-+ B' \succeq 0.
++ v' \succeq 0.
 \]
 We remark that 
-$a_s x_n + b_s \succeq 0$
-if and only if $x_n = -a_s^{-1} b_s + O(\pi^{- \val(a_s)}).$
-This exactly corresponds to $x_n \in B(-a_s^{-1} b_s,\val(a_s)).$
+$a_s x_n + v'_s \succeq 0$
+if and only if $x_n = -a_s^{-1} v'_s + O(\pi^{- \val(a_s)}).$
+This exactly corresponds to $x_n \in B(-a_s^{-1} v'_s,\val(a_s)).$
 Since the conditions have to be compatible (we have assumed
 $\PP\neq\emptyset$), and thanks to ultrametricity,  
-the intersection of these conditions for 
-$s \in \llbracket r+1, d \rrbracket$
+the intersection of these conditions for $s \in \llbracket r+1, d \rrbracket$
 is then given by the smallest of these balls.
 Let us assume it is the one defined for $s = n.$
 The only condition on $x_n$
-is then $\val(a_nx_n +b_n) \geq 0.$
+is then $\val(a_nx_n + v'_n) \geq 0.$
 
 Thanks to Lemma \ref{lem:DIdiag},
 we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
 and thus with abuse of notation we assume $\PP'$ is defined by
-the linear matrix inequality
+the linear matrix inequality:
 %\footnote{
 %Je l'avais ré-écrite compactement comme ça, mais pour $\ell=n$ cela n'a pas de sens:
 %$$
@@ -714,7 +719,6 @@ the linear matrix inequality
 %  \right]
 %$$
 %}
-:
 \[
 \left[
 \begin{smallmatrix}
@@ -734,9 +738,9 @@ the linear matrix inequality
 \end{bmatrix}
 +
 \begin{bmatrix}
-  b_1 \\
+  v'_1 \\
   \vdots \\
-  b_n
+  v'_d
 \end{bmatrix}
 \succeq 0.
 \]
@@ -766,53 +770,53 @@ We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
 Let us first assume that $\val(a_1) \geq 0$.
 
 Let $x \in \PP'$.
-Then $x_n=-b_n+O(1)$
-and $x_1+a_1 x_n+b_1=O(1).$
-Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(1).$
+Then $x_n=-v'_n+O(1)$
+and $x_1+a_1 x_n+v'_1=O(1).$
+Consequently, $x_1-a_1 v'_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(1).$
 Similarly, for all $i \in \llbracket 2,n-1 \rrbracket,$
-$x_i-a_ib_n+b_i=O(1)+O(\pi^{\val(a_i)})=O(1).$
+$x_i-a_i v'_n+v'_i=O(1)+O(\pi^{\val(a_i)})=O(1).$
 
 We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
  for all $i \in \llbracket 1,n-1 \rrbracket,$
-$\val(x_i-a_ib_n+b_i) \geq 0$. Then the previous computations prove that $f(\PP')\subset \Qc.$
+$\val(x_i-a_iv'_n+v'_i) \geq 0$. Then the previous computations prove that $f(\PP')\subset \Qc.$
 
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-Then let $x_n \coloneq -b_n.$
+Then let $x_n \coloneq -v'_n.$
 We check that for $i \in \llbracket 1,n-1 \rrbracket,$
-$x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
-and $x_n+b_n=O(1)$. Hence $(x_1,\dots,x_n) \in \PP_2$
+$x_i+a_ix_n+v'_i=x_i-a_iv'_n+v'_i=O(1),$
+and $x_n+v'_n=O(1)$. Hence $(x_1,\dots,x_n) \in \PP_2$
 which means that $(x_1,\dots,x_{n-1}) \in f(\PP').$
 Thus $f(\PP')= \Qc$, that is, $f(\PP')$ is a polyhedron.
 
 We now deal with the second case, $\val(a_1)<0.$
 Let $x \in \PP'$.
-Then $x_n=-b_n+O(1)$
-and $x_1+a_1 x_n+b_1=O(1).$
-Consequently, $x_1-a_1 b_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)}).$
-Thus $a_1^{-1}x_1- b_n +a_1^{-1}b_1=O(1)$.
-%and $x_n=-a_1^{-1}(x_1+b_1)+O(1).$
-In addition, $x_n=-a_1^{-1}(x_1+b_1)+O(\pi^{-\val(a_1)}).$
+Then $x_n=-v'_n+O(1)$
+and $x_1+a_1 x_n+v'_1=O(1).$
+Consequently, $x_1-a_1 v'_n +v'_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)}).$
+Thus $a_1^{-1}x_1- v'_n +a_1^{-1}v'_1=O(1)$.
+%and $x_n=-a_1^{-1}(x_1+v'_1)+O(1).$
+In addition, $x_n=-a_1^{-1}(x_1+v'_1)+O(\pi^{-\val(a_1)}).$
 We plug this equality in 
-$x_i+a_i x_n+b_i=O(1)$ to get
+$x_i+a_i x_n+v'_i=O(1)$ to get
 $$
-x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)+O(\pi^{\val(a_i)-\val(a_1)})=O(1)
+x_i-a_1^{-1}a_i(x_1+v'_1)+v'_i=O(1)+O(\pi^{\val(a_i)-\val(a_1)})=O(1)
 $$
 using that $\val(a_i) \geq \val (a_1).$
 
 We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
-$\val(a_1^{-1}x_1- b_n +a_1^{-1}b_1) \geq 0$ and for all $i \in \llbracket 2,n-1 \rrbracket,$
-$\val(x_i-a_1^{-1}a_i(x_1+b_1)+b_i) \geq 0.$
+$\val(a_1^{-1}x_1- v'_n +a_1^{-1}v'_1) \geq 0$ and for all $i \in \llbracket 2,n-1 \rrbracket,$
+$\val(x_i-a_1^{-1}a_i(x_1+v'_1)+v'_i) \geq 0.$
 Then the previous computations prove that $f(\PP')\subset \Qc.$
 
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-Let $x_n \coloneq -a_1^{-1}(x_1+b_1).$
+Let $x_n \coloneq -a_1^{-1}(x_1+v'_1).$
 Then
-$x_1+a_1 x_n+b_1=0=O(1).$
+$x_1+a_1 x_n+v'_1=0=O(1).$
 Let $i \in \llbracket 2,n-1 \rrbracket,$
-then $x_i+a_i x_n+b_i=x_i-a_1^{-1}a_i(x_1+b_1)+b_i=O(1)$
+then $x_i+a_i x_n+v'_i=x_i-a_1^{-1}a_i(x_1+v'_1)+v'_i=O(1)$
 since $(x_1,\dots,x_{n-1}) \in \Qc.$
 Finally, 
-$x_n+b_n=-a_1^{-1}(x_1+b_1)+b_n=O(1)$ thanks to the inequality satisfied by $x_1.$
+$x_n+v'_n=-a_1^{-1}(x_1+v'_1)+v'_n=O(1)$ thanks to the inequality satisfied by $x_1.$
 Hence $(x_1,\dots,x_n) \in \PP'$
 which means that $(x_1,\dots,x_{n-1}) \in f(\PP').$
 Thus $f(\PP')= \Qc$ and $f(\PP')$ is a polyhedron.
@@ -1235,13 +1239,15 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 
 
 \section{Linear programming}
-A \emph{linear programming problem} (or \emph{linear program}) \emph{with data $(A,b,c,\allowbreak D,e)$} is defined
-as:
+\label{sec:LP}
+A \emph{linear programming problem} (or \emph{linear program})
+\emph{with data $(A,b,c,\allowbreak D,e)$} is defined as:
+
 \begin{equation}
   \tag{LP}\label{LP}
 \begin{array}{rcll}
   p^* & \coloneq & \inf_{x \in K^n} & \val \left\langle c, x \right\rangle \\
-  &    & \text{s.t.}         & A x + b \geq 0\\
+  &    & \text{s.t.}         & A x + b \succeq 0\\
   & & & D x = e
 \end{array}
 \end{equation}
@@ -1522,7 +1528,8 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
 
 
 \section{Spectrahedra}
-
+\label{sec:spectrahedra}
+  
 \subsection{Positive semidefinite matrices}
 %\newcommand\mat{postive semidefinite matrix } 
 \newcommand\Mat{Positive semidefinite matrix }
@@ -1888,20 +1895,9 @@ if $\kappa$ is infinite, no (non trivial) annulus can be equal to
 a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and finally, no (non trivial) annulus can be a spectrahedron.
 \end{proof}
 
-%\subsection{Polyhedrality}
-%Cf. \cite{bhardwaj2015deciding}
-
-%\section{Linear matrix inequalities}
-
-
-%\section{Other questions}
-%\begin{itemize}
-%\item The projection of a real polyhedron is a real polyhedron (thanks to Fourier-Motzkin elimination procedure). Is it the same for $K$-polyhedra?
-%\item Annuli are semidefinite representable, we should remark/prove that they are not spectrahedra.
-%\end{itemize}
 
 \section{Perspectives}
-
+\label{sec:perspectives}
 
 \section*{Acknowledgments}
 The second author acknowledges support from the ANR Project ``HYPERSPACE'' (ANR-21-CE48-0006-01).
