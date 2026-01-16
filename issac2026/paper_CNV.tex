@@ -620,9 +620,25 @@ Q_A A P_A^{-1} =
 \begin{bmatrix}
  \mathrm{SNF}(A') & a
 \end{bmatrix}
+=
+\left[
+\begin{smallmatrix}
+\delta_1 &        &          &   &        &   & a_1     \\[-.25cm]
+         & \ddots &          &   &        &   &         \\[-.35cm]
+         &	  & \delta_r &   &        &   &  \vdots \\
+         &	  &          & 0 &        &   &         \\[-.25cm]
+         &	  &          &   & \ddots &   &         \\
+         &	  &          &   &	  & 0 & a_{n-1} \\ 
+         &	  &          &   &	  &   & a_n 	\\
+         &	  &          &   &	  &   & \vdots 	\\
+         &	  &          &   &	  &   & a_d 	
+\end{smallmatrix}
+\right]
+\]
+%\[
 %\begin{bmatrix}
-%  \delta_1	& 		& 			&   &		 &  &a_1	\\
-%  & \ddots& 			& 0	&		 &	&		\\
+%  \delta_1 & 		& 			&   &		 &  &a_1	\\
+%           & \ddots  & 			& 0	&		 &	&		\\
 %  &		& \delta_l  &   & 		 &	&		\\
 %  &		&			&0  & 		 &	& 		\\
 %  &		&			&   & \ddots &	&		\\
@@ -631,7 +647,7 @@ Q_A A P_A^{-1} =
 %  &		&			&	&		 &	&    	\\
 %  &		&			&	&		 &	&a_q 	\\			
 %\end{bmatrix},
-\]
+%\]
 with $Q_A \in \GL_d(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A e_n = e_n$,
 and $a = (a_1,\ldots,a_d)^\intercal$.
 
@@ -656,11 +672,9 @@ Q_A A P_A^{-1}
 %			&		&			&	&		 &	& \vdots \\
 %			&		&			&	&		 &	&a_q 	\\
 %\end{bmatrix}
-\left[
-  \begin{smallmatrix}
-    x_1 \\ \vdots \\ x_n
-  \end{smallmatrix}
-  \right]
+\begin{bmatrix}
+  x_1 \\ \vdots \\ x_n
+\end{bmatrix}
 + B' \succeq 0.
 \]
 We remark that 
@@ -706,8 +720,8 @@ the linear matrix inequality
 \begin{smallmatrix}
 1 &        &   &   &        &   & a_1     \\[-.25cm]
   & \ddots &   &   &        &   &         \\[-.35cm]
-  &	   & 1 &   &        &   &  \vdots \\
-  &	   &   & 0 &        &   &         \\[-.25cm]
+  &	   & 1 &   &        &   &  \vdots  \\
+&	   &   & 0 &        &   &    \\[-.25cm]
   &	   &   &   & \ddots &   &         \\
   &	   &   &   &	    & 0 & a_{n-1} \\ 
   &	   &   &   &	    &	& 1 	  \\
