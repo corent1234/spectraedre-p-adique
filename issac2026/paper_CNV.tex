@@ -249,35 +249,37 @@ the heart of convex geometry and optimization, inasmuch as several
 optimization problems can be cast as, or relaxed to LP.
 An important generalization of LP is semidefinite programming (SDP),
 namely the problem of minimizing a linear function over the set of
-positive semidefinite affine combinations of some real symmetric matrices.
-The latter problem has interested the community of real algebraic
-geometry and polynomial optimization, mostly because of the relaxation
-method known as moment-SOS hierarchy \cite{henrion2020moment}.
+positive semidefinite affine combinations of a finite collection of
+real symmetric matrices. The latter problem has interested the
+community of real algebraic geometry and polynomial optimization,
+mostly because of the relaxation method known as moment-SOS hierarchy
+\cite{henrion2020moment}.
 
 Several properties of polyhedra generalize to spectrahedra, the feasible
 sets of SDP, {\it e.g.}, spectrahedra are convex basic semialgebraic sets.
 Nevertheless spectrahedra are not stable under linear image, {\it i.e.},
 projection of spectrahedra (called semidefinite representable sets)
-are in general not spectrahedra. Compact examples of convex semialgebraic
-sets that do not admit a semidefinite representation have been exhibited
-by Scheiderer \cite{scheiderer_spectrahedral_2017}, answering a conjecture
-of Helton and Nie \cite{helton_sufficient_2008}.
+are in general not spectrahedra. It has been conjectured by Helton and Nie
+\cite{helton_sufficient_2008} that semidefinite representations exist for
+every convex semialgebraic set, but this has been disproved by Scheiderer
+\cite{scheiderer_spectrahedral_2017} that provided compact counterexamples.
 
-This gap in the geometry of polyhedra and spectrahedra reflects on different
-behaviors of LP and SDP. 
-
-Assuming the input data of a SDP belongs to an effective field $K$
+This gap in the geometry of polyhedra versus spectrahedra is also reflected
+on different behaviors of LP and SDP. Spectrahedra defined over a field $K$
+might not admit $K$-rational points, hence the solution of a SDP problem
+defined over $K$ might not necessarily be expressible as rational combinations
+of input data. However it is still algebraic over the base field, hence,
+assuming the input data of a SDP belongs to an effective field $K$
 (\emph{e.g.} $K = \QQ$) then a solution can be described and computed as
 element of a vector space over some algebraic extension of $K$.
 
-The main motivation for studying spectrahedra and SDP from an effective viewpoint
-is the fact that the complexity status of SDP is, contrary to the LP case, widely open.
+Concerning the effective aspects of these optimization problem, the complexity
+status of SDP is, contrary to the LP case, widely open.
 Ramana's dual \cite{ramana1997exact} implies a series of general
 results: in the Blum-Shub-Smale model \cite{blum1989theory}, the feasibility
 of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
 in NP in the Turing model; checking boundedness, attainability and optimality
 can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}.
-
 For exact computation, complexity
 bounds are known based either on general quantifier elimination
 \cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist
@@ -290,15 +292,14 @@ In this paper we consider the situation where input data are defined over fields
 %%%\todo{Give motivations for p-adic precision of LP/SDP.}
 Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}. It is worth mentioning that tropical spectrahedra satisfy the Helton-Nie property \cite{allamigeon2019tropical}.
 
-\paragraph{Outline.}
-%\subsection{Context and motivations}
-%Il faudra entre autre mentionner (et peut être motiver l'approche p-adique) :
-%\begin{itemize}
-%\item les questions ouvertes de complexité concernant la programmation semidefinie (pas clair si NP $\cap$ co-NP
-%  dans le modele de Turing)
-%\item les questions ouvertes géométriques (Conjecture de Lax)
-%\end{itemize}
-%\subsection{Main results}
+\paragraph{Main contributions.}
+
+
+
+\begin{theorem}[direct image (DI)] 
+Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
+Then $f(\PP)$ is a polyhedron. \label{theo:DI}
+\end{theorem}
 
 
 %\newpage
@@ -544,16 +545,9 @@ $\val(\ell_i(x))<+\infty$.
 %  diviser la proposition en plusieures parties pour la rendre plus lisible, par exemple une
 %  première proposition avec la projection.}
 
-In this section, we prove that the class of polyhedra is stable
-under application of affine maps:
-
-\begin{theorem}[direct image (DI)] 
-Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
-Then $f(\PP)$ is a polyhedron. \label{theo:DI}
-\end{theorem}
-
-We prove the result by reducing to particular cases.
-The strategy to deduce the main theorem DI 
+The goal of this section is to prove \Cref{theo:DI}, {\it i.e.}, that
+the class of polyhedra is stable under application of affine maps. This is done
+by reducing to particular cases. The strategy to deduce the main theorem DI 
 is given in \Cref{fig:di-properties}.
 
 \begin{figure}[!ht] 
