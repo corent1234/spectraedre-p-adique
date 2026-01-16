@@ -263,7 +263,12 @@ sets that do not admit a semidefinite representation have been exhibited
 by Scheiderer \cite{scheiderer_spectrahedral_2017}, answering a conjecture
 of Helton and Nie \cite{helton_sufficient_2008}.
 
+This gap in the geometry of polyhedra and spectrahedra reflects on different
+behaviors of LP and SDP. 
 
+Assuming the input data of a SDP belongs to an effective field $K$
+(\emph{e.g.} $K = \QQ$) then a solution can be described and computed as
+element of a vector space over some algebraic extension of $K$.
 
 The main motivation for studying spectrahedra and SDP from an effective viewpoint
 is the fact that the complexity status of SDP is, contrary to the LP case, widely open.
@@ -273,9 +278,7 @@ of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
 in NP in the Turing model; checking boundedness, attainability and optimality
 can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}.
 
-Assuming the input data belongs to an effective field $K$ (\emph{e.g.} $K =
-\QQ$) then a solution can be described and computed as element of a vector
-space over some algebraic extension of $K$. For exact computation, complexity
+For exact computation, complexity
 bounds are known based either on general quantifier elimination
 \cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist
 based on a dedicated application of the so-called critical point method, and
