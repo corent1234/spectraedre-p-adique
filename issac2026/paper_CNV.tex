@@ -252,14 +252,22 @@ namely the problem of minimizing a linear function over the set of
 positive semidefinite affine combinations of some real symmetric matrices.
 The latter problem has interested the community of real algebraic
 geometry and polynomial optimization, mostly because of the relaxation
-method known as moment-SOS (or Lasserre) hierarchy \cite{henrion2020moment}.
+method known as moment-SOS hierarchy \cite{henrion2020moment}.
 
-Most of the properties of polyhedra generalize to spectrahedra, the feasible
-sets of SDP ({\it e.g.} convexity). Nevertheless 
+Several properties of polyhedra generalize to spectrahedra, the feasible
+sets of SDP, {\it e.g.}, spectrahedra are convex basic semialgebraic sets.
+Nevertheless spectrahedra are not stable under linear image, {\it i.e.},
+projection of spectrahedra (called semidefinite representable sets)
+are in general not spectrahedra. Compact examples of convex semialgebraic
+sets that do not admit a semidefinite representation have been exhibited
+by Scheiderer \cite{scheiderer_spectrahedral_2017}, answering a conjecture
+of Helton and Nie \cite{helton_sufficient_2008}.
 
-The main motivation for studying the effective aspects of SDP is the fact
-that the complexity status of SDP is, contrary to the LP case, widely open.
-Ramana's construction \cite{ramana1997exact} implies a series of general
+
+
+The main motivation for studying spectrahedra and SDP from an effective viewpoint
+is the fact that the complexity status of SDP is, contrary to the LP case, widely open.
+Ramana's dual \cite{ramana1997exact} implies a series of general
 results: in the Blum-Shub-Smale model \cite{blum1989theory}, the feasibility
 of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
 in NP in the Turing model; checking boundedness, attainability and optimality
@@ -277,7 +285,7 @@ exploiting the determinantal structure of the constraints \cite{henrion2016exact
 
 In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. In this context a polyhedron is defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation.
 %%%\todo{Give motivations for p-adic precision of LP/SDP.}
-Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}.
+Similar generalizations have been recently proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}. It is worth mentioning that tropical spectrahedra satisfy the Helton-Nie property \cite{allamigeon2019tropical}.
 
 \paragraph{Outline.}
 %\subsection{Context and motivations}
@@ -302,8 +310,7 @@ $$
 $$
 and $\kappa = \OK/\mathfrak{m}_K$ its residue field, with
 $\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$.
-An element of $\OK$ is called integral (at\footnote{Je comprends pas, c'est bien integral
-à la valuation?} $\val$).
+An element of $\OK$ is called integral (at $\val$).
 For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
 A typical example of $K$ as above is the field of $p$-adic numbers 
 $\QQ_p$ equipped with the $p$-adic valuation. For this example, we 
@@ -322,7 +329,7 @@ size $p \times q$ with entries in a ring $R$ is $R^{p \times q}$ and the general
 linear group in $R^{n \times n}$ is $\GL_n(R)$.
 For the sake of ease of writing, block-diagonal matrices with blocks
 $B_1,\ldots,B_d$ are denoted by $\diag(B_1, \ldots, B_d)$, the null matrix of
-size $p \times q$ by ${\bf 0}_{p,q}$, and the $t \times t$ identity matrix by $I_t$.
+size $p \times q$ by ${\bf 0}_{p,q}$, and the $p \times p$ identity matrix by $I_p$.
 
 We recall the definition of Smith Normal Form, in our context.
 
@@ -346,7 +353,7 @@ We recall the definition of Smith Normal Form, in our context.
 Let us now give a short introduction to classical ({\it i.e.} real) polyhedra and
 spectrahedra.
 Let $\sym_d(\R) \subset \R^{d\times d}$ be the vector space of $d \times d$ real symmetric
-matrices. A matrix $M \in \sym_d(\R)$ is \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$. By the Spectral Theorem, $M \succeq 0$ if and only if the eigenvalues of $M$ are nonnegative, and this is equivalent to all the principal minors of $M$ being nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$.
+matrices. A matrix $M \in \sym_d(\R)$ is \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$, that is, if and only if the eigenvalues of $M$ are nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$. It is also a semialgebraic set inasmuch as $M \succeq 0$ if and only if its principal minors are nonnegative.
 
 Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
 containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we might assume
@@ -357,10 +364,8 @@ A(x) \succeq 0\right\},
 $$
 or equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
 a \emph{real spectrahedron}. As (linear preimage of) affine sections of $\sym_d^+(\R)$, real spectrahedra
-are closed convex sets, but might have empty interior in $\calL$ (resp. in $\R^n$).
-Moreover, they are basic semialgebraic sets, indeed they are defined by sign conditions on the principal
-minors of the defining matrix as well as sign conditions on the coefficients of its characteristic polynomial
-(cf. \Cref{ell3}).
+are closed convex semialgebraic sets, possibly with empty interior.
+%%Moreover, they are basic semialgebraic sets, indeed they are defined by sign conditions on the principal minors of the defining matrix as well as sign conditions on the coefficients of its characteristic polynomial (cf. \Cref{ell3}).
 
 \begin{example}\label{ell3}
   Let $d=n=3$. The $3$-elliptope is the three-di\-men\-sio\-nal spectrahedron
@@ -425,7 +430,9 @@ called \emph{semidefinite representable sets}: these are sets of the form
 $$
 \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}.
 $$
-When $m>0$, the set is also called a \emph{spectrahedral shadow}.
+When $m>0$, the set is also called a \emph{spectrahedral shadow}. There are examples of
+spectrahedral shadows that are not spectrahedra (cf. \Cref{fermat_quartic}) and of compact
+convex semialgebraic sets that are not semidefinite representable \cite{scheiderer_spectrahedral_2017}.
 
 \begin{example}
 \label{fermat_quartic}

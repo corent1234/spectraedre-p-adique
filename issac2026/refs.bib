@@ -92,6 +92,16 @@ abstract = {We consider the problem of minimizing a linear function over an affi
   publisher={World Scientific}
 }
 
+@article{allamigeon2019tropical,
+  title={The tropical analogue of the Helton--Nie conjecture is true},
+  author={Allamigeon, X. and Gaubert, S. and Skomra, M.},
+  journal={Journal of Symbolic Computation},
+  volume={91},
+  pages={129--148},
+  year={2019},
+  publisher={Elsevier}
+}
+
 @phdthesis{iriarte2022polyhedral,
   title={Polyhedral, Tropical and Analytic Geometry of Higher Rank},
   author={H. Iriarte},
@@ -385,36 +395,27 @@ lastchecked = {2023-07-25}
 	pages = {283--299},
 	file = {ScienceDirect Snapshot:C\:\\Users\\coren\\Zotero\\storage\\G7SVDQCH\\S0168927498000981.html:text/html},
 }
-@misc{scheiderer_spectrahedral_2017,
-        title = {Spectrahedral shadows},
-        url = {http://arxiv.org/abs/1612.07048},
-        doi = {10.48550/arXiv.1612.07048},
-        abstract = {We show that there are many (compact) convex semi-algebraic sets in euclidean space that do not have a semidefinite representation. This gives a negative answer to a question by Nemirovski, resp. it shows that the Helton-Nie conjecture is false.},
-        urldate = {2023-08-21},
-        publisher = {arXiv},
-        author = {Scheiderer, Claus},
-        month = dec,
-        year = {2017},
-        note = {arXiv:1612.07048 [math]},
-        keywords = {Mathematics - Algebraic Geometry, Mathematics - Optimization and Control},
-        annote = {Comment: ver. 3: changed title, and changed terminology throughout the paper, using "spectrahedral shadows" instead of "sdp representable sets". To appear in SIAGA},
-        file = {arXiv Fulltext PDF:C\:\\Users\\coren\\Zotero\\storage\\RAC6CUS3\\Scheiderer - 2017 - Spectrahedral shadows.pdf:application/pdf;arXiv.org Snapshot:C\:\\Users\\coren\\Zotero\\storage\\A6PPTVAJ\\1612.html:text/html},
+
+@article{scheiderer_spectrahedral_2017,
+  title={Spectrahedral shadows},
+  author={Scheiderer, C.},
+  journal={SIAM Journal on Applied Algebra and Geometry},
+  volume={2},
+  number={1},
+  pages={26--44},
+  year={2018},
+  publisher={SIAM}
 }
 
-@misc{helton_sufficient_2008,
-        title = {Sufficient and {Necessary} {Conditions} for {Semidefinite} {Representability} of {Convex} {Hulls} and {Sets}},
-        url = {http://arxiv.org/abs/0709.4017},
-        doi = {10.48550/arXiv.0709.4017},
-        abstract = {A set \$S{\textbackslash}subseteq {\textbackslash}re{\textasciicircum}n\$ is called to be \{{\textbackslash}it Semidefinite (SDP)\} representable if \$S\$ equals the projection of a set in higher dimensional space which is describable by some Linear Matrix Inequality (LMI). The contributions of this paper are: (i) For bounded SDP representable sets \$W\_1,...,W\_m\$, we give an explicit construction of an SDP representation for \${\textbackslash}cv\{{\textbackslash}cup\_\{k=1\}{\textasciicircum}mW\_k\}\$. This provides a technique for building global SDP representations from the local ones. (ii) For the SDP representability of a compact convex semialgebraic set \$S\$, we prove sufficient condition: the boundary \${\textbackslash}bdS\$ is positively curved, and necessary condition: \${\textbackslash}bdS\$ has nonnegative curvature at smooth points and on nondegenerate corners. This amounts to the strict versus nonstrict quasi-concavity of defining polynomials on those points on \${\textbackslash}bdS\$ where they vanish. The gaps between them are \${\textbackslash}bdS\$ having positive versus nonnegative curvature and smooth versus nonsmooth points. A sufficient condition bypassing the gaps is when some defining polynomials of \$S\$ are sos-concave. (iii) For the SDP representability of the convex hull of a compact nonconvex semialgebraic set \$T\$, we find that the critical object is \${\textbackslash}pt\_cT\$, the maximum subset of \${\textbackslash}pt T\$ contained in \${\textbackslash}pt {\textbackslash}cv\{T\}\$. We prove sufficient conditions for SDP representability: \${\textbackslash}pt\_cT\$ is positively curved, and necessary conditions: \${\textbackslash}pt\_cT\$ has nonnegative curvature at smooth points and on nondegenerate corners. The gaps between them are similar to case (ii). The positive definite Lagrange Hessian (PDLH) condition is also discussed.},
-        urldate = {2023-08-21},
-        publisher = {arXiv},
-        author = {Helton, J. William and Nie, Jiawang},
-        month = dec,
-        year = {2008},
-        note = {arXiv:0709.4017 [math]},
-        keywords = {Mathematics - Algebraic Geometry, Mathematics - Optimization and Control},
-        annote = {Comment: 28 pages, revised version made on December 7, 2008},
-        file = {arXiv Fulltext PDF:C\:\\Users\\coren\\Zotero\\storage\\GCWUASI2\\Helton et Nie - 2008 - Sufficient and Necessary Conditions for Semidefini.pdf:application/pdf},
+@article{helton_sufficient_2008,
+  title={Sufficient and necessary conditions for semidefinite representability of convex hulls and sets},
+  author={Helton, J William and Nie, Jiawang},
+  journal={SIAM Journal on Optimization},
+  volume={20},
+  number={2},
+  pages={759--791},
+  year={2009},
+  publisher={SIAM}
 }
 
 @misc{rozik_borgir_2021,
@@ -435,7 +436,7 @@ lastchecked = {2023-07-25}
 	doi = {10.18725/OPARU-3275},
 	abstract = {The Semistable Reduction Theorem by Deligne and Mumford states that any absolutely irreducible smooth projective curve over a field with a discrete valuation has a semistable model, at least if one admits a finite separable extension of the base field. The original proof does not provide a construction which can in practice be exploited to compute semistable models of curves. A recent proof of the Semistable Reduction Theorem by Arzdorf and Wewers uses techniques which are more accessible to algorithmic constructions. The present work makes several aspects of their approach explicit and realizes them in a computer algebra system. We represent models as finite sets of discrete valuations which correspond to the irreducible components of the special fiber. A theory by Mac Lane provides a compact representation of such valuations which is well suited for algorithmic considerations. In particular, it allows us to efficiently compute the normalization of a model of X in Y, i.e., the valuations which correspond to the normalization. From this we can also immediately deduce whether a model has reduced special fiber or not, a necessary condition for a model to be semistable. If the special fiber of a model is not reduced, then a theorem of Epp guarantees that there is a finite extension of the base field which makes it reduced. As Epp"s method is not fully constructive, we discuss alternatives to his approach. Using the theory of Mac Lane valuations, we provide a new algorithm to construct such an extension of the base field when working in mixed characteristic (0,p). Our algorithm is provably correct if p does only divide the degree of the cover of Y over X once. Assuming that the special fiber is reduced, we provide a new algorithm to compute equations for certain affine patches of the special fiber. Finally, we illustrate all the techniques developed in this work by computing semistable models in several examples.},
 	language = {en},
-	publisher = {Universität Ulm},
+	publisher = {PhD Dissertation, Universität Ulm},
 	author = {Rüth, J.},
 	year = {2015},
 	doi = {10.18725/OPARU-3275},
