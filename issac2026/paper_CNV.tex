@@ -843,29 +843,23 @@ Then $f(\PP)$ is a polyhedron. \label{prop:DIl}
 \end{proposition}
 \begin{proof}
   We identify $f$ with its matrix in $K^{m \times n}$, and we
-  assume that $\PP \neq \emptyset$ and that it is defined as
-$$
-\PP = \left\lbrace x \in K^n : \val (l_i (x)) \geq 0, \textrm{ for } i \in I\right\rbrace
-$$
-for some finite set $I \subset \N$ and $l_i \in K[x]_1$, for $i \in I$ .
+  assume that $\emptyset \neq \PP = \{x \in K^n : \val(l_i(x)) \geq 0, i=1,\ldots,d\}$.
+  
+  By Definition \ref{smith_nf}, the matrix of $f$ can be decomposed
+  $f = Q^{-1} \Delta P$ with $P \in \GL_n(\OK)$, $Q \in \GL_m(\OK)$ and
+  $$
+  \Delta = \diag(\delta_1, \ldots, \delta_r, {\bf 0}_{m-r,n-r}) = \mathrm{SNF}(f)\in K^{m \times n}
+  $$
+%where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for
+%$\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
 
-Thanks to Definition \ref{smith_nf}, (the matrix of) $f$ can be written $f = Q^{-1} \Delta P$
-with $P \in \GL_n(\OK),$ $Q \in \GL_m(\OK)$
-and
-$$
-\Delta = \diag(\lambda_1, \ldots, \lambda_r, {\bf 0}_{\min(m,n)-r}) = \mathrm{SNF}(f)\in K^{m \times n}
-$$
-where ${\bf 0}_{\min(m,n)-r}$ is a null square matrix of size $\min(m,n)-r$ for
-$\lambda_1,\dots,\lambda_r$ non-zero and $r \in \N.$
-
-By Lemma \ref{lem:DIaut}, $\Qc = P(\PP)$ is a polyhedron defined only by inequalities.
-We now prove that $\Delta (\Qc)$ is a polyhedron.
-One can write that $\Delta$ is the composition
+By Lemma \ref{lem:DIaut}, $\Qc := P \PP$ is a polyhedron defined only by inequalities.
+We now prove that $\Delta \Qc$ is a polyhedron. One can write that $\Delta$ is the composition
 of the immersion 
-$K^r \rightarrow K^n$
+$K^r \rightarrow K^n$ sending
 $(x_1,\dots,x_r)\mapsto (x_1,\dots,x_r,0,\dots,0),$ 
  the diagonal invertible mapping
-$K^r \rightarrow K^r$,
+$K^r \rightarrow K^r$ sending
 $(x_1,\dots,x_r)\mapsto (\delta_1 x_1,\dots,\delta_r x_r)$,
 and the projections
 \begin{equation*}
@@ -880,12 +874,12 @@ and the projections
 %$\dots,$
 %$(x_1,\dots,x_{n})\mapsto (x_1,\dots,x_{n-1}).$
 Thus, thanks to Lemmas \ref{lem:DIimm}, \ref{lem:DIproj} and \ref{lem:DIaut},
-$\Delta (\Qc)$ is a polyhedron. One can note that it is only when applying the
+$\Delta \Qc$ is a polyhedron. One can note that it is only when applying the
 immersion as the last mapping in the composition chain that equalities are
 needed to define the last polyhedron.
 
 Finally, thanks to Lemma \ref{lem:DIaut},
-$Q^{-1} \left( \Delta (\Qc) \right)$ is a polyhedron.
+$Q^{-1} \Delta \Qc = f(\PP)$ is a polyhedron.
 This concludes the proof.
 \end{proof}
 
@@ -908,17 +902,16 @@ We conclude with the proof of the main result of this section.
 \begin{proof}[Proof of \Cref{theo:DI}]
 Recall that here $f : K^n \to K^m$ is an affine map and $\PP \subset K^n$ is a polyhedron.
 Let us write $\PP = \PP_I \cap \PP_E$
-with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+B \geq 0 \right\rbrace$
-and $\PP_E \coloneq \left\lbrace x \in K^n,  Cx+D=0 \right\rbrace = v + V$,
-for some vector space $V$.
+with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+v \geq 0 \right\rbrace$
+and $\PP_E \coloneq \left\lbrace x \in K^n,  Bx+w=0 \right\rbrace$.
 %%\overrightarrow{\PP_E}
-Then\footnote{Est-ce que $f_{\PP_E}$ c'est la restriction ? Mais donc c'est $=\tilde{f}$ ?}
-$f(\PP) = f_{\PP_E}(\PP_I).$
+Then $f(\PP) = f_{\PP_E}(\PP_I)$, {\it i.e.}, the image of $\PP_I$ through the restriction
+map of $f$ to $\PP_E$.
 
-By a translation of $-v$ in $K^n$, we can assume that
-$\PP_E$ is a linear vector space: we are reduced to proving that, if
-$\tilde{f}: \PP_E \to K^m$ is an affine map and $\PP_I$ is a polyhedron in the vector space $\PP_E$ defined only by inequalities, then  $\tilde{f}(\PP_I)$ is a polyhedron.
-This is the case thanks to \Cref{prop:DIi}
+Up to a translation, we can assume that $\PP_E$ is a linear vector space:
+we are reduced to proving that, if $\tilde{f}: \PP_E \to K^m$ is an affine map
+and $\PP_I$ is a polyhedron in the vector space $\PP_E$ defined only by inequalities,
+then $\tilde{f}(\PP_I)$ is a polyhedron. This is the case thanks to \Cref{prop:DIi}
 and the theorem is proven.
 \end{proof}
 
@@ -1185,28 +1178,36 @@ and the theorem is proven.
 %This concludes the proof.
 %\end{proof}
 
-We recall that the Minkowski sum of two sets $A$ and $B$ is $A+B = \{a+b : a \in A, b \in B\}$.
+We recall that the Minkowski sum of two sets $S$ and $T$ is $S+T = \{s+t : s \in S, t \in T\}$.
 
 \begin{corollary}
 The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 \end{corollary}
 \begin{proof}
   Straightforward from the equality
-  $P_1 + P_2 = \{z \in K^n : x \in P_1, y \in P_2, x+y=z\}.$
+  $\PP_1 + \PP_2 = \{z \in K^n : x \in \PP_1, y \in \PP_2, x+y=z\}$
+  and applying \Cref{theo:DI}.
 \end{proof}
 
 \begin{proposition}[Characterization of polyhedra] \label{prop:carac}
     A non-empty polyhedron is the image of a polydisc under a linear mapping.
 \end{proposition}
 \begin{proof}
-    Let $\PP$ be a polyhedron in $K^n$. Then $\PP = \{x \in K^n : Ax+B \ge 0, Dx = e\}$ for some $A \in K^{d \times n}, b \in K ^d,  D\in  K^{m\times n}, e \in K^m$.
+    Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx = w\}$ be a polyhedron in $K^n$.
 
-    If $\PP$ is nonempty then there exists $x_0 \in K^n$ such that $Dx_0=e$. Let $J \in K^{n \times R}$ such that $\textrm{Im} J = \ker D$ where $R$ denotes the dimension of $\ker D$. Then $\PP = x_0 + J\PP'$ where $A' \coloneq AJ$ $b' \coloneq Ax_0 + b$ and
-    $\PP' \coloneq \{y \in K ^R: A'y + b' \ge 0 \}$.
+    If $\PP$ is nonempty then there exists $x_0 \in K^n$ such that $Bx_0=w$.
+    Let $J \in K^{n \times R}$ such that $\textrm{Im}\,J = \ker\,B$ where $R$ denotes
+    the dimension of $\ker\,B$. Then $\PP = x_0 + J\PP'$ where
+    $A' \coloneq AJ$, $v' \coloneq Ax_0 + v$ and
+    $\PP' \coloneq \{y \in K^R : A'y + v' \succeq 0 \}$.
 
-    Now let $S \in K^{n\times R}$ be the SNF of $A'$ and $Q \in \GL_n\left(\mathcal{O}_K\right)$ and $P \in \GL_R\left(\mathcal{O}_K\right)$ such that $A'= Q S P^{-1}$.
-    Then $\PP' = \{y \in K^R : QSP^{-1}y + b' \ge  0\} = P\{z \in K^R : Sz + Q^{-1}b' \ge 0 \}$.
-    Let $b'' \coloneq Q^{-1}b$ then $P' = P \{z \in K^R : s_i z_i + b''_i \ge 0, i= 1\ldots R\}$. The set $\{z \in K^R : s_i z_i + b_i \ge 0\}$ is either empty or a polydisc (possibly with infinite radii) and $\PP = x_0 + JP \{z \in K^R: s_i z_i + b_i \ge  0, i=1,\ldots,R\}$ which concludes the proof.
+    Now let $S \in K^{n\times R}$ be the SNF of $A'$ and $Q \in \GL_n\left(\mathcal{O}_K\right)$
+    and $P \in \GL_R(\mathcal{O}_K)$ such that $A'= Q S P^{-1}$.
+    Then $\PP' = \{y \in K^R : QSP^{-1}y + v' \succeq 0\} = P\{z \in K^R : Sz + Q^{-1}v' \succeq 0 \}$.
+    Let $v'' \coloneq Q^{-1}v'$ then $\PP' = P \{z \in K^R : s_i z_i + b''_i \succeq 0, i= 1,\ldots,R\}$.
+    The set $\{z \in K^R : s_i z_i + b''_i \succeq 0\}$ is either empty or a polydisc
+    (possibly with infinite radius) and $\PP = x_0 + JP\{z \in K^R: s_i z_i + b''_i \succeq 0,
+    i=1,\ldots,R\}$ which concludes the proof.
 \end{proof}
 
 \begin{corollary} \label{cor:caracdim1}
