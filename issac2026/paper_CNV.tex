@@ -252,21 +252,21 @@ sets of SDP, {\it e.g.}, spectrahedra are convex basic semialgebraic sets.
 Nevertheless spectrahedra are not stable under linear image, {\it i.e.},
 projection of spectrahedra (called semidefinite representable sets)
 are in general not spectrahedra. It has been conjectured by Helton and Nie
-\cite{helton_sufficient_2008} that semidefinite representations exist for
-every convex semialgebraic set, but this has been disproved by Scheiderer
-\cite{scheiderer_spectrahedral_2017} that provided compact counterexamples.
+\cite{helton_sufficient_2008} that every convex semialgebraic set admits
+a semidefinite representation, {\it i.e.} is the projection of a spectrahedron,
+but this has been disproved by Scheiderer that exhibited compact counterexamples
+\cite{scheiderer_spectrahedral_2017}.
 
 This gap in the geometry of polyhedra versus spectrahedra is also reflected
-on different behaviors of LP and SDP. Spectrahedra defined over a field $K$
-might not admit $K$-rational points, hence the solution of a SDP problem
-defined over $K$ might not necessarily be expressible as rational combinations
+on different behaviors of LP and SDP. Spectrahedra defined over $\QQ$
+might not admit rational points, hence the solution of a SDP problem
+defined over $\QQ$ might not necessarily be expressible as rational combination
 of input data. However it is still algebraic over the base field, hence,
 assuming the input data of a SDP belongs to an effective field $K$
-(\emph{e.g.} $K = \QQ$) then a solution can be described and computed as
+then a solution can be described and computed as
 element of a vector space over some algebraic extension of $K$.
 
-Concerning the effective aspects of these optimization problem, the complexity
-status of SDP is, contrary to the LP case, widely open.
+It is worth mentioning that the complexity status of SDP is widely open.
 Ramana's dual \cite{ramana1997exact} implies a series of general
 results: in the Blum-Shub-Smale model \cite{blum1989theory}, the feasibility
 of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
