@@ -291,8 +291,11 @@ Then $f(\PP)$ is a polyhedron in $K^m$. \label{theo:DI}
 
 Next we focus on linear programming over valued fields. We describe in \Cref{sec:LP}
 an algorithm for solving LP problems with data over a valued field $(K,\val)$
-and prove its correctness.
+and prove its correctness. \Cref{algo_LP} reduces the input program to a diagonal LP 
+by applying Smith Normal Form.
 
+In \Cref{sec:spectrahedra} we define spectrahedra and semidefinite representable sets
+over a valued field $K$.
 
 %\newpage
 \section{Preliminaries}
@@ -895,8 +898,7 @@ Then $f(\PP)$ is a polyhedron. \label{prop:DIi}
   of variables that $\Qc$ is a polyhedron in $K^m$ if and only if
   $\Qc+v$ is a polyhedron in $K^m$.
   Consequently, translating by $-f(O)$ in the codomain, where
-  $O \in K^n$ is the origin, one can reduce to the case of
-  \Cref{prop:DIl}.
+  $O \in K^n$ is the origin, one can reduce to \Cref{prop:DIl}.
 \end{proof}
 
 We conclude with the proof of the main result of this section.
@@ -1271,7 +1273,7 @@ we refer to \eqref{LP} as a \emph{diagonal} linear program.
 We denote the \emph{feasible set} of \eqref{LP} by
 \begin{equation*}
 \begin{aligned}
-  \PP  &= \{x \in K^n : Ax + b \geq 0, Dx = e\}.
+  \PP &= \{x \in K^n : Ax + b \succeq 0, Dx = e\}.
 \end{aligned}
 \end{equation*}
 Note that $\PP$ is a polyhedron.
@@ -1291,7 +1293,7 @@ The original \eqref{LP} is then easily solved by looking at valuations of input 
 in the reduced problem.
 
 \begin{algorithm}[!ht]
-    {\footnotesize
+%%    {\footnotesize
     \caption{\textbf{SOLVELPval}($A,b,c,D,e$)}\label{algo_LP}
     \begin{algorithmic}[1]
     %%%\algsetup{linenosize=\tiny}
@@ -1346,7 +1348,7 @@ in the reduced problem.
       %\ENDIF \label{step:core:end}
       \RETURN [INFEAS, []] \label{step:core:end}
     \end{algorithmic}
-  }
+%%  }
 \end{algorithm}
 
 In order to prove correctness of \Cref{algo_LP}, we proceed step-by-step.
