@@ -272,11 +272,10 @@ results: in the Blum-Shub-Smale model \cite{blum1989theory}, the feasibility
 of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
 in NP in the Turing model; checking boundedness, attainability and optimality
 can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}.
-For exact computation, complexity
-bounds are known based either on general quantifier elimination
-\cite{ramana1997exact,porkolab1997complexity} and explicit algorithms exist
-based on a dedicated application of the so-called critical point method, and
-exploiting the determinantal structure of the constraints \cite{henrion2016exact,NALDI2018206}.
+For exact computation, complexity bounds are known based either on general
+quantifier elimination \cite{ramana1997exact,porkolab1997complexity} or on
+explicit algorithms exploiting the underlying determinantal structure of SDP
+\cite{henrion2016exact,NALDI2018206}.
 %%% CE PARAGRAPHE ME PARAIT MOINS PRIORITAIRE
 % A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
