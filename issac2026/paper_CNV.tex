@@ -286,10 +286,13 @@ In this paper we consider the situation where input data are defined over fields
 
 \begin{theorem}[direct image (DI)] 
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
-Then $f(\PP)$ is a polyhedron. \label{theo:DI}
+Then $f(\PP)$ is a polyhedron in $K^m$. \label{theo:DI}
 \end{theorem}
 
-Next we focus 
+Next we focus on linear programming over valued fields. We describe in \Cref{sec:LP}
+an algorithm for solving LP problems with data over a valued field $(K,\val)$
+and prove its correctness.
+
 
 %\newpage
 \section{Preliminaries}
@@ -1189,12 +1192,13 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 \end{proof}
 
 \begin{proposition}[Characterization of polyhedra] \label{prop:carac}
-    A non-empty polyhedron is the image of a polydisc under a linear mapping.
+    A non-empty polyhedron is the image of a polydisc under an affine map.
 \end{proposition}
 \begin{proof}
-    Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx = w\}$ be a polyhedron in $K^n$.
+%    Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx = w\}$ be a polyhedron in $K^n$.
+    Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx + w = 0\}$ be a polyhedron in $K^n$.
 
-    If $\PP$ is nonempty then there exists $x_0 \in K^n$ such that $Bx_0=w$.
+    If $\PP \neq \emptyset$, then there exists $x_0 \in K^n$ such that $Bx_0+w=0$.
     Let $J \in K^{n \times R}$ such that $\textrm{Im}\,J = \ker\,B$ where $R$ denotes
     the dimension of $\ker\,B$. Then $\PP = x_0 + J\PP'$ where
     $A' \coloneq AJ$, $v' \coloneq Ax_0 + v$ and
@@ -1202,11 +1206,19 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 
     Now let $S \in K^{n\times R}$ be the SNF of $A'$ and $Q \in \GL_n\left(\mathcal{O}_K\right)$
     and $P \in \GL_R(\mathcal{O}_K)$ such that $A'= Q S P^{-1}$.
-    Then $\PP' = \{y \in K^R : QSP^{-1}y + v' \succeq 0\} = P\{z \in K^R : Sz + Q^{-1}v' \succeq 0 \}$.
-    Let $v'' \coloneq Q^{-1}v'$ then $\PP' = P \{z \in K^R : s_i z_i + b''_i \succeq 0, i= 1,\ldots,R\}$.
-    The set $\{z \in K^R : s_i z_i + b''_i \succeq 0\}$ is either empty or a polydisc
-    (possibly with infinite radius) and $\PP = x_0 + JP\{z \in K^R: s_i z_i + b''_i \succeq 0,
-    i=1,\ldots,R\}$ which concludes the proof.
+    Then
+    $$
+    \PP' = \{y \in K^R : QSP^{-1}y + v' \succeq 0\} = P \mathcal{Q},
+    $$
+    with $\mathcal{Q} := \{z \in K^R : Sz + Q^{-1}v' \succeq 0 \}$.
+    Let $v'' \coloneq Q^{-1}v'$ then the set
+    $\mathcal{Q} = \{z \in K^R : s_i z_i + v''_i \succeq 0, i= 1,\ldots,R\}$
+    is either empty or a polydisc (possibly with infinite radius).
+    Thus $\PP = x_0+JP\mathcal{Q}$ is empty or a polydisc.
+% $\PP' = P $.
+% The set $\{z \in K^R : s_i z_i + v''_i \succeq 0\}$ is either empty or a polydisc
+% (possibly with infinite radius) and $\PP = x_0 + JP\{z \in K^R: s_i z_i + v''_i \succeq 0,
+% i=1,\ldots,R\}$ which concludes the proof.
 \end{proof}
 
 \begin{corollary} \label{cor:caracdim1}
