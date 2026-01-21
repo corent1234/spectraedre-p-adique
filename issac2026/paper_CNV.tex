@@ -251,13 +251,14 @@ Several properties of polyhedra generalize to spectrahedra, the feasible
 sets of SDP, {\it e.g.}, spectrahedra are convex basic semialgebraic sets.
 Nevertheless spectrahedra are not stable under linear image, {\it i.e.},
 projection of spectrahedra (called semidefinite representable sets)
-are in general not spectrahedra. It has been conjectured by Helton and Nie
-\cite{helton_sufficient_2008} that every convex semialgebraic set admits
+are in general not spectrahedra. It has been asked by Nemirovski
+\cite{nemirovski2007advances} whether every convex semialgebraic set admits
 a semidefinite representation, {\it i.e.} is the projection of a spectrahedron,
-but this has been disproved by Scheiderer that exhibited compact counterexamples
+then conjectured by Helton and Nie \cite{helton_sufficient_2008};
+recently this has been disproved by Scheiderer that exhibited compact counterexamples
 \cite{scheiderer_spectrahedral_2017}.
 
-This gap in the geometry of polyhedra versus spectrahedra is also reflected
+The differences in the geometry of polyhedra versus spectrahedra is also reflected
 on different behaviors of LP and SDP. Spectrahedra defined over $\QQ$
 might not admit rational points, hence the solution of a SDP problem
 defined over $\QQ$ might not necessarily be expressible as rational combination
@@ -295,9 +296,12 @@ data over a valued field $(K,\val)$, and prove its correctness (\Cref{algo_LP}).
 
 In \Cref{sec:spectrahedra} we define spectrahedra and semidefinite representable sets
 over a valued field $K$. A spectrahedron over $K$ is defined as the set of matrices
-in some affine space all of whose eigenvalues have nonnegative valuation in some algebraic
-closure of $K$.
+in some affine space that are positive semidefinite, {\it i.e.} all of whose eigenvalues
+have nonnegative valuation in some algebraic closure of $K$. This defines, as in the
+real case, a class of semialgebraic sets including polyhedra.
 
+Nevertheless and in contrast with the real case, we exhibit a class of subsets of $K$
+that are semidefinite representable but not spectrahedral, under mild assumptions:
 
 \begin{proposition}\label{main_2}
 If the residue field of $K$ is infinite, then no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
@@ -1705,7 +1709,7 @@ Moreover this class contains the polyhedra in $K^n$.
   A polyhedron in $K^n$ is a spectrahedron in $K^n$.
 \end{proposition}
 \begin{proof}
-  Assume $P = L \cap M$ be a polyhedron in $K^n$, with
+  Assume $\PP = L \cap M$ be a polyhedron in $K^n$, with
   $L = \{x \in K^n : \val \ell_i(x) \geq 0, i=1, \ldots, d\}$
   and $M = \{x \in K^n : \val m_j(x) = +\infty, j=1, \ldots, e\}$,
   for some $d, e \in \mathbb{N}$.
@@ -1713,8 +1717,8 @@ Moreover this class contains the polyhedra in $K^n$.
   $$
   \varphi_A(x) \coloneq A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
   $$
-  One has $L = \mathcal{S}_A = \varphi_A^{-1}(K^{d \times d}_+)$. Since $M \subset K^n$ is affine, 
-  $P$ is a spectrahedron in $K^n$.
+  One has $L = \mathcal{S}_A = \varphi_A^{-1}(K^{d \times d}_+)$.
+  Since $M \subset K^n$ is affine, then $\PP$ is a spectrahedron in $K^n$.
 %  %and hence
 %  %$$
 %  %P = \{x \in K^n : x = Ty \in M, \varphi_A(x) \succeq 0\}.
@@ -1771,7 +1775,7 @@ Spectrahedra form a strict generalization of polyhedra:
   By \Cref{caracsdp} one has:
   $$
   \mathcal{S}_A = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
-  = \bigcap_{i=0}^d \{x \in K^n : \val(p_i(x)) \geq 0\}.
+  = \bigcap_{i=0}^{d-1} \{x \in K^n : \val(p_i(x)) \geq 0\}.
   $$
 \end{proof}
 
@@ -1799,12 +1803,12 @@ Spectrahedra of $K$ are diskoids. \label{prop_spectrahedra_dim1_are_diskoids}
 \end{proposition}
 \begin{proof}
 By \Cref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
-can be defined as the set $\{x \in K : A_0+x_1A_1 \succeq 0\}$
-for some integer $n$ and matrices $A_0$ and $A_1$ in $K^{n \times n}$.
+can be defined as the set $\{x \in K : A_0+x A_1 \succeq 0\}$
+for some integer $d$ and matrices $A_0$ and $A_1$ in $K^{d \times d}$.
 Thanks to Theorem \ref{caracsdp},
 this set corresponds to an intersection of the form
-$\cap_{i=0}^{n-1} \{ x \in K : \val(a_i(x)) \geq 0 \},$
-for some polynomials $a_i$'s, univariate over $K$.
+$\cap_{i=0}^{d-1} \{x \in K : \val(a_i(x)) \geq 0\},$
+for some polynomials $a_i$, univariate over $K$.
 As such, this set is the intersection of the diskoids
 $\mathrm{Disk}(a_i,0).$
 By \cite[Lemma 4.44]{ruth_models_2015}, the intersection
@@ -1919,7 +1923,6 @@ a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and fin
 \section*{Acknowledgments}
 The second author acknowledges support from the ANR Project ``HYPERSPACE'' (ANR-21-CE48-0006-01).
 
-\newpage
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}
 
