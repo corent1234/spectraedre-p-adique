@@ -284,20 +284,26 @@ Generalizations of spectrahedra and SDP have been proposed in the context of tro
 \paragraph{Main contributions.}
 In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this context is the following theorem proved in \Cref{ssec:projections}:
 
-\begin{theorem}[direct image (DI)] 
+\begin{theorem}[direct image (DI)] \label{theo:DI}
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
-Then $f(\PP)$ is a polyhedron in $K^m$. \label{theo:DI}
+Then $f(\PP)$ is a polyhedron in $K^m$.
 \end{theorem}
 
 Next we focus on linear programming over valued fields. We describe in \Cref{sec:LP}
-an algorithm for solving LP problems with data over a valued field $(K,\val)$
-and prove its correctness. \Cref{algo_LP} reduces the input program to a diagonal LP 
-by applying Smith Normal Form.
+an algorithm based on computation of Smith normal forms for solving LP problems with
+data over a valued field $(K,\val)$, and prove its correctness (\Cref{algo_LP}).
 
 In \Cref{sec:spectrahedra} we define spectrahedra and semidefinite representable sets
-over a valued field $K$.
+over a valued field $K$. A spectrahedron over $K$ is defined as the set of matrices
+in some affine space all of whose eigenvalues have nonnegative valuation in some algebraic
+closure of $K$.
 
-%\newpage
+
+\begin{proposition}\label{main_2}
+If the residue field of $K$ is infinite, then no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
+\end{proposition}
+
+
 \section{Preliminaries}
 \label{sec:prelim}
 
@@ -1667,7 +1673,7 @@ In the real case, one often abuses the definition of spectrahedra, saying that t
 $\{x \in \mathbb{R}^n : A_0+\sum_{i=1}^n x_iA_i \succeq 0\}$ is also a spectrahedron.
 Remark that this yields that every affine subset of $\mathbb{R}^n$ is also
 a spectrahedron: indeed an affine equation $\ell(x) = 0$ is equivalent to the two inequalities
-$\ell(x) \geq 0 \leq -\ell(x)$. Over a valued field it is necessary to give the following
+$\ell(x) \leq 0 \leq \ell(x)$. Over a valued field it is necessary to give the following
 definition in order to include affine sets in the family of spectrahedra.
 
 \begin{definition}
@@ -1777,16 +1783,15 @@ Spectrahedra form a strict generalization of polyhedra:
 When $n=1$, we can give a more precise
 characterization of the geometry of spectrahedra
 using the notion of diskoid
-defined in Rüth's PhD thesis \cite{ruth_models_2015}.,
+defined in Rüth's PhD thesis \cite{ruth_models_2015},
 the set $\{ x \in K : \val(a_i(x)) \geq 0 \}$
 is denoted by $\textrm{Disk}(a_i,0)$ and is called 
 a diskoid.
 
-
 \begin{definition}
 A diskoid of $K$ is a set of the form
 \[  \textrm{Disk}(f,r):= \{ x \in K : \val(f(x)) \geq r \},\]
-for some polynomial $f \in K[X]$ and some real number $r \geq 0.$
+for some polynomial $f \in K[x]$ and some real number $r \geq 0.$
 \end{definition}
 
 \begin{proposition}
@@ -1887,10 +1892,8 @@ with $\mathcal{S}_M = \diag(M^{(1)}, M^{(2)}, \ldots, M^{(n)}) \in K[x,y]^{4n \t
 
 We conclude proving that, in general, annuli are not spectrahedra.
 
-\begin{proposition}
-If the residue field $\kappa$ is infinite, then no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
-\end{proposition}
-\begin{proof}
+\begin{proof}[{Proof of \Cref{main_2}}]
+Assume that the residue field $\kappa = \OK/\mathfrak{m}_K$ of $K$ is infinite.
 By Proposition \ref{prop_spectrahedra_dim1_are_diskoids} spectrahedra of $K$ are diskoids.
 
 By \cite[Lemma 4.43]{ruth_models_2015}, if $K$
