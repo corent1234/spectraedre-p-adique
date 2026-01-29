@@ -151,17 +151,19 @@ on Symbolic and Algebraic Computation}{July 13--17,
 }
 
 \author{Simone Naldi}
-\affiliation{
-    \institution{Université de Limoges, CNRS, XLIM}
-    \city{Limoges}
-    \country{France}
+\affiliation{Universit\'e de Limoges;
+  \institution{CNRS, XLIM UMR 7252}
+  \city{Limoges}
+  \country{France}  
+  \postcode{87060}  
 }
 
 \author{Tristan Vaccon}
-\affiliation{
-    \institution{Université de Limoges, CNRS, XLIM}
-    \city{Limoges}
-    \country{France}
+\affiliation{Universit\'e de Limoges;
+  \institution{CNRS, XLIM UMR 7252}
+  \city{Limoges}
+  \country{France}  
+  \postcode{87060}  
 }
 
 
@@ -303,9 +305,9 @@ real case, a class of semialgebraic sets including polyhedra.
 Nevertheless and in contrast with the real case, we exhibit a class of subsets of $K$
 that are semidefinite representable but not spectrahedral, under mild assumptions:
 
-\begin{proposition}\label{main_2}
-If the residue field of $K$ is infinite, then no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
-\end{proposition}
+\begin{theorem}\label{main_2}
+Annuli of $K$ are semidefinite representable but if the residue field of $K$ is infinite, no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
+\end{theorem}
 
 
 \section{Preliminaries}
@@ -357,7 +359,7 @@ We recall the definition of Smith Normal Form, in our context.
 \begin{remark}
   The valuation of the first invariant factor of $\mathrm{SNF}(M)$ of a matrix
   $M \in K^{n \times n}$ is the minimum of the valuations of the entries of
-  $M$. In particular, $\mathrm{SNF}(M) \in \OK^{n \times n}$.
+  $M$. In particular, if $M \in \OK^{n \times n}$, then $\mathrm{SNF}(M) \in \OK^{n \times n}$.
 \end{remark}
 
 Let us now give a short introduction to classical ({\it i.e.} real) polyhedra and
@@ -441,7 +443,7 @@ $$
 \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}.
 $$
 When $m>0$, the set is also called a \emph{spectrahedral shadow}. There are examples of
-spectrahedral shadows that are not spectrahedra (cf. \Cref{fermat_quartic}) and of compact
+spectrahedral shadows that are not spectrahedra (cf. Ex. \ref{fermat_quartic}) and of compact
 convex semialgebraic sets that are not semidefinite representable \cite{scheiderer_spectrahedral_2017}.
 
 \begin{example}
@@ -492,7 +494,8 @@ $$
 \section{Polyhedra}
 \label{sec:polyhedra}
 
-In this section, we define polyhedra over a complete discrete valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. We end by presenting an algorithm for solving linear optimization problems over $K$.
+In this section, we define polyhedra over a complete discrete valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. 
+%We end by presenting an algorithm for solving linear optimization problems over $K$.
 
 \begin{definition}
   \label{def_polyhedra}
@@ -561,7 +564,7 @@ is given in \Cref{fig:di-properties}.
 \scalebox{0.55}{
 \begin{tikzpicture}[
   node distance=1cm and 1cm,
-  box/.style={draw, rounded corners, minimum width=2.2cm, minimum height=1cm, align=center},
+  box/.style={draw, rounded corners, minimum width=2.2cm, minimum height=1cm, align=center, font=\Huge},
   thickarrow/.style={->, >=Stealth, line width=1.2pt}
 ]
 % Nodes
@@ -706,9 +709,9 @@ Since the conditions have to be compatible (we have assumed
 $\PP\neq\emptyset$), and thanks to ultrametricity,  
 the intersection of these conditions for $s \in \llbracket r+1, d \rrbracket$
 is then given by the smallest of these balls.
-Let us assume it is the one defined for $s = n.$
+Let us assume it is the one defined by the last inequality, \textit{i.e.} for $s = d.$
 The only condition on $x_n$
-is then $\val(a_nx_n + v'_n) \geq 0.$
+is then $\val(a_dx_n + v'_d) \geq 0.$
 
 Thanks to Lemma \ref{lem:DIdiag},
 we can further assume that the $\delta_i$'s and $a_n$ are all $1$'s
@@ -742,7 +745,7 @@ the linear matrix inequality:
   &	   & 1 &   &        &   &  \vdots  \\
 &	   &   & 0 &        &   &    \\[-.25cm]
   &	   &   &   & \ddots &   &         \\
-  &	   &   &   &	    & 0 & a_{n-1} \\ 
+  &	   &   &   &	    & 0 & a_{d-1} \\ 
   &	   &   &   &	    &	& 1 	  \\
 \end{smallmatrix}
 \right]
@@ -779,39 +782,45 @@ the linear matrix inequality:
 %\end{bmatrix}
 %\succeq 0.
 %\]
-Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{n-1} \val(a_i).$
+Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{r} \val(a_i).$
 We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
 
 Let us first assume that $\val(a_1) \geq 0$.
 
 Let $x \in \PP'$.
-Then $x_n=-v'_n+O(1)$
+Then $x_n=-v'_d+O(1)$
 and $x_1+a_1 x_n+v'_1=O(1).$
 Consequently, $x_1-a_1 v'_n +b_1=O(1)+O(\pi^{\val(a_1)})=O(1).$
-Similarly, for all $i \in \llbracket 2,n-1 \rrbracket,$
+Similarly, for all $i \in \llbracket 2,r \rrbracket,$
 $x_i-a_i v'_n+v'_i=O(1)+O(\pi^{\val(a_i)})=O(1).$
 
 We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
- for all $i \in \llbracket 1,n-1 \rrbracket,$
+ for all $i \in \llbracket 1,r \rrbracket,$
 $\val(x_i-a_iv'_n+v'_i) \geq 0$. Then the previous computations prove that $f(\PP')\subset \Qc.$
 
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-Then let $x_n \coloneq -v'_n.$
-We check that for $i \in \llbracket 1,n-1 \rrbracket,$
-$x_i+a_ix_n+v'_i=x_i-a_iv'_n+v'_i=O(1),$
-and $x_n+v'_n=O(1)$. Hence $(x_1,\dots,x_n) \in \PP_2$
+Then let $x_n \coloneq -v'_d.$
+We check that for $i \in \llbracket 1,r \rrbracket,$
+$x_i+a_ix_n+v'_i=x_i-a_iv'_d+v'_i=O(1).$
+In addition $x_n+v'_d=O(1)$ is satisfied
+and as we have assumed it is the coarsest of the inequalities
+for $s \in \llbracket r+1,d \rrbracket,$, it implies that 
+for all $s \in \llbracket r+1,d-1 \rrbracket,$
+$a_s x_n+v'_s=O(1)$.
+Hence $(x_1,\dots,x_n) \in \PP'$
 which means that $(x_1,\dots,x_{n-1}) \in f(\PP').$
 Thus $f(\PP')= \Qc$, that is, $f(\PP')$ is a polyhedron.
 
 We now deal with the second case, $\val(a_1)<0.$
 Let $x \in \PP'$.
-Then $x_n=-v'_n+O(1)$
+Then $x_n=-v'_d+O(1)$
 and $x_1+a_1 x_n+v'_1=O(1).$
-Consequently, $x_1-a_1 v'_n +v'_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)}).$
-Thus $a_1^{-1}x_1- v'_n +a_1^{-1}v'_1=O(1)$.
+Applying the first equality in the second, we get that
+$x_1-a_1 v'_d +v'_1=O(1)+O(\pi^{\val(a_1)})=O(\pi^{\val(a_1)}).$
+Thus $a_1^{-1}x_1- v'_d +a_1^{-1}v'_1=O(1)$.
 %and $x_n=-a_1^{-1}(x_1+v'_1)+O(1).$
 In addition, $x_n=-a_1^{-1}(x_1+v'_1)+O(\pi^{-\val(a_1)}).$
-We plug this equality in 
+For $i \in \llbracket 2,r \rrbracket,$ we plug this equality for $x_n$ in 
 $x_i+a_i x_n+v'_i=O(1)$ to get
 $$
 x_i-a_1^{-1}a_i(x_1+v'_1)+v'_i=O(1)+O(\pi^{\val(a_i)-\val(a_1)})=O(1)
@@ -819,7 +828,7 @@ $$
 using that $\val(a_i) \geq \val (a_1).$
 
 We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
-$\val(a_1^{-1}x_1- v'_n +a_1^{-1}v'_1) \geq 0$ and for all $i \in \llbracket 2,n-1 \rrbracket,$
+$\val(a_1^{-1}x_1- v'_d +a_1^{-1}v'_1) \geq 0$ and for all $i \in \llbracket 2,r \rrbracket,$
 $\val(x_i-a_1^{-1}a_i(x_1+v'_1)+v'_i) \geq 0.$
 Then the previous computations prove that $f(\PP')\subset \Qc.$
 
@@ -827,16 +836,20 @@ Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
 Let $x_n \coloneq -a_1^{-1}(x_1+v'_1).$
 Then
 $x_1+a_1 x_n+v'_1=0=O(1).$
-Let $i \in \llbracket 2,n-1 \rrbracket,$
+Let $i \in \llbracket 2,r \rrbracket,$
 then $x_i+a_i x_n+v'_i=x_i-a_1^{-1}a_i(x_1+v'_1)+v'_i=O(1)$
 since $(x_1,\dots,x_{n-1}) \in \Qc.$
-Finally, 
-$x_n+v'_n=-a_1^{-1}(x_1+v'_1)+v'_n=O(1)$ thanks to the inequality satisfied by $x_1.$
+Furthermore, 
+$x_n+v'_d=-a_1^{-1}(x_1+v'_1)+v'_d=O(1)$ thanks to the inequality satisfied by $x_1.$
+Since the inequality for $s=d$ has been assumed to be 
+the coarsest of the inequalities for $s \in \llbracket r+1,d \rrbracket,$
+we also get that that for $s \in \llbracket r+1,d-1 \rrbracket,$
+$a_s x_n+v'_s = O(1)$.
 Hence $(x_1,\dots,x_n) \in \PP'$
 which means that $(x_1,\dots,x_{n-1}) \in f(\PP').$
 Thus $f(\PP')= \Qc$ and $f(\PP')$ is a polyhedron.
 
-Therefore, $f(\PP)$ is a polyhedron, and inequalities are enough to define
+Therefore, in all cases, $f(\PP)$ is a polyhedron, and inequalities are enough to define
 $f(\PP)$ as a polyhedron.
 \end{proof}
 
@@ -1226,7 +1239,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
     Let $v'' \coloneq Q^{-1}v'$ then the set
     $\mathcal{Q} = \{z \in K^R : s_i z_i + v''_i \succeq 0, i= 1,\ldots,R\}$
     is either empty or a polydisc (possibly with infinite radius).
-    Thus $\PP = x_0+JP\mathcal{Q}$ is empty or a polydisc.
+    Thus $\PP = x_0+JP\mathcal{Q}$ is empty or the image of a polydisc by an affine map.
 % $\PP' = P $.
 % The set $\{z \in K^R : s_i z_i + v''_i \succeq 0\}$ is either empty or a polydisc
 % (possibly with infinite radius) and $\PP = x_0 + JP\{z \in K^R: s_i z_i + v''_i \succeq 0,
@@ -1795,7 +1808,7 @@ a diskoid.
 \begin{definition}
 A diskoid of $K$ is a set of the form
 \[  \textrm{Disk}(f,r):= \{ x \in K : \val(f(x)) \geq r \},\]
-for some polynomial $f \in K[x]$ and some real number $r \geq 0.$
+for some polynomial $f \in K[x]$ and some rational number $r \geq 0.$
 \end{definition}
 
 \begin{proposition}
