@@ -257,7 +257,7 @@ are in general not spectrahedra. It has been asked by Nemirovski
 \cite{nemirovski2007advances} whether every convex semialgebraic set admits
 a semidefinite representation, {\it i.e.} is the projection of a spectrahedron,
 then conjectured by Helton and Nie \cite{helton_sufficient_2008};
-recently this has been disproved by Scheiderer that exhibited compact counterexamples
+this has been disproved by Scheiderer that exhibited compact counterexamples
 \cite{scheiderer_spectrahedral_2017}.
 
 The differences in the geometry of polyhedra versus spectrahedra is also reflected
@@ -268,17 +268,29 @@ of input data. However it is still algebraic over the base field, hence,
 assuming the input data of a SDP belongs to an effective field $K$
 then a solution can be described and computed as
 element of a vector space over some algebraic extension of $K$.
-
-It is worth mentioning that the complexity status of SDP is widely open.
-Ramana's dual \cite{ramana1997exact} implies a series of general
-results: in the Blum-Shub-Smale model \cite{blum1989theory}, the feasibility
-of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
-in NP in the Turing model; checking boundedness, attainability and optimality
-can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}.
-For exact computation, complexity bounds are known based either on general
-quantifier elimination \cite{ramana1997exact,porkolab1997complexity} or on
+%%% j'ai deplacé ça ici
+%%
+%%
+General complexity bounds for the feasibility of SDP are based on general
+quantifier elimination \cite{ramana1997exact,porkolab1997complexity}.
+There has been
+in the recent past the development of exact algorithms for
+deciding whether a spectrahedron is empty, {\it i.e.} to solve a linear matrix
+inequality.
+ or on
 explicit algorithms exploiting the underlying determinantal structure of SDP
 \cite{henrion2016exact,NALDI2018206}.
+
+%% j'ai commenté ça car trop d'information pour quelque chose dont on parle pas dans le reste du papier
+%%
+%%
+%It is worth mentioning that the complexity status of SDP is widely open.
+%Ramana's dual \cite{ramana1997exact} implies a series of general
+%results: in the Blum-Shub-Smale model \cite{blum1989theory}, the feasibility
+%of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
+%in NP in the Turing model; checking boundedness, attainability and optimality
+%can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}.
+
 %%% CE PARAGRAPHE ME PARAIT MOINS PRIORITAIRE
 % A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
@@ -1930,11 +1942,12 @@ a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and fin
 \end{proof}
 
 
-\section{Perspectives}
-\label{sec:perspectives}
+%\section{Perspectives}
+%\label{sec:perspectives}
 
 \section*{Acknowledgments}
-The second author acknowledges support from the ANR Project ``HYPERSPACE'' (ANR-21-CE48-0006-01).
+The second author is supported by the ANR Project ``HYPERSPACE'' (ANR-21-CE48-0006-01)
+and by INDAM-GNSAGA (2025).
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{refs}
