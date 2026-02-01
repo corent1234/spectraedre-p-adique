@@ -244,15 +244,19 @@ optimization problems can be cast as, or relaxed to LP.
 An important generalization of LP is semidefinite programming (SDP),
 namely the problem of minimizing a linear function over the set of
 positive semidefinite affine combinations of a finite collection of
-real symmetric matrices. The latter problem has interested the
+real symmetric matrices.
+
+The latter problem has interested the
 community of real algebraic geometry and polynomial optimization,
 mostly because of the relaxation method known as moment-SOS hierarchy
 \cite{henrion2020moment}.
 
 Several properties of polyhedra generalize to spectrahedra, the feasible
-sets of SDP, {\it e.g.}, spectrahedra are convex basic semialgebraic sets.
+sets of SDP, {\it e.g.}, spectrahedra are convex basic semialgebraic sets,
+defined by positivity constraints on a pencil of real symmetric matrices
+(called LMI, linear matrix inequality).
 Nevertheless spectrahedra are not stable under linear image, {\it i.e.},
-projection of spectrahedra (called semidefinite representable sets)
+projections of spectrahedra (called semidefinite representable sets)
 are in general not spectrahedra. It has been asked by Nemirovski
 \cite{nemirovski2007advances} whether every convex semialgebraic set admits
 a semidefinite representation, {\it i.e.} is the projection of a spectrahedron,
@@ -260,26 +264,24 @@ then conjectured by Helton and Nie \cite{helton_sufficient_2008};
 this has been disproved by Scheiderer that exhibited compact counterexamples
 \cite{scheiderer_spectrahedral_2017}.
 
-The differences in the geometry of polyhedra versus spectrahedra is also reflected
-on different behaviors of LP and SDP. Spectrahedra defined over $\QQ$
-might not admit rational points, hence the solution of a SDP problem
-defined over $\QQ$ might not necessarily be expressible as rational combination
-of input data. However it is still algebraic over the base field, hence,
-assuming the input data of a SDP belongs to an effective field $K$
-then a solution can be described and computed as
+Another difference with polyhedra is that the base field where the LMI is defined
+might not be sufficient to describe points on the corresponding spectrahedron.
+Spectrahedra defined over $\QQ$ might not admit rational points, hence the
+solution of a SDP problem defined over $\QQ$ might not necessarily be
+expressible as rational combination of input data.
+However it is still algebraic over the base field, hence,
+assuming the input data of a SDP belongs to an effective field $K$,
+it follows that a solution can be described and computed as
 element of a vector space over some algebraic extension of $K$.
 %%% j'ai deplacé ça ici
 %%
 %%
-General complexity bounds for the feasibility of SDP are based on general
-quantifier elimination \cite{ramana1997exact,porkolab1997complexity}.
-There has been
-in the recent past the development of exact algorithms for
-deciding whether a spectrahedron is empty, {\it i.e.} to solve a linear matrix
-inequality.
- or on
-explicit algorithms exploiting the underlying determinantal structure of SDP
-\cite{henrion2016exact,NALDI2018206}.
+%%% j'ai enlevé ramana1997exact
+Complexity bounds for the feasibility of SDP have been obtained in
+\cite{porkolab1997complexity} and are based on general quantifier
+elimination bounds \cite{renegar1992computational}. Explicit exact
+algorithms dedicated to LMI exploiting the underlying determinantal
+structure of SDP have been designed more recently \cite{henrion2016exact,NALDI2018206}.
 
 %% j'ai commenté ça car trop d'information pour quelque chose dont on parle pas dans le reste du papier
 %%
@@ -294,10 +296,10 @@ explicit algorithms exploiting the underlying determinantal structure of SDP
 %%% CE PARAGRAPHE ME PARAIT MOINS PRIORITAIRE
 % A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
-Generalizations of spectrahedra and SDP have been proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean semidefinite programming \cite{allamigeon2016solving,allamigeon_tropical_2020}. It is worth mentioning that tropical spectrahedra satisfy the Helton-Nie property \cite{allamigeon2019tropical}.
+Generalizations of spectrahedra have been proposed in the context of tropical geometry \cite{iriarte2022polyhedral} and tropical methods applied to non-archimedean SDP \cite{allamigeon2016solving,allamigeon_tropical_2020}. It is worth mentioning that tropical spectrahedra satisfy the Helton-Nie property \cite{allamigeon2019tropical}.
 
 \paragraph{Main contributions.}
-In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The prototype of valued field we target is the field of $p$-adic numbers with $p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this context is the following theorem proved in \Cref{ssec:projections}:
+In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The prototype of valued field we target is the field $\QQ_p$ of $p$-adic numbers equipped with $p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this context is the following theorem proved in \Cref{ssec:projections}:
 
 \begin{theorem}[direct image (DI)] \label{theo:DI}
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
@@ -1945,7 +1947,7 @@ a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and fin
 %\section{Perspectives}
 %\label{sec:perspectives}
 
-\section*{Acknowledgments}
+\paragraph*{Acknowledgments}
 The second author is supported by the ANR Project ``HYPERSPACE'' (ANR-21-CE48-0006-01)
 and by INDAM-GNSAGA (2025).
 
