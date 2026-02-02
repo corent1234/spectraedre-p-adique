@@ -238,7 +238,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \section{Introduction}
 \label{sec:intro}
 
-The study of real polyhedra and of linear programming (LP) is at
+Real polyhedra and linear programming (LP) are at
 the heart of convex geometry and optimization, inasmuch as several
 optimization problems can be cast as, or relaxed to LP.
 An important generalization of LP is semidefinite programming (SDP),
@@ -298,7 +298,7 @@ have been designed more recently \cite{henrion2016exact,NALDI2018206}.
 % A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
 Generalizations of polyhedra and spectrahedra have been proposed in the context of tropical geometry
-\cite{iriarte2022polyhedral,allamigeon_tropical_2020} and tropical methods applied to non-archimedean SDP
+\cite{develin2004tropical,allamigeon_tropical_2020} and tropical methods applied to non-archimedean SDP
 \cite{allamigeon2016solving}. It is worth mentioning that tropical spectrahedra satisfy the Helton-Nie
 property \cite{allamigeon2019tropical}. Linear matrix inequalities with parametric coefficients have been
 studied in \cite{naldi2025solving}.
@@ -1645,7 +1645,7 @@ As a consequence, matrices with integral coefficients are positive semidefinite.
   $\OK^{d\times d} \subset K^{d\times d}_+$.
 \end{corollary}
 \begin{proof}
-  $\OK$ is a ring, therefore if $M \in \OK^{d \times d}$, then $\chi_M \in \OK[T]$.
+  $\OK$ is a ring, therefore $\chi_M \in \OK[T]$ if $M \in \OK^{d \times d}$.
 \end{proof}
 
 The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in the next example.
@@ -1926,10 +1926,10 @@ Finally, since $\mathcal{C} = \mathcal{C}_1 \times \cdots \times \mathcal{C}_n$,
 with $\mathcal{S}_M = \diag(M^{(1)}, M^{(2)}, \ldots, M^{(n)}) \in K[x,y]^{4n \times 4n}.$
 \end{proof}
 
-We conclude proving that, in general, annuli are not spectrahedra.
+We prove now that, in general, annuli are not spectrahedra.
 
 \begin{proof}[{Proof of \Cref{main_2}}]
-Assume that the residue field $\kappa = \OK/\mathfrak{m}_K$ of $K$ is infinite.
+Assume that $\kappa = \OK/\mathfrak{m}_K$, the residue field of $K$, is infinite.
 By Proposition \ref{prop_spectrahedra_dim1_are_diskoids} spectrahedra of $K$ are diskoids.
 
 By \cite[Lemma 4.43]{ruth_models_2015}, if $K$
@@ -1943,6 +1943,7 @@ representatives $b_l \in O_K$ of the classes of $O_K / \pi O_K=\kappa.$
 It thus can not be covered by a finite amount of balls of radius $\vert \pi \vert$
 and if one take any ball of radius $1$ centered at a point of the sphere, then one gets the whole
 $B(0,1).$
+
 A direct generalization of this argument proves that
 if $\kappa$ is infinite, no (non trivial) annulus can be equal to
 a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and finally, no (non trivial) annulus can be a spectrahedron.
