@@ -297,11 +297,11 @@ have been designed more recently \cite{henrion2016exact,NALDI2018206}.
 %%% CE PARAGRAPHE ME PARAIT MOINS PRIORITAIRE
 % A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
-Generalizations of polyhedra and spectrahedra have been proposed in the context of tropical geometry
-\cite{develin2004tropical,allamigeon_tropical_2020} and tropical methods applied to non-archimedean SDP
-\cite{allamigeon2016solving}. It is worth mentioning that tropical spectrahedra satisfy the Helton-Nie
-property \cite{allamigeon2019tropical}. Linear matrix inequalities with parametric coefficients have been
-studied in \cite{naldi2025solving}.
+Tropical convexity and in particular generalizations of polyhedra and spectrahedra to the tropical setting
+have been proposed in \cite{develin2004tropical,allamigeon_tropical_2020} and tropical methods applied to
+non-archimedean SDP \cite{allamigeon2016solving}. It is worth mentioning that tropical spectrahedra satisfy
+the Helton-Nie property \cite{allamigeon2019tropical}. Linear matrix inequalities with parametric coefficients
+have been studied in \cite{naldi2025solving}.
 
 \paragraph{Main contributions.}
 In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The prototype of valued field we target is the field $\QQ_p$ of $p$-adic numbers equipped with $p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this context is the following theorem proved in \Cref{ssec:projections}:
