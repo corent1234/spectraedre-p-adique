@@ -190,7 +190,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
   We prove that basic properties of semidefinite-representable sets generalize
   to the valued setting.
   In particular, we showcase examples of non-polyhedral $K$-spectrahedra and
-  of sets that are semidefinite representable over $K$ but are not $K$-spectrahedra.
+  of sets that are semidefinite-representable over $K$ but are not $K$-spectrahedra.
 \end{abstract}
 
 %%
@@ -245,7 +245,6 @@ An important generalization of LP is semidefinite programming (SDP),
 namely the problem of minimizing a linear function over the set of
 positive semidefinite affine combinations of a finite collection of
 real symmetric matrices.
-
 The latter problem has interested the
 community of real algebra and polynomial optimization,
 mostly because of the relaxation method known as moment-SOS hierarchy
@@ -256,10 +255,10 @@ sets of SDP, {\it e.g.}, spectrahedra are convex basic semialgebraic sets,
 defined by a positivity condition on a pencil of real symmetric matrices
 (called LMI, linear matrix inequality).
 Nevertheless spectrahedra are not stable under linear image, {\it i.e.},
-projections of spectrahedra (called semidefinite representable sets)
+projections of spectrahedra (called semidefinite-representable sets)
 are in general not spectrahedra. It has been asked by Nemirovski
 \cite{nemirovski2007advances} whether every convex semialgebraic set admits
-a semidefinite representation, {\it i.e.} is the projection of a spectrahedron,
+a semidefinite-representation, {\it i.e.} is the projection of a spectrahedron,
 then conjectured by Helton and Nie \cite{helton_sufficient_2008};
 this has been disproved by Scheiderer that exhibited compact counterexamples
 \cite{scheiderer_spectrahedral_2017}.
@@ -273,11 +272,7 @@ However it is still algebraic over the base field, hence,
 assuming the input data of a SDP belongs to an effective field $K$,
 it follows that a solution can be described and computed as
 element of a vector space over some algebraic extension of $K$.
-This has motivated the development of exact algorithms for LMIs.
-%%% j'ai deplacé ça ici
-%%
-%%
-%%% j'ai enlevé ramana1997exact
+This leads to interesting algorithmic questions.
 Complexity bounds for the feasibility of SDP have been obtained in
 \cite{porkolab1997complexity} and are based on general quantifier
 elimination bounds \cite{renegar1992computational}. Explicit exact
@@ -293,10 +288,11 @@ have been designed more recently \cite{henrion2016exact,NALDI2018206}.
 %of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
 %in NP in the Turing model; checking boundedness, attainability and optimality
 %can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}.
-
 %%% CE PARAGRAPHE ME PARAIT MOINS PRIORITAIRE
 % A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
 
+Nevertheless the complexity status of SDP, unlike LP, remains widely
+open, which has motivated 
 Tropical convexity and in particular generalizations of polyhedra and spectrahedra to the tropical setting
 have been proposed in \cite{develin2004tropical,allamigeon_tropical_2020} and tropical methods applied to
 non-archimedean SDP \cite{allamigeon2016solving}. It is worth mentioning that tropical spectrahedra satisfy
@@ -315,17 +311,17 @@ Next we focus on linear programming over valued fields. We describe in \Cref{sec
 an algorithm based on computation of Smith normal forms for solving LP problems with
 data over a valued field $(K,\val)$, and prove its correctness (\Cref{algo_LP}).
 
-In \Cref{sec:spectrahedra} we define spectrahedra and semidefinite representable sets
+In \Cref{sec:spectrahedra} we define spectrahedra and semidefinite-representable sets
 over a valued field $K$. A spectrahedron over $K$ is defined as the set of matrices
 in some affine space that are positive semidefinite, {\it i.e.} all of whose eigenvalues
 have nonnegative valuation in some algebraic closure of $K$. This defines, as in the
 real case, a class of semialgebraic sets including polyhedra.
 
 Nevertheless and in contrast with the real case, we exhibit a class of subsets of $K$
-that are semidefinite representable but not spectrahedral, under mild assumptions:
+that are semidefinite-representable but not spectrahedral, under mild assumptions:
 
 \begin{theorem}\label{main_2}
-Annuli of $K$ are semidefinite representable but if the residue field of $K$ is infinite, no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
+Annuli of $K$ are semidefinite-representable but if the residue field of $K$ is infinite, no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
 \end{theorem}
 
 
@@ -457,17 +453,17 @@ $A = \diag(\ell_1,\ldots, \ell_d)$ for some affine functions $\ell_i$. In other 
 %or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
 
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
-called \emph{semidefinite representable sets}: these are sets of the form
+called \emph{semidefinite-representable sets}: these are sets of the form
 $$
 \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}.
 $$
 When $m>0$, the set is also called a \emph{spectrahedral shadow}. There are examples of
 spectrahedral shadows that are not spectrahedra (cf. Ex. \ref{fermat_quartic}) and of compact
-convex semialgebraic sets that are not semidefinite representable \cite{scheiderer_spectrahedral_2017}.
+convex semialgebraic sets that are not semidefinite-representable \cite{scheiderer_spectrahedral_2017}.
 
 \begin{example}
 \label{fermat_quartic}
-The basic closed semialgebraic set $\mathcal{R} = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron but it is a spectrahedral shadow with semidefinite representation
+The basic closed semialgebraic set $\mathcal{R} = \{(x_1,x_2) \in \R^2 : 1-x_1^4-x_2^4 \geq 0\}$ is not a spectrahedron but it is a spectrahedral shadow with semidefinite-representation
 $$
 %%\mathcal{R} =
 \left\{x \in \R^2 :
