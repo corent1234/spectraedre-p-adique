@@ -131,7 +131,6 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \def\diag{\mathrm{diag}}
 
 \newcommand{\GL}{\mathrm{GL}}
-\newcommand{\exend}{\hfill $\blacksquare$}
 
 %%
 %% end of the preamble, start of the body of the document source.
@@ -382,10 +381,9 @@ We recall the definition of Smith Normal Form, in our context.
   $M$. In particular, if $M \in \OK^{n \times n}$, then $\mathrm{SNF}(M) \in \OK^{n \times n}$.
 \end{remark}
 
-Let us now give a short introduction to classical ({\it i.e.} real) polyhedra and
-spectrahedra.
+Let us now briefly give an overview of classical, {\it i.e.} real, polyhedra and spectrahedra.
 Let $\sym_d(\R) \subset \R^{d\times d}$ be the vector space of $d \times d$ real symmetric
-matrices. A matrix $M \in \sym_d(\R)$ is \emph{positive semidefinite} ($M \succeq 0$) whenever the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$, that is, if and only if the eigenvalues of $M$ are nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$. It is also a semialgebraic set inasmuch as $M \succeq 0$ if and only if its principal minors are nonnegative.
+matrices. A matrix $M \in \sym_d(\R)$ is {positive semidefinite} ($M \succeq 0$) whenever the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$, that is, if and only if the eigenvalues of $M$ are nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$. It is also a semialgebraic set inasmuch as $M \succeq 0$ if and only if its principal minors are nonnegative.
 
 Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
 containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we might assume
@@ -395,7 +393,7 @@ $$
 A(x) \succeq 0\right\},
 $$
 or equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
-a \emph{real spectrahedron}. As (linear preimage of) affine sections of $\sym_d^+(\R)$, real spectrahedra
+a {real spectrahedron}. As (linear preimage of) affine sections of $\sym_d^+(\R)$, real spectrahedra
 are closed convex semialgebraic sets, possibly with empty interior.
 %%Moreover, they are basic semialgebraic sets, indeed they are defined by sign conditions on the principal minors of the defining matrix as well as sign conditions on the coefficients of its characteristic polynomial (cf. \Cref{ell3}).
 
@@ -431,12 +429,11 @@ are closed convex semialgebraic sets, possibly with empty interior.
   $$
   1-x_i^2 \geq 0, \, i=1,2,3, \,\,\, \text{ and } \,\,\,
   1+2x_1x_2x_3-x_1^2-x_2^2-x_3^2 \geq 0
-  \vspace{-0.3cm}
   $$
-  \exend
 \end{example}
 
-The optimization problem of miminizing a linear function over a real spectrahedron is called \emph{semidefinite programming} (SDP).
+The optimization problem of miminizing a linear function over a real spectrahedron
+is called {semidefinite programming} (SDP).
 %Given $c \in \R^n$ and $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, the corresponding semidefinite program is defined (in standard dual form) as
 %\begin{equation}
 %  \label{SDP}
@@ -458,11 +455,11 @@ $A = \diag(\ell_1,\ldots, \ell_d)$ for some affine functions $\ell_i$. In other 
 %or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
 
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
-called \emph{semidefinite-representable sets}: these are sets of the form
+called {semidefinite-representable sets}: these are sets of the form
 $$
 \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}.
 $$
-When $m>0$, the set is also called a \emph{spectrahedral shadow}. There are examples of
+When $m>0$, the set is also called a {spectrahedral shadow}. There are examples of
 spectrahedral shadows that are not spectrahedra (cf. Ex. \ref{fermat_quartic}) and of compact
 convex semialgebraic sets that are not semidefinite-representable \cite{scheiderer_spectrahedral_2017}.
 
@@ -558,7 +555,7 @@ Moreover by definition the class of polyhedra is closed under intersection.
 %%%Without loss of generality\footnote{je ne sais plus si ça est nécessaire, si ce ne l'est pas, je l'enleverais.}, one may assume in \Cref{def_polyhedra} that for every $i=1,\ldots,d$ there exists $x \in P$ such that $\val(\ell_i(x))<+\infty$.
 
 \begin{example}
-  The \emph{closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
+  The {closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
   polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} \coloneq
   \max_i\{\vert x_i \vert\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   As such, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
@@ -1297,8 +1294,8 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 
 \section{Linear programming}
 \label{sec:LP}
-A \emph{linear programming problem} (or \emph{linear program})
-\emph{with data $(A,b,c,\allowbreak D,e)$} is defined as:
+A {linear programming problem} (or {linear program})
+{with data $(A,b,c,\allowbreak D,e)$} is defined as:
 
 \begin{equation}
   \tag{LP}\label{LP}
@@ -1312,15 +1309,15 @@ with $c \in K^n$ a fixed vector of size $n$ that represents the cost,
 $A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, $e \in K^m$ 
 and $\left\langle c, x \right\rangle \coloneq c_1 x_1+\cdots +c_n x_n$.
 When $A$ is a diagonal matrix,
-we refer to \eqref{LP} as a \emph{diagonal} linear program.
-We denote the \emph{feasible set} of \eqref{LP} by
+we refer to \eqref{LP} as a {diagonal} linear program.
+We denote the {feasible set} of \eqref{LP} by
 \begin{equation*}
 \begin{aligned}
   \PP &= \{x \in K^n : Ax + b \succeq 0, Dx = e\}.
 \end{aligned}
 \end{equation*}
 Note that $\PP$ is a polyhedron.
-A vector $x \in K^n$ is called \emph{feasible} for~\eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$ is called a \emph{solution} to \eqref{LP} if $p^* = \val\left\langle c,x^*\right\rangle$, {\it i.e.} if the infimum in \eqref{LP} is attained at $x^*$.
+A vector $x \in K^n$ is called {feasible} for~\eqref{LP} if $x \in \PP$. A feasible vector $x^* \in \PP$ is called a {solution} to \eqref{LP} if $p^* = \val\left\langle c,x^*\right\rangle$, {\it i.e.} if the infimum in \eqref{LP} is attained at $x^*$.
 
 \begin{remark}
   Assume $\val$ is a discrete valuation. Then
@@ -1594,13 +1591,13 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
 \newcommand\Mats{positive semidefinite matrices }
 
 \begin{definition}
-  We say that a matrix $M \in K^{d \times d}$ is \emph{positive semidefinite} ($M \succeq 0$)
+  We say that a matrix $M \in K^{d \times d}$ is {positive semidefinite} ($M \succeq 0$)
   if all its eigenvalues have nonnegative valuation in an algebraic closure of $K$.
   We denote by $K^{d \times d}_+ \subset K^{d\times d}$ the set of positive semidefinite matrices.
   The characteristic polynomial of a matrix $M \in K^{d\times d}$ is denoted $\chi_M \in K[T]$.
 \end{definition}
 
-Recall that the \emph{Newton polygon} of a polynomial $P = \sum_{i=0}^{d} a_i T^i \in K[T]$ is
+Recall that the {Newton polygon} of a polynomial $P = \sum_{i=0}^{d} a_i T^i \in K[T]$ is
 defined as the lower convex hull of the set $\{(i, \val a_i) \,|\, 0 \le i \le d\}$, {\it i.e.} the
 graph of the greatest convex function $\varphi : [0,d] \to \R$ such that $\varphi(i) \leq \val a_i$
 for $i=1,\ldots,d$. This function is piecewise affine and its slopes are exactly the opposites of the valuations
@@ -1658,7 +1655,7 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in t
   $$
   The characteristic polynomial of $M$
   is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$. As such $M \in (\mathbb{Q}_5)^{2 \times 2}_+$, while nevertheless $M \not\in (\mathbb{Z}_5)^{2\times 2}$, and hence
-  $(\mathbb{Q}_5)^{2 \times 2}_+ \not\subset (\mathbb{Z}_5)^{2 \times 2}$.
+  $(\mathbb{Q}_5)^{2 \times 2}_+ \not\subset (\mathbb{Z}_5)^{2 \times 2}$. 
 \end{example}
 
 \begin{definition}
@@ -1874,7 +1871,7 @@ Denote by $\R^*_+$ the set of positive real numbers.
 
 Of course a spectrahedron $\mathcal{S}_A = \varphi_A^{-1}(K^{d \times d})$ is SDR with height $m=0$ and degree
 $d$. In order to distinguish between spectrahedra and possibly non-spectrahedral semidefinite-representable sets
-we usually call \emph{spectrahedral shadows} the SDR sets with height $m>0$.
+we usually call {spectrahedral shadows} the SDR sets with height $m>0$.
 
 \begin{theorem}
 Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n$.
@@ -1932,7 +1929,6 @@ We prove now that, in general, annuli are not spectrahedra.
 \begin{proof}[{Proof of \Cref{main_2}}]
 Assume that $\kappa = \OK/\mathfrak{m}_K$, the residue field of $K$, is infinite.
 By Proposition \ref{prop_spectrahedra_dim1_are_diskoids} spectrahedra of $K$ are diskoids.
-
 By \cite[Lemma 4.43]{ruth_models_2015}, if $K$
 contains the roots of $\Phi$ then the diskoid
 $D=\textrm{Disk}(\Phi, \lambda)$ is the finite union
