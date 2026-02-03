@@ -108,6 +108,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
 \newcommand{\tristan}[1]{{\color{red} #1}} % tristan's comments
 \newcommand{\todo}[1]{{\color{blue}\bf \text{TODO: } #1}} % TODOs
+\newcommand{\rev}[1]{{\color{blue} #1}} % TODOs
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -442,7 +443,7 @@ is called {semidefinite programming} (SDP).
 %  &    & \text{s.t.}         & A_0+\sum_{i=1}^n x_i A_i \succeq 0.
 %\end{array}
 %\end{equation}
-{\it Real polyhedra} (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
+{Real polyhedra} (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
 spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that
 $A = \diag(\ell_1,\ldots, \ell_d)$ for some affine functions $\ell_i$. In other words, SDP generalizes LP.
 
@@ -455,7 +456,7 @@ $A = \diag(\ell_1,\ldots, \ell_d)$ for some affine functions $\ell_i$. In other 
 %or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
 
 A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
-called {semidefinite-representable sets}: these are sets of the form
+called semidefinite-re\-pre\-sen\-ta\-ble sets: these are sets of the form
 $$
 \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}.
 $$
@@ -511,7 +512,7 @@ $$
 \section{Polyhedra}
 \label{sec:polyhedra}
 
-In this section, we define polyhedra over a complete discrete valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. 
+In this section, we define polyhedra over a \rev{complete discrete}\footnote{On utilise vraiment le ``complete'' et ``discrete'' ici ? en tous cas pas pour la définition} valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. 
 %We end by presenting an algorithm for solving linear optimization problems over $K$.
 
 \begin{definition}
@@ -559,7 +560,7 @@ Moreover by definition the class of polyhedra is closed under intersection.
   polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} \coloneq
   \max_i\{\vert x_i \vert\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   As such, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
-  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$, {\it i.e.} $O_K^n = \{x \in K^n : x \succeq 0\}$.
+  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$, {\it i.e.} $\OK^n = \{x \in K^n : x \succeq 0\}$.
   %%%%%(its affine hull is indeed the whole $K^n$).
 \end{example}
 
@@ -605,11 +606,11 @@ is given in \Cref{fig:di-properties}.
 \label{fig:di-properties}
 \end{figure}
 
-We begin with the case of linear maps in $\GL_n(O_K)$.
+We begin with the case of linear maps in $\GL_n(\OK)$.
 We often fix a linear basis $e_1,\ldots,e_n$ of $K^n$ which we call canonical.
 
 \begin{lemma}[DI${}_{\mathrm{aut}}$]
-Let $f \in \GL_n(O_K)$ and $\PP$ a polyhedron in $K^n$.
+Let $f \in \GL_n(\OK)$ and $\PP$ a polyhedron in $K^n$.
 Then $f(\PP)$ is a polyhedron. \label{lem:DIaut}
 If in addition, $\PP$ is defined only by inequalities,
 then so is $f(\PP)$.
@@ -1935,8 +1936,7 @@ $D=\textrm{Disk}(\Phi, \lambda)$ is the finite union
 of closed balls of equal radius centered at the roots of $f$ (and their common radius can be made explicit).
 
 In addition, if $\kappa$ is infinite, one can remark that the sphere
-$\{x \in K \,|\,  \val(x) =0\}$ is equal to the infinite disjoint union $\amalg_{l \in \kappa} B(b_l, \vert \pi \vert)$ for some 
-representatives $b_l \in O_K$ of the classes of $O_K / \pi O_K=\kappa.$
+$\{x \in K \,|\,  \val(x) =0\}$ is equal to the infinite disjoint union $\amalg_{l \in \kappa} B(b_l, \vert \pi \vert)$ for some representatives $b_l \in \OK$ of the classes of $\OK / \pi\OK = \kappa.$
 It thus can not be covered by a finite amount of balls of radius $\vert \pi \vert$
 and if one take any ball of radius $1$ centered at a point of the sphere, then one gets the whole
 $B(0,1).$
