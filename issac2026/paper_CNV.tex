@@ -300,18 +300,23 @@ the Helton-Nie property \cite{allamigeon2019tropical}. Linear matrix inequalitie
 have been studied in \cite{naldi2025solving}.
 
 \paragraph{Main contributions.}
-In this paper we consider the situation where input data are defined over fields $K$ with a prescribed valuation map $\val$ on $K$. The prototype of valued field we target is the field $\QQ_p$ of $p$-adic numbers equipped with $p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this context is the following theorem proved in \Cref{ssec:projections}:
+In this paper we consider the situation where input data are defined over $(K,\val)$, where $K$ is a field and
+$\val$ a valuation map on $K$.
+The prototype of valued field we target is the field $K=\QQ_p$ of $p$-adic numbers equipped with
+$p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some
+linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this
+context is the following theorem proved in \Cref{ssec:projections}:
 
 \begin{theorem}[direct image (DI)] \label{theo:DI}
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
 Then $f(\PP)$ is a polyhedron in $K^m$.
 \end{theorem}
 
-Next we focus on linear programming over valued fields. We describe in \Cref{sec:LP}
+Next we focus on linear programming. We describe in \Cref{sec:LP}
 an algorithm based on computation of Smith normal forms for solving LP problems with
-data over a valued field $(K,\val)$, and prove its correctness (\Cref{algo_LP}).
+data over $(K,\val)$, and prove its correctness (\Cref{algo_LP}).
 
-In \Cref{sec:spectrahedra} we define spectrahedra and semidefinite-representable sets
+In \Cref{sec:spectrahedra} we define spectrahedra and semidefinite-re\-pre\-sen\-ta\-ble sets
 over a valued field $K$. A spectrahedron over $K$ is defined as the set of matrices
 in some affine space that are positive semidefinite, {\it i.e.} all of whose eigenvalues
 have nonnegative valuation in some algebraic closure of $K$. This defines, as in the
