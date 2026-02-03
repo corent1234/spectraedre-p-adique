@@ -313,17 +313,17 @@ Then $f(\PP)$ is a polyhedron in $K^m$.
 \end{theorem}
 
 Next we focus on linear programming. We describe in \Cref{sec:LP}
-an algorithm based on computation of Smith normal forms for solving LP problems with
+an algorithm based on computation of Smith Normal Forms for solving LP problems with
 data over $(K,\val)$, and prove its correctness (\Cref{algo_LP}).
 
 In \Cref{sec:spectrahedra} we define spectrahedra and semidefinite-re\-pre\-sen\-ta\-ble sets
-over a valued field $K$. A spectrahedron over $K$ is defined as the set of matrices
+over $(K,\val)$. A spectrahedron over a valued field is defined as the set of matrices
 in some affine space that are positive semidefinite, {\it i.e.} all of whose eigenvalues
 have nonnegative valuation in some algebraic closure of $K$. This defines, as in the
 real case, a class of semialgebraic sets including polyhedra.
 
 Nevertheless and in contrast with the real case, we exhibit a class of subsets of $K$
-that are semidefinite-representable but not spectrahedral, under mild assumptions:
+(thus in dimension one) that are semidefinite-representable but not spectrahedral, under mild assumptions:
 
 \begin{theorem}\label{main_2}
 Annuli of $K$ are semidefinite-representable but if the residue field of $K$ is infinite, no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
