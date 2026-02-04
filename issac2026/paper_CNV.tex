@@ -1306,10 +1306,10 @@ A {linear programming problem} (or {linear program})
   & & & D x = e
 \end{array}
 \end{equation}
-with $c \in K^n$ a fixed vector of size $n$ that represents the cost,
-$A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, $e \in K^m$ 
-and $\left\langle c, x \right\rangle \coloneq c_1 x_1+\cdots +c_n x_n$.
-When $A$ is a diagonal matrix,
+for a vector $c \in K^n$ defining a cost function $\val\left\langle c, x \right\rangle$,
+with $\left\langle c, x \right\rangle \coloneq c_1 x_1+\cdots +c_n x_n$,
+$A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, and $e \in K^m$.
+When $d=n$ and $A$ is diagonal, %%%%%%%%%%%%%%%%%% ARRIVATO QUI
 we refer to \eqref{LP} as a {diagonal} linear program.
 We denote the {feasible set} of \eqref{LP} by
 \begin{equation*}
