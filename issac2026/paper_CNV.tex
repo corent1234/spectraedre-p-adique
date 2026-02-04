@@ -1361,19 +1361,18 @@ in the reduced problem.
       \ENDIF
       \IF{$A$ not in Smith Normal Form} \label{step:solsLP:begin}
       \STATE $[Q,S,P] \leftarrow \textbf{SNF}(A)$
-      \STATE $[\mathrm{STATUS}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
-      \RETURN $[\mathrm{STATUS}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
+      \STATE $[\mathrm{TYPE}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
+      \RETURN $[\mathrm{TYPE}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
       \ENDIF
       \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
       \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} \label{step:condition}
       \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
       \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
-      \ELSE
-          %\STATE STATUS $\leftarrow$ FEAS
+      \ELSE %\STATE STATUS $\leftarrow$ FEAS
       \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
       \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
       \IF{$\val \lambda < v$}
-      \STATE choose $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
+      \STATE choose $y \in K^n$ s.\,t. $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
       \RETURN [FEAS, $y$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it1}}
       \ELSE
       \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
