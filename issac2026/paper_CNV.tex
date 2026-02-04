@@ -1326,7 +1326,7 @@ A vector $x \in K^n$ is called {feasible} for~\eqref{LP} if $x \in \PP$. A feasi
   $p^*$ is either $-\infty$ or attained at a solution $x^*$.
 \end{remark}
 
-In this section we present \Cref{algo_LP}, \textbf{SOLVELPval}, for solving Problem \eqref{LP}.
+In this section we present \Cref{algo_LP}, \textbf{SOLVELPval}, for solving problem \eqref{LP}.
 The algorithm starts by eliminating the equality constraint defined by $D$ and $e$
 by variable substitution. Then the matrix $A$ is replaced by its Smith Normal Form,
 and the general linear program is consequently reduced to a diagonal linear program.
@@ -1427,7 +1427,7 @@ of~\eqref{LP} with data of the form $(A,b,c,{\bf 0},0)$.
  
 %%%%Indeed, for all $z \in K^n$ and $M \in \allmat_n(\OK)$ if $z \geq 0$, then $Mz \geq 0$. The latter property is a direct consequence of $\OK$ being a ring and the converse holds if the matrix $M$ is invertible in $\OK$.
 
-\Cref{solsLP} allows us to reduce Problem \eqref{LP} without linear equations
+\Cref{solsLP} allows us to reduce problem \eqref{LP} without linear equations
 to diagonal linear programs.
 
 \begin{lemma} \label{solsLP}
@@ -1446,7 +1446,7 @@ to diagonal linear programs.
    \end{enumerate}
 \end{lemma}
 \begin{proof}
-  Note that the transition matrices $P$ and $Q$ defining SNF$(A)$ are invertible in $\OK$
+  Note that the transition matrices $P$ and $Q$ defining the form SNF$(A)$ are invertible in $\OK$
   and as such they preserve inequalities: $Mz \geq 0$ if and only if $Nz \geq 0$, with
   $N = \mathrm{SNF}(M)$. Thus one has that $Ax+b = AP^{-1}y +b \geq 0$ if and only if
   $Q(AP^{-1}y + b) = Sy + b' \geq 0$; this yields \Cref{solsLP_item1}.
@@ -1460,7 +1460,6 @@ to checking the valuations of input data:
 
 \begin{lemma}\label{prop:reduc}
   Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
-  Then:
   \begin{enumerate}
   \item \label{prop:reduc_it1}
     \eqref{LP} with data $(S,b',c',{\bf 0},0)$ is feasible if and only if the $d-r$ last coefficients
@@ -1472,7 +1471,7 @@ to checking the valuations of input data:
 \end{lemma}
 \begin{proof}
   %%%%\corentin{préciser les notations}. 
-  A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for \eqref{LP} with data
+  A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for problem \eqref{LP} with data
   $(S,b',c',0)$ if and only if $\val(s_i y_i + b'_i) \geq 0$ for all $i = 1,\ldots,n$.
   However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b',c',0)$ is feasible,
   necessarily the $d-r$ last coefficients of $b'$ have nonnegative valuation.
@@ -1480,13 +1479,13 @@ to checking the valuations of input data:
   $y_i = {-b'_i}/{s_i}$ if $1 \leq i \leq r$, and $y_i =0$ otherwise, is feasible for \eqref{LP}
   with data $(S,b',c',{\bf 0},0)$.
 
-  Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for \eqref{LP} with data $(S,b',c',{\bf 0},0)$.
+  Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for problem \eqref{LP} with data $(S,b',c',{\bf 0},0)$.
   Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $e^i$ whose only non-zero
   coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c',{\bf 0},0)$,
   for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$.
   In particular, for all $n \in \mathbb{N}$ if we set $\alpha_n = -({\langle c', y^* \rangle + \pi^{-n}})/{c'_i}$,
   we have $\val \left(\langle c', y^* + \alpha_n e ^i \rangle\right) = \val \pi^{-n} = -n$.
-  Therefore, the problem is unbounded as $p^* = -\infty$.
+  Therefore $p^* = -\infty$ and (LP) is unbounded.
 \end{proof}
 
 %The previous results imply that we can consider iterations of diagonal linear programs admitting a solution. By \Cref{prop:reduc} one can simplify the problem by only taking account the first $r$ coefficients of $y, b', c'$ and the submatrix of $S$ made by the $r$ first rows and columns corresponding to the nonzero invariants factors.
@@ -1497,8 +1496,7 @@ We conclude by giving explicit solutions to the reduced \eqref{LP}:
   Let $(S,b',c',{\bf 0}, 0)$ be as in \Cref{solsLP} and assume \eqref{LP} is feasible.
   %%%$\PP' \neq \emptyset$.
   %%%= \{y \in K^n : Sy+b' \geq 0\}
-  For $\lambda = -\sum_{i=1}^r c'_i b'_i/s_i$ and $v = \min_{1\le i\le r} \val (c'_i/s_i)$,
-  one has:
+  Let $\lambda = -\sum_{i=1}^r c'_i b'_i/s_i$ and $v = \min_{1\le i\le r} \val (c'_i/s_i)$.
   \begin{enumerate}
   \item
     if $\val \lambda < v$, the minimum is $\val \lambda$ and is attained on the whole feasible
@@ -1539,7 +1537,7 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
 \begin{theorem} \Cref{algo_LP} is correct.
 \end{theorem}
 \begin{proof}
-  If the linear system $Dx=e$ has no solution, Problem \eqref{LP} is infeasible
+  If the linear system $Dx=e$ has no solution, problem \eqref{LP} is infeasible
   and \Cref{algo_LP} outputs the correct answer at step \ref{step:linear_empty}.
   Else, by \Cref{reducD} the input problem can be reduced to a new linear
   program with $D={\bf 0}$ and $e=0$, which is done at steps
