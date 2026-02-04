@@ -309,26 +309,24 @@ Annuli of $K$ are semidefinite-representable but if the residue field of $K$ is 
 \section{Preliminaries}
 \label{sec:prelim}
 
-Throughout the paper, $(K,\val)$ refers to a complete valued field, {\it i.e.} $K$ is a field
-and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, $\Gamma$ an
-ordered abelian group. The valuation is often assumed to be discrete ($\Gamma=\ZZ$)
-with uniformizer $\pi \in K$. The valuation ring of $K$ is
+Throughout this paper, $(K,\val)$ denotes a complete valued field; that is, $K$ is a field
+and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, where $\Gamma$ 
+is an ordered abelian group. The valuation is often assumed to be discrete ($\Gamma=\ZZ$)
+with uniformizer $\pi \in K$. The valuation ring of $K$ is defined as
 $$
 \OK = \{x \in K : \val(x) \geq 0\},
 $$
-and $\kappa = \OK/\mathfrak{m}_K$ its residue field, with
+with residue field $\kappa = \OK/\mathfrak{m}_K$, where
 $\mathfrak{m}_K = \{x \in K : \val(x) > 0\}$.
 An element of $\OK$ is called integral (at $\val$).
 For $k \in \N$, we write $O(\pi^k)$ for $\pi^k \OK$.
-A typical example of $K$ as above is the field of $p$-adic numbers 
-$\QQ_p$ equipped with the $p$-adic valuation. For this example, we 
-have $\OK = \ZZ_p$. Another example is the field of Laurent series
-$K=\QQ(\!(t)\!)$ equiped with $t$-adic valuation,
-in which case $\OK = \QQ \llbracket t \rrbracket$.
-We refer to \cite{Serre:1979,engler2005valued} for a
-general introduction to such fields
-and to \cite{caruso_computations_2017}
-for an introduction to effective computations over $p$-adic numbers.
+Typical examples of such fields include the $p$-adic numbers 
+$\QQ_p$, equipped with the $p$-adic valuation, in which case $\OK = \ZZ_p$, 
+and the field of Laurent series
+$K=\QQ(\!(t)\!)$ with the $t$-adic valuation,
+for which $\OK = \QQ \llbracket t \rrbracket$.
+For general background on valued fields, see \cite{Serre:1979,engler2005valued},
+and for effective computations over $p$-adic numbers, see \cite{caruso_computations_2017}.
 
 The $K$-vector space of polynomials of degree $\leq d$ on variables
 $x=(x_1,\ldots,x_n)$
@@ -358,22 +356,25 @@ We recall the definition of Smith Normal Form, in our context.
   $M$. In particular, if $M \in \OK^{n \times n}$, then $\mathrm{SNF}(M) \in \OK^{n \times n}$.
 \end{remark}
 
-Let us now briefly give an overview of classical, {\it i.e.} real, polyhedra and spectrahedra,
+Let us now briefly recall classical, that is, real polyhedra and spectrahedra;
 see \cite{netzer2023geometry} for a recent and comprehensive survey.
 Let $\sym_d(\R) \subset \R^{d\times d}$ be the vector space of $d \times d$ real symmetric
-matrices. A matrix $M \in \sym_d(\R)$ is {positive semidefinite} ($M \succeq 0$) whenever the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$, that is, if and only if the eigenvalues of $M$ are nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$. It is also a semialgebraic set inasmuch as $M \succeq 0$ if and only if its principal minors are nonnegative.
+matrices. A matrix $M \in \sym_d(\R)$ is {positive semidefinite} ($M \succeq 0$) if and only if
+ the quadratic form $x \mapsto x^TMx$ is nonnegative for all $x\in \R^n$, that is, precisely when
+  the eigenvalues of $M$ are nonnegative. The set $\sym_d^+(\R) \subset \sym_d(\R)$ of positive 
+  semidefinite matrices is a closed convex cone with non-empty interior in $\sym_d(\R)$. 
+  It is also a semialgebraic set, as $M \succeq 0$ if and only if its principal minors are nonnegative.
 
 Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A_n}$ be the affine space
-containing $A_0$ and with direction the vector space spanned by $A_1,\ldots,A_n$ (which we might assume
+containing $A_0$ with direction the vector space spanned by $A_1,\ldots,A_n$ (which we may assume
 to be linearly independent). The intersection
 $$
 \calL \cap \sym_d^+(\R) = \left\{A(x) \coloneq A_0+\sum_i x_i A_i \in \sym_d(\R) :
 A(x) \succeq 0\right\},
 $$
 or equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
-a {real spectrahedron}. As (linear preimage of) affine sections of $\sym_d^+(\R)$, real spectrahedra
+a {real spectrahedron}. As a linear preimage of an affine section of $\sym_d^+(\R)$, real spectrahedra
 are closed convex semialgebraic sets, possibly with empty interior.
-%%Moreover, they are basic semialgebraic sets, indeed they are defined by sign conditions on the principal minors of the defining matrix as well as sign conditions on the coefficients of its characteristic polynomial (cf. \Cref{ell3}).
 
 \begin{example}\label{ell3}
   Let $d=n=3$. The $3$-elliptope is the three-di\-men\-sio\-nal spectrahedron
@@ -412,33 +413,17 @@ are closed convex semialgebraic sets, possibly with empty interior.
 
 The optimization problem of miminizing a linear function over a real spectrahedron
 is called {semidefinite programming} (SDP).
-%Given $c \in \R^n$ and $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, the corresponding semidefinite program is defined (in standard dual form) as
-%\begin{equation}
-%  \label{SDP}
-%\begin{array}{rcll}
-%  p^* & \coloneq & \inf_{x \in \R^n} & \left\langle c, x \right\rangle \\
-%  &    & \text{s.t.}         & A_0+\sum_{i=1}^n x_i A_i \succeq 0.
-%\end{array}
-%\end{equation}
-{Real polyhedra} (subsets of $\R^n$ defined by finitely many affine inequalities) are special cases of real
+{Real polyhedra} --- subsets of $\R^n$ defined by finitely many affine inequalities --- are special cases of real
 spectrahedra, where the defining matrices $A_0, \ldots, A_n$ can be chosen diagonal, so that
 $A = \diag(\ell_1,\ldots, \ell_d)$ for some affine functions $\ell_i$. In other words, SDP generalizes LP.
 
-% IN INTRODUCTION
-%In a fixed-precision model of computation, SDP is solvable in polynomial time in the input size (matrix size,
-%number of variables, bit size of the coefficients), in $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the
-%precision) and $\log(\frac{1}{R})$, where $R$ is an {\it a priori} upper bound on the norm of a solution,
-%cf. \cite[Sec.1.9]{deKlerk}. In exact arithmetic, the complexity status of SDP is essentially open but complexity
-%bounds are known based either on general quantifier elimination \cite{ramana1997exact,porkolab1997complexity}
-%or by exploiting the determinantal structure of the constraints \cite{henrion2016exact}.
-
-A more general class of convex semialgebraic sets are obtained by linear projections of real spectrahedra
+A more general class of convex semialgebraic sets is obtained via linear projections of real spectrahedra,
 called semidefinite-re\-pre\-sen\-ta\-ble sets: these are sets of the form
 $$
 \left\{x = \left[\begin{smallmatrix} x_1 \\ \vdots \\ x_n \end{smallmatrix}\right] \in \R^n : \exists\,y\in\R^m, \, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^m y_j B_j \succeq 0\right\}.
 $$
-When $m>0$, the set is also called a {spectrahedral shadow}. There are examples of
-spectrahedral shadows that are not spectrahedra (cf. Ex. \ref{fermat_quartic}) and of compact
+When $m>0$, the set is also referred to as a spectrahedral shadow. There exist examples of
+spectrahedral shadows that are not spectrahedra (cf. Ex. \ref{fermat_quartic}) as well as compact
 convex semialgebraic sets that are not semidefinite-representable \cite{scheiderer_spectrahedral_2017}.
 
 \begin{example}
@@ -489,7 +474,8 @@ $$
 \section{Polyhedra}
 \label{sec:polyhedra}
 
-In this section, we define polyhedra over a \simone{complete discrete}\footnote{\simone{On utilise vraiment le ``complete'' et ``discrete'' ici ? en tous cas pas pour la définition. Peut être dire (après la définition) qu'on fait cette hypothèse même si certains résultats sont vrais pour une valuation plus générale ?}} valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. 
+In this section, we define polyhedra over a complete discrete valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. 
+%%%\footnote{\simone{On utilise vraiment le ``complete'' et ``discrete'' ici ? en tous cas pas pour la définition. Peut être dire (après la définition) qu'on fait cette hypothèse même si certains résultats sont vrais pour une valuation plus générale ?}} 
 %We end by presenting an algorithm for solving linear optimization problems over $K$.
 
 \begin{definition}
