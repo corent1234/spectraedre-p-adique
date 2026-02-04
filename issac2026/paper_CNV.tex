@@ -179,18 +179,19 @@ on Symbolic and Algebraic Computation}{July 13--17,
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  Polyhedra and spectrahedra over the real numbers or, more generally,
-  their images through linear maps, are respectively the feasible sets
+  Polyhedra and spectrahedra over the real numbers, or more generally
+  their images under linear maps, are respectively the feasible sets
   of linear and semidefinite
   programming, and form the family of semidefinite-representable sets.
-  This paper investigates versions of these sets and of
-  the related optimization problems with data over a valued field $K$.
-  For $K$-polyhedra and linear programming over $K$ we give an algorithm
-  based on computation of Smith normal forms.
-  We prove that basic properties of semidefinite-representable sets generalize
+  This paper studies analogues of these sets, as well as
+  the associated optimization problems, when the data are taken over a valued 
+  field $K$.
+  For $K$-polyhedra and linear programming over $K$ we present an algorithm
+  based on the computation of Smith normal forms.
+  We prove that fundamental properties of semidefinite-representable sets extend
   to the valued setting.
-  In particular, we showcase examples of non-polyhedral $K$-spectrahedra and
-  of sets that are semidefinite-representable over $K$ but are not $K$-spectrahedra.
+  In particular, we exhibit examples of non-polyhedral $K$-spectrahedra, as well as
+ sets that are semidefinite-representable over $K$ but are not $K$-spectrahedra.
 \end{abstract}
 
 %%
@@ -238,92 +239,67 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \section{Introduction}
 \label{sec:intro}
 
-Real polyhedra and linear programming (LP) are at
-the heart of convex geometry and optimization, inasmuch as several
-optimization problems can be cast as, or relaxed to LP.
-An important generalization of LP is semidefinite programming (SDP),
-namely the problem of minimizing a linear function over the set of
+Real polyhedra and linear programming (LP) lie at the core
+of convex geometry and optimization, as a broad range
+of optimization problems can be formulated as, or relaxed to, linear programs.
+A non-trivial generalization of LP is semidefinite programming (SDP),
+which consists in minimizing a linear function over the set of
 positive semidefinite affine combinations of a finite collection of
 real symmetric matrices.
-The latter problem has interested the
-community of real algebra and polynomial optimization,
-mostly because of the relaxation method known as moment-SOS hierarchy
+This problem has attracted considerable attention in the
+communities of real algebra and polynomial optimization,
+primarily due to the relaxation method known as the moment-SOS hierarchy
 \cite{henrion2020moment}.
 
-Several properties of polyhedra generalize to spectrahedra, the feasible
+Several properties of polyhedra extend to spectrahedra, the feasible
 sets of SDP, {\it e.g.}, spectrahedra are convex basic semialgebraic sets,
-defined by a positivity condition on a pencil of real symmetric matrices
-(called LMI, linear matrix inequality).
-Nevertheless spectrahedra are not stable under linear image, {\it i.e.},
-projections of spectrahedra (called semidefinite-representable sets)
-are in general not spectrahedra. It has been asked by Nemirovski
-\cite{nemirovski2007advances} whether every convex semialgebraic set admits
-a semidefinite-representation, {\it i.e.} is the projection of a spectrahedron,
-then conjectured by Helton and Nie \cite{helton_sufficient_2008};
-this has been disproved by Scheiderer that exhibited compact counterexamples
-\cite{scheiderer_spectrahedral_2017}.
+defined by a positivity condition on a pencil of real symmetric matrices,
+known as linear matrix inequality (LMI).
+Nevertheless spectrahedra are not closed under linear images; that is,
+projections of spectrahedra --- referred to as semidefinite-representable sets ---
+are in general not spectrahedra. Nemirovski
+\cite{nemirovski2007advances} raised the question of whether every convex semialgebraic set admits
+a semidefinite representation, that is, whether it can be realized as the projection
+of a spectrahedron. This question was later conjectured affirmatively \cite{helton_sufficient_2008} 
+but was subsequently disproved by Scheiderer, who
+exhibited compact counterexamples \cite{scheiderer_spectrahedral_2017}.
 
-Another difference with polyhedra is that the base field where the LMI is defined
-might not be sufficient to describe points on the corresponding spectrahedron.
-Spectrahedra defined over $\QQ$ might not admit rational points, hence the
-solution of a SDP problem defined over $\QQ$ might not necessarily be
-expressible as rational combination of input data.
-However it is still algebraic over the base field, hence,
-assuming the input data of a SDP belongs to an effective field $K$,
-it follows that a solution can be described and computed as
-element of a vector space over some algebraic extension of $K$.
-This leads to interesting algorithmic questions.
-Complexity bounds for the feasibility of SDP have been obtained in
-\cite{porkolab1997complexity} and are based on general quantifier
-elimination bounds \cite{renegar1992computational}. Explicit exact
-algorithms exploiting the underlying determinantal structure of SDP
-have been designed more recently \cite{henrion2016exact,NALDI2018206}.
+A further distinction from polyhedra is that the base field over which a linear matrix inequality (LMI) is defined may be insufficient to describe the points of the corresponding spectrahedron. In particular, spectrahedra defined over $\QQ$ may fail to admit rational points; consequently, the solution of a semidefinite program defined over $\QQ$ need not be expressible as a rational combination of the input data. Nevertheless, such solutions are algebraic over the base field. Therefore, assuming that the input data of a semidefinite program belong to an effective field $K$, it follows that a solution can be described and computed as an element of a vector space over a suitable algebraic extension of $K$. This observation gives rise to natural algorithmic questions. Complexity bounds for the feasibility problem in semidefinite programming were obtained in \cite{porkolab1997complexity} and rely on general bounds from quantifier elimination \cite{renegar1992computational}. More recently, explicit exact algorithms exploiting the underlying determinantal structure of semidefinite programs have been developed \cite{henrion2016exact,NALDI2018206}.
 
-%% j'ai commenté ça car trop d'information pour quelque chose dont on parle pas dans le reste du papier
-%%
-%%
-%It is worth mentioning that the complexity status of SDP is widely open.
-%Ramana's dual \cite{ramana1997exact} implies a series of general
-%results: in the Blum-Shub-Smale model \cite{blum1989theory}, the feasibility
-%of SDP is in $\text{NP} \cap \text{co-NP}$, whereas it is not known to be
-%in NP in the Turing model; checking boundedness, attainability and optimality
-%can be polynomially reduced to the feasibility of SDP \cite{ramana1997exact}.
-%%% CE PARAGRAPHE ME PARAIT MOINS PRIORITAIRE
-% A complexity analysis for the computation of an approximate solution of an SDP can be made based on the ellipsoid algorithm \cite{khachiyan1979polynomial,grotschel1981ellipsoid} or on interior-point methods \cite{de2016turing}; in this approximation framework, SDP is solvable in polynomial time in the input size (\emph{i.e.} matrix size, number of variables, bit size of the coefficients), $\log(\frac{1}{\varepsilon})$ (where $\varepsilon$ is the target precision) and $\log(\frac{R}{r})$, where $r,R$ are radii of balls respectively included in and containing the feasible set, cf. \cite{grotschel1981ellipsoid} or \cite[Thm.1.1]{de2016turing} (see also \cite[Sec.1.9]{deKlerk}).
-
-Nevertheless the complexity status of SDP, unlike LP, remains widely
-open. This has motivated the development of variants of this problem beyond the real case.
-Tropical convexity and in particular generalizations of polyhedra and spectrahedra to the tropical setting
-have been proposed in \cite{develin2004tropical,allamigeon_tropical_2020} and tropical methods applied to
-non-archimedean SDP \cite{allamigeon2016solving}. It is worth mentioning that tropical spectrahedra satisfy
-the Helton-Nie property \cite{allamigeon2019tropical}. Linear matrix inequalities with parametric coefficients
-have been studied in \cite{naldi2025solving}.
+Nevertheless the complexity status of SDP, unlike that of LP, remains largely
+open. This lack of understanding has spurred the development of variants of the problem beyond the classical 
+real setting.
+In this direction, tropical convexity --- and more precisely tropical analogues of polyhedra and spectrahedra ---
+were introduced in \cite{develin2004tropical,allamigeon_tropical_2020} and tropical techniques have since been applied to
+non-Archimedean SDP \cite{allamigeon2016solving}. Notably, tropical spectrahedra are known to satisfy
+the Helton-Nie property \cite{allamigeon2019tropical}. More recently, linear matrix inequalities with parametric coefficients
+have been investigated in \cite{naldi2025solving}.
 
 \paragraph{Main contributions.}
-In this paper we consider the situation where input data are defined over $(K,\val)$, where $K$ is a field and
-$\val$ a valuation map on $K$.
-The prototype of valued field we target is the field $K=\QQ_p$ of $p$-adic numbers equipped with
-$p$-adic valuation. A polyhedron over a valued field is naturally defined as a set of vectors such that some
-linear forms have nonnegative or infinite valuation ({\it cf.} \Cref{def_polyhedra}). Our main result in this
-context is the following theorem proved in \Cref{ssec:projections}:
+In this paper, we consider the setting in which the input data are defined over $(K,\val)$, where $K$ is a field and
+$\val$ is a valuation on $K$. The prototype of valued field we target is the field $K=\QQ_p$ of $p$-adic numbers, equipped with
+its $p$-adic valuation. A polyhedron over a valued field is naturally defined as the set of vectors for which certain
+linear forms have nonnegative or infinite valuation (see \Cref{def_polyhedra}). Our main result in this
+context is the following theorem, proved in \Cref{ssec:projections}:
 
 \begin{theorem}[direct image (DI)] \label{theo:DI}
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
 Then $f(\PP)$ is a polyhedron in $K^m$.
 \end{theorem}
 
-Next we focus on linear programming. We describe in \Cref{sec:LP}
-an algorithm based on computation of Smith Normal Forms for solving LP problems with
-data over $(K,\val)$, and prove its correctness (\Cref{algo_LP}).
+Next we turn our attention to linear programming. In \Cref{sec:LP}, we present
+an algorithm for solving LP problems with data over $(K,\val)$, based on the computation of 
+Smith Normal Forms, and we prove its correctness (see \Cref{algo_LP}).
 
-In \Cref{sec:spectrahedra} we define spectrahedra and semidefinite-re\-pre\-sen\-ta\-ble sets
+In \Cref{sec:spectrahedra}, we introduce spectrahedra and semidefinite-re\-pre\-sen\-ta\-ble sets
 over $(K,\val)$. A spectrahedron over a valued field is defined as the set of matrices
-in some affine space that are positive semidefinite, {\it i.e.} all of whose eigenvalues
-have nonnegative valuation in some algebraic closure of $K$. This defines, as in the
-real case, a class of semialgebraic sets including polyhedra.
+in an affine space that are positive semidefinite; that is, all of whose eigenvalues
+have nonnegative valuation in some algebraic closure of $K$. As in the real case, this gives rise
+to a class of semialgebraic sets that includes polyhedra.
 
-Nevertheless and in contrast with the real case, we exhibit a class of subsets of $K$
-(thus in dimension one) that are semidefinite-representable but not spectrahedral, under mild assumptions:
+Nevertheless, in contrast with the real case, we identify a class of subsets of $K$
+(that is, in dimension one) that are semidefinite-representable but not spectrahedral, 
+under mild assumptions:
 
 \begin{theorem}\label{main_2}
 Annuli of $K$ are semidefinite-representable but if the residue field of $K$ is infinite, no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
