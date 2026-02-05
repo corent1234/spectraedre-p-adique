@@ -475,8 +475,6 @@ $$
 \label{sec:polyhedra}
 
 In this section, we define polyhedra over a complete discrete valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. 
-%%%\footnote{\simone{On utilise vraiment le ``complete'' et ``discrete'' ici ? en tous cas pas pour la définition. Peut être dire (après la définition) qu'on fait cette hypothèse même si certains résultats sont vrais pour une valuation plus générale ?}} 
-%We end by presenting an algorithm for solving linear optimization problems over $K$.
 
 \begin{definition}
   \label{def_polyhedra}
@@ -510,13 +508,8 @@ yielding the following matrix form for $\PP$ (according to notation of
 for $A \in K^{d \times n}$, $v \in K^d$, $B \in K^{e \times n}$, and
 $w \in K^e$ such that $Ax+v = (\ell_1,\ldots,\ell_d)^T$
 and $Bx+w = (m_1,\ldots,m_e)^T$.
-%%means the entries of $v \in K^n$ have nonnegative valuation.
-%%We recall that that the smallest affine space of $K^n$ containing a set $S \subset K^n$ is called its \emph{affine hull} and denoted $\aff{S}$. The assumption on forms $\ell_i$ in \Cref{def_polyhedra} implies that the constraint $\val(m_1 \oplus \cdots \oplus m_e) = +\infty$ defines exactly the affine hull of $P$, in other words $\aff{P} = \{x \in K^n : m_j(x) = 0, j=1,\ldots,e\}$ \simone{(il nous faudrait une preuve, du genre: $\val(m(x))=+\infty$ pour tout $x \in P$ si et seulement si $m$ est une combinaison affine de $m_1,\ldots,m_e$.)}
-%%The \emph{dimension} of $P$ is defined as the dimension of $\aff{P}$ (for $e=0$, $\aff{P}=K^n$ and $P$ has dimension $n$). The \emph{relative interior} of $P$ is defined as $\relint{P} = \{x \in P : \val(\ell_1 \oplus \cdots \oplus \ell_d) < +\infty\}$ (\simone{pas clair si besoin de dimension et relint}).
 Remark that \Cref{def_polyhedra} includes the case $d=0$ corresponding to affine spaces, as in the real case.
 Moreover by definition the class of polyhedra is closed under intersection.
-%%% VOIR SI NECESSAIRE:
-%%%Without loss of generality\footnote{je ne sais plus si ça est nécessaire, si ce ne l'est pas, je l'enleverais.}, one may assume in \Cref{def_polyhedra} that for every $i=1,\ldots,d$ there exists $x \in P$ such that $\val(\ell_i(x))<+\infty$.
 
 \begin{example}
   The {closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
@@ -524,17 +517,10 @@ Moreover by definition the class of polyhedra is closed under intersection.
   \max_i\{\vert x_i \vert\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   As such, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
   $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$, {\it i.e.} $\OK^n = \{x \in K^n : x \succeq 0\}$.
-  %%%%%(its affine hull is indeed the whole $K^n$).
 \end{example}
 
 \subsection{Projections and direct image of polyhedra}
 \label{ssec:projections}
-
-%{\color{blue} Normalement avec la nouvelle definition, ça devrait aller, il faut par contre
-%  partir d'un polyedre defini aussi par des égalités. Peut être il faudrait aussi
-%  diviser la proposition en plusieures parties pour la rendre plus lisible, par exemple une
-%  première proposition avec la projection.}
-
 The goal of this section is to prove \Cref{theo:DI}, {\it i.e.}, that
 the class of polyhedra is stable under application of affine maps. This is done
 by reducing to particular cases. The strategy to deduce the main theorem DI 
