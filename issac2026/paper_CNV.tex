@@ -1400,7 +1400,7 @@ to diagonal linear programs.
   and as such they preserve inequalities: $Mz \succeq 0$ if and only if $Nz \succeq 0$, with
   $N = \mathrm{SNF}(M)$. Thus one has that $Ax+b = AP^{-1}y +b \succeq 0$ if and only if
   $Q(AP^{-1}y + b) = Sy + b' \succeq 0$; this yields \Cref{solsLP_item1}.
-  Moreover, for all $c \in K^n$, we have $\langle c, x\rangle = \langle c, P^{-1}Px \rangle =
+  Moreover, for all $c \in K^n$, $\langle c, x\rangle = \langle c, P^{-1}Px \rangle =
   \langle (P^{-1})^T c, Px \rangle = \langle c',y\rangle$, which proves
   \Cref{solsLP_item2}.
 \end{proof}
@@ -1594,7 +1594,7 @@ As a consequence, matrices with integral coefficients are positive semidefinite.
   $\OK$ is a ring, therefore $\chi_M \in \OK[T]$ if $M \in \OK^{d \times d}$.
 \end{proof}
 
-The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in the next example.
+The reverse inclusion of \Cref{cor_caracsdp} is false in general:
 
 \begin{example}
   Let
@@ -1725,11 +1725,10 @@ Moreover this class contains the polyhedra in $K^n$.
 Spectrahedra form a strict generalization of polyhedra:
 
 \begin{example}
-  The spectrahedron
+  The following spectrahedron is not a polyhedron:
   \[
-  \mathcal{S} = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}
+  \mathcal{S} = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}.
   \] 
-  is not a polyhedron.
 \end{example}
 \begin{proof}
   By \Cref{caracsdp}, one has $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
@@ -1810,9 +1809,9 @@ Denote by $\R^*_+$ the set of positive real numbers.
   \emph{semide\-fi\-nite-re\-pre\-sen\-ta\-ble (SDR)} if there exist $m,d \in \N$ and
   matrices $\{A_i,B_j : i = 0, \ldots, n, j = 1, \ldots, m\} \subset K^{d \times d}$ such that
   $$
-  \mathcal{R} = \left\{x \in K^n : \exists y \in K^m, A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j \succeq 0\right\}
+  \mathcal{R} = \Big\{x \in K^n : \exists y \in K^m, A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j \succeq 0\Big\}
   $$
-  that is, $x \in \mathcal{R}$ if and only if there exists $y \in K^m$ such that
+  that is, $x \in \mathcal{R}$ if and only if there is $y \in K^m$ such that
   $(x,y) \in S_M \subset K^{n+m}$, for some pencil $M(x,y) = A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j$.
   The integer $m$ is called the \emph{height} of the representation and $d$ its \emph{degree}.
 \end{definition}
