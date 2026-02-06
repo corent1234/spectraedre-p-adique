@@ -264,7 +264,7 @@ of a spectrahedron. This question was later conjectured affirmatively \cite{helt
 but was subsequently disproved by Scheiderer, who
 exhibited compact counterexamples \cite{scheiderer_spectrahedral_2017}.
 
-A further distinction from polyhedra is that the base field over which a linear matrix inequality (LMI) is defined may be insufficient to describe the points of the corresponding spectrahedron. In particular, spectrahedra defined over $\QQ$ may fail to admit rational points; consequently, the solution of a semidefinite program defined over $\QQ$ need not be expressible as a rational combination of the input data. Nevertheless, such solutions are algebraic over the base field. Therefore, assuming that the input data of a semidefinite program belong to an effective field $K$, it follows that a solution can be described and computed as an element of a vector space over a suitable algebraic extension of $K$. This observation gives rise to natural algorithmic questions. Complexity bounds for the feasibility problem in semidefinite programming were obtained in \cite{porkolab1997complexity} and rely on general bounds from quantifier elimination \cite{renegar1992computational}. More recently, explicit exact algorithms exploiting the underlying determinantal structure of semidefinite programs have been developed \cite{henrion2016exact,NALDI2018206}.
+A further distinction from polyhedra is that the base field over which a LMI is defined may be insufficient to describe the points of the corresponding spectrahedron. In particular, spectrahedra defined over $\QQ$ may fail to admit rational points; consequently, the solution of a semidefinite program defined over $\QQ$ need not be expressible as a rational combination of the input data. Nevertheless, such solutions are algebraic over the base field. Therefore, assuming that the input data of a semidefinite program belong to an effective field $K$, it follows that a solution can be described and computed as an element of a vector space over a suitable algebraic extension of $K$. This observation gives rise to natural algorithmic questions. Complexity bounds for the feasibility problem in semidefinite programming were obtained in \cite{porkolab1997complexity} and rely on general bounds from quantifier elimination \cite{renegar1992computational}. More recently, explicit exact algorithms exploiting the underlying determinantal structure of semidefinite programs have been developed \cite{henrion2016exact,NALDI2018206}.
 
 Nevertheless the complexity status of SDP, unlike that of LP, remains largely
 open. This lack of understanding has spurred the development of variants of the problem beyond the classical 
@@ -277,8 +277,9 @@ have been investigated in \cite{naldi2025solving}.
 
 \paragraph{Main contributions.}
 In this paper, we consider the setting in which the input data are defined over $(K,\val)$, where $K$ is a field and
-$\val$ is a valuation on $K$. The prototype of valued field we target is the field $K=\QQ_p$ of $p$-adic numbers, equipped with
-its $p$-adic valuation. A polyhedron over a valued field is naturally defined as the set of vectors for which certain
+$\val$ is a valuation on $K$. For simplicity, we assume throughout that $\val$ is discrete and that $(K,\val)$ is complete, although some results do not require this assumption. The prototype of valued field we target is the field $K=\QQ_p$ of $p$-adic numbers, equipped with its $p$-adic valuation.
+
+A polyhedron over a valued field is naturally defined as the set of vectors for which certain
 linear forms have nonnegative or infinite valuation (see \Cref{def_polyhedra}). Our main result in this
 context is the following theorem, proved in \Cref{ssec:projections}:
 
@@ -309,9 +310,10 @@ Annuli of $K$ are semidefinite-representable but if the residue field of $K$ is 
 \section{Preliminaries}
 \label{sec:prelim}
 
-Throughout this paper, $(K,\val)$ denotes a complete valued field; that is, $K$ is a field
-and $\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, where $\Gamma$ 
-is an ordered abelian group. The valuation is often assumed to be discrete ($\Gamma=\ZZ$)
+Throughout this paper, $(K,\val)$ denotes a complete valued field; that is, $K$ is a field,
+$\val : K \twoheadrightarrow \Gamma \cup \{+\infty\}$ is a valuation on $K$, where $\Gamma$ 
+is an ordered abelian group, and $K$ is complete with respect to the induced metric.
+The valuation is often assumed to be discrete ($\Gamma=\ZZ$)
 with uniformizer $\pi \in K$. The valuation ring of $K$ is defined as
 $$
 \OK = \{x \in K : \val(x) \geq 0\},
@@ -373,7 +375,7 @@ $$
 A(x) \succeq 0\right\},
 $$
 or equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
-a {real spectrahedron}. As a linear preimage of an affine section of $\sym_d^+(\R)$, real spectrahedra
+a {real spectrahedron}. As an affine section of $\sym_d^+(\R)$ --- or a linear preimage --- real spectrahedra
 are closed convex semialgebraic sets, possibly with empty interior.
 
 \begin{example}\label{ell3}
@@ -474,7 +476,9 @@ $$
 \section{Polyhedra}
 \label{sec:polyhedra}
 
-In this section, we define polyhedra over a complete discrete valued field $K$ with valuation $\val$ and a uniformizer $\pi$, and we prove that the class of polyhedra is closed under linear transformations, as in the real case. 
+In this section, we define polyhedra over a complete discrete valued field $(K,\val)$
+with a uniformizer $\pi$, and we prove that the class of polyhedra is closed under
+linear transformations, as in the real case. 
 
 \begin{definition}
   \label{def_polyhedra}
@@ -516,12 +520,12 @@ Moreover by definition the class of polyhedra is closed under intersection.
   polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} \coloneq
   \max_i\{\vert x_i \vert\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   As such, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
-  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$, {\it i.e.} $\OK^n = \{x \in K^n : x \succeq 0\}$.
+  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$, that is $\OK^n = \{x \in K^n : x \succeq 0\}$.
 \end{example}
 
 \subsection{Projections and direct image of polyhedra}
 \label{ssec:projections}
-The goal of this section is to prove \Cref{theo:DI}, {\it i.e.}, that
+The goal of this section is to prove \Cref{theo:DI}, that is, that
 the class of polyhedra is stable under application of affine maps. This is done
 by reducing to particular cases. The strategy to deduce the main theorem DI 
 is given in \Cref{fig:di-properties}.
@@ -556,7 +560,7 @@ is given in \Cref{fig:di-properties}.
 \end{figure}
 
 We begin with the case of linear maps in $\GL_n(\OK)$.
-We often fix a linear basis $e_1,\ldots,e_n$ of $K^n$ which we call canonical.
+We often fix a linear basis $\xi_1,\ldots,\xi_n$ of $K^n$ which we call canonical.
 
 \begin{lemma}[DI${}_{\mathrm{aut}}$]
 Let $f \in \GL_n(\OK)$ and $\PP$ a polyhedron in $K^n$.
@@ -639,7 +643,7 @@ Q_A A P_A^{-1} =
 %  &		&			&	&		 &	&a_q 	\\			
 %\end{bmatrix},
 %\]
-with $Q_A \in \GL_d(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A e_n = e_n$,
+with $Q_A \in \GL_d(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A \xi_n = \xi_n$,
 and $a = (a_1,\ldots,a_d)^\intercal$.
 
 Multiplying on the left by $Q_A^{\pm 1}$ does not
@@ -896,7 +900,7 @@ We conclude with the proof of the main result of this section.
 \begin{proof}[Proof of \Cref{theo:DI}]
 Recall that here $f : K^n \to K^m$ is an affine map and $\PP \subset K^n$ is a polyhedron.
 Let us write $\PP = \PP_I \cap \PP_E$
-with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+v \geq 0 \right\rbrace$
+with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+v \succeq 0 \right\rbrace$
 and $\PP_E \coloneq \left\lbrace x \in K^n,  Bx+w=0 \right\rbrace$.
 %%\overrightarrow{\PP_E}
 Then $f(\PP) = f_{\PP_E}(\PP_I)$, {\it i.e.}, the image of $\PP_I$ through the restriction
@@ -999,7 +1003,7 @@ and the theorem is proven.
 %			&		&			&	&		 &	&    	\\
 %			&		&			&	&		 &	&a_q 	\\			
 %\end{bmatrix},\]
-%with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n.$
+%with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(\xi_n)=\xi_n.$
 %
 %Multiplying on the left by $Q_A^{\pm 1}$ does not
 %modify whether the valuation inequalities are satisfied.
@@ -1327,7 +1331,7 @@ in the reduced problem.
       \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
       %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
       %and $\langle c,y\rangle = \pi^v\OK$
-      \RETURN [FEAS, ${\bf e}_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
+      \RETURN [FEAS, $\xi_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
       \ENDIF
       \ENDIF 
       \ENDIF 
@@ -1396,10 +1400,10 @@ to diagonal linear programs.
 \end{lemma}
 \begin{proof}
   Note that the transition matrices $P$ and $Q$ defining the form SNF$(A)$ are invertible in $\OK$
-  and as such they preserve inequalities: $Mz \geq 0$ if and only if $Nz \geq 0$, with
-  $N = \mathrm{SNF}(M)$. Thus one has that $Ax+b = AP^{-1}y +b \geq 0$ if and only if
-  $Q(AP^{-1}y + b) = Sy + b' \geq 0$; this yields \Cref{solsLP_item1}.
-  Moreover, for all $c \in K^n$, we have $\langle c, x\rangle = \langle c, P^{-1}Px \rangle =
+  and as such they preserve inequalities: $Mz \succeq 0$ if and only if $Nz \succeq 0$, with
+  $N = \mathrm{SNF}(M)$. Thus one has that $Ax+b = AP^{-1}y +b \succeq 0$ if and only if
+  $Q(AP^{-1}y + b) = Sy + b' \succeq 0$; this yields \Cref{solsLP_item1}.
+  Moreover, for all $c \in K^n$, $\langle c, x\rangle = \langle c, P^{-1}Px \rangle =
   \langle (P^{-1})^T c, Px \rangle = \langle c',y\rangle$, which proves
   \Cref{solsLP_item2}.
 \end{proof}
@@ -1429,11 +1433,12 @@ to checking the valuations of input data:
   with data $(S,b',c',{\bf 0},0)$.
 
   Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for problem \eqref{LP} with data $(S,b',c',{\bf 0},0)$.
-  Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $e^i$ whose only non-zero
-  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c',{\bf 0},0)$,
-  for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$.
+  Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $\xi_i$ whose only non-zero
+  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha \xi_i$ is feasible for \eqref{LP} with data
+  $(S,b',c',{\bf 0},0)$, for all $\alpha \in K$ and $\langle c', y^* + \alpha \xi_i\rangle = \langle c' , y^*
+  \rangle + \alpha c'_i$.
   In particular, for all $n \in \mathbb{N}$ if we set $\alpha_n = -({\langle c', y^* \rangle + \pi^{-n}})/{c'_i}$,
-  we have $\val \left(\langle c', y^* + \alpha_n e ^i \rangle\right) = \val \pi^{-n} = -n$.
+  we have $\val \left(\langle c', y^* + \alpha_n \xi_i \rangle\right) = \val \pi^{-n} = -n$.
   Therefore $p^* = -\infty$ and (LP) is unbounded.
 \end{proof}
 
@@ -1452,7 +1457,7 @@ We conclude by giving explicit solutions to the reduced \eqref{LP}:
     set; \label{solutions:it1}
   \item
     if $\val \lambda \geq v$, the minimum is $v$ and is attained on
-    ${\bf e}_j \in K^n$, the vector with all $0$'s except with a $1$ on the $j$-th component,
+    $\xi_j \in K^n$, the vector with all $0$'s except with a $1$ on the $j$-th component,
     with $j$ satisfying $\val (c'_j/s_j) = v$. \label{solutions:it2}
   \end{enumerate}
   %One has
@@ -1462,7 +1467,7 @@ We conclude by giving explicit solutions to the reduced \eqref{LP}:
   %If attained on every $x \in \PP'$;
 \end{lemma}
 \begin{proof}
-  The feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$ of the diagonal LP can be written
+  The feasible set $\PP' = \{y \in K^n : Sy+b' \succeq 0\}$ of the diagonal LP can be written
   as the set of vectors $y \in K^n$ that verifies $s_i y_i + b'_i \in \OK$ for $i=1,...,r$.
   In other words:
   $$
@@ -1593,7 +1598,7 @@ As a consequence, matrices with integral coefficients are positive semidefinite.
   $\OK$ is a ring, therefore $\chi_M \in \OK[T]$ if $M \in \OK^{d \times d}$.
 \end{proof}
 
-The reverse inclusion of \Cref{cor_caracsdp} is false in general as we show in the next example.
+The reverse inclusion of \Cref{cor_caracsdp} is false in general:
 
 \begin{example}
   Let
@@ -1724,11 +1729,10 @@ Moreover this class contains the polyhedra in $K^n$.
 Spectrahedra form a strict generalization of polyhedra:
 
 \begin{example}
-  The spectrahedron
+  The following spectrahedron is not a polyhedron:
   \[
-  \mathcal{S} = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}
+  \mathcal{S} = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}.
   \] 
-  is not a polyhedron.
 \end{example}
 \begin{proof}
   By \Cref{caracsdp}, one has $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
@@ -1809,9 +1813,9 @@ Denote by $\R^*_+$ the set of positive real numbers.
   \emph{semide\-fi\-nite-re\-pre\-sen\-ta\-ble (SDR)} if there exist $m,d \in \N$ and
   matrices $\{A_i,B_j : i = 0, \ldots, n, j = 1, \ldots, m\} \subset K^{d \times d}$ such that
   $$
-  \mathcal{R} = \left\{x \in K^n : \exists y \in K^m, A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j \succeq 0\right\}
+  \mathcal{R} = \Big\{x \in K^n : \exists y \in K^m, A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j \succeq 0\Big\}
   $$
-  that is, $x \in \mathcal{R}$ if and only if there exists $y \in K^m$ such that
+  that is, $x \in \mathcal{R}$ if and only if there is $y \in K^m$ such that
   $(x,y) \in S_M \subset K^{n+m}$, for some pencil $M(x,y) = A_0+\sum_{i=1}^n x_iA_i + \sum_{j=1}^m y_jB_j$.
   The integer $m$ is called the \emph{height} of the representation and $d$ its \emph{degree}.
 \end{definition}
