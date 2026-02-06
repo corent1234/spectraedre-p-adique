@@ -375,7 +375,7 @@ $$
 A(x) \succeq 0\right\},
 $$
 or equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
-a {real spectrahedron}. As a linear preimage of an affine section of $\sym_d^+(\R)$, real spectrahedra
+a {real spectrahedron}. As an affine section of $\sym_d^+(\R)$ --- or a linear preimage --- real spectrahedra
 are closed convex semialgebraic sets, possibly with empty interior.
 
 \begin{example}\label{ell3}
@@ -520,12 +520,12 @@ Moreover by definition the class of polyhedra is closed under intersection.
   polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} \coloneq
   \max_i\{\vert x_i \vert\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   As such, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
-  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$, {\it i.e.} $\OK^n = \{x \in K^n : x \succeq 0\}$.
+  $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$, that is $\OK^n = \{x \in K^n : x \succeq 0\}$.
 \end{example}
 
 \subsection{Projections and direct image of polyhedra}
 \label{ssec:projections}
-The goal of this section is to prove \Cref{theo:DI}, {\it i.e.}, that
+The goal of this section is to prove \Cref{theo:DI}, that is, that
 the class of polyhedra is stable under application of affine maps. This is done
 by reducing to particular cases. The strategy to deduce the main theorem DI 
 is given in \Cref{fig:di-properties}.
@@ -560,7 +560,7 @@ is given in \Cref{fig:di-properties}.
 \end{figure}
 
 We begin with the case of linear maps in $\GL_n(\OK)$.
-We often fix a linear basis $e_1,\ldots,e_n$ of $K^n$ which we call canonical.
+We often fix a linear basis $\xi_1,\ldots,\xi_n$ of $K^n$ which we call canonical.
 
 \begin{lemma}[DI${}_{\mathrm{aut}}$]
 Let $f \in \GL_n(\OK)$ and $\PP$ a polyhedron in $K^n$.
@@ -643,7 +643,7 @@ Q_A A P_A^{-1} =
 %  &		&			&	&		 &	&a_q 	\\			
 %\end{bmatrix},
 %\]
-with $Q_A \in \GL_d(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A e_n = e_n$,
+with $Q_A \in \GL_d(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A \xi_n = \xi_n$,
 and $a = (a_1,\ldots,a_d)^\intercal$.
 
 Multiplying on the left by $Q_A^{\pm 1}$ does not
@@ -1003,7 +1003,7 @@ and the theorem is proven.
 %			&		&			&	&		 &	&    	\\
 %			&		&			&	&		 &	&a_q 	\\			
 %\end{bmatrix},\]
-%with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(e_n)=e_n.$
+%with $Q_A \in \GL_q(\OK)$ and $P_A \in \GL_n(\OK)$ such that $P_A(\xi_n)=\xi_n.$
 %
 %Multiplying on the left by $Q_A^{\pm 1}$ does not
 %modify whether the valuation inequalities are satisfied.
@@ -1331,7 +1331,7 @@ in the reduced problem.
       \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
       %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
       %and $\langle c,y\rangle = \pi^v\OK$
-      \RETURN [FEAS, ${\bf e}_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
+      \RETURN [FEAS, $\xi_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
       \ENDIF
       \ENDIF 
       \ENDIF 
@@ -1433,11 +1433,12 @@ to checking the valuations of input data:
   with data $(S,b',c',{\bf 0},0)$.
 
   Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for problem \eqref{LP} with data $(S,b',c',{\bf 0},0)$.
-  Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $e^i$ whose only non-zero
-  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha e^i$ is feasible for \eqref{LP} with data $(S,b',c',{\bf 0},0)$,
-  for all $\alpha \in K$ and $\langle c', y^* + \alpha e^i\rangle = \langle c' , y^* \rangle + \alpha c'_i$.
+  Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $\xi_i$ whose only non-zero
+  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha \xi_i$ is feasible for \eqref{LP} with data
+  $(S,b',c',{\bf 0},0)$, for all $\alpha \in K$ and $\langle c', y^* + \alpha \xi_i\rangle = \langle c' , y^*
+  \rangle + \alpha c'_i$.
   In particular, for all $n \in \mathbb{N}$ if we set $\alpha_n = -({\langle c', y^* \rangle + \pi^{-n}})/{c'_i}$,
-  we have $\val \left(\langle c', y^* + \alpha_n e ^i \rangle\right) = \val \pi^{-n} = -n$.
+  we have $\val \left(\langle c', y^* + \alpha_n \xi_i \rangle\right) = \val \pi^{-n} = -n$.
   Therefore $p^* = -\infty$ and (LP) is unbounded.
 \end{proof}
 
@@ -1456,7 +1457,7 @@ We conclude by giving explicit solutions to the reduced \eqref{LP}:
     set; \label{solutions:it1}
   \item
     if $\val \lambda \geq v$, the minimum is $v$ and is attained on
-    ${\bf e}_j \in K^n$, the vector with all $0$'s except with a $1$ on the $j$-th component,
+    $\xi_j \in K^n$, the vector with all $0$'s except with a $1$ on the $j$-th component,
     with $j$ satisfying $\val (c'_j/s_j) = v$. \label{solutions:it2}
   \end{enumerate}
   %One has
