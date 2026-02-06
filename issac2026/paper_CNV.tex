@@ -898,7 +898,7 @@ We conclude with the proof of the main result of this section.
 \begin{proof}[Proof of \Cref{theo:DI}]
 Recall that here $f : K^n \to K^m$ is an affine map and $\PP \subset K^n$ is a polyhedron.
 Let us write $\PP = \PP_I \cap \PP_E$
-with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+v \geq 0 \right\rbrace$
+with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+v \succeq 0 \right\rbrace$
 and $\PP_E \coloneq \left\lbrace x \in K^n,  Bx+w=0 \right\rbrace$.
 %%\overrightarrow{\PP_E}
 Then $f(\PP) = f_{\PP_E}(\PP_I)$, {\it i.e.}, the image of $\PP_I$ through the restriction
@@ -1398,9 +1398,9 @@ to diagonal linear programs.
 \end{lemma}
 \begin{proof}
   Note that the transition matrices $P$ and $Q$ defining the form SNF$(A)$ are invertible in $\OK$
-  and as such they preserve inequalities: $Mz \geq 0$ if and only if $Nz \geq 0$, with
-  $N = \mathrm{SNF}(M)$. Thus one has that $Ax+b = AP^{-1}y +b \geq 0$ if and only if
-  $Q(AP^{-1}y + b) = Sy + b' \geq 0$; this yields \Cref{solsLP_item1}.
+  and as such they preserve inequalities: $Mz \succeq 0$ if and only if $Nz \succeq 0$, with
+  $N = \mathrm{SNF}(M)$. Thus one has that $Ax+b = AP^{-1}y +b \succeq 0$ if and only if
+  $Q(AP^{-1}y + b) = Sy + b' \succeq 0$; this yields \Cref{solsLP_item1}.
   Moreover, for all $c \in K^n$, we have $\langle c, x\rangle = \langle c, P^{-1}Px \rangle =
   \langle (P^{-1})^T c, Px \rangle = \langle c',y\rangle$, which proves
   \Cref{solsLP_item2}.
@@ -1464,7 +1464,7 @@ We conclude by giving explicit solutions to the reduced \eqref{LP}:
   %If attained on every $x \in \PP'$;
 \end{lemma}
 \begin{proof}
-  The feasible set $\PP' = \{y \in K^n : Sy+b' \geq 0\}$ of the diagonal LP can be written
+  The feasible set $\PP' = \{y \in K^n : Sy+b' \succeq 0\}$ of the diagonal LP can be written
   as the set of vectors $y \in K^n$ that verifies $s_i y_i + b'_i \in \OK$ for $i=1,...,r$.
   In other words:
   $$
