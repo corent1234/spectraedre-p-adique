@@ -1,0 +1,113 @@
+\documentclass{svproc}
+
+\usepackage{amsmath}
+%\usepackage{amsthm}
+%\usepackage{amssymb} %%% ça ne fait pas compiler en acmart
+\usepackage{amsfonts}
+\usepackage{mathrsfs} 
+\usepackage{graphicx}
+\usepackage{color,xcolor}
+%\usepackage{ulem}
+\usepackage{bm}
+
+%%%% pour le "def" sur \leftrightarrow
+\makeatletter
+\newcommand\xleftrightarrow[2][]{%
+  \ext@arrow 9999{\Leftrightarrowfill@}{#1}{#2}}
+\newcommand\longleftrightarrowfill@{%
+  \arrowfill@\leftarrow\relbar\rightarrow}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% --------- ALGORITHMS ---------- <<:
+\usepackage{algorithm,algorithmic}
+%\usepackage[noend]{algpseudocode}      %%% this is for the algorithms
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} % require --> input
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % ensure --> output
+% :>> ALGORITHMS
+
+\usepackage{stmaryrd} %for double brackets
+
+\newcommand{\R}{\mathbb{R}} % real numbers
+\newcommand{\C}{\mathbb{C}} % complex numbers
+\newcommand{\N}{\mathbb{N}} % integers
+%%%\newcommand{\allmat}{\mathbb{M}} % matrices ---> remplacé par K^{m \times n}
+\newcommand{\sym}{\mathbb{S}} % matrices symétriques
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\Qc}{\mathcal{Q}}
+\renewcommand{\span}[1]{{\text{span}(#1)}} % simone's comments
+\newcommand{\aff}[1]{{\text{aff}(#1)}} % simone's comments
+\newcommand{\relint}[1]{{\text{relint}(#1)}} % simone's comments
+\newcommand{\calL}{\mathcal{L}} % simone's comments
+
+\newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
+\newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
+\newcommand{\tristan}[1]{{\color{red} #1}} % tristan's comments
+\newcommand{\todo}[1]{{\color{blue}\bf \text{TODO: } #1}} % TODOs
+\newcommand{\rev}[1]{{\color{blue} #1}} % TODOs
+
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{corollary}[theorem]{Corollary}
+%%\newtheorem{algorithm}[theorem]{Algorithm}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{condition}[theorem]{Condition}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{assumption}[theorem]{Assumption}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{problem}[theorem]{Problem}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{notation}[theorem]{Notation}
+
+%p-adic commands
+\DeclareMathOperator{\val}{val}
+\def\QQ{\ensuremath{\mathbb{Q}}}
+\def\ZZ{\ensuremath{\mathbb{Z}}}
+\newcommand{\OK}{\mathcal{O}_K}
+\def\diag{\mathrm{diag}}
+
+\newcommand{\GL}{\mathrm{GL}}
+
+
+\begin{document}
+\mainmatter
+
+\title{Quelque question pour la suite}
+%
+\titlerunning{suite}  % abbreviated title (for running head)
+%                                     also used for the TOC unless
+%                                     \toctitle is used
+%
+\author{}
+%
+\authorrunning{} % abbreviated author list (for running head)
+%
+%
+\institute{}
+
+\maketitle              % typeset the title of the contribution
+
+
+\begin{abstract}
+This is a note for further questions concerning the paper \cite{cornou}.
+\end{abstract}
+
+%
+% ---- Bibliography ----
+%
+%\begin{thebibliography}{99}
+%\end{thebibliography}
+
+\newpage
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{../issac2026/refs}
+
+
+\end{document}
