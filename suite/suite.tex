@@ -96,7 +96,7 @@
 
 
 \begin{abstract}
-This is a note for further questions concerning the paper \cite{cornou}.
+This note is about further questions concerning the paper \cite{cornou}.
 \end{abstract}
 
 %
@@ -105,7 +105,39 @@ This is a note for further questions concerning the paper \cite{cornou}.
 %\begin{thebibliography}{99}
 %\end{thebibliography}
 
+\section{On solutions to LP}
+
+In \cite{cornou} we define polyhedra in $K^n$, for a valued field $(K, \val)$, as the
+set of vectors whose entries have valuation nonnegative or infinite and satisfying some
+linear constraint, {\it i.e.} subsets of the form
+\begin{equation}\label{eq_def_polyhedra}
+  \PP =
+  \left\{
+  x \in K^n :
+  \begin{array}{ll}
+    \val(\ell_i(x)) \geq 0 & i=1,\ldots,d \\
+    \val(m_j(x)) = +\infty & j=1,\ldots,e
+  \end{array}
+  \right\},
+\end{equation}
+for some affine forms $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
+
+Some of the linear forms $\ell_i$ might vanish at some $x \in \PP$
+({\it i.e.} one might have $\val(\ell_i(x)) = +\infty$). Usually one can assume
+that for every $x \in \PP$, there exist $i = 1,\ldots,d$, such that
+$\val(\ell_i(x)) < +\infty$ (this corresponds to the situation over $K=\R$
+when $\PP$ is not a simple affine set).
+
+\begin{definition}
+  The \emph{corank} of a feasible point $x \in \PP$ is the value
+  $$
+  \mathrm{corank}(x) = |\{i = 1,\ldots,d : \val(\ell_i(x)) = +\infty\}|.
+  $$
+  It depends on the description \eqref{eq_def_polyhedra}.
+\end{definition}
+
 \newpage
+
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{../issac2026/refs}
 
