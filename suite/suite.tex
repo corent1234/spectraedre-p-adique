@@ -1,4 +1,4 @@
-\documentclass{svproc}
+\documentclass{amsart}
 
 \usepackage{amsmath}
 %\usepackage{amsthm}
@@ -52,19 +52,18 @@
 \newcommand{\todo}[1]{{\color{blue}\bf \text{TODO: } #1}} % TODOs
 \newcommand{\rev}[1]{{\color{blue} #1}} % TODOs
 
-%\newtheorem{theorem}{Theorem}[section]
-%\newtheorem{lemma}[theorem]{Lemma}
-%\newtheorem{proposition}[theorem]{Proposition}
-%\newtheorem{corollary}[theorem]{Corollary}
-%%\newtheorem{algorithm}[theorem]{Algorithm}
-%\newtheorem{conjecture}[theorem]{Conjecture}
-%\newtheorem{condition}[theorem]{Condition}
-%\newtheorem{definition}[theorem]{Definition}
-%\newtheorem{assumption}[theorem]{Assumption}
-%\newtheorem{remark}[theorem]{Remark}
-%\newtheorem{problem}[theorem]{Problem}
-%\newtheorem{example}[theorem]{Example}
-%\newtheorem{notation}[theorem]{Notation}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
 
 %p-adic commands
 \DeclareMathOperator{\val}{val}
@@ -77,20 +76,17 @@
 
 
 \begin{document}
-\mainmatter
 
 \title{Quelque question pour la suite}
 %
-\titlerunning{suite}  % abbreviated title (for running head)
 %                                     also used for the TOC unless
 %                                     \toctitle is used
 %
 \author{}
 %
-\authorrunning{} % abbreviated author list (for running head)
 %
 %
-\institute{}
+%\institute{}
 
 \maketitle              % typeset the title of the contribution
 
@@ -122,11 +118,19 @@ linear constraint, {\it i.e.} subsets of the form
 \end{equation}
 for some affine forms $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
 
+Note that a given polyhedron $\PP$ might have different formulations
+of type \eqref{eq_def_polyhedra}. To make it more canonical one can make
+the following assumption:
+\begin{assumption}
+For every $x \in \PP$, there exist $i = 1,\ldots,d$, such that
+$\val(\ell_i(x)) < +\infty$.
+\end{assumption}
+This corresponds to the situation over $K=\R$ when $\PP$ is not a simple
+affine set.
+
+
 Some of the linear forms $\ell_i$ might vanish at some $x \in \PP$
-({\it i.e.} one might have $\val(\ell_i(x)) = +\infty$). Usually one can assume
-that for every $x \in \PP$, there exist $i = 1,\ldots,d$, such that
-$\val(\ell_i(x)) < +\infty$ (this corresponds to the situation over $K=\R$
-when $\PP$ is not a simple affine set).
+({\it i.e.} one might have $\val(\ell_i(x)) = +\infty$). 
 
 \begin{definition}
   The \emph{corank} of a feasible point $x \in \PP$ is the value
@@ -138,7 +142,8 @@ when $\PP$ is not a simple affine set).
 
 \newpage
 
-\bibliographystyle{ACM-Reference-Format}
+%\bibliographystyle{ACM-Reference-Format}
+\bibliographystyle{acm}
 \bibliography{../issac2026/refs}
 
 
