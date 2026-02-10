@@ -101,9 +101,9 @@ This note is about further questions concerning the paper \cite{cornou}.
 %\begin{thebibliography}{99}
 %\end{thebibliography}
 
-\section{On solutions to LP}
+\section{On the geometry of solutions to LP}
 
-In \cite{cornou} we define polyhedra in $K^n$, for a valued field $(K, \val)$, as the
+In \cite[Def.\,3.1]{cornou} we define polyhedra in $K^n$, for a valued field $(K, \val)$, as the
 set of vectors whose entries have valuation nonnegative or infinite and satisfying some
 linear constraint, {\it i.e.} subsets of the form
 \begin{equation}\label{eq_def_polyhedra}
@@ -117,28 +117,35 @@ linear constraint, {\it i.e.} subsets of the form
   \right\},
 \end{equation}
 for some affine forms $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
+We say that a form $m$ vanish on $x$ if $\val(m(x))=+\infty$.
 
 Note that a given polyhedron $\PP$ might have different formulations
 of type \eqref{eq_def_polyhedra}. To make it more canonical one can make
-the following assumption:
+the following assumption (which is what we do from now on):
+
 \begin{assumption}
-For every $x \in \PP$, there exist $i = 1,\ldots,d$, such that
-$\val(\ell_i(x)) < +\infty$.
+There exist an element $x \in \PP$ and an index $i \in \{1,\ldots,d\}$ such that
+$\val(\ell_i(x)) < +\infty$, that is, the forms $\ell_1,\ldots,\ell_d$
+do not vanish identically on $\PP$.
 \end{assumption}
-This corresponds to the situation over $K=\R$ when $\PP$ is not a simple
-affine set.
 
-
-Some of the linear forms $\ell_i$ might vanish at some $x \in \PP$
-({\it i.e.} one might have $\val(\ell_i(x)) = +\infty$). 
+This excludes the trivial case of $\PP$ being an affine subset of $K^n$.
+Nevertheless the linear forms $\ell_i$ might vanish at some
+$x \in \PP$ ({\it i.e.} one might have $\val(\ell_i(x)) = +\infty$ for some $x$).
+This leads to the following definition:
 
 \begin{definition}
-  The \emph{corank} of a feasible point $x \in \PP$ is the value
+  Let $\PP$ be defined as in \eqref{eq_def_polyhedra}, and let $x \in\PP$.
+  The \emph{corank} of $x$ is
   $$
   \mathrm{corank}(x) = |\{i = 1,\ldots,d : \val(\ell_i(x)) = +\infty\}|.
   $$
-  It depends on the description \eqref{eq_def_polyhedra}.
+  Its \emph{rank} is $d-\mathrm{corank}(x)$.
 \end{definition}
+Rank and corank of $x \in\PP$ depend on the description \eqref{eq_def_polyhedra}.
+
+
+\section{Semidefinite-representable sets over $K=\QQ_p$}
 
 \newpage
 
