@@ -1,0 +1,8 @@
+TROPICAL POLYHEDRA ARE EQUIVALENT TO MEAN PAYOFF GAMES
+https://arxiv.org/pdf/0912.2462
+
+MINIMAL HALF-SPACES AND EXTERNAL REPRESENTATION OF TROPICAL POLYHEDRA
+https://www.arxiv.org/pdf/0908.1586
+
+Tropical Convexity
+https://ems.press/content/serial-article-files/25933
