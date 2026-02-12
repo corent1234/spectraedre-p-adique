@@ -96,9 +96,9 @@ This note is about further questions concerning the paper \cite{cornou2026}.
 
 \section{Combinatorial aspects of polyhedra/spectrahedra}
 
-In \cite[Def.\,3.1]{cornou2026} we define polyhedra in $K^n$, for a valued field $(K, \val)$, as the
-set of vectors whose entries have valuation nonnegative or infinite and satisfying some
-linear constraint, {\it i.e.} subsets of the form
+Recall from \cite[Def.\,3.1]{cornou2026} that polyhedra in $K^n$, for a valued field $(K, \val)$,
+are defined as the set of vectors whose entries have valuation nonnegative or infinite and satisfying
+some linear constraint, {\it i.e.} subsets of the form
 \begin{equation}\label{eq_def_polyhedra}
   \PP =
   \left\{
@@ -113,13 +113,21 @@ for some affine forms $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
 We say that a form $m$ vanishes on $x$ if $\val(m(x))=+\infty$.
 
 Note that a given polyhedron $\PP$ might have different formulations
-of type \eqref{eq_def_polyhedra}. To make it more canonical one can make
-the following assumption (which is what we do from now on):
+of type \eqref{eq_def_polyhedra}. To make it slightly more canonical
+one can make the following assumptions (which is what we do from now on):
 
 \begin{assumption}\label{assumpt}
-  For every index $i \in \{1,\ldots,d\}$, there exists an element $x \in \PP$
-  such that $\val(\ell_i(x)) < +\infty$; that is, $\ell_1,\ldots,\ell_d$
-  do not vanish identically on $\PP$.
+  Let $\PP$ be given as in \ref{eq_def_polyhedra}.
+  \begin{itemize}
+  \item[A.]
+    For every $i \in \{1,\ldots,d\}$, there exists an element $x \in \PP$
+    such that $\val(\ell_i(x)) < +\infty$; that is, $\ell_1,\ldots,\ell_d$
+    do not vanish identically on $\PP$.
+  \item[B.]
+    For every  $i \in \{1,\ldots,d\}$, the form $\ell_i$ is not an affine
+    combination of forms in $\{\ell_j : j \neq i\}$; that is (thanks to
+    ultrametricity) $\ell_1,\ldots,\ell_d$ are irredundant.
+  \end{itemize}
 \end{assumption}
 
 Nevertheless the linear forms $\ell_i$ will vanish at some $x$
