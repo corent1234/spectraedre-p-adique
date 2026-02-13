@@ -97,8 +97,8 @@ This note is about further questions concerning the paper \cite{cornou2026}.
 \section{Combinatorial aspects of polyhedra/spectrahedra}
 
 Recall from \cite[Def.\,3.1]{cornou2026} that polyhedra in $K^n$, for a valued field $(K, \val)$,
-are defined as the set of vectors whose entries have valuation nonnegative or infinite and satisfying
-some linear constraint, {\it i.e.} subsets of the form
+are defined as the set of vectors such that some linear combinations of their entries have nonnegative
+or infinite valuation, {\it i.e.} subsets of the form
 \begin{equation}\label{eq_def_polyhedra}
   \PP =
   \left\{
@@ -114,20 +114,17 @@ We say that a form $m$ vanishes on $x$ if $\val(m(x))=+\infty$.
 
 Note that a given polyhedron $\PP$ might have different formulations
 of type \eqref{eq_def_polyhedra}. To make it slightly more canonical
-one can make the following assumptions (which is what we do from now on):
+one can make the following assumptions about formulation \eqref{eq_def_polyhedra}
+(which is what we do from now on):
 
 \begin{assumption}\label{assumpt}
-  Let $\PP$ be given as in \ref{eq_def_polyhedra}.
-  \begin{itemize}
-  \item[A.]
-    For every $i \in \{1,\ldots,d\}$, there exists an element $x \in \PP$
-    such that $\val(\ell_i(x)) < +\infty$; that is, $\ell_1,\ldots,\ell_d$
-    do not vanish identically on $\PP$.
-  \item[B.]
-    For every  $i \in \{1,\ldots,d\}$, the form $\ell_i$ is not an affine
-    combination of forms in $\{\ell_j : j \neq i\}$; that is (thanks to
-    ultrametricity) $\ell_1,\ldots,\ell_d$ are irredundant.
-  \end{itemize}
+  For every $i \in \{1,\ldots,d\}$, there exists an element $x \in \PP$
+  such that $\val(\ell_i(x)) < +\infty$; that is, $\ell_1,\ldots,\ell_d$
+  do not vanish identically on $\PP$.
+%\item[B.]
+%    For every  $i \in \{1,\ldots,d\}$, the form $\ell_i$ is not an affine
+%    combination of forms in $\{\ell_j : j \neq i\}$; that is (thanks to
+%    ultrametricity) $\ell_1,\ldots,\ell_d$ are irredundant.
 \end{assumption}
 
 Nevertheless the linear forms $\ell_i$ will vanish at some $x$
@@ -142,10 +139,24 @@ in the <<boundary>> of $\PP$. This leads to the following definition:
   Its \emph{rank} is $d-\mathrm{corank}(x)$, the number of forms $\ell_i$ such
   that $\val(\ell_i(x)) < +\infty$. By \Cref{assumpt} $\mathrm{rank}(x)$
 \end{definition}
+
 Rank and corank of $x \in\PP$ depend on the description \eqref{eq_def_polyhedra}.
 
 
+\newpage
 \section{The case $K=\QQ_p$}
+
+In this section we fix $K=\QQ_p$, the field of $p$-adic numbers, equipped with
+the $p$-adic valuation $\val_p$. \\
+
+{\bf Question.} Assume a polyhedron $\PP$ is defined by some data over $K$
+as in \cite[Def.\,3.1]{cornou2026}. \\
+
+{\bf Question.} Assume a LP program is defined by some data over $K$ as in
+\cite[Sec.\,4]{cornou2026}, and assume that this program has a feasible solution.
+What precision should we expect for this solution, as a function of the input precision? \\
+
+{\bf Question.}
 
 \newpage
 
