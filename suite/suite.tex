@@ -149,17 +149,35 @@ Rank and corank of $x \in\PP$ depend on the description \eqref{eq_def_polyhedra}
 In this section we fix $K=\QQ_p$, the field of $p$-adic numbers, equipped with
 the $p$-adic valuation $\val_p$. \\
 
-{\bf Question.} Assume a polyhedron $\PP$ is defined by some data over $K$
-as in \cite[Def.\,3.1]{cornou2026}. \\
+%{\bf Question.} Assume a polyhedron $\PP$ is defined by some data over $K$
+%as in \cite[Def.\,3.1]{cornou2026}. \\
 
 {\bf Question.} Assume a LP program is defined by some data over $K$ as in
 \cite[Sec.\,4]{cornou2026}, and assume that this program has a feasible solution.
 What precision should we expect for this solution, as a function of the input precision? \\
 
-{\bf Question.}
+%{\bf Question.}
 
 \newpage
+\section{Valued-simplex algorithm}
 
+The simplex algorithm is a boundary algorithm for solving a linear program,
+that essentially can be phrased as follows.
+
+\begin{itemize}
+\item Assume the feasible polyhedron has a vertex which is known or can be computed easily.
+\item Either this vertex is optimal, in the sense that along every edge containing the input
+  vertex, the objective function does not decrease (this relies on convexity though).
+\item Or there is an edge containing the input vertex where the objective function decreases.
+  In this case either we find a new vertex at the end of the edge (and we repeat the process)
+  or the edge is unbounded, and the LP is unbounded.
+\end{itemize}
+
+{\bf Question.} Can we have a valued-simplex algorithm? We should prove that convexity is not
+necessary for step 2.
+
+
+\newpage
 %\bibliographystyle{ACM-Reference-Format}
 \bibliographystyle{acm}
 \bibliography{../issac2026/refs}
