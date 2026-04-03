@@ -8,6 +8,7 @@
 \usepackage{fontenc,fancyvrb}
 
 \usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{graphicx}
@@ -22,11 +23,11 @@
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
 
-\usepackage{default,amsmath,comment,amssymb,amsthm,amscd,latexsym,tcolorbox,array}
+\usepackage{amsmath,amssymb,amsthm,amscd,latexsym,tcolorbox,array}
 \usepackage{amsfonts,mathrsfs,nomencl,hyperref,threeparttable,textcomp}
 \usepackage[english]{babel}
 \usepackage{graphicx,tabularx,tikz,setspace,subfigure,epigraph,lscape,color,booktabs,multirow}
-\usepackage{fancybox,changes}
+\usepackage{fancybox}
 \usetikzlibrary{plotmarks}
 \usetikzlibrary{matrix}
 \usetikzlibrary{positioning}
@@ -92,12 +93,12 @@
 \newtheorem{oss}{Remark}[section]
 
 
-\title[]{\bf SPECTRA : a Maple library for linear matrix inequalities \smallskip \smallskip \smallskip}
-\author{{\bf Simone Naldi} \\ \vspace{0.1cm} Technische Universit\"at Dortmund}
-\date{Goethe Universit\"at Frankfurt \\ \vspace{0.1cm} December 20, 2016}
+\title[]{\bf Title \smallskip \smallskip \smallskip}
+\author{{\bf Tristan Vaccon} \\ \vspace{0.1cm} Université de Limoges}
+\date{Tropical seminar \\ April 9, 2026}
 
 
-\usetheme{default}
+%\usetheme{default}
 
 % MACROS
 
@@ -107,6 +108,7 @@
 \def\CC{{\mathbbmss{C}}} % complex numbers
 \def\ZZ{{\mathbbmss{Z}}} % integer numbers
 \def\NN{{\mathbbmss{N}}} % natural numbers
+\def\sym{{\mathbbmss{S}}} % symmetric matrices
 
 \def\bigO{{\mathcal{O}}}
 
@@ -135,6 +137,7 @@
 \def\sfP{{\mathsf{P}}}
 \def\sfQ{{\mathsf{Q}}}
 \def\spec{{\mathscr{S}}}
+\def\poly{{\mathscr{P}}}
 
 \def\Ideal{{\mathsf{Ideal}}}
 
@@ -202,10 +205,6 @@
 \newcommand{\gZ}{{z}}
 
 %% Messages
-\def\xxx{{\textbf{(xxx)}}}
-\def\why{\textbf{(why?)}}
-\def\todo{\textbf{(todo!)}}
-\def\check{\textbf{(check!)}}
 \def\mymid{{\,\,:\,\,}}
 \definecolor{mycolor}{rgb}{0.28,0.69,0.7}
 \definecolor{mycolor1}{rgb}{0.7,0.75,0.71}
@@ -225,8 +224,6 @@
 \usetikzlibrary{backgrounds}
 \usetikzlibrary{calc}
 \usetikzlibrary{shapes}
-%\usetikzlibrary{mindmap}
-%\usetikzlibrary{decorations.text}
 
 \tikzset{box1/.style={draw=black, thick, rectangle,rounded corners, minimum height=2cm, minimum width=2cm}}
 
@@ -237,113 +234,93 @@
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[noframenumbering]
-\maketitle
-  \begin{figure}[H]
-    \centering
-    \vspace{-0.2cm}
-    \includegraphics[width=.5\linewidth]{../IMAGES/logoTU} \hfill\hbox{} 
-%    \hspace{0.5cm}
- \hfill   \includegraphics[width=.4\linewidth]{../IMAGES/logomath}
-  \end{figure}
+\begin{frame}
+  \maketitle
 \end{frame}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Spectrahedra and hyperbolicity cones \ec}
+\frametitle{\vspace{-0.5cm}\bc \bf Polyhedra and Spectrahedra over $\RR$ \ec}
+
+\vspace{-0.5cm}
+For $\ell_1,\ldots,\ell_m \in \RR[x]{\leq 1}$ real affine $n$-variate functions:
+
+\begin{tcolorbox}[colback=green!5,colframe=blue!40!black]
+  \bc Polyhedron: {\color{red} $\poly = \{x \in \RR^n \mymid \ell_i(x) \geq 0, i=1,\ldots,m\}$} \ec
+\end{tcolorbox}
+
+\pause
+\vspace{0.2cm}
+
+For $A_0,A_1,\ldots,A_n \in \sym^{m}$ real symmetric matrices
+
+\begin{tcolorbox}[colback=green!18,colframe=blue!40!black]
+  \bc Spectrahedron: {\color{red} $\spec = \{x \in \RR^n \mymid A(x)=A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$} \ec
+  \vspace{-0.6cm}
+  \hbox{}\hfill {\color{blue}\footnotesize ``$\succeq 0$'' = positive semi-definite = its eigenvalues are $\geq 0$.
+    $A(x) \succeq 0$ is {\bf called} a {\bf LMI}.}
+  \vspace{-0.2cm}
+\end{tcolorbox}
+
+\pause
+\vspace{0.2cm}
+
+{\bf\color{blue} Fact:}
+Polyhedra are Spectrahedra, since $x \in \poly \Leftrightarrow A(x) \coloneqq \text{diag}(\ell_1,\ldots,\ell_m) \succeq 0$.
+
+\pause
+\vspace{0.2cm}
+
+{\bf\color{blue} Fact:} Polyhedra resp. Spectrahedra are {\bf convex} as affine pre-images of resp.
+\begin{equation*}
+  \begin{aligned}
+    \text{(nonnegative orthants)} \,\,\,\, \RR^m_+ &= \{y \in \RR^m : y_i \geq 0, i=1,\ldots,m\} \\
+    \text{(positive semidefinite cones)} \,\,\,\, \sym^m_+ &= \{X \in \sym_m : X \succeq 0\}.   
+  \end{aligned}
+\end{equation*}
+
+\pause
+\vspace{0.2cm}
+
+{\bf\color{blue} Fact:}
+They are {\bf basic semi-algebraic} sets:
+$$\det(A(x)+t I_m) = f_{m}(x)+f_{m-1}(x)t+\cdots+f_{1}(x)t^{m-1}+t^m$$
+then $\spec=\{x \in \RR^n \mymid f_i(x) \geq 0, i=1,\ldots,m\}$.
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\vspace{-0.5cm} \bc \bf Polyhedra and Spectrahedra over $\RR$\ec}
   \begin{figure}[H]
     \centering
     \vspace{-0.6cm}
-    \includegraphics[width=.3\linewidth]{../IMAGES/intpoint}
+    \includegraphics[width=.3\linewidth]{IMAGES/polytope}
     \hspace{1.5cm}
-    \includegraphics[width=.4\linewidth]{../IMAGES/cayleyBig}\\
+    \includegraphics[width=.3\linewidth]{IMAGES/hypcone} \\
     \vspace{0.1cm}
-    \includegraphics[width=.3\linewidth]{../IMAGES/honest_pillow}
-    \hspace{0.3cm}
-    \includegraphics[width=.3\linewidth]{../IMAGES/invQuartic}
-    \hspace{0.1cm}
-    \includegraphics[width=.3\linewidth]{../IMAGES/invQuintic}
+    \includegraphics[width=.3\linewidth]{IMAGES/Hyp_Deriv_g}
+    \hspace{0.5cm}
+    \includegraphics[width=.25\linewidth]{IMAGES/honest_pillow}
+    \hspace{0.5cm}
+    \includegraphics[width=.25\linewidth]{IMAGES/T4}
   \end{figure}
 \end{frame}
 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Positivity certificates of polynomials \ec}
-Say I want to certify that
-\[
-f=U_1^4+U_1U_2^3+U_2^4-3U_1^2U_2U_3-4U_1U_2^2U_3+2U_1^2U_3^2+U_1U_3^3+U_2U_3^3+U_3^4
-\]
-is globally nonnegative ($f(u) \geq 0$ for all $u \in \RR^3$). \,\,\,\, 
-%\pause
-{\it E.g.}, is it a {\color{orange} \bf Sum Of Squares}?
-%\pause
-\vspace{0.2cm}
-\bc Does there exist a PSD Gram matrix for $f$? \ec
-\vspace{0.2cm}
-
-\begin{tcolorbox}[colback=green!5,colframe=gray!40!black]
-\setbeamercolor{mybox}{bg=orange}
-\begin{beamercolorbox}[sep=1mm]{mybox}
-$\text{With } \langle v \rangle_\RR = \RR[U]_2 \,\,\,\,\,\,\,\,\,\,\, \mathscr{S} = \{X \in \SS^6(\RR) \mymid f=v'Xv, X \succeq 0\} \neq \emptyset\,?$
-\end{beamercolorbox}
-\end{tcolorbox}
-\vspace{0.4cm}
-%\pause
-\red{Bad news\,/\,Interesting facts} about this example:
-\begin{itemize}
-\item $f \in \sum (\RR[U]_2)^2$ but $f\notin\sum (\QQ[U]_2)^2$
-\item Hence $\mathscr{S}$ is degenerate and $\mathscr{S} \cap \SS^6(\QQ) = \emptyset$
-\item $f$ is never a sum of 3 non-zero squares (but it is of $2$)
-\end{itemize}
+\frametitle{\vspace{-0.5cm}\bc \bf Motivations \ec}
 
 
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Linear matrix inequalities \ec}
-
-%Given $C,M_1,\ldots,M_n \in \SS_m(\RR)$ and $b \in \RR^k$:
-%  \begin{columns}[t,onlytextwidth]
-%    \begin{column}{0.4\textwidth}
-%      \bc{\bf Primal SDP}\ec
-%      \begin{align*}
-%        p^* = \inf_{X \in \mathbb{S}_m} & \,\,\, (C,X):=Trace(CX) \\
-%         s.t.         & \,\,\, {\color{red} X \succeq 0} \\
-%        & {\color{red} (M_j,X)=b_j, j=1, \ldots, k}
-%      \end{align*}
-%    \end{column}
-%    \begin{column}{0.6\textwidth}
-%      \bc{\bf Dual SDP}\ec
-%      \begin{align*}
-%        d^* = \sup_{s \in \RR^k} & \,\,\, b's \\
-%        s.t.       & \,\,\, {\color{red} M(s) \succeq 0} \\
-%         & {\color{red} M(s)=C-s_1M_1-\cdots-s_kM_k} 
-%      \end{align*}
-%    \end{column}
-%  \end{columns}
-%\pause
-\vspace{-0.5cm}
-\bc $A_0,A_1,\ldots,A_n$ are $m \times m$ real symmetric matrices \ec
-
-\begin{tcolorbox}[colback=green!5,colframe=blue!40!black]
-  \bc Spectrahedron: {\color{red} $\spec = \{x \in \RR^n \mymid A(x)=A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$} \ec
-\end{tcolorbox}
-It is {\bf basic semi-algebraic} since, if
-$$\det(A(x)+t I_m) = f_{m}(x)+f_{m-1}(x)t+\cdots+f_{1}(x)t^{m-1}+t^m$$
-then $\spec=\{x \in \RR^n \mymid f_i(x) \geq 0, i=1,\ldots,m\}$. $A(x) \succeq 0$ is called an {\bf LMI}.
-
-\pause
 
 \begin{columns}[t,onlytextwidth]
   \begin{column}{0.45\textwidth}
     \begin{figure}[H]
       \centering
-      \includegraphics[width=.4\linewidth]{../IMAGES/cayleycubic}\\
-      \includegraphics[width=.6\linewidth]{../IMAGES/cut}
+      %      \includegraphics[width=.4\linewidth]{../IMAGES/cayleycubic}\\
+      %      \includegraphics[width=.6\linewidth]{../IMAGES/cut}
       \caption{The Cayley spectrahedron and a maximum cut}
     \end{figure}
   \end{column}
@@ -372,933 +349,151 @@ combinatorics (relaxations of NP-hard pr.)
 \item
 non-convex poly. optimization
 \end{itemize}
-%    \bc {\bf SDP relaxation of MAXCUT} \ec
-%    \boxed{
-%      \begin{array}{c}
-%        {\color{red} \bf Quadratic\,\,opt.} \\
-%        {\color{red} \bf problem\,\,(hard)}
-%      \end{array}
-%    }
-%    $\longrightarrow$
-%    \boxed{
-%      \begin{array}{c}
-%        {\color{blue} \bf Semidefinite} \\
-%        {\color{blue} \bf program\,\,(easy)}
-%      \end{array}
-%    }
   \end{column}
 \end{columns}
 
 \end{frame}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Multivariate polynomial optimization \ec}
-
-\begin{tcolorbox}[colback=green!50,colframe=blue!30!black,title=\bc {\bf The general problem} \ec]
-  \bc $f^*=\displaystyle\inf_{x \in {\color{red} \bf S}} f(x)$, \,\,\, with \,\,\,{\color{red} ${\color{red} \bf S} = \{x \in \RR^n \mymid {\bf g_1}(x) \geq 0, \ldots, {\bf g_s}(x) \geq 0\}$} \ec
-\end{tcolorbox}
-
-\begin{itemize}
-\item[$\bullet$] If ${\color{red} \bf S}=\RR^n \longrightarrow f^*=\displaystyle\sup_{\lambda \in \RR} \lambda$ \,\,
-  s.t. \,\, $f(x)-\lambda \geq 0 \,\,\,\,\forall\,\,x\in \RR^n$ \,\, {\bf [NP-hard]}
-\item[] Write $f-\lambda$ as a sum of squares? $f-\lambda= f_1^2+\cdots+f_p^2$ \,\,\, {\bf \color{blue} [SDP]}
-\item[] Hilbert (1888): Positivity $\equiv$ SOS iff ${\color{olive} n=1}$ or ${\color{olive} d=2}$ or ${\color{olive} (n,d)=(2,4)}$
-\pause
-\vspace{0.2cm}
-\item[$\bullet$] When ${\color{red} \bf S}$ is any set : {\bf Positivestellensatz}
-\bc  (Schm\"udgen) \,\,${\color{red} \bf S}$ \,compact\,\,:\,\,
-$f-y = \displaystyle\sum_{\nu \in \{0,1\}^s}\sigma_{\nu}\prod_j{\bf \color{red} g_j}^{\nu_j}$ \,\, with $\sigma_i$ SOS  \,\, {\bf \color{blue} [SDP]} \ec
-\bc  (Putinar) \, \,\,\,\,${\color{red} \bf S}$ archimedean\,\,:\,\,\,
-$f-y = \sigma_0 + \displaystyle\sum_i\sigma_i{\bf \color{red} g_i}$ \,\,\,\,\,\,\, with $\sigma_i$ SOS  \,\, {\bf \color{blue} [SDP]} \ec
-\pause
-\vspace{0.2cm}
-\item[$\bullet$] Lasserre ('01), Parrilo ('03) \ldots Moments vs SOS approach also gives {\bf \color{blue} [SDP]}
-\end{itemize}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge State of the art \ec}
-
-\vspace{-0.3cm}
-
-\setbeamercolor{mybox}{bg=gray}
-\begin{beamercolorbox}[sep=1mm]{mybox}
-${\bf Fixed\hspace{-0.1cm}-\hspace{-0.1cm}Precision \,\, Polynomial\hspace{-0.1cm}-\hspace{-0.1cm}Time \,\, Algorithms\,\, for\,\, SDP}$
-\end{beamercolorbox}
-{\cit Shor, Nemirovsky, Yudin ('60s-'70s), \ldots, }{\cit Khachiyan}\\
-Ellipsoid algorithm is $Poly(m,n,\log(1/\epsilon))$ : {\color{red} inefficient in practice} \\
-{\cit Nesterov, Nemirovsky ('90s)}\\
-Interior point algorithms : {\color{blue} efficient in practice}
-
-{\cit Ramana, Khachiyan, Porkolab ('90s)}\\
-Complexity bounds for LMI : {\color{blue} can't be used in practice}
-
-\pause
-
-\vspace{0.1cm}
-
-\setbeamercolor{mybox}{bg=gray}
-\begin{beamercolorbox}[sep=1mm]{mybox}
-${\bf (Rational)\,points\,in\,(convex)\,Semialgebraic\,Sets}$
-\end{beamercolorbox}
-{\cit Peyrl, Parrilo (2007), Kaltofen, Li, Yang, Zhi (2008)}\\
-Floating-point-SOS $\rightarrow$ Rational approximation $\rightarrow$ Projection on the feasible set \\
-{\cit Guo, Safey El Din, Zhi (2013)} \\
-Bit complexity bounds for emptiness of $\{x \in \QQ^n \mymid \red{A}(x) \succeq 0\}$\\
-
-\pause
-
-\vspace{0.1cm}
-
-\setbeamercolor{mybox}{bg=gray}
-\begin{beamercolorbox}[sep=1mm]{mybox}
-${\bf Exact\,\,algorithms\,\,for\,\,LMI/SDP}$
-\end{beamercolorbox}
-{\cit Henrion, N., Safey El Din (2015-2016)} \\
-New upper bounds for emptiness of $\{x \in \RR^n \mymid \red{A}(x) \succeq 0\}$ \\
-{\cit N. (2016)} \\
-Rank-constrained SDP \hfill (poly-time if \, $n$ \, {\bf or} \, $m=\text{size}({A})$ \, is fixed)
-
-%Open questions:
-%\begin{itemize}
-%\item
-%How if $\{x \in \QQ^n \mymid \red{A}(x) \succeq 0\}=\emptyset$?
-%\item
-%Additional rank constraints?
-%\end{itemize}
-
-
-\end{frame}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Why algebraic methods? \ec}
-\vspace{-0.8cm}
-%\,\,\,\,\,\,\,\,\,\,\,\,{\cit Polyhedra and spectrahedra}
-%
-%      \begin{itemize}
-%        \item {\color{red} \bf convex closed} sets
-%        \item basic {\color{red} \bf semialgebraic:} $\spec = \{x \in \RR^n \mymid f_1(x) \geq 0, \ldots, f_s(x) \geq 0\}$
-%        \item {\color{red} \bf exposed} faces: ${\cal F} = {\cal H} \cap \spec$
-%        \item for $x \in \partial \spec \longrightarrow \det\,A(x)=0$
-%        \item {\cit Nice property}: if $\cc \subset \calD_{\minrank}$ and $\cc \cap \spec \neq \emptyset$ then $\cc \subset \spec$
-%      \end{itemize}
-%          \pause
-\bc 1. It is {\color{red} \bf Hard} to compute low-rank solutions to LMI/SDP \ec
-\vspace{-0.2cm}
-  \begin{columns}[t]
-    \begin{column}[T]{5cm}
-        \vspace{0.3cm}
-      \begin{figure}[H]
-        \centering
-        \includegraphics[width=.35\linewidth]{../IMAGES/lp}
-        \hspace{0.6cm}
-        \includegraphics[width=.35\linewidth]{../IMAGES/honest_pillow}
-        \label{fig:pillow}
-        \caption{``{\bf Low-rank}'' points : they minimize a cone of linear forms}
-      \end{figure}
-    \end{column}
-    \begin{column}[T]{5.2cm}
-\vspace{0.3cm}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=.5\linewidth]{../IMAGES/spectraExample-crop}
-  \caption{{\sc sedumi} returns a floating point approximation of $(0,0)$ when maximizing $x_2$}
-\end{figure}
-\vspace{-0.2cm}
-%      $$
-%     \boxed{
-%        \begin{array}{rl}
-%          \inf &  (C,X) \\
-%          s.t. &  X \succeq 0, \,\, (M_j,X)=b_j, j\leq k
-%        \end{array}
-%      }
-%      $$
-%      \begin{itemize}
-%      \item {\color{red} \bf Hard} to find low-rank solutions to SDP
-%      \item The set $\spec$ can have {\color{red} \bf empty interior}
-%      \end{itemize}
-    \end{column}
-  \end{columns}
-
-\bc 2. The interior of $\spec$ can be {\bf empty} $\longrightarrow$ {\bf \color{red} Interior point algorithms could fail} \ec
-
-\[
-      \begin{bmatrix}
-        0 & x_1 & \frac{1}{2}(1-x_4) \\
-        x_1 & x_2 & x_3 \\
-        \frac{1}{2}(1-x_4) & x_3 & x_4
-      \end{bmatrix} \succeq 0
-\]
-
+%Given $C,M_1,\ldots,M_n \in \SS_m(\RR)$ and $b \in \RR^k$:
 %  \begin{columns}[t,onlytextwidth]
 %    \begin{column}{0.4\textwidth}
-%\,\,\,\,\,\,\,\,\inf \,\,\,\,\,\,\,\,\,\,\,\, x_2\,\,$ : \\
+%      \bc{\bf Primal SDP}\ec
+%      \begin{align*}
+%        p^* = \inf_{X \in \mathbb{S}_m} & \,\,\, (C,X):=Trace(CX) \\
+%         s.t.         & \,\,\, {\color{red} X \succeq 0} \\
+%        & {\color{red} (M_j,X)=b_j, j=1, \ldots, k}
+%      \end{align*}
 %    \end{column}
-%   \begin{column}{0.6\textwidth}
-%      $
-%      \begin{bmatrix}
-%        0 & x_1 & \frac{1}{2}(1-x_4) \\
-%        x_1 & x_2 & x_3 \\
-%        \frac{1}{2}(1-x_4) & x_3 & x_4
-%      \end{bmatrix} \succeq 0
-%      $
+%    \begin{column}{0.6\textwidth}
+%      \bc{\bf Dual SDP}\ec
+%      \begin{align*}
+%        d^* = \sup_{s \in \RR^k} & \,\,\, b's \\
+%        s.t.       & \,\,\, {\color{red} M(s) \succeq 0} \\
+%         & {\color{red} M(s)=C-s_1M_1-\cdots-s_kM_k} 
+%      \end{align*}
 %    \end{column}
 %  \end{columns}
-
-
-\end{frame}
-
+%\pause
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[noframenumbering]
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Why algebraic methods? \ec}
-
-\vspace{-1cm}
-
-\begin{columns}[t,onlytextwidth]
-  \begin{column}{0.5\textwidth}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=.5\linewidth]{../IMAGES/spectraExample-crop}
-\end{figure}
-  \end{column}
-  \begin{column}{0.5\textwidth}
-\hbox{}\vspace{0.5cm}
-\[
-      \begin{bmatrix}
-        0 & x_1 & \frac{1}{2}(1-x_4) \\
-        x_1 & x_2 & x_3 \\
-        \frac{1}{2}(1-x_4) & x_3 & x_4
-      \end{bmatrix} \succeq 0
-\]
-  \end{column}
-\end{columns}
-
-\vspace{0.4cm}
-Main motivations for the design of {\bf exact algorithms}:
-
-\begin{enumerate}
-\item Certification of output information (rank, algebraic degree...)
-\item Manage {\bf algebraic constraints} such as rank defects?
-\item Handle {\bf degenerate} non-full-dimensional examples?
-\end{enumerate}
-
-\pause
-
-\begin{tcolorbox}[colback=blue!45,colframe=blue!40!white,title=\bf \color{black} Exact representation of a solution $x^*$ to $A(x) \succeq 0$ (RUR)]
-\vspace{-0.3cm}
-\[
-(q,q_0,q_1,\ldots,q_{n}) \subset \QQ[t] \,\,\rightarrow \,\,x^* \in \left\{\left(\frac{q_1(t)}{q_0(t)}, \ldots, \frac{q_n(t)}{q_0(t)}\right) \mymid q(t)=0\right\}
-\]
-\end{tcolorbox}
-
-\begin{itemize}
-\item[]
-{\cit Rouillier} [AAECC 1999]
-\item[]
-{\cit Giusti, Lecerf, Salvy} [JoC 2001] :: Geometric Resolution
-\item[]
-{\cit Jeronimo, Matera, Solernò, Waissbein} [FoCM 2009] :: Symbolic Homotopy
-\end{itemize}
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge The geometry of low-rank matrices \ec}
-
-%For any $A(x)$ (not necessarily symmetric) we define
-%\begin{itemize}
-%\item[] {\it algebraic sets}\,\, $\calD_r = \{x \in \CC^n \mymid \rank\,A(x) \leq r\}, \, r=1,\ldots,m-1$
-%\item For $A(x)$ symmetric, and $\spec \neq \emptyset$: $\minrank = \min \{ \rank\,A(x) \mid {x \in \spec} \}$
-%\end{itemize}
-
-Define:
-\begin{itemize}
-\item[] For any $A(x)$ (not nec. symmetric): ${\color{red} \calD_r = \{x \in \CC^n \mymid \rank\,A(x) \leq r\}}$
-\item[] For $A(x)$ symmetric, and $\spec \neq \emptyset$: ${\color{red} \minrank = \min \{ \rank\,A(x) \mid {x \in \spec} \}}$
-\end{itemize}
-
-So one has a nested sequence : $\calD_0\cap\RR^n \subset \cdots \subset \calD_{m-1}\cap\RR^n$
-
-\vspace{0.3cm}
-
-  \begin{tcolorbox}[colback=green!5,colframe=blue!40!black,title=Smallest Rank Property (Henrion\,-\,N.\,-\,Safey El Din)]
-    $A(x)$ symmetric, and $\spec \neq \emptyset$. Let $\cc$ be a conn. comp. of $\setD_{\minrank} \cap \RR^n$
-    s.t. $\cc \cap \spec \neq \emptyset$. \,\,\,\,{\bf Then} $\cc \subset \spec$. \,\,\,\,{\bf In particular}
-    \,$\cc \subset \setD_{\minrank} \setminus \setD_{\minrank-1}$.
-  \end{tcolorbox}
-
-\vspace{0.2cm}
-
-\pause
-
-$\rightarrow$ Computation of {\bf one point per connected component} of algebraic sets :
-
-\begin{itemize}
-\item[]
-{\small \cit Safey El Din, Schost} [ISSAC 2003, DCG 2004]
-\item[]
-{\small \cit Bank, Giusti, Heintz, Safey El Din, Schost} [AAECC 2010]
-\end{itemize}
-
-\pause
-
-$\rightarrow$ Exploiting the {\bf determinantal structure} for polynomial system solving :
-
-\begin{itemize}
-\item[]
-{\small \cit Bank, Giusti, Heintz, Lecerf, Matera, Solernó} [Found. Comput. Math. (2015)]
-\item[]
-{\small \cit Henrion, N., Safey El Din} [JSC 2015, ISSAC 2015]
-\end{itemize}
-
-
-%  $$
-%  \boxed{
-%    \begin{array}{c}
-%    {\color{black} \bf Either} \\
-%    \,\,\text{the set $\spec$ is empty}
-%    \end{array}
-%  }
-%  \hspace{1cm}
-%  \boxed{
-%    \begin{array}{c}
-%    {\color{black} \bf Or} \\
-%    \text{$\minrank$ is well-defined} \\
-%    \text{$\exists\,\cc \subset \calD_{\minrank} \mymid \cc \subset \spec$}  
-%    \end{array}
-%  }
-%  $$
-
-\end{frame}
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Incidence varieties and critical points \ec}
-
-\vspace{0.3cm}
-  \begin{columns}[t,onlytextwidth]
-    \begin{column}{0.6\textwidth}
-      {\bf\underline{1st ste}p} ${\it Lifting\,of\,the\,determinantal\,variety\,\calD_r}$:
-      $$
-      \sfA( {x} ) \, Y({\color{red} y})
-      = \sfA( {x} ) \, 
-      \left[
-        \begin{array}{ccc}
-          {\color{red} \y_{1,1}} & \ldots & {\color{red} \y_{1,m-r}} \\ 
-          \vdots    &        & \vdots      \\ 
-          {\color{red} \y_{m,1}} & \ldots & {\color{red} \y_{m,m-r}} \\ 
-        \end{array}
-        \right]
-      = 0.
-      $$
-%      $$
-%      U \, {{Y({\color{red} y})}} = I_{m-r}
-%      $$
-    \end{column}
-    \begin{column}{0.5\textwidth}
-\vspace{-1cm}
-      \begin{figure}[h]
-        \hspace{5cm}
-        \includegraphics[scale=0.55]{../IMAGES/component1}
-      \end{figure}
-    \end{column}
-  \end{columns}
-  \begin{tcolorbox}[colback=green!5,colframe=blue!40!black]
-    \bc If $A$ is generic, the lifted algebraic set ${\cal V}_r$ is {\bf smooth} and {\bf equidimensional} \ec
-  \end{tcolorbox}
-\vspace{0.2cm}
-
-  {\bf\underline{2nd ste}p} ${\it Compute\,critical\,points}$ of the map $\pi(x,{\color{red} y}) = a_1x_1+\cdots+a_nx_n$ on ${\cal V}_r$:
-  \begin{tcolorbox}[colback=green!5,colframe=blue!40!black]
-    \bc When $A$ and $a_1\,..\,a_n$ are generic, there are {\bf finitely many} critical points. \ec
-  \end{tcolorbox}
-\vspace{0.2cm}
-
-  {\bf\underline{3rd ste}p} ${\it Intersect\,with\,any\,fiber\,of\,\pi\,and\,call\,point\,2}$
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[noframenumbering]
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Incidence varieties and critical points \ec}
-
-\vspace{0.3cm}
-  \begin{columns}[t,onlytextwidth]
-    \begin{column}{0.6\textwidth}
-      {\bf \underline{1st ste}p} ${\it Lifting\,of\,the\,determinantal\,variety\,\calD_r}$:
-      $$
-      \sfA( {x} ) \, Y({\color{red} y})
-      = \sfA( {x} ) \, 
-      \left[
-        \begin{array}{ccc}
-          {\color{red} \y_{1,1}} & \ldots & {\color{red} \y_{1,m-r}} \\ 
-          \vdots    &        & \vdots      \\ 
-          {\color{red} \y_{m,1}} & \ldots & {\color{red} \y_{m,m-r}} \\ 
-        \end{array}
-        \right]
-      = 0.
-      $$
-%      $$
-%      U \, {{Y({\color{red} y})}} = I_{m-r}
-%      $$
-    \end{column}
-    \begin{column}{0.5\textwidth}
-\vspace{-1cm}
-      \begin{figure}[h]
-        \hspace{5cm}
-        \includegraphics[scale=0.55]{../IMAGES/component2}
-      \end{figure}
-    \end{column}
-  \end{columns}
-  \begin{tcolorbox}[colback=green!5,colframe=blue!40!black]
-    \bc If $A$ is generic, the lifted algebraic set ${\cal V}_r$ is {\bf smooth} and {\bf equidimensional} \ec
-  \end{tcolorbox}
-\vspace{0.2cm}
-
-  {\bf \underline{2nd ste}p} ${\it Compute\,critical\,points}$ of the map $\pi(x,{\color{red} y}) = a_1x_1+\cdots+a_nx_n$ on ${\cal V}_r$:
-  \begin{tcolorbox}[colback=green!5,colframe=blue!40!black]
-    \bc When $A$ and $a_1\,..\,a_n$ are generic, there are {\bf finitely many} critical points. \ec
-  \end{tcolorbox}
-\vspace{0.2cm}
-
-  {\bf\underline{3rd ste}p} ${\it Intersect\,with\,any\,fiber\,of\,\pi\,and\,call\,point\,2}$
-\end{frame}
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge {\sc spectra}: a library for linear matrix inequalities \ec}
-
-\vspace{-0.4cm}
-
-%What is {\sc spectra}? \\
-
-\begin{itemize}
-%\item[] {\bf S}emidefinite {\bf P}rogramming and {\bf E}xact {\bf C}omputation {\bf T}owards {\bf R}eal {\bf A}lgebra
-\item[] A {\sc maple} library, freely distributed %%%%, $\approx 3000$ lines of code 
-\item[] Depends on {\sc fgb} for computations with Gr\"obner bases ({J-C. Faugère})
-\item[] Addressed to researchers in {Optimization, Convex alg. geom., Symb. comp.}
-\end{itemize}
-
-\vspace{-0.2cm}
-
-\begin{columns}[t,onlytextwidth]
-  \begin{column}{0.5\textwidth}
-\vspace{-0.4cm}   
-    \begin{table}[!ht]
-      \centering
-          {\small
-            \begin{tabular}{|l|rrr|}
-              \hline
-              \rowcolor{mycolor} $(m,r,n)$ & {\sc raglib} & {\sc spectra} & {\sf deg} \\
-              \hline
-              \hline
-              \rowcolor{mycolor2} $(3,2,8)$ & 109      & 18    & 39 \\
-              $(3,2,9)$ & 230      & 20    & 39 \\
-              \rowcolor{mycolor2} $(4,2,5)$ & 12.2     & 26    & 100 \\
-              $(4,2,6)$ & $\infty$ & 593    & 276  \\
-              \rowcolor{mycolor2} $(4,2,7)$ & $\infty$ & 6684   & 532 \\
-              $(4,2,8)$ & $\infty$ & 42868  & 818  \\
-              \rowcolor{mycolor2} $(4,2,9)$ & $\infty$ & 120801 & 1074 \\
-              $(4,3,10)$ & $\infty$ & 303  & 284 \\
-              \rowcolor{mycolor2} $(4,3,11)$ & $\infty$ & 377  & 284  \\
-%              $(5,2,7)$ & 4.2   & 0.7  &  0  \\
-%              \rowcolor{mycolor2} $(5,2,8)$ &  8  & 0.7  & 0 \\
-              $(5,2,9)$ & $\infty$   & 903 & 175 \\
-              \rowcolor{mycolor2} $(6,5,4)$ & $\infty$ & 8643  & 726 \\
-              \hline
-            \end{tabular}
-          }
-    \end{table}
-    
-  \end{column}
-  \begin{column}{0.55\textwidth}
-    \vspace{0.3cm}
-    \begin{itemize}
-    \item[-] {\sc raglib} = {\cit Safey El Din}'s real algebraic geometry library
-      \vspace{0.1cm}
-    \item[-] {\sf deg} = degree of Rational Parametrization
-      \vspace{0.1cm}
-    \item[-] Time in seconds
-      \vspace{0.1cm}
-    \item[-] $\infty =$ more than 2 days
-    \end{itemize}
-  \end{column}
-\end{columns}
-\vspace{-0.2cm}
-\bc
-
-\vfill
-\begin{tcolorbox}[colback=blue!45,colframe=blue!40!white]
-Web page : \,\,\,\,{\tt \bf \small www.mathematik.tu-dortmund.de/sites/simone-naldi/software}
-\end{tcolorbox}
-\ec
-
-\end{frame}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge {\sc spectra}: a library for linear matrix inequalities \ec}
-
-In a Maple worksheet type :
-
-\vspace{0.2cm}
-
-{\tt
-> with(SPECTRA);
-
-\hspace{0.3cm} [SolveLMI]
-}
-
-\[
-A(x) = 
-\left[
-\begin{array}{ccc}
-1+x_1 & x_2 & 0 \\
-x_2 & 1-x_1 & 0 \\
-0 & 0 & x_1
-\end{array}
-\right]
-\succeq 0
-\begin{array}{c}
-\text{ This LMI defines the {\bf half-disk} } \\
-\spec =
-\{
-(x_1,x_2) : x_1^2+x_2^2 \leq 1, x_1 \geq 0
-\}
-\end{array}
-\]
-{\tt
-%> A := Matrix([[1+x1,x2,0], [x2,1-x1,0], [0,0,x1]]):
-%
-> SolveLMI(A,\{rnk\});             
-
- \hspace{0.3cm} [[x1 = [0, 0], x2 = [1, 1]], rnk = 1]
-}
-
-\pause
-
-\[
-A(x) = 
-\left[
-\begin{array}{ccc}
-1+x_1 & x_2 & 0 \\
-x_2 & 1-x_1 & 0 \\
-0 & 0 & {\color{red} \bf x_1-1}
-\end{array}
-\right]
-\succeq 0
-\begin{array}{c}
-\text{ This LMI defines {\bf one single point} } \\
-\spec =
-\{
-(1,0)
-\}
-\end{array}
-\]
-
-{\tt
-> SolveLMI(A,\{rnk,deg\});
-
- \hspace{0.3cm}  [[x1 = [1, 1], x2 = [0, 0]], rnk = 1, deg = 1]
-}
-
-
-
-%\vfill
-%\begin{tcolorbox}[colback=blue!45,colframe=blue!40!white]
-%Web page : \,\,\,\,{\tt \bf \small www.mathematik.tu-dortmund.de/sites/simone-naldi/software}
-%\end{tcolorbox}
-%\ec
-
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge {\sc spectra}: a library for linear matrix inequalities \ec}
-
-
-\[
-A(x) = 
-\left[
-\begin{array}{ccc}
-1+x_1 & x_2 & 0 \\
-x_2 & 1-x_1 & 0 \\
-0 & 0 & {\color{red} \bf x_1-1-10^{-20}}
-\end{array}
-\right]
-\succeq 0
-\begin{array}{c}
-\,\,\,\,\, \text{ This LMI defines } \spec = \emptyset
-\end{array}
-\]
-{\tt
-%> A := Matrix([[1+x1,x2,0], [x2,1-x1,0], [0,0,x1]]):
-%
-> SolveLMI(A);
-
- \hspace{0.3cm} [ ]
-}
-
-\pause
-
-\[
-A(x) = 
-\left[
-\begin{array}{ccc}
-1+x_1 & x_2 & 0 \\
-x_2 & 1-x_1 & 0 \\
-0 & 0 & {\color{red} \bf x_1-1+10^{-20}}
-\end{array}
-\right]
-\succeq 0
-\begin{array}{c}
-\,\,\,\, \text{ This LMI defines} \\ 
-\,\,\,\, \textbf{a tiny half-disk}  \\
-\end{array}
-\]
-
-{\tt
-> SolveLMI(A);
-
- \hspace{0.3cm} [[x1 = [36893488147418995335 / 36893488147419103232,
-
- \hspace{1.8cm}  4611686018427401391 / 4611686018427387904],
-
- \hspace{0.7cm}  x2 = [-350142318592414077 / 
-
-\hfill 2475880078570760549798248448,
-
- \hspace{1.8cm} -2801138548739304423 /
-
-\hfill 19807040628566084398385987584]]
-}
-
-
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge {\sc spectra}: a library for linear matrix inequalities \ec}
-
-A {\bf quartic plane curve} $\{x \in \RR^2 : \det A(x_1,x_2) = 0\}$ \\
-
-\vspace{0.2cm}
-
-The {\bf convex set} is $\{x \in \RR^2 : A(x_1,x_2) \succeq 0\}$
-
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width=.45\linewidth]{../IMAGES/quartic-crop}
-  \end{figure}
-
-Iterate the following command to compute many sample points :
-
-{\tt
-> SolveLMI(A,\{\},[3]);
-}
-
-
-
-\end{frame}
-
-
-
-
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge {\sc spectra}: a library for linear matrix inequalities \ec}
-
-\[
-f=U_1^4+U_1U_2^3+U_2^4-3U_1^2U_2U_3-4U_1U_2^2U_3+2U_1^2U_3^2+U_1U_3^3+U_2U_3^3+U_3^4
-\]
-
-Its Gram matrix satisfies $A(x) \succeq 0, f = v^T A(x) v$, and equals :
-
-\vspace{0.1cm}
-
-{\tt
-> A := Matrix([[1,0,x1,0,-3/2-x2,x3], [0,-2*x1,1/2,x2,-2-x4,-x5], [x1,1/2,1,x4,0,x6],
-               [0,x2,x4,-2*x3+2,x5,1/2], [-3/2-x2,-2-x4,0,x5,-2*x6,1/2], [x3,-x5,x6,1/2,1/2,1]]):
-}
-
-\vspace{0.2cm}
-
-A minimal certificate is given by :
-
-\vspace{0.1cm}
-
-{\tt
-> SolveLMI(A, \{rnk, deg, par\});
-
-[[[x1 = [..], x2 = [..], x3 =  [..], x4 = [..], x5 = [..], x6 = [..]],
-    rnk = 2, deg = 3,
-    par = [8*z\^{}3+8*z+1, 24*z\^{}2-8, [16*z+3, -24*z\^{}2+8, 8*z\^{}2+6*z+8, -16*z\^{}2+6*z+16, -16*z-3, 16*z+3]]]
-}
-
-\end{frame}
-
-
-
-
-
-
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Performances \ec}
-
-\begin{figure}[!ht]
-\centering
-\begin{tikzpicture}
-\begin{loglogaxis} [xlabel = number of variables, ylabel = time (seconds)]
-\addplot [ultra thick, red]
-file {m2r1.txt};
-\addplot [ultra thick, blue]
-file {m3r2.txt};
-\end{loglogaxis}
-\end{tikzpicture}
-\caption{Random LMI of size $m={\bf \color{red} 2}$ and
-$m = {\bf \color{blue} 3}$ and rank $r=m-1$, as a function of $n$.}
-\label{fig:m2r1}
-\end{figure}
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Exponential Bit-size \ec}
-
-For a given $n \in {\mathbb N}$, consider the spectrahedron
-\[
-{\mathscr S}_n = \left\{x \in {\mathbb R}^n :
-\left[\begin{array}{cc}
-1 & 2 \\
-2 & x_1
-\end{array}\right] \succeq 0,
-\left[\begin{array}{cc}
-1 & x_1 \\
-x_1 & x_2
-\end{array}\right] \succeq 0,
-\cdots, 
-\left[\begin{array}{cc}
-1 & x_{n-1} \\
-x_{n-1} & x_n
-\end{array}\right]\succeq 0
-\right\}.
-\]
-For every $x^* \in {\mathscr S}_n$ it holds
-$$
-x^*_n \geq (x^*_{n-1})^2 \geq \cdots \geq (x^*_1)^{2^{n-1}} \geq 2^{2^n}.
-$$
-
-%%% \,\,\,\, {\tt Intel i7 / 2.5GHz / 16GB RAM}
-
-\pause
-
-\vspace{0.2cm}
-
-I call {\sc spectra} with :
-
-\vspace{0.2cm}
-
-{\tt
-> SolveLMI(A,\{\},[n]);
-
-\hspace{0.5cm}       [[x1 = 4, x2 = 16, ..., x6 = 18446744073709551616]]
-}
-
-\vspace{0.2cm}
-
-{\bf Average Timings} :
-\begin{itemize}
-\item[] $2n = 10 \rightarrow 15$ seconds
-\item[] $2n = 12 \rightarrow 505$ seconds
-\end{itemize}
-
-This is due to the ``sparsity'' of this linear matrix.
-
-\end{frame}
-
-
-
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Hyperbolic polynomials \ec}
-
-\begin{tcolorbox}[colback=white!50,colframe=blue!30!black,title=\bc {\bf Definition} \ec]
-  \begin{columns}[t,onlytextwidth]
-    \begin{column}{0.6\textwidth}
-      $f \in \RR[x]_d$ is {\it hyperbolic w.r.t.} $e \in \RR^n$ if
-      \begin{itemize}
-      \item[(1)] $f(e) > 0$
-      \item[(2)] $\forall\,a \in \RR^n \,\,\,\, t \mapsto f(t\,e-a)$ \\  has {\bf only real roots}
-      \end{itemize}
-          {\bf {\color{red} [LP] }  $f = \ell_1(x) \cdots \ell_d(x)$, $\,\,\,\,\ell_i \in \RR[x]_1$}\\
-          {\bf {\color{red} [SDP] } Symmetric Determinant $f=\det(X)$}
-    \end{column}  
-    \begin{column}{0.4\textwidth}
-      \begin{figure}[h]
-        \includegraphics[scale=0.5]{../IMAGES/hyperbolic}
-      \end{figure}
-    \end{column}
-  \end{columns}
-\end{tcolorbox}
-
-\pause
-
-\vspace{0.2cm}
-
-{\bf Hyperbolicity cone : } $\Lambda_+(f) = \{ a \in \RR^n : f(t\,e-a) = 0 \Rightarrow t \geq 0 \}$ {\bf \color{red} EX:} PSD cone
-
-\vspace{0.2cm}
-
-{\bf \color{red} Hyperbolic Programming [HP] : } Optimizing linear functions on $\Lambda_+$ (PDEs theory)
-
-\vspace{0.2cm}
-
-\pause
-
-\begin{tcolorbox}[colback=green!5,colframe=orange!40!black]
-  {\bf Generalized Lax conjecture:} \hfill Is every hyperbolicity cone a spectrahedron?
-\end{tcolorbox}
-
-\vspace{0.2cm}
-
-{\cit N., Plaumann} [Preprint 2016] $\rightarrow$ Computer algebra techniques for HP
-
-\end{frame}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{frame}
-%\frametitle{\vspace{-0.5cm}\bc \bf \Huge Spectrahedral shadows \ec}
-%
-%  \begin{columns}[t,onlytextwidth]
-%    \begin{column}{0.5\textwidth}
-%\begin{center}
-%\vspace{-0.8cm}
-%%{\bf \Large Spectrahedral shadows:}
-%\end{center}
+%\frametitle{\vspace{-0.5cm}\bc \bf \Huge Positivity certificates of polynomials \ec}
+%Say I want to certify that
 %\[
-%S = \left\{ x \in \RR^n \mymid \exists\, u \in \RR^{d}, A(x, u) \succeq 0\right\},
+%f=U_1^4+U_1U_2^3+U_2^4-3U_1^2U_2U_3-4U_1U_2^2U_3+2U_1^2U_3^2+U_1U_3^3+U_2U_3^3+U_3^4
 %\]
-%
-%\begin{center}
-%{\bf Projection on $\RR^n$ of the spectrahedron:}
-%\end{center}
-%
-%$\spec = \{(x, u) \in \RR^n\times\RR^d \mymid A(x, u) \succeq 0\}$
-%
-%    \end{column}
-%    \hspace{5pt}
-%    \begin{column}{0.5\textwidth}
-%\vspace{-1.4cm}
-%  \begin{figure}[h]
-%    \hspace{5cm}
-%    \includegraphics[scale=0.17]{../IMAGES/proj}
-%  \end{figure}
-%
-%    \end{column}
-%  \end{columns}
-%
-%\vspace{0.1cm}
-%
-%  \begin{tcolorbox}[colback=green!5,colframe=orange!40!black]
-%   {\bf Helton-Nie conjecture:} Are all convex semialgebraic sets spectrahedral shadows?
-%   \hspace{3.5cm} {\cit Scheiderer}: true in dimension $n=2$
-%  \end{tcolorbox}
-%\vspace{0.3cm}
-%
-%{\bf Remark!} \,\,\, {Lin. Opt. on $S$} $\equiv$ {Lin. Opt. on $\spec$} $\equiv$ {\bf SDP}! \, {\color{red} \bf \Large \hfill (But $d \gg n^{\bigO(1)}$)}
+%is globally nonnegative ($f(u) \geq 0$ for all $u \in \RR^3$). \,\,\,\, 
+%%\pause
+%{\it E.g.}, is it a {\color{orange} \bf Sum Of Squares}?
+%%\pause
+%\vspace{0.2cm}
+%\bc Does there exist a PSD Gram matrix for $f$? \ec
 %\vspace{0.2cm}
 %
-%  \begin{tcolorbox}[colback=green!5,colframe=green!40!black]
-%   {\bf Perspective:} \hbox{}\hfill Parametric study of determinantal varieties \\
-%   \hbox{}\hfill Solve linear optimization over $S$, given $\spec$ ?
-%  \end{tcolorbox}
+%\begin{tcolorbox}[colback=green!5,colframe=gray!40!black]
+%\setbeamercolor{mybox}{bg=orange}
+%\begin{beamercolorbox}[sep=1mm]{mybox}
+%$\text{With } \langle v \rangle_\RR = \RR[U]_2 \,\,\,\,\,\,\,\,\,\,\, \mathscr{S} = \{X \in \SS^6(\RR) \mymid f=v'Xv, X \succeq 0\} \neq \emptyset\,?$
+%\end{beamercolorbox}
+%\end{tcolorbox}
+%\vspace{0.4cm}
+%%\pause
+%\red{Bad news\,/\,Interesting facts} about this example:
+%\begin{itemize}
+%\item $f \in \sum (\RR[U]_2)^2$ but $f\notin\sum (\QQ[U]_2)^2$
+%\item Hence $\mathscr{S}$ is degenerate and $\mathscr{S} \cap \SS^6(\QQ) = \emptyset$
+%\item $f$ is never a sum of 3 non-zero squares (but it is of $2$)
+%\end{itemize}
+%\end{frame}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{\vspace{-0.5cm}\bc \bf \Huge Multivariate polynomial optimization \ec}
+%
+%\begin{tcolorbox}[colback=green!50,colframe=blue!30!black,title=\bc {\bf The general problem} \ec]
+%  \bc $f^*=\displaystyle\inf_{x \in {\color{red} \bf S}} f(x)$, \,\,\, with \,\,\,{\color{red} ${\color{red} \bf S} = \{x \in %\RR^n \mymid {\bf g_1}(x) \geq 0, \ldots, {\bf g_s}(x) \geq 0\}$} \ec
+%\end{tcolorbox}
+%
+%\begin{itemize}
+%\item[$\bullet$] If ${\color{red} \bf S}=\RR^n \longrightarrow f^*=\displaystyle\sup_{\lambda \in \RR} \lambda$ \,\,
+%  s.t. \,\, $f(x)-\lambda \geq 0 \,\,\,\,\forall\,\,x\in \RR^n$ \,\, {\bf [NP-hard]}
+%\item[] Write $f-\lambda$ as a sum of squares? $f-\lambda= f_1^2+\cdots+f_p^2$ \,\,\, {\bf \color{blue} [SDP]}
+%\item[] Hilbert (1888): Positivity $\equiv$ SOS iff ${\color{olive} n=1}$ or ${\color{olive} d=2}$ or ${\color{olive} (n,d)=(2,4)}$
+%\pause
+%\vspace{0.2cm}
+%\item[$\bullet$] When ${\color{red} \bf S}$ is any set : {\bf Positivestellensatz}
+%\bc  (Schm\"udgen) \,\,${\color{red} \bf S}$ \,compact\,\,:\,\,
+%$f-y = \displaystyle\sum_{\nu \in \{0,1\}^s}\sigma_{\nu}\prod_j{\bf \color{red} g_j}^{\nu_j}$ \,\, with $\sigma_i$ SOS  \,\, {%\bf \color{blue} [SDP]} \ec
+%\bc  (Putinar) \, \,\,\,\,${\color{red} \bf S}$ archimedean\,\,:\,\,\,
+%$f-y = \sigma_0 + \displaystyle\sum_i\sigma_i{\bf \color{red} g_i}$ \,\,\,\,\,\,\, with $\sigma_i$ SOS  \,\, {\bf \color{blue} [SDP]} \ec
+%\pause
+%\vspace{0.2cm}
+%\item[$\bullet$] Lasserre ('01), Parrilo ('03) \ldots Moments vs SOS approach also gives {\bf \color{blue} [SDP]}
+%\end{itemize}
 %
 %\end{frame}
 
 
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf \Huge Perspectives \ec}
-
-{\bf Structured problems from applied contexts}
-\begin{itemize}
-\item
-  Lyapunov Stability :: Block-LMI conditions of type
-  $$ 
-  \begin{array}{rr}
-    P \succ 0 \\
-    PA+A^TP \prec 0
-  \end{array}
-  \Longleftrightarrow
-  \begin{bmatrix}
-    \begin{array}{cc}
-      P & 0 \\
-      0 & -PA-A^TP
-    \end{array}
-  \end{bmatrix}
-  \succ 0
-  $$
-\end{itemize}
-
-\vspace{0.4cm}
-
-{\bf Towards an exact solver for SDP}
-
-\begin{itemize}
-\item
-  No assumptions on input data using deformation/homotopy techniques
-\end{itemize}
-
-\vspace{0.4cm}
-
-{\bf Exact algorithms for hyperbolic polynomials}
-
-\begin{itemize}
-\item
-  Hyperbolicity test for $f \in \RR[x]_d$
-\item
-  Determinantal representations $\leftrightarrow$ cone of {\it interlacers} $I(f,e)$
-\end{itemize}
-
-%\vspace{0.2cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+%\frametitle{\vspace{-0.5cm}\bc \bf \Huge State of the art \ec}
 %
-%{\bf Performance of the implementation}
+%\vspace{-0.3cm}
 %
-%\begin{itemize}
-%\item
-%  Gr\"obner bases of multi-homogeneous Lagrange systems
-%\item
-%  Use/Implement routines for RUR (symbolic homotopy, geometric resolution ...)
-%\end{itemize}
+%\setbeamercolor{mybox}{bg=gray}
+%\begin{beamercolorbox}[sep=1mm]{mybox}
+%${\bf Fixed\hspace{-0.1cm}-\hspace{-0.1cm}Precision \,\, Polynomial\hspace{-0.1cm}-\hspace{-0.1cm}Time \,\, Algorithms\,\, for\,\, SDP}$
+%\end{beamercolorbox}
+%{\cit Shor, Nemirovsky, Yudin ('60s-'70s), \ldots, }{\cit Khachiyan}\\
+%Ellipsoid algorithm is $Poly(m,n,\log(1/\epsilon))$ : {\color{red} inefficient in practice} \\
+%{\cit Nesterov, Nemirovsky ('90s)}\\
+%Interior point algorithms : {\color{blue} efficient in practice}
+%
+%{\cit Ramana, Khachiyan, Porkolab ('90s)}\\
+%Complexity bounds for LMI : {\color{blue} can't be used in practice}
+%
+%\pause
+%
+%\vspace{0.1cm}
+%
+%\setbeamercolor{mybox}{bg=gray}
+%\begin{beamercolorbox}[sep=1mm]{mybox}
+%${\bf (Rational)\,points\,in\,(convex)\,Semialgebraic\,Sets}$
+%\end{beamercolorbox}
+%{\cit Peyrl, Parrilo (2007), Kaltofen, Li, Yang, Zhi (2008)}\\
+%Floating-point-SOS $\rightarrow$ Rational approximation $\rightarrow$ Projection on the feasible set \\
+%{\cit Guo, Safey El Din, Zhi (2013)} \\
+%Bit complexity bounds for emptiness of $\{x \in \QQ^n \mymid \red{A}(x) \succeq 0\}$\\
+%
+%\pause
+%
+%\vspace{0.1cm}
+%
+%\setbeamercolor{mybox}{bg=gray}
+%\begin{beamercolorbox}[sep=1mm]{mybox}
+%${\bf Exact\,\,algorithms\,\,for\,\,LMI/SDP}$
+%\end{beamercolorbox}
+%{\cit Henrion, N., Safey El Din (2015-2016)} \\
+%New upper bounds for emptiness of $\{x \in \RR^n \mymid \red{A}(x) \succeq 0\}$ \\
+%{\cit N. (2016)} \\
+%Rank-constrained SDP \hfill (poly-time if \, $n$ \, {\bf or} \, $m=\text{size}({A})$ \, is fixed)
+%
+%%Open questions:
+%%\begin{itemize}
+%%\item
+%%How if $\{x \in \QQ^n \mymid \red{A}(x) \succeq 0\}=\emptyset$?
+%%\item
+%%Additional rank constraints?
+%%\end{itemize}
 
-
-
-\end{frame}
+%\end{frame}
 
 
 
