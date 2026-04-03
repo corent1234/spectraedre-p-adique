@@ -92,10 +92,9 @@
 \theoremstyle{definition}
 \newtheorem{oss}{Remark}[section]
 
-
 \title[]{\bf Title \smallskip \smallskip \smallskip}
 \author{{\bf Tristan Vaccon} \\ \vspace{0.1cm} Université de Limoges}
-\date{Tropical seminar \\ April 9, 2026}
+\date{Tropical seminar \\ CMAP, École Polytechnique \\[.5cm] April 9, 2026}
 
 
 %\usetheme{default}
@@ -311,54 +310,72 @@ then $\spec=\{x \in \RR^n \mymid f_i(x) \geq 0, i=1,\ldots,m\}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf Motivations \ec}
+\frametitle{\vspace{-0.5cm}\bc \bf Motivations\ec}
 
+\vspace{-3cm}
 \begin{itemize}
 \item[] Polyhedra $\rightarrow$ feasible sets of {\color{blue} Linear Programming} ({\color{blue} LP})
+  \includegraphics[scale=0.025]{IMAGES/LP_types}
+  \vspace{-0.4cm}
 \item[] Spectrahedra $\rightarrow$ feasible sets of  {\color{blue} Semidefinite Programming} ({\color{blue} SDP})
+  \includegraphics[scale=0.06]{IMAGES/cayley_yellow}
 \end{itemize}
+\vspace{0.3cm}
 
-Both LP and SDP are central in optimization, since 
+\pause
 
-\begin{columns}[t,onlytextwidth]
-  \begin{column}{0.45\textwidth}
-    \begin{figure}[H]
-      \centering
-      %      \includegraphics[width=.4\linewidth]{../IMAGES/cayleycubic}\\
-      %      \includegraphics[width=.6\linewidth]{../IMAGES/cut}
-      \caption{The Cayley spectrahedron and a maximum cut}
-    \end{figure}
-  \end{column}
-  \begin{column}{0.6\textwidth}
-    \bc {\bf SDP} : linear optimization over $\spec$ ({\it i.e.} over {\bf LMI}) \ec
-    %      The {\bf Cayley spectrahedron}:
-    \vspace{0cm}
-    \[
-    \spec=\left\{
-    (x_1,x_2,x_3) \in \RR^3 \mymid
-    \left(
-    \begin{array}{ccc}
-      1 & x_1 & x_2 \\
-      x_1 & 1 & x_3 \\
-      x_2 & x_3 & 1 \\
-    \end{array}
-    \right)\succeq 0
-    \right\}
-    \]
-Applications in
+Classical applications from
 \begin{itemize}
 \item
-control theory (Lyapunov stability ...)
+  {\color{blue} real algebraic geometry} (positive polynomials vs SOS, 17th Hilbert's problem)
 \item
-combinatorics (relaxations of NP-hard pr.)
+  {\color{blue} control theory} (Lyapunov stability)
 \item
-non-convex poly. optimization
+  {\color{blue} combinatorial optimization} (e.g. SDP relaxation of MAXCUT)
+\item
+  {\color{blue} polynomial optimization} (moment-SOS relaxation hierarchy)
 \end{itemize}
-  \end{column}
-\end{columns}
 
 \end{frame}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\vspace{-0.5cm}\bc \bf Properties\ec}
+
+Polyhedra and spectrahedra {\bf \color{blue} share} several properties, for instance:
+
+\begin{itemize}
+\item convex basic semi-algebraic sets
+\item closed under intersection
+\item exposed faces
+\end{itemize}
+
+\vspace{0.3cm}
+
+but spectrahedra/SDP suffer of {\bf \color{red} pathologies} that do not show up for polyhedra/LP:
+
+\begin{itemize}
+\item spectrahedra are not closed under linear image
+\item points of spectrahedra might not be representable over the defining field, e.g.:
+  $$
+  \{\sqrt{2}\} = \left\{x \in \RR :
+  \left[\begin{smallmatrix} x & 1 \\ 2 & x\end{smallmatrix}\right] \succeq 0
+  \text{ and }
+  \left[\begin{smallmatrix} 1 & x \\ x & 2\end{smallmatrix}\right] \succeq 0\right\}
+  $$
+\end{itemize}
+
+\vspace{0.3cm}
+This reflects on
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{\vspace{-0.5cm}\bc \bf Spectrahedral shadows\ec}
+
+
+\end{frame}
 
 %Given $C,M_1,\ldots,M_n \in \SS_m(\RR)$ and $b \in \RR^k$:
 %  \begin{columns}[t,onlytextwidth]
