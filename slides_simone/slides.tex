@@ -370,14 +370,25 @@ but spectrahedra/SDP are highly more {\bf \color{red} pathological} than polyhed
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf Spectrahedral shadows\ec}
+\frametitle{\vspace{-0.5cm}\bc \bf Semidefinite representable sets\ec}
+
+The linear projection of a spectrahedron is called a {\color{blue} spectrahedral shadow}:
+$$
+S = \left\{x \in \RR^n : \exists\, y \in \RR^p, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^p y_j B_j \succeq 0\right\},
+$$
+for matrices $A_i,B_j \in \sym^d$. \pause
+Spectrahedra and their shadows are in general called {\color{blue} semidefinite representable sets}.
+\pause
 
 \begin{figure}
+  \includegraphics[scale=0.1]{IMAGES/fermat4}
   \centering
-  \includegraphics[scale=0.2]{IMAGES/fermat4}
-  \caption*{The convex hull of the Fermat's quartic $x^4+y^4=1$, \\
-    which is semidefinite representable but not spectrahedral}
+  \caption*{\hfill The convex hull of the Fermat's quartic $x^4+y^4=1$ \\
+    \hfill is semidefinite representable but not spectrahedral}
 \end{figure}
+\pause
+
+Not every convex (compact) semialgebraic set is semidefinite representable (Scheiderer, 2018).
 
 \end{frame}
 
