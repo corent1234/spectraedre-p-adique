@@ -1,0 +1,185 @@
+\documentclass{amsart}
+
+\usepackage{amsmath}
+%\usepackage{amsthm}
+%\usepackage{amssymb} %%% ça ne fait pas compiler en acmart
+\usepackage{amsfonts}
+\usepackage{mathrsfs} 
+\usepackage{graphicx}
+\usepackage{color,xcolor}
+%\usepackage{ulem}
+\usepackage{bm}
+
+\usepackage[T1]{fontenc} 
+
+%%%% pour le "def" sur \leftrightarrow
+\makeatletter
+\newcommand\xleftrightarrow[2][]{%
+  \ext@arrow 9999{\Leftrightarrowfill@}{#1}{#2}}
+\newcommand\longleftrightarrowfill@{%
+  \arrowfill@\leftarrow\relbar\rightarrow}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% --------- ALGORITHMS ---------- <<:
+\usepackage{algorithm,algorithmic}
+%\usepackage[noend]{algpseudocode}      %%% this is for the algorithms
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} % require --> input
+\renewcommand{\algorithmicensure}{\textbf{Output:}} % ensure --> output
+% :>> ALGORITHMS
+
+\usepackage{stmaryrd} %for double brackets
+
+\newcommand{\R}{\mathbb{R}} % real numbers
+\newcommand{\C}{\mathbb{C}} % complex numbers
+\newcommand{\N}{\mathbb{N}} % integers
+%%%\newcommand{\allmat}{\mathbb{M}} % matrices ---> remplacé par K^{m \times n}
+\newcommand{\sym}{\mathbb{S}} % matrices symétriques
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\Qc}{\mathcal{Q}}
+\renewcommand{\span}[1]{{\text{span}(#1)}} % simone's comments
+\newcommand{\aff}[1]{{\text{aff}(#1)}} % simone's comments
+\newcommand{\relint}[1]{{\text{relint}(#1)}} % simone's comments
+\newcommand{\calL}{\mathcal{L}} % simone's comments
+
+\newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
+\newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
+\newcommand{\tristan}[1]{{\color{red} #1}} % tristan's comments
+\newcommand{\todo}[1]{{\color{blue}\bf \text{TODO: } #1}} % TODOs
+\newcommand{\rev}[1]{{\color{blue} #1}} % TODOs
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{notation}[theorem]{Notation}
+
+%p-adic commands
+\DeclareMathOperator{\val}{val}
+\def\QQ{\ensuremath{\mathbb{Q}}}
+\def\ZZ{\ensuremath{\mathbb{Z}}}
+\newcommand{\OK}{\mathcal{O}_K}
+\def\diag{\mathrm{diag}}
+
+\newcommand{\GL}{\mathrm{GL}}
+
+
+\begin{document}
+
+\title{Follow up on ISSAC paper}
+\author{}
+
+\maketitle
+
+\begin{abstract}
+This note is about further questions concerning the paper \cite{cornou2026}.
+\end{abstract}
+
+%
+% ---- Bibliography ----
+%
+%\begin{thebibliography}{99}
+%\end{thebibliography}
+
+\section{Combinatorial aspects of polyhedra/spectrahedra}
+
+Recall from \cite[Def.\,3.1]{cornou2026} that polyhedra in $K^n$, for a valued field $(K, \val)$,
+are defined as the set of vectors such that some linear combinations of their entries have nonnegative
+or infinite valuation, {\it i.e.} subsets of the form
+\begin{equation}\label{eq_def_polyhedra}
+  \PP =
+  \left\{
+  x \in K^n :
+  \begin{array}{ll}
+    \val(\ell_i(x)) \geq 0 & i=1,\ldots,d \\
+    \val(m_j(x)) = +\infty & j=1,\ldots,e
+  \end{array}
+  \right\},
+\end{equation}
+for some affine forms $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
+We say that a form $m$ vanishes on $x$ if $\val(m(x))=+\infty$.
+
+Note that a given polyhedron $\PP$ might have different formulations
+of type \eqref{eq_def_polyhedra}. To make it slightly more canonical
+one can make the following assumptions about formulation \eqref{eq_def_polyhedra}
+(which is what we do from now on):
+
+\begin{assumption}\label{assumpt}
+  For every $i \in \{1,\ldots,d\}$, there exists an element $x \in \PP$
+  such that $\val(\ell_i(x)) < +\infty$; that is, $\ell_1,\ldots,\ell_d$
+  do not vanish identically on $\PP$.
+%\item[B.]
+%    For every  $i \in \{1,\ldots,d\}$, the form $\ell_i$ is not an affine
+%    combination of forms in $\{\ell_j : j \neq i\}$; that is (thanks to
+%    ultrametricity) $\ell_1,\ldots,\ell_d$ are irredundant.
+\end{assumption}
+
+Nevertheless the linear forms $\ell_i$ will vanish at some $x$
+in the <<boundary>> of $\PP$. This leads to the following definition:
+
+\begin{definition}
+  Let $\PP$ be defined as in \eqref{eq_def_polyhedra}, and let $x \in\PP$.
+  The \emph{corank} of $x$ is
+  $$
+  \mathrm{corank}(x) = \#\Big\{i \in \{1,\ldots,d\} : \val(\ell_i(x)) = +\infty\Big\}.
+  $$
+  Its \emph{rank} is $d-\mathrm{corank}(x)$, the number of forms $\ell_i$ such
+  that $\val(\ell_i(x)) < +\infty$. By \Cref{assumpt} $\mathrm{rank}(x)$
+\end{definition}
+
+Rank and corank of $x \in\PP$ depend on the description \eqref{eq_def_polyhedra}.
+
+
+\newpage
+\section{The case $K=\QQ_p$}
+
+In this section we fix $K=\QQ_p$, the field of $p$-adic numbers, equipped with
+the $p$-adic valuation $\val_p$. \\
+
+%{\bf Question.} Assume a polyhedron $\PP$ is defined by some data over $K$
+%as in \cite[Def.\,3.1]{cornou2026}. \\
+
+{\bf Question.} Assume a LP program is defined by some data over $K$ as in
+\cite[Sec.\,4]{cornou2026}, and assume that this program has a feasible solution.
+What precision should we expect for this solution, as a function of the input precision? \\
+
+%{\bf Question.}
+
+\newpage
+\section{Valued-simplex algorithm}
+
+The simplex algorithm is a boundary algorithm for solving a linear program,
+that essentially can be phrased as follows.
+
+\begin{itemize}
+\item Assume the feasible polyhedron has a vertex which is known or can be computed easily.
+\item Either this vertex is optimal, in the sense that along every edge containing the input
+  vertex, the objective function does not decrease (this relies on convexity though).
+\item Or there is an edge containing the input vertex where the objective function decreases.
+  In this case either we find a new vertex at the end of the edge (and we repeat the process)
+  or the edge is unbounded, and the LP is unbounded.
+\end{itemize}
+
+{\bf Question.} Can we have a valued-simplex algorithm? We should prove that convexity is not
+necessary for step 2.
+
+
+\newpage
+%\bibliographystyle{ACM-Reference-Format}
+\bibliographystyle{acm}
+\bibliography{../issac2026/refs}
+
+\end{document}
