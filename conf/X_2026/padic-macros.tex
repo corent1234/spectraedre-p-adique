@@ -1,0 +1,96 @@
+\tikzset{reset node/.style={text width={},minimum height=0pt,minimum width=0pt, anchor=center}}
+\tikzset{
+  allcoef/.style={reset node, text width={},anchor=center,circle, inner sep=0.15em},
+  zerocoef/.style={allcoef,draw,fill=white},
+  nonzerocoef/.style={allcoef,draw, fill},
+  padic value/.style={}
+}
+
+\colorlet{padiccolor}{purple!40!black}
+\colorlet{padiczerocolor}{padiccolor}
+\colorlet{padicvalcolor}{black}
+\def\padicshift{0.4em}
+\def\padictotal{6}
+\def\padiccolorshift{2}
+\newcommand{\padic}[3]{%
+  \def\name{#1}
+  \def\value{#2}
+  \def\zero{#3}
+  \tikz[y=0.7em,baseline=(\name-val.base),remember picture]{
+    \node[padic value, padicvalcolor,reset node,inner xsep=0pt,anchor=base] (\name-val) at (0,0) {\(\value\)};
+    \begin{scope}[yshift=\padicshift]
+      \foreach \n in {1,...,\padictotal}{
+        \pgfmathsetmacro{\ratio}{100*(\padictotal+\padiccolorshift-\n)/(\padictotal+\padiccolorshift)}
+        \def\mycolor{padiccolor!\ratio!white}
+        \def\myzerocolor{padiczerocolor!\ratio!white}
+        \ifthenelse{\n<\zero \OR \n=\zero}{%
+          \node[draw=\myzerocolor, zerocoef] at (0,\n) (\name-\n) {};
+        }{%
+          \node[\mycolor,nonzerocoef] at (0,\n) (\name-\n) {};
+        }}
+    \end{scope}
+    \pgfmathtruncatemacro{\neg}{-\zero}
+    \ifthenelse{\NOT \ispositiveinteger{\zero}}{%
+      \begin{scope}[yshift=-\padicshift]
+      \foreach \n in {1,...,\neg}{
+        \node[padiccolor,nonzerocoef
+        ] at (0,-\n+1) (\name-minus\n) {};
+      }
+    \end{scope}
+  }{}
+  }
+}
+
+\newcommand{\polypadic}[3][1]{
+  {% \tikzset{zerocoef/.style={allcoef,draw,fill=padiczerocolor!88!white
+    %    },
+    %    nonzerocoef/.style={allcoef,draw=none, fill=none}
+    %  }
+    \def\padictotal{#1}
+    \def\padiccolorshift{100}
+    \pgfmathtruncatemacro{\totmone}{max(#1-1,0)}
+    \padic{#2}{#3}{\totmone}
+  }
+}
+
+\newcommand{\padicone}{\padic{}{1}{0}}
+\newcommand{\padiczero}{\padic{}{0}{\padictotal}}
+
+
+
+\newcommand{\padicpn}[3]{%
+   \def\name{#1}
+   \def\value{#2}
+   \def\zero{#3}
+   \pgfmathtruncatemacro{\full}{\zero+1}
+   \tikz[y=0.7em,baseline=(\name-val.base),remember picture]{
+     \node[padic value, padicvalcolor,reset node,inner
+xsep=0pt,anchor=base] (\name-val) at (0,0) {\(\value\)};
+     \begin{scope}[yshift=\padicshift]
+       \foreach \n in {1,...,\padictotal}{
+\pgfmathsetmacro{\ratio}{100*(\padictotal+\padiccolorshift-\n)/(\padictotal+\padiccolorshift)}
+         \def\mycolor{padiccolor!\ratio!white}
+         \def\myzerocolor{padiczerocolor!\ratio!white}
+         \ifthenelse{\n=\full}{%
+           \node[\mycolor,nonzerocoef] at (0,\n) (\name-\n) {};
+         }{%
+           \node[draw=\myzerocolor, zerocoef] at (0,\n) (\name-\n) {};
+         }}
+     \end{scope}
+     \pgfmathtruncatemacro{\neg}{-\zero-1}
+     \pgfmathtruncatemacro{\full}{-\zero}
+     \ifthenelse{\NOT \ispositiveinteger{\zero}}{%
+       \begin{scope}[yshift=-\padicshift]
+       \foreach \n in {1,...,\neg}{
+         \node[padiccolor,zerocoef] at (0,-\n+1) (\name-minus\n) {};
+       }
+       \node[padiccolor,nonzerocoef] at (0,-\full+1) (\name-minus\full) {};
+       \end{scope}
+   }{}
+   }
+}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

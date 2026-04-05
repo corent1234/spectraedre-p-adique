@@ -1,0 +1,91 @@
+\def\westbnd{7bp}
+\def\southbnd{7bp}
+\def\eastbnd{43bp}
+\def\northbnd{43bp}
+\def\xmax{50bp}
+\def\ymax{50bp}
+\def\xmin{0bp}
+\def\ymin{0bp}
+\def\corner{28bp}
+
+\begin{tikzfadingfrompicture}[every path/.style={line width=0},name=bottom left% ,x=0.4cm,y=0.4cm
+  ]
+  \fill[transparent!100] (\xmin,\ymin) rectangle (\xmax,\ymax);
+  \fill[transparent!0] (\westbnd,\southbnd) rectangle (\xmax,\ymax);
+  \shade[% draw=transparent!0,
+  left color=transparent!100, right color=transparent!0]
+  (\xmin,\ymin) |- (\westbnd,\ymax) -- (\westbnd,\southbnd) -- cycle;
+  \shade[% draw=transparent!0,
+  bottom color=transparent!100, top color=transparent!0]
+  (\xmin,\ymin) -| (\xmax,\southbnd) -- (\westbnd,\southbnd) -- cycle;
+
+  % \begin{scope}[transparent!50]
+  %   \fill (current bounding box.center) circle[radius=3pt];
+  %   \fill ($(current bounding box.south west)!.5!(current bounding box.center)$) circle[radius=3pt];
+  %   %   \fill[transparent!50] (current bounding box.south east) circle[radius=3pt];
+  %   \draw (current bounding box.south west) -- (current bounding box.north east) ;
+  %   \draw (current bounding box.south east) -- (current bounding box.north west) ;
+  % \end{scope}
+  
+\end{tikzfadingfrompicture}
+
+\begin{tikzfadingfrompicture}[every path/.style={line width=0},name=all sides% ,x=0.4cm,y=0.4cm
+  ]
+  \fill[transparent!100] (\xmin,\ymin) rectangle (\xmax,\ymax);
+  \fill[transparent!0] (\westbnd,\southbnd) rectangle (\eastbnd,\northbnd);
+  \shade[bottom color=transparent!100, top color=transparent!0]
+  (\xmin,\ymin) -- (\westbnd,\southbnd) -- (\eastbnd,\southbnd) -- (\xmax,\ymin) -- cycle;
+  \shade[left color=transparent!100, right color=transparent!0]
+  (\xmin,\ymin) -- (\westbnd,\southbnd) -- (\westbnd,\northbnd) -- (\xmin,\ymax) -- cycle;
+  \shade[top color=transparent!100, bottom color=transparent!0]
+  (\xmin,\ymax) -- (\westbnd,\northbnd) -- (\eastbnd,\northbnd) -- (\xmax,\ymax) -- cycle;
+  \shade[right color=transparent!100, left color=transparent!0]
+  (\xmax,\ymax) -- (\eastbnd,\northbnd) -- (\eastbnd,\southbnd) -- (\xmax,\ymin) -- cycle;
+  
+
+  % \begin{scope}[transparent!50]
+  %   \fill (current bounding box.center) circle[radius=3pt];
+  %   \fill ($(current bounding box.south west)!.5!(current bounding box.center)$) circle[radius=3pt];
+  %   %   \fill[transparent!50] (current bounding box.south east) circle[radius=3pt];
+  %   \draw (current bounding box.south west) -- (current bounding box.north east) ;
+  %   \draw (current bounding box.south east) -- (current bounding box.north west) ;
+  % \end{scope}
+  
+\end{tikzfadingfrompicture}
+
+
+\begin{tikzfadingfrompicture}[every path/.style={line width=0},name=three sides% ,x=0.4cm,y=0.4cm
+  ]
+  \fill[transparent!100] (\xmin,\ymin) rectangle (\xmax,\ymax);
+  \fill[transparent!0] (\westbnd,\southbnd) rectangle (\eastbnd,\northbnd);
+  \shade[bottom color=transparent!100, top color=transparent!0]
+  (\xmin,\ymin) -- (\westbnd,\southbnd) -- (\eastbnd,\southbnd) -- (\xmax,\ymin) -- cycle;
+  \shade[left color=transparent!100, right color=transparent!0]
+  (\xmin,\ymin) -- (\westbnd,\southbnd) -- (\westbnd,\northbnd) -- (\xmin,\ymax) -- cycle;
+  \shade[top color=transparent!100, bottom color=transparent!0]
+  (\xmin,\ymax) -- (\westbnd,\northbnd) -- (\eastbnd,\northbnd) -- (\xmax,\ymax) -- cycle;
+  \shade[right color=transparent!100, left color=transparent!0]
+  (\xmax,\ymax) -- (\eastbnd,\northbnd) -- (\eastbnd,\southbnd) -- (\xmax,\ymin) -- cycle;
+  \begin{scope}[transform canvas={rotate=45}]
+    \shade[% draw=red,
+    left color=transparent!0, right color=transparent!100, %middle color=transparent!100,
+    rotate=-45]
+    (\corner, \northbnd) -- (\corner, \ymax) -- (\xmax, \corner) -- (\eastbnd, \corner) -- cycle;
+  \end{scope}
+  \fill[transparent!100] (\corner,\ymax) -- (\xmax, \corner) -- (\xmax,\ymax) -- cycle;
+  
+
+  % \begin{scope}[transparent!50]
+  %   \fill (current bounding box.center) circle[radius=3pt];
+  %   \fill ($(current bounding box.south west)!.5!(current bounding box.center)$) circle[radius=3pt];
+  %   %   \fill[transparent!50] (current bounding box.south east) circle[radius=3pt];
+  %   \draw (current bounding box.south west) -- (current bounding box.north east) ;
+  %   \draw (current bounding box.south east) -- (current bounding box.north west) ;
+  % \end{scope}
+  
+\end{tikzfadingfrompicture}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

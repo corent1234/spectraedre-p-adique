@@ -1,0 +1,256 @@
+\colorlet{darkgreen}{green!50!black}
+% \usebeamercolor{structure}
+% %\colorlet{color1}{beamer@structure.fg}
+% \definecolor{color1}{named}{fg}
+% \usebeamercolor{normal text}
+\definecolor{color1}{HTML}{3333B3}
+\colorlet{color2}{red!80!black}
+\colorlet{color3}{green!40!black}
+\colorlet{myblue}{color1}
+\colorlet{myorange}{color2}
+\colorlet{mygreen}{color3}
+%\colorlet{myorange}{orange!80!black}
+\colorlet{myred}{red!65!black}
+
+\colorlet{myblue1}{myblue!15!white}
+\colorlet{myblue2}{myblue!7!white}
+\colorlet{mygreen1}{mygreen!15!white}
+\colorlet{myorange1}{myorange!15!white}
+
+\colorlet{nodegreen}{green!70!black!20}
+\colorlet{importantnodecolor}{orange!10}
+
+\colorlet{semialgebraiccolor}{mygreen}
+
+\tikzset{reset node/.style={text width={},minimum height=0pt,minimum width=0pt, anchor=center, line width=1pt, text color=normal text.fg}}
+
+\tikzset{
+  myarrow/.style={-latex',thick}
+}
+
+\tikzset{
+  plotsoa/.style={thick,color=myblue,mark=x},
+  plotnew1/.style={thick,color=myred,mark=+},
+}
+
+\tikzset{
+  plotqh/.style={thick,color=myred,mark=+},
+  ploth/.style={thick,color=myblue,mark=x},
+  finalpoint/.style={draw,fill,inner sep=1.5pt}
+}
+
+
+\tikzset{
+  polysystem/.style={draw,rectangle,
+    % rounded corners,fill=white
+    color=structure.fg,thick,%
+    % minimum height=0.8cm,%
+    align=center,anchor=center}
+}
+
+\colorlet{darkgreen}{green!50!black}
+
+% \tikzset{
+%   darkgreen/.style={draw=green!50!black}
+% }
+\tikzset{
+  covered/.style={color=structure.fg!20}
+}
+\tikzset{
+  algorithm/.style={draw=darkgreen, text=darkgreen,rectangle,rounded corners=5pt,outer sep=3pt,thick,fill=white}
+}
+\tikzset{
+  complexity/.style={draw,myred,rectangle,rounded corners,outer sep=3pt,thick,fill=white}
+}
+
+\newcommand\pgfdrawmonomialgrid[3]{% %% xmax, ymax, style
+  \def\borderoffset{0.5}
+  \draw [thick, ->] (- \borderoffset,0) -- (#1 + \borderoffset,0) node[right] {$\deg_{X_{1}}$};
+  \draw [thick, ->] (0, - \borderoffset) -- (0,#2 + \borderoffset) node[above] {$\deg_{X_{2}}$};
+  \foreach \x in {0,1,...,#1}{
+    \foreach \y in {0,1,...,#2}{
+      \draw (\x,\y) node[#3] {};
+    }
+  }
+}
+
+\newcommand{\pgfdrawweightedmonomials}[5]{% %% xmax, ymax, weightx,
+                                          % %% weighty, style
+  \foreach \x in {0,#3,...,#1}{
+    \foreach \y in {0,#4,...,#2}{
+      \node[#5] at (\x,\y) {};
+    }
+  }
+}
+
+\newcommand{\pgfdrawdegreeline}[3]{% %% d, texte, style
+  \draw[#3] (0,#1) -- ($(#1,0)+(0.5,-0.5)$) node[anchor=north] {#2};
+  }
+
+\tikzset{%
+  mark empty monomial/.style={inner sep=2pt,outer sep=0pt,minimum size=3pt,
+    circle, draw,myblue,transform shape}%
+}
+\tikzset{%
+  mark full monomial/.style={mark empty monomial, myred, inner sep=2pt,
+    fill}%
+}
+\tikzset{%
+  nothing/.style={}}
+
+\tikzset{
+  invisible/.style={opacity=0},
+  visible on/.style={alt=#1{}{invisible}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}}
+  },
+  covered on/.style={alt=#1{opacity=0.2}{}}
+}
+
+
+\newcommand{\nodetrue}[2]{%
+  \node [circle,draw,green,thick] at (#1,#2) {\checkmark}
+}
+
+
+\newcommand{\nodefalse}[2]{%
+  \node [circle,draw,myred,thick] at (#1,#2) {X}
+}
+
+
+
+
+
+% For correct externalization with overlays
+
+\makeatletter
+\newcommand*{\overlaynumber}{\number\beamer@slideinframe}
+
+\tikzset{
+  beamer externalizing/.style={%
+    execute at end picture={%
+      \tikzifexternalizing{%
+        \ifbeamer@anotherslide
+        \pgfexternalstorecommand{\string\global\string\beamer@anotherslidetrue}%
+        \fi
+      }{}%
+    }%
+  },
+  external/optimize=false
+}
+
+%\def\ifundefined#1{\expandafter\ifx\csname#1\endcsname\relax}
+
+\let\orig@tikzsetnextfilename=\tikzsetnextfilename
+\renewcommand\tikzsetnextfilename[1]{%
+  % \ifundefined{tikzsetnextfilename}%
+  % \fi%
+  \orig@tikzsetnextfilename{#1-\overlaynumber}}
+\makeatother
+
+%\renewcommand{\tikzsetnextfilename}[1]{}
+
+\tikzset{every picture/.style={beamer externalizing}}
+
+\tikzset{external overlay/.style={external/export=false,overlay}}
+
+% Catcodes in matrices
+\tikzset{beamer matrix/.style={ampersand replacement=\&}}
+
+
+
+\tikzset{plotnode/.style={fill=white,shape=circle,inner sep=0pt,font=\small}}
+\tikzset{cntnode/.style={fill=white,shape=circle,inner sep=1pt,font=\small,draw}}
+
+
+%%% Horizontal and vertical lines in tikz matrices
+%%% See: http://tex.stackexchange.com/a/204437/9517
+
+% \mvline[<style>]{<matrix name>}{<row number on the right hand side of the line>}
+\newcommand\mvline[3][]{%
+  \pgfmathtruncatemacro\hc{#3-1}
+  \draw[#1]({$(#2-1-#3)!.5!(#2-1-\hc)$} |- #2.north) -- ({$(#2-1-#3)!.5!(#2-1-\hc)$} |- #2.south);
+}
+% \mhline[<style>]{<matrix name>}{<column number below of the line>}{<number of columns in a row>}
+\newcommand\mhline[4][]{%
+  \node[fit=(#2-#3-1),inner sep=0pt,outer sep=0pt](R){};
+  \foreach \i in {1,...,#4}\node[fit=(R) (#2-#3-\i),inner sep=0pt,outer sep=0pt](R){};
+  \draw[#1] (R.north -| #2.west) -- (R.north -| #2.east);
+}
+
+
+\tikzset{myarrow-decoration/.style 2 args={decoration={markings,mark=at position #1 with {\arrow[thick]
+        {#2}}}}}
+
+\tikzset{textnode/.style={align=left,text width=0.52\textwidth}}
+
+
+
+\tikzset{
+  plotbad/.style={very thick,color=myred%,mark=x
+  },
+  plotgood/.style={very thick,color=mygreen% ,mark=+
+  },
+  plotmaybe/.style={very thick,color=myorange% ,mark=o
+  }
+}
+
+\tikzset{highlight/.style={%fill=yellow!70!white
+    fill=green!15!white
+    , rectangle, rounded corners},
+  alerthighlight/.style={%fill=yellow!70!white
+    fill=myorange!10!white
+    , rectangle, rounded corners}}
+
+
+\def\myleftmargin{2pt}
+\def\mytopmargin{0.9cm}
+\def\myrightmargin{2pt}
+\def\mybottommargin{2pt}
+
+\newcommand{\setcoordinatesoverlay}{
+  \coordinate (page-nw) at ($(current page.north west) + (\myleftmargin,-\mytopmargin)$);
+  \coordinate (page-n) at ($(current page.north) + (0,-\mytopmargin)$);
+  \coordinate (page-ne) at ($(current page.north east) + (-\myrightmargin,-\mytopmargin)$);
+  \coordinate (page-e) at ($(current page.east) + (-\myrightmargin,0)$);
+  \coordinate (page-se) at ($(current page.south east) + (-\myrightmargin,\mybottommargin)$);
+  \coordinate (page-s) at ($(current page.south) + (0,\mybottommargin)$);
+  \coordinate (page-sw) at ($(current page.south west) + (\myleftmargin,\mybottommargin)$);
+  \coordinate (page-w) at ($(current page.west) + (\myleftmargin,0)$);
+  \path (page-nw) -- (page-se) node[pos=0.5] (page-center) {};
+  \coordinate (page-c) at (page-center);
+}
+
+\newcommand{\setcoordinatesnooverlay}{
+  \def\mywidth{128mm}
+  \def\myheight{96mm}
+  \coordinate (page-nw) at (\myleftmargin,\myheight-\mytopmargin);
+  \coordinate (page-ne) at (\mywidth-\myrightmargin,\myheight-\mytopmargin);
+  \coordinate (page-sw) at (\myleftmargin,\mybottommargin);
+  \coordinate (page-se) at (\mywidth-\myrightmargin,\mybottommargin);
+  \path[use as bounding box] (page-nw) -- (page-ne) node[pos=0.5,coordinate] (page-n) {}
+  -- (page-se) node[pos=0.5,coordinate] (page-e) {}
+  -- (page-sw) node[pos=0.5,coordinate] (page-s) {}
+  -- (page-nw) node[pos=0.5,coordinate] (page-w) {}
+  -- (page-se) node[pos=0.5,coordinate] (page-center) {};
+  \coordinate (page-c) at (page-center);
+}
+
+\newcommand{\drawcross}{
+  \begin{scope}[every path/.style={draw,line width=0.5pt,cyan!20!white},
+    every node/.style={fill=white,inner sep=0pt}]
+    \path (page-nw) node[anchor=north west] {NW} -- (page-se) node[anchor=south east] {SE};
+    \path (page-ne) node[anchor=north east] {NE} -- (page-sw) node[anchor=south west] {SW};
+    \path (page-w) -- (page-e);
+    \path (page-n) -- (page-s);
+    \node at (page-c) {C};
+  \end{scope}
+}  
+
+\newcommand{\setcoordinates}{\setcoordinatesoverlay}
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End: 
