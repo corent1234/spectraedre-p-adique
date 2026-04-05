@@ -310,9 +310,9 @@ then $\spec=\{x \in \RR^n \mymid f_i(x) \geq 0, i=1,\ldots,m\}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf Motivations\ec}
+\frametitle{\vspace{-0.5cm}\bc \bf Motivations and properties\ec}
 
-\vspace{-3cm}
+\vspace{-0.5cm}
 \begin{itemize}
 \item[] Polyhedra $\rightarrow$ feasible sets of {\color{blue} Linear Programming} ({\color{blue} LP})
   \includegraphics[scale=0.025]{IMAGES/LP_types}
@@ -336,12 +336,8 @@ Classical applications from
   {\color{blue} polynomial optimization} (moment-SOS relaxation hierarchy)
 \end{itemize}
 
-\end{frame}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{\vspace{-0.5cm}\bc \bf Properties\ec}
+\pause
+\vspace{0.3cm}
 
 Polyhedra and spectrahedra {\bf \color{blue} share} several properties, for instance:
 
@@ -352,23 +348,24 @@ Polyhedra and spectrahedra {\bf \color{blue} share} several properties, for inst
 \end{itemize}
 
 \vspace{0.3cm}
+\pause
 
-but spectrahedra/SDP suffer of {\bf \color{red} pathologies} that do not show up for polyhedra/LP:
+but spectrahedra/SDP are highly more {\bf \color{red} pathological} than polyhedra/LP:
 
 \begin{itemize}
 \item spectrahedra are not closed under linear image
-\item points of spectrahedra might not be representable over the defining field, e.g.:
-  $$
-  \{\sqrt{2}\} = \left\{x \in \RR :
+\item solutions only over algebraic extension:
+  $
+  \scalebox[0.5\texwidth]{\{\sqrt{2}\} = \left\{x \in \RR :
   \left[\begin{smallmatrix} x & 1 \\ 2 & x\end{smallmatrix}\right] \succeq 0
   \text{ and }
-  \left[\begin{smallmatrix} 1 & x \\ x & 2\end{smallmatrix}\right] \succeq 0\right\}
-  $$
+  \left[\begin{smallmatrix} 1 & x \\ x & 2\end{smallmatrix}\right] \succeq 0\right\}}
+  $
+%  (points of spectrahedra might not be representable over the defining field)
 \end{itemize}
 
-\vspace{0.3cm}
-This reflects on
 \end{frame}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
