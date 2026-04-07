@@ -145,7 +145,7 @@
 
 %%% Ces packages sont chargés par beamer, mais les ajouter force auctex à les reconnaître
 \usepackage{amsfonts, amssymb, amsthm}
-\usepackage{amsmath}
+\usepackage{amsmath, tcolorbox, mathrsfs}
 
 \usepackage{mathtools}
 \mathtoolsset{showonlyrefs}
@@ -338,6 +338,20 @@
 \setbeamercolor{alerted text}{fg=myred}
 \setbeamercolor{example text}{fg=mygreen}
 
+\def\mymid{{\,\,:\,\,}}
+\definecolor{mycolor}{rgb}{0.28,0.69,0.7}
+\definecolor{mycolor1}{rgb}{0.7,0.75,0.71}
+\definecolor{mycolor2}{rgb}{0.58,1,1}
+\def\fall{\forall\,}
+\def\MM{{\mathbb{M}}}
+\def\SS{{\mathbb{S}}}
+\def\sing{{\rm sing}\,}
+\def\crit{{\rm crit}\,}
+\def\reg{{\rm reg}\,}
+\def\minors{{\rm minors}\,}
+\def\spec{\mathscr{S}}
+\def\cc{\mathcal{C}}
+
 
 \newcommand{\bigO}{O}
 
@@ -354,7 +368,11 @@
 \newcommand{\Fp}{\mathbb{F}_p}
 \newcommand{\Fq}{\mathbb{F}_q}% \F est déjà utilisé pour F5
 \newcommand{\PP}{\mathcal{P}}
+\def\sym{{\mathbb{S}}}
+\def\poly{{\mathscr{P}}}
 
+\newcommand{\bc}{\begin{center}}
+\newcommand{\ec}{\end{center}}
 
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\Ker}{Ker}
@@ -632,10 +650,148 @@
 \end{frame}
 
 
-\section{Genereal context over $\mathbb{R}$ and beyond}
+\section{Genereal context over $\mathbb{R}$}
 
 
-%objects of interest
+\begin{frame}
+\frametitle{ Polyhedra and Spectrahedra over $\RR$}
+\vspace{0.2cm}
+For $\ell_1,\ldots,\ell_m \in \RR[x]_{\leq 1}$ real affine $n$-variate functions:
+
+\begin{tcolorbox}[colback=green!5,colframe=blue!40!black]
+  \bc Polyhedron: {\color{red} $\poly = \{x \in \RR^n \mymid \ell_i(x) \geq 0, i=1,\ldots,m\}$} \ec
+\end{tcolorbox}
+
+\pause
+
+For $A_0,A_1,\ldots,A_n \in \sym^{m}$ real symmetric matrices
+
+\begin{tcolorbox}[colback=green!5,colframe=blue!40!black]
+  \bc Spectrahedron: {\color{red} $\spec = \{x \in \RR^n \mymid A(x)=A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}$} \ec 
+  
+  {\color{blue} ``$\succeq 0$'' = positive semi-definite = its eigenvalues are $\geq 0$. \\
+    $A(x) \succeq 0$ is {\bf called} a {\bf LMI}.}
+\end{tcolorbox}
+
+\pause
+
+{\bf\color{blue} Fact:}
+Polyhedra are Spectrahedra, since $x \in \poly \Leftrightarrow A(x) \coloneqq \text{diag}(\ell_1,\ldots,\ell_m) \succeq 0$.
+
+\pause
+
+{\bf\color{blue} Fact:} Polyhedra resp. Spectrahedra are {\bf convex} as affine pre-images of resp.
+\begin{equation*}
+  \begin{aligned}
+    \text{(nonnegative orthants)} \,\,\,\, \RR^m_+ &= \{y \in \RR^m : y_i \geq 0, i=1,\ldots,m\} \\
+    \text{(positive semidefinite cones)} \,\,\,\, \sym^m_+ &= \{X \in \sym_m : X \succeq 0\}.   
+  \end{aligned}
+\end{equation*}
+
+\pause
+
+{\bf\color{blue} Fact:}
+They are {\bf basic semi-algebraic} sets:
+$$\det(A(x)+t I_m) = f_{m}(x)+f_{m-1}(x)t+\cdots+f_{1}(x)t^{m-1}+t^m$$
+then $\spec=\{x \in \RR^n \mymid f_i(x) \geq 0, i=1,\ldots,m\}$.
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Polyhedra and Spectrahedra over $\RR$}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=.25\linewidth]{../../slides_simone/IMAGES/polytope}
+    \hspace{1.5cm}
+    \includegraphics[width=.25\linewidth]{../../slides_simone/IMAGES/hypcone} \\
+    \vspace{0.1cm}
+    \includegraphics[width=.22\linewidth]{../../slides_simone/IMAGES/Hyp_Deriv_g}
+    \hspace{0.5cm}
+    \includegraphics[width=.22\linewidth]{../../slides_simone/IMAGES/honest_pillow}
+    \hspace{0.5cm}
+    \includegraphics[width=.22\linewidth]{../../slides_simone/IMAGES/T4}
+  \end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{ Motivations and properties}
+
+\vspace{-0.5cm}
+\begin{itemize}
+\item[] Polyhedra $\rightarrow$ feasible sets of {\color{blue} Linear Programming} ({\color{blue} LP})
+  \includegraphics[scale=0.025]{../../slides_simone/IMAGES/LP_types}
+  \vspace{-0.4cm}
+\item[] Spectrahedra $\rightarrow$ feasible sets of  {\color{blue} Semidefinite Programming} ({\color{blue} SDP})
+  \includegraphics[scale=0.06]{../../slides_simone/IMAGES/cayley_yellow}
+\end{itemize}
+\vspace{0.2cm}
+
+\pause
+
+Classical applications from
+\begin{itemize}
+\item
+  {\color{blue} real algebraic geometry} (positive polynomials vs SOS, 17th Hilbert's problem)
+\item
+  {\color{blue} control theory} (Lyapunov stability)
+\item
+  {\color{blue} combinatorial optimization} (e.g. SDP relaxation of MAXCUT)
+\item
+  {\color{blue} polynomial optimization} (moment-SOS relaxation hierarchy)
+\end{itemize}
+
+\pause
+\vspace{0.2cm}
+
+Several {\bf \color{blue} good properties} besides convex \pause
+but spectrahedra/SDP are highly more {\bf \color{red} pathological} than polyhedra/LP:
+
+\begin{itemize}
+\item spectrahedra are {\only<5->{\color{olive}\bf}not closed under linear image}
+\item solutions only over algebraic extension:
+  \scalebox{0.8}{
+    $\{\sqrt{2}\} = \left\{x \in \RR :
+    \left[\begin{smallmatrix} x & 1 \\ 2 & x\end{smallmatrix}\right] \succeq 0
+    \text{ and }
+    \left[\begin{smallmatrix} 1 & x \\ x & 2\end{smallmatrix}\right] \succeq 0\right\}$
+    }
+  %  (points of spectrahedra might not be representable over the defining field)
+\item
+  in SDP: weak infeasibility, not attainement of inf/sup, etc...
+\end{itemize}
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Semidefinite representable sets}
+
+The linear projection of a spectrahedron is called a {\color{blue} spectrahedral shadow}:
+$$
+S = \left\{x \in \RR^n : \exists\, y \in \RR^p, A_0 + \sum_{i=1}^n x_i A_i + \sum_{j=1}^p y_j B_j \succeq 0\right\},
+$$
+for matrices $A_i,B_j \in \sym^d$. \pause
+Spectrahedra and their shadows are in general called {\color{blue} semidefinite representable sets}.
+\pause
+
+\begin{figure}
+  \includegraphics[scale=0.1]{../../slides_simone/IMAGES/fermat4}
+  \centering
+  \caption*{\hfill The convex hull of the Fermat's quartic $x^4+y^4=1$ \\
+    \hfill is semidefinite representable but not spectrahedral}
+\end{figure}
+\pause
+
+Not every convex (compact) semialgebraic set is semidefinite representable (Scheiderer, 2018).
+
+\end{frame}
+
+
 
 \section{Non-archimedean geometry}
 
@@ -680,7 +836,6 @@ D_K(\alpha; \lambda) :=\left\lbrace x \in K : \: v_K(x-\alpha) \geq \lambda \rig
 \end{deftn}
 
 
-Todo: une image de boule
 
 \begin{deftn}[Polydisks]
 \[
@@ -1293,9 +1448,14 @@ One can generalize this argument to annuli.
 \item \textbf{PVW2026}, \textit{On OM algorithms and Cluster Pictures II: handling small precision}, A. Poteaux, T. Vaccon, M. Weimann, 2026.
 \end{itemize}
 \end{block}
-\begin{block}{Polyhedron and spectrahedron}
+\begin{block}{Polyhedron and spectrahedron over valued fields}
 \begin{itemize}
 \item \textbf{CNV2025}: \textit{On semidefinite-representable sets over valued fields}, C. Cornou, S. Naldi, T. Vaccon, 2026
+\end{itemize}
+\end{block}
+\begin{block}{A tropical approach to spectrahedra in a non-archimedean context (unrelated)}
+\begin{itemize}
+\item \textbf{AGS2020}: \textit{Tropical Spectrahedra}, X. Allamigeon, S. Gaubert, M. Skomra, 2020
 \end{itemize}
 \end{block}
 \end{small}
