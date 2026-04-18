@@ -1,0 +1,62 @@
+SUBMISSION: 6315
+TITLE: On semidefinite-representable sets over valued fields
+
+----------------------- REVIEW 1 ---------------------
+
+SUBMISSION: 6315
+TITLE: On semidefinite-representable sets over valued fields
+
+----------- Overall evaluation -----------
+SCORE: 2 (accept)
+----- TEXT:
+see attachment
+
+review_1 attached to this letter.>
+
+
+----------------------- REVIEW 2 ---------------------
+
+SUBMISSION: 6315
+TITLE: On semidefinite-representable sets over valued fields
+
+----------- Overall evaluation -----------
+SCORE: 1 (weak accept)
+----- TEXT:
+This paper discusses linear programming and semi-definite programs over valued fields. Over a valued field a semi-algebraic set has the form {x: val(p_i(x)) geq 0, 1 leq i leq m, p_j(x)=0, 1 leq j leq n}. The definitions for polyhedra and spectrahedra can be similarly modified (a polyhedron is {x : val(l_i(x)) geq 0, val(m_i(x))=infty} where the l_i, m_i are linear). The main results are that the image of a polyhedron under an affine map is a polyhedron, and that annuli of a field K with infinite residue field are semidefinite-representable but not spectrahedra.
+
+These topics are very interesting, and the results are much simpler I would have expected.
+
+The discussion of polyhedra is rather complicated, however. The fact that the image of a semialgebraic set is semialgebraic follows from the model theory of algebraically closed valued fields. I would have liked to have seen discussion of whether this result does as well. There is still significant value in an explicit proof, but it would be good to be clear as to what the value of this proof is.
+
+The results on linear programming are surprising in their simplicity. Similarly, it is surprising how simple it is to distinguish concepts related to spectrahedra, unlike in the real case.
+
+The paper is written in a straight-forward fashion, and should be of interest to the ISSAC audience. The results are interesting, but the presentation could be improved.
+
+Typos/small commentsL
+
+p3 proof of 3.4. "is enough to conclude". "suffices" would be more idiomatic.
+
+p5 proof of 3.11, line 2. "there exists". Inside definition of D, val(s_ix_i-b_i) (add () ). Later in the proof, in the displayed
+equation for D, exponent of \pi is \val(b_i)-\val(s_i) ( \val(b_i) missing, and \ on val).
+
+
+p5 Algorithm. Line 15 - parentheses would make this clearer. Line 19. s_i is not defined at this point (S was set to be the Smith
+Normal Form online 10, but then the function is called again, so the current A is in Smith Normal Form - I think s_i should be a_i. Line 26. Xi_j is not defined here (this is the notation from Lemma 4.5).
+
+p6 line -7. "last coefficients of b' are zero". Should that not be "have nonnegative valuation"?
+
+p7 Theorem 5.2. This is a really a statement about roots of polynomials, not about matrices. I would have expected a reference
+rather than a proof.
+
+p8 Discussion of R\"uth's thesis. What are a_i - is that the p_i above?
+
+
+----------------------- REVIEW 3 ---------------------
+
+SUBMISSION: 6315
+TITLE: On semidefinite-representable sets over valued fields
+
+----------- Overall evaluation -----------
+SCORE: 2 (accept)
+----- TEXT:
+This paper extends notions about linear and semidefinite representability of convex sets from the real numbers to more general (discretely) valued fields, including algorithms in the linear case. This is a very natural line of research and makes the paper, in my opinion, a very good contribution to ISSAC. A more detailed review will follow. 
