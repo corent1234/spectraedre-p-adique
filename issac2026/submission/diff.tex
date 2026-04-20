@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Mon Apr 20 14:45:50 2026
+%DIF ADD cameraready.tex          Mon Apr 20 14:49:51 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -1723,15 +1723,15 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general:
 \end{proposition}
 \begin{proof}
   The fact that $K^{d \times d}_+$ is a cone is immediate from the definition.
-  Next, remark that $\OK[X]$ is closed and open in $K[X]$ equipped with the infinity norm
+  Next, remark that \DIFdelbegin \DIFdel{$\OK[X]$ }\DIFdelend \DIFaddbegin \DIFadd{$\OK[T]$ }\DIFaddend is closed and open in \DIFdelbegin \DIFdel{$K[X]$ }\DIFdelend \DIFaddbegin \DIFadd{$K[T]$ }\DIFaddend equipped with the infinity norm
   $$
-  \|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to
+  \|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k \DIFdelbegin \DIFdel{X}\DIFdelend \DIFaddbegin \DIFadd{T}\DIFaddend ^k \to
   \max_{1 \leq k \leq n} |a_k|,
   $$
   {where $|\cdot|$ is any norm induced by $\val$}:
   $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ that induces a discrete distance for
   which open balls are also closed sets.
-  Furthermore, $K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ where $\chi$ is the function that maps a
+  Furthermore, \DIFdelbegin \DIFdel{$K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ }\DIFdelend \DIFaddbegin \DIFadd{$K^{d\times d}_+ = \chi^{-1}(\OK[T]) $ }\DIFaddend where $\chi$ is the function that maps a
   matrix to its characteristic polynomial which is continuous.
   Thus $K^{d\times d}_+$ is both open and closed, too.
 \end{proof}
