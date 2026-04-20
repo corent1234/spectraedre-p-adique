@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Mon Apr 20 10:59:29 2026
+%DIF ADD cameraready.tex          Mon Apr 20 11:23:04 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -1306,7 +1306,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 \end{corollary}
 
 \begin{proof}
-    Let $\PP \subset K$ be a non-empty polyhedron. By \Cref{prop:carac} there exist a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\PP = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, without loss of generality, that the $a_i$'s are nonzero. 
+    Let $\PP \subset K$ be a non-empty polyhedron. By \Cref{prop:carac} there \DIFdelbegin \DIFdel{exist }\DIFdelend \DIFaddbegin \DIFadd{exists }\DIFaddend a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\PP = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, without loss of generality, that the $a_i$'s are nonzero. 
 
     If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\PP = f(D) = K$ and $\PP$ is a ball of infinite radius. Otherwise, we have
     $$
@@ -1402,7 +1402,8 @@ in the reduced problem.
       \RETURN $[\mathrm{TYPE}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
       \ENDIF
       \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
-      \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} \label{step:condition}
+      \DIFdelbegin %DIFDELCMD < \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} %%%
+\DIFdelend \DIFaddbegin \IF{$\bigwedge_{i=r+1}^d (\val(b_{i}) \geq 0)$} \DIFaddend \label{step:condition}
       \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
       \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
       \ELSE %\STATE STATUS $\leftarrow$ FEAS
@@ -1415,7 +1416,8 @@ in the reduced problem.
       \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
       %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
       %and $\langle c,y\rangle = \pi^v\OK$
-      \RETURN [FEAS, $\xi_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
+      \DIFaddbegin \STATE \DIFadd{$\xi_j = (0,\ldots,0,1,0,\ldots,0)$, with $1$ at coordinate $j$
+      }\DIFaddend \RETURN [FEAS, $\xi_j$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it2}}
       \ENDIF
       \ENDIF 
       \ENDIF 

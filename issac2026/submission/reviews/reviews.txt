@@ -34,21 +34,27 @@ The paper is written in a straight-forward fashion, and should be of interest to
 
 Typos/small commentsL
 
-p3 proof of 3.4. "is enough to conclude". "suffices" would be more idiomatic.
+p3 proof of 3.4. "is enough to conclude". "suffices" would be more idiomatic. I THINK IT IS OK
 
-p5 proof of 3.11, line 2. "there exists". Inside definition of D, val(s_ix_i-b_i) (add () ). Later in the proof, in the displayed
-equation for D, exponent of \pi is \val(b_i)-\val(s_i) ( \val(b_i) missing, and \ on val).
+p5 proof of 3.11, 
+
+line 2. "there exists". DONE
+
+Inside definition of D, val(s_ix_i-b_i) (add () ). TODO
+
+Later in the proof, in the displayed equation for D, exponent of \pi is \val(b_i)-\val(s_i) ( \val(b_i) missing, and \ on val). TODO
 
 
-p5 Algorithm. Line 15 - parentheses would make this clearer. Line 19. s_i is not defined at this point (S was set to be the Smith
-Normal Form online 10, but then the function is called again, so the current A is in Smith Normal Form - I think s_i should be a_i. Line 26. Xi_j is not defined here (this is the notation from Lemma 4.5).
+p5 Algorithm. Line 15 - parentheses would make this clearer.  DONE
+Line 19. s_i is not defined at this point (S was set to be the Smith Normal Form online 10, but then the function is called again, so the current A is in Smith Normal Form - I think s_i should be a_i. TODO
+Line 26. Xi_j is not defined here (this is the notation from Lemma 4.5). DONE
 
-p6 line -7. "last coefficients of b' are zero". Should that not be "have nonnegative valuation"?
+p6 line -7. "last coefficients of b' are zero". Should that not be "have nonnegative valuation"? TODO
 
 p7 Theorem 5.2. This is a really a statement about roots of polynomials, not about matrices. I would have expected a reference
-rather than a proof.
+rather than a proof. I THINK IT IS OK
 
-p8 Discussion of R\"uth's thesis. What are a_i - is that the p_i above?
+p8 Discussion of R\"uth's thesis. What are a_i - is that the p_i above? TODO
 
 
 ----------------------- REVIEW 3 ---------------------
