@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Mon Apr 20 14:49:51 2026
+%DIF ADD cameraready.tex          Mon Apr 20 14:51:03 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -102,7 +102,11 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \newcommand{\sym}{\mathbb{S}} % matrices symétriques
 \newcommand{\PP}{\mathcal{P}}
 \newcommand{\Qc}{\mathcal{Q}}
-\renewcommand{\span}[1]{{\text{span}(#1)}} % simone's comments
+%DIF 102c102
+%DIF < \renewcommand{\span}[1]{{\text{span}(#1)}} % simone's comments
+%DIF -------
+\renewcommand{\span}[1]{{\mathrm{span}(#1)}} % simone's comments %DIF > 
+%DIF -------
 \newcommand{\aff}[1]{{\text{aff}(#1)}} % simone's comments
 \newcommand{\relint}[1]{{\text{relint}(#1)}} % simone's comments
 \newcommand{\calL}{\mathcal{L}} % simone's comments
