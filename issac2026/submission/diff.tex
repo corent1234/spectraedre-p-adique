@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Mon Apr 20 14:51:03 2026
+%DIF ADD cameraready.tex          Mon Apr 20 14:54:10 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -1283,7 +1283,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
     Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx + w = 0\}$ be a polyhedron in $K^n$.
 
     If $\PP \neq \emptyset$, then there exists $x_0 \in K^n$ such that $Bx_0+w=0$.
-    Let $J \in K^{n \times R}$ such that $\textrm{Im}\,J = \ker\,B$ where $R$ denotes
+    Let $J \in K^{n \times R}$ such that \DIFdelbegin \DIFdel{$\textrm{Im}\,J = \ker\,B$ }\DIFdelend \DIFaddbegin \DIFadd{$\mathrm{Im}\,J = \ker\,B$ }\DIFaddend where $R$ denotes
     the dimension of $\ker\,B$. Then $\PP = x_0 + J\PP'$ where
     $A' \coloneq AJ$, $v' \coloneq Ax_0 + v$ and
     $\PP' \coloneq \{y \in K^R : A'y + v' \succeq 0 \}$.
@@ -1876,12 +1876,13 @@ characterization of the geometry of spectrahedra
 using the notion of diskoid
 defined in Rüth's PhD thesis \cite{ruth_models_2015},
 the set $\{ x \in K : \val(a_i(x)) \geq 0 \}$
-is denoted by $\textrm{Disk}(a_i,0)$ and is called 
+is denoted by \DIFdelbegin \DIFdel{$\textrm{Disk}(a_i,0)$ }\DIFdelend \DIFaddbegin \DIFadd{$\mathrm{Disk}(a_i,0)$ }\DIFaddend and is called 
 a diskoid.
 
 \begin{definition}
 A diskoid of $K$ is a set of the form
-\[  \textrm{Disk}(f,r):= \{ x \in K : \val(f(x)) \geq r \},\]
+\[  \DIFdelbegin \textrm{\DIFdel{Disk}}%DIFAUXCMD
+\DIFdelend \DIFaddbegin \DIFadd{\mathrm{Disk}}\DIFaddend (f,r):= \{ x \in K : \val(f(x)) \geq r \},\]
 for some polynomial $f \in K[x]$ and some rational number $r \geq 0.$
 \end{definition}
 
@@ -1988,7 +1989,7 @@ Assume that $\kappa = \OK/\mathfrak{m}_K$, the residue field of $K$, is infinite
 By Proposition \ref{prop_spectrahedra_dim1_are_diskoids} spectrahedra of $K$ are diskoids.
 By \cite[Lemma 4.43]{ruth_models_2015}, if $K$
 contains the roots of $\Phi$ then the diskoid
-$D=\textrm{Disk}(\Phi, \lambda)$ is the finite union
+\DIFdelbegin \DIFdel{$D=\textrm{Disk}(\Phi, \lambda)$ }\DIFdelend \DIFaddbegin \DIFadd{$D=\mathrm{Disk}(\Phi, \lambda)$ }\DIFaddend is the finite union
 of closed balls of equal radius centered at the roots of $\Phi$ (and their common radius can be made explicit).
 
 In addition, if $\kappa$ is infinite, one can remark that the sphere
