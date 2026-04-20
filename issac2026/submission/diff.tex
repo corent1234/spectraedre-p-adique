@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Mon Apr 20 11:53:28 2026
+%DIF ADD cameraready.tex          Mon Apr 20 14:45:50 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -1498,33 +1498,43 @@ Finally we show in \Cref{prop:reduc} that solving a diagonal \eqref{LP} amounts
 to checking the valuations of input data:
 
 \begin{lemma}\label{prop:reduc}
-  Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
+  \DIFdelbegin \DIFdel{Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \mbox{%DIFAUXCMD
+\Cref{solsLP}}\hskip0pt%DIFAUXCMD
+}\DIFdelend %DIF > %Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
+  \DIFaddbegin \DIFadd{Let $(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ diagonal}\DIFaddend .
   \begin{enumerate}
   \item \label{prop:reduc_it1}
-    \eqref{LP} with data $(S,b',c',{\bf 0},0)$ is feasible if and only if the $d-r$ last coefficients
-    of $b'$ have nonnegative valuation, for $r = {\rm rank}\,S$.
+    \eqref{LP} with data \DIFdelbegin \DIFdel{$(S,b',c',{\bf 0},0)$ }\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c,{\bf 0},0)$ }\DIFaddend is feasible if and only if the $d-r$ last coefficients
+    of \DIFdelbegin \DIFdel{$b'$ }\DIFdelend \DIFaddbegin \DIFadd{$b$ }\DIFaddend have nonnegative valuation, for $r = {\rm rank}\,S$.
   \item \label{prop:reduc_it2}
-    Assume at least one of the $n-r$ last coefficients of $c'$ is non-zero. If \eqref{LP} with
-    data $(S,b',c')$ is feasible, then it is unbounded and does not admit solutions.
+    Assume at least one of the $n-r$ last coefficients
+    of \DIFdelbegin \DIFdel{$c'$ }\DIFdelend \DIFaddbegin \DIFadd{$c$ }\DIFaddend is non-zero. If \eqref{LP} with
+    data \DIFdelbegin \DIFdel{$(S,b',c')$ }\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c)$ }\DIFaddend is feasible, then it is unbounded and does not admit solutions.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
   %%%%\corentin{préciser les notations}. 
   A vector $y = (y_1, \ldots, y_n)^T \in K^n$ is feasible for problem \eqref{LP} with data
-  $(S,b',c',0)$ if and only if $\val(s_i y_i + b'_i) \geq 0$ for all $i = 1,\ldots,n$.
-  However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b',c',0)$ is feasible,
-  necessarily the $d-r$ last coefficients of $b'$ have nonnegative valuation.
-  Conversely, if the $d-r$ last coefficients of $b'$ are zero, the vector $y \in K^n$ such that
-  $y_i = {-b'_i}/{s_i}$ if $1 \leq i \leq r$, and $y_i =0$ otherwise, is feasible for \eqref{LP}
-  with data $(S,b',c',{\bf 0},0)$.
+  \DIFdelbegin \DIFdel{$(S,b',c',0)$ }\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c,{\bf 0}, 0)$ }\DIFaddend if and only if \DIFdelbegin \DIFdel{$\val(s_i y_i + b'_i) \geq 0$ }\DIFdelend \DIFaddbegin \DIFadd{$\val(s_i y_i + b_i) \geq 0$ }\DIFaddend for all $i = 1,\ldots,n$.
+  However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data \DIFdelbegin \DIFdel{$(S,b',c',0)$ }\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c,{\bf 0},0)$
+  }\DIFaddend is feasible,
+  necessarily the $d-r$ last coefficients of \DIFdelbegin \DIFdel{$b'$ }\DIFdelend \DIFaddbegin \DIFadd{$b$ }\DIFaddend have nonnegative valuation.
+  Conversely, if the $d-r$ last coefficients of \DIFdelbegin \DIFdel{$b'$ }\DIFdelend \DIFaddbegin \DIFadd{$b$ }\DIFaddend are zero, the vector $y \in K^n$ such that
+  \DIFdelbegin \DIFdel{$y_i = {-b'_i}/{s_i}$ }\DIFdelend \DIFaddbegin \DIFadd{$y_i = {-b_i}/{s_i}$ }\DIFaddend if $1 \leq i \leq r$, and $y_i =0$ otherwise, is feasible for \eqref{LP}
+  with data \DIFdelbegin \DIFdel{$(S,b',c',{\bf 0},0)$}\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c,{\bf 0},0)$}\DIFaddend .
 
-  Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for problem \eqref{LP} with data $(S,b',c',{\bf 0},0)$.
-  Let $i$ be such that $r+1 \leq i \leq n$ and $c'_i \neq 0$. Consider the vector $\xi_i$ whose only non-zero
-  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha \xi_i$ is feasible for \eqref{LP} with data
-  $(S,b',c',{\bf 0},0)$, for all $\alpha \in K$ and $\langle c', y^* + \alpha \xi_i\rangle = \langle c' , y^*
-  \rangle + \alpha c'_i$.
-  In particular, for all $n \in \mathbb{N}$ if we set $\alpha_n = -({\langle c', y^* \rangle + \pi^{-n}})/{c'_i}$,
-  we have $\val \left(\langle c', y^* + \alpha_n \xi_i \rangle\right) = \val \pi^{-n} = -n$.
+  Concerning \Cref{prop:reduc_it2}, let $y^*$ be feasible for problem \eqref{LP} with data
+  \DIFdelbegin \DIFdel{$(S,b',c',{\bf 0},0)$}\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c,{\bf 0},0)$}\DIFaddend .
+  Let $i$ be such that $r+1 \leq i \leq n$ and \DIFdelbegin \DIFdel{$c'_i \neq 0$}\DIFdelend \DIFaddbegin \DIFadd{$c_i \neq 0$}\DIFaddend . Consider the vector $\xi_i$ whose
+  only non-zero
+  coefficient is the $i-$th, which is $1$. Then $y^* + \alpha \xi_i$ is feasible for \eqref{LP}
+  with data
+  \DIFdelbegin \DIFdel{$(S,b',c',{\bf 0},0)$}\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c,{\bf 0},0)$}\DIFaddend , for all $\alpha \in K$ and \DIFdelbegin \DIFdel{$\langle c', y^* + \alpha \xi_i\rangle = \langle c' , y^*
+  \rangle + \alpha c'_i$}\DIFdelend \DIFaddbegin \DIFadd{$\langle c, y^* + \alpha \xi_i\rangle =
+  \langle c, y^* \rangle + \alpha c_i$}\DIFaddend .
+  In particular, for all $n \in \mathbb{N}$ if we set \DIFdelbegin \DIFdel{$\alpha_n = -({\langle c', y^* \rangle + \pi^{-n}})/{c'_i}$}\DIFdelend \DIFaddbegin \DIFadd{$\alpha_n = -({\langle c, y^* \rangle +
+    \pi^{-n}})/{c_i}$}\DIFaddend ,
+  we have \DIFdelbegin \DIFdel{$\val \left(\langle c', y^* + \alpha_n \xi_i \rangle\right) = \val \pi^{-n} = -n$}\DIFdelend \DIFaddbegin \DIFadd{$\val \left(\langle c, y^* + \alpha_n \xi_i \rangle\right) = \val \pi^{-n} = -n$}\DIFaddend .
   Therefore $p^* = -\infty$ and (LP) is unbounded.
 \end{proof}
 
@@ -1533,10 +1543,13 @@ to checking the valuations of input data:
 We conclude by giving explicit solutions to the reduced \eqref{LP}:
 
 \begin{lemma}\label{solutions}
-  Let $(S,b',c',{\bf 0}, 0)$ be as in \Cref{solsLP} and assume \eqref{LP} is feasible.
-  %%%$\PP' \neq \emptyset$.
-  %%%= \{y \in K^n : Sy+b' \geq 0\}
-  Let $\lambda = -\sum_{i=1}^r c'_i b'_i/s_i$ and $v = \min_{1\le i\le r} \val (c'_i/s_i)$.
+  Let \DIFdelbegin \DIFdel{$(S,b',c',{\bf 0}, 0)$ be as in \mbox{%DIFAUXCMD
+\Cref{solsLP} }\hskip0pt%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ diagonal,
+  }\DIFaddend and assume \eqref{LP} \DIFaddbegin \DIFadd{with this data }\DIFaddend is feasible.
+  %DIF < %%$\PP' \neq \emptyset$.
+  %DIF < %%= \{y \in K^n : Sy+b' \geq 0\}
+  \DIFdelbegin \DIFdel{Let $\lambda = -\sum_{i=1}^r c'_i b'_i/s_i$ and $v = \min_{1\le i\le r} \val (c'_i/s_i)$}\DIFdelend \DIFaddbegin \DIFadd{Let $\lambda = -\sum_{i=1}^r c_i b_i/s_i$ and $v = \min_{1\le i\le r} \val (c_i/s_i)$}\DIFaddend .
   \begin{enumerate}
   \item
     if $\val \lambda < v$, the minimum is $\val \lambda$ and is attained on the whole feasible
@@ -1544,32 +1557,35 @@ We conclude by giving explicit solutions to the reduced \eqref{LP}:
   \item
     if $\val \lambda \geq v$, the minimum is $v$ and is attained on
     $\xi_j \in K^n$, the vector with all $0$'s except with a $1$ on the $j$-th component,
-    with $j$ satisfying $\val (c'_j/s_j) = v$. \label{solutions:it2}
+    with $j$ satisfying \DIFdelbegin \DIFdel{$\val (c'_j/s_j) = v$}\DIFdelend \DIFaddbegin \DIFadd{$\val (c_j/s_j) = v$}\DIFaddend . \label{solutions:it2}
   \end{enumerate}
-  %One has
-  %$$
-  %\langle c',\PP'\rangle = \lambda + \pi^v\OK.
-  %$$
-  %If attained on every $x \in \PP'$;
+%DIF < One has
+  %DIF < $$
+  %DIF < \langle c',\PP'\rangle = \lambda + \pi^v\OK.
+  %DIF < $$
+  %DIF < If attained on every $x \in \PP'$;
 \end{lemma}
 \begin{proof}
-  The feasible set $\PP' = \{y \in K^n : Sy+b' \succeq 0\}$ of the diagonal LP can be written
-  as the set of vectors $y \in K^n$ that verifies $s_i y_i + b'_i \in \OK$ for $i=1,...,r$.
+  The feasible set \DIFdelbegin \DIFdel{$\PP' = \{y \in K^n : Sy+b' \succeq 0\}$ }\DIFdelend \DIFaddbegin \DIFadd{$\PP' = \{y \in K^n : Sy+b \succeq 0\}$ }\DIFaddend of the diagonal LP can be written
+  as the set of vectors $y \in K^n$ \DIFdelbegin \DIFdel{that verifies $s_i y_i + b'_i \in \OK$ }\DIFdelend \DIFaddbegin \DIFadd{satisfying $s_i y_i + b_i \in \OK$ }\DIFaddend for $i=1,...,r$.
   In other words:
   $$
   \PP' = \left\{\left[\begin{smallmatrix} y_1\\ \vdots\\ y_n \end{smallmatrix}\right] \in K^n :
-  y_i \in -\frac{b'_i}{s_i} + \frac{1}{s_i} \OK, 1\le i\le r\right\}.
+  y_i \in -\DIFdelbegin \DIFdel{\frac{b'_i}{s_i} }\DIFdelend \DIFaddbegin \DIFadd{\frac{b_i}{s_i} }\DIFaddend + \frac{1}{s_i} \OK, 1\le i\le r\right\}.
   $$
   The minimum in \eqref{LP} is the minimum of
-  $y \mapsto \val\left(\left\langle c',y \right\rangle\right)$ on $\PP'$.
-  The image of $\PP'$ by $y \mapsto \left\langle c',y \right\rangle$ is
-  \[
-  \left\langle c',\PP' \right\rangle = \sum_{i=1}^r -c'_i \frac{b'_i}{s_i} + \sum_{i=1}^r\left( \frac{c'_i}{s_{i}} \OK \right) = \lambda + \pi^{v} \OK.
+  \DIFdelbegin \DIFdel{$y \mapsto \val\left(\left\langle c',y \right\rangle\right)$ }\DIFdelend \DIFaddbegin \DIFadd{$y \mapsto \val\left(\left\langle c,y \right\rangle\right)$ }\DIFaddend on $\PP'$.
+  The image of $\PP'$ by \DIFdelbegin \DIFdel{$y \mapsto \left\langle c',y \right\rangle$ is
+  }\DIFdelend \DIFaddbegin \DIFadd{$y \mapsto \left\langle c,y \right\rangle$ is
+  }\DIFaddend \[
+  \left\langle c\DIFdelbegin \DIFdel{'}\DIFdelend ,\PP' \right\rangle = \sum_{i=1}^r -c\DIFdelbegin \DIFdel{'}\DIFdelend _i \DIFdelbegin \DIFdel{\frac{b'_i}{s_i} }\DIFdelend \DIFaddbegin \DIFadd{\frac{b_i}{s_i} }\DIFaddend +
+  \sum_{i=1}^r\left( \DIFdelbegin \DIFdel{\frac{c'_i}{s_{i}} }\DIFdelend \DIFaddbegin \DIFadd{\frac{c_i}{s_{i}} }\DIFaddend \OK \right) = \lambda + \pi^{v} \OK.
   \]
   Two cases can occur depending on $v$ and the valuation of $\lambda$.
-  If $\val(\lambda) < v$, the minimum of $y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ over $\PP'$ is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
+  If $\val(\lambda) < v$, the minimum of \DIFdelbegin \DIFdel{$y\mapsto \val\left(\left\langle c',y \right\rangle\right)$ }\DIFdelend \DIFaddbegin \DIFadd{$y\mapsto \val\left(\left\langle c,y \right\rangle\right)$
+  }\DIFaddend over $\PP'$ is reached at any point of $\PP'$, and is equal to $\val(\lambda)$.
   Otherwise, $\lambda \in \pi^{v} \OK$ and the minimum is $v$ and is reached at any points $y$ of $\PP'$ such that
-  $\left<c',y \right> \in \pi^v\OK$.
+  \DIFdelbegin \DIFdel{$\left<c',y \right> \in \pi^v\OK$}\DIFdelend \DIFaddbegin \DIFadd{$\left\langle c,y \right\rangle \in \pi^v\OK$}\DIFaddend .
 \end{proof}
 
 We are now able to state a correctness theorem for \Cref{algo_LP}.
