@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Tue Apr 21 10:46:55 2026
+%DIF ADD cameraready.tex          Tue Apr 21 10:56:59 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -1854,13 +1854,12 @@ Spectrahedra form a strict generalization of polyhedra:
   The equality
   $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ shows that
   $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
-  }
-
-  \DIFadd{Thus
-  }$$
-  \DIFadd{\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}
-  }$$
-  \DIFaddend which is not a ball. Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
+  $\val (x - \pi^{-1}) \ge 1$ (}{\bf \DIFadd{POURQUOI?}}\DIFadd{).
+  Thus
+  $
+  \mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x - \pi^{-1}) \ge 1\}
+  $
+  }\DIFaddend which is not a ball. Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
 \end{proof}
 
 \begin{definition}
