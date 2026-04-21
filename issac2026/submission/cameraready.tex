@@ -279,6 +279,8 @@ have been investigated in \cite{naldi2025solving}.
 In this paper, we consider the setting in which the input data are defined over $(K,\val)$, where $K$ is a field and
 $\val$ is a valuation on $K$. For simplicity, we assume throughout that $\val$ is discrete and that $(K,\val)$ is complete, although some results do not require this assumption. The prototype of valued field we target is the field $K=\QQ_p$ of $p$-adic numbers, equipped with its $p$-adic valuation.
 
+We define and study properties of polyhedra over valued fields and their images through affine maps in \Cref{sec:polyhedra}; these sets lay the foundations of valued linear programming, for which an al\-go\-ri\-thm is described in \Cref{sec:LP}. More general sets are valued spectrahedra and their shadows, i.e. their images under affine maps, analyzed in \Cref{sec:spectrahedra}; these represent a richer class of sets that are not polyhedral. Let us give now an overview of the main results.
+
 A polyhedron over a valued field is naturally defined as the set of vectors for which certain
 linear forms have nonnegative or infinite valuation (see \Cref{def_polyhedra}). Our main result in this
 context is the following theorem, proved in \Cref{ssec:projections}:
@@ -1745,11 +1747,10 @@ Spectrahedra form a strict generalization of polyhedra:
   The equality
   $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ shows that
   $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
-  $\val (x - \pi^{-1}) \ge 1$ ({\bf POURQUOI?}).
-  Thus
-  $
-  \mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x - \pi^{-1}) \ge 1\}
-  $
+  $\val (x + \pi^{-1}) \ge 1$ ({\bf dans le papier c'est $x-\pi^{-1}$ mais
+    je ne vois plus pourquoi}). Thus
+  %$\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x - \pi^{-1}) \ge 1\}$
+  $\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x + \pi^{-1}) \ge 1\}$
   which is not a ball. Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
 \end{proof}
 

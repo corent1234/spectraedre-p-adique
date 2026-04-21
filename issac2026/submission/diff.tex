@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Tue Apr 21 10:56:59 2026
+%DIF ADD cameraready.tex          Tue Apr 21 14:29:48 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -367,7 +367,16 @@ have been investigated in \cite{naldi2025solving}.
 In this paper, we consider the setting in which the input data are defined over $(K,\val)$, where $K$ is a field and
 $\val$ is a valuation on $K$. For simplicity, we assume throughout that $\val$ is discrete and that $(K,\val)$ is complete, although some results do not require this assumption. The prototype of valued field we target is the field $K=\QQ_p$ of $p$-adic numbers, equipped with its $p$-adic valuation.
 
-A polyhedron over a valued field is naturally defined as the set of vectors for which certain
+\DIFaddbegin \DIFadd{We define and study properties of polyhedra over valued fields and their images through affine maps in \mbox{%DIFAUXCMD
+\Cref{sec:polyhedra}}\hskip0pt%DIFAUXCMD
+; these sets lay the foundations of valued linear programming, for which an al\-go\-ri\-thm is described in \mbox{%DIFAUXCMD
+\Cref{sec:LP}}\hskip0pt%DIFAUXCMD
+. More general sets are valued spectrahedra and their shadows, i.e. their images under affine maps, analyzed in \mbox{%DIFAUXCMD
+\Cref{sec:spectrahedra}}\hskip0pt%DIFAUXCMD
+; these represent a richer class of sets that are not polyhedral. Let us give now an overview of the main results.
+}
+
+\DIFaddend A polyhedron over a valued field is naturally defined as the set of vectors for which certain
 linear forms have nonnegative or infinite valuation (see \Cref{def_polyhedra}). Our main result in this
 context is the following theorem, proved in \Cref{ssec:projections}:
 
@@ -1854,11 +1863,10 @@ Spectrahedra form a strict generalization of polyhedra:
   The equality
   $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ shows that
   $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
-  $\val (x - \pi^{-1}) \ge 1$ (}{\bf \DIFadd{POURQUOI?}}\DIFadd{).
-  Thus
-  $
-  \mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x - \pi^{-1}) \ge 1\}
-  $
+  $\val (x + \pi^{-1}) \ge 1$ (}{\bf \DIFadd{dans le papier c'est $x-\pi^{-1}$ mais
+    je ne vois plus pourquoi}}\DIFadd{). Thus
+  %DIF > $\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x - \pi^{-1}) \ge 1\}$
+  $\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x + \pi^{-1}) \ge 1\}$
   }\DIFaddend which is not a ball. Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
 \end{proof}
 
