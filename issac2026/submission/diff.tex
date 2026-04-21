@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Mon Apr 20 14:54:10 2026
+%DIF ADD cameraready.tex          Tue Apr 21 10:46:55 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -1408,8 +1408,10 @@ in the reduced problem.
       \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
       \DIFdelbegin %DIFDELCMD < \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} %%%
 \DIFdelend \DIFaddbegin \IF{$\bigwedge_{i=r+1}^d (\val(b_{i}) \geq 0)$} \DIFaddend \label{step:condition}
-      \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
-      \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
+      \DIFdelbegin %DIFDELCMD < \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
+%DIFDELCMD <       %%%
+\DIFdelend \DIFaddbegin \IF{$\bigvee_{i=r+1}^n (c_i \neq 0)$}
+      \DIFaddend \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
       \ELSE %\STATE STATUS $\leftarrow$ FEAS
       \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
       \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
@@ -1505,7 +1507,7 @@ to checking the valuations of input data:
   \DIFdelbegin \DIFdel{Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \mbox{%DIFAUXCMD
 \Cref{solsLP}}\hskip0pt%DIFAUXCMD
 }\DIFdelend %DIF > %Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
-  \DIFaddbegin \DIFadd{Let $(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ diagonal}\DIFaddend .
+  \DIFaddbegin \DIFadd{Let $(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ in SNF}\DIFaddend .
   \begin{enumerate}
   \item \label{prop:reduc_it1}
     \eqref{LP} with data \DIFdelbegin \DIFdel{$(S,b',c',{\bf 0},0)$ }\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c,{\bf 0},0)$ }\DIFaddend is feasible if and only if the $d-r$ last coefficients
@@ -1549,8 +1551,8 @@ We conclude by giving explicit solutions to the reduced \eqref{LP}:
 \begin{lemma}\label{solutions}
   Let \DIFdelbegin \DIFdel{$(S,b',c',{\bf 0}, 0)$ be as in \mbox{%DIFAUXCMD
 \Cref{solsLP} }\hskip0pt%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ diagonal,
-  }\DIFaddend and assume \eqref{LP} \DIFaddbegin \DIFadd{with this data }\DIFaddend is feasible.
+}\DIFdelend \DIFaddbegin \DIFadd{$(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ in SNF,
+  }\DIFaddend and assume \eqref{LP} \DIFaddbegin \DIFadd{with data $(S,b,c,{\bf 0},0)$ }\DIFaddend is feasible.
   %DIF < %%$\PP' \neq \emptyset$.
   %DIF < %%= \{y \in K^n : Sy+b' \geq 0\}
   \DIFdelbegin \DIFdel{Let $\lambda = -\sum_{i=1}^r c'_i b'_i/s_i$ and $v = \min_{1\le i\le r} \val (c'_i/s_i)$}\DIFdelend \DIFaddbegin \DIFadd{Let $\lambda = -\sum_{i=1}^r c_i b_i/s_i$ and $v = \min_{1\le i\le r} \val (c_i/s_i)$}\DIFaddend .
@@ -1841,9 +1843,24 @@ Spectrahedra form a strict generalization of polyhedra:
   \] 
 \end{example}
 \begin{proof}
-  By \Cref{caracsdp}, one has $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
-  \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$ which is not a ball.
-  Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
+  \DIFdelbegin \DIFdel{By \mbox{%DIFAUXCMD
+\Cref{caracsdp}}\hskip0pt%DIFAUXCMD
+, one has $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
+  \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$ }\DIFdelend \DIFaddbegin \DIFadd{Note that the characteristic polynomial of the defining matrix is
+  $T^2-x(x+\pi^{-1})$.
+  Therefore by \mbox{%DIFAUXCMD
+\Cref{caracsdp}}\hskip0pt%DIFAUXCMD
+, $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\}$.
+  The equality
+  $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ shows that
+  $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
+  }
+
+  \DIFadd{Thus
+  }$$
+  \DIFadd{\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}
+  }$$
+  \DIFaddend which is not a ball. Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
 \end{proof}
 
 \begin{definition}

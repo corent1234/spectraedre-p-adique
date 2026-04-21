@@ -1319,7 +1319,7 @@ in the reduced problem.
       \ENDIF
       \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
       \IF{$\bigwedge_{i=r+1}^d (\val(b_{i}) \geq 0)$} \label{step:condition}
-      \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
+      \IF{$\bigvee_{i=r+1}^n (c_i \neq 0)$}
       \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
       \ELSE %\STATE STATUS $\leftarrow$ FEAS
       \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
@@ -1414,7 +1414,7 @@ to checking the valuations of input data:
 
 \begin{lemma}\label{prop:reduc}
   %%Let $(S,b',c') \in K^{d\times n} \times K^d \times K^n$ be as in \Cref{solsLP}.
-  Let $(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ diagonal.
+  Let $(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ in SNF.
   \begin{enumerate}
   \item \label{prop:reduc_it1}
     \eqref{LP} with data $(S,b,c,{\bf 0},0)$ is feasible if and only if the $d-r$ last coefficients
@@ -1455,8 +1455,8 @@ to checking the valuations of input data:
 We conclude by giving explicit solutions to the reduced \eqref{LP}:
 
 \begin{lemma}\label{solutions}
-  Let $(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ diagonal,
-  and assume \eqref{LP} with this data is feasible.
+  Let $(S,b,c) \in K^{d\times n} \times K^d \times K^n$, with $S$ in SNF,
+  and assume \eqref{LP} with data $(S,b,c,{\bf 0},0)$ is feasible.
   Let $\lambda = -\sum_{i=1}^r c_i b_i/s_i$ and $v = \min_{1\le i\le r} \val (c_i/s_i)$.
   \begin{enumerate}
   \item
@@ -1739,9 +1739,18 @@ Spectrahedra form a strict generalization of polyhedra:
   \] 
 \end{example}
 \begin{proof}
-  By \Cref{caracsdp}, one has $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
-  \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$ which is not a ball.
-  Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
+  Note that the characteristic polynomial of the defining matrix is
+  $T^2-x(x+\pi^{-1})$.
+  Therefore by \Cref{caracsdp}, $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\}$.
+  The equality
+  $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ shows that
+  $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
+  
+  Thus
+  $$
+  \mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}
+  $$
+  which is not a ball. Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
 \end{proof}
 
 \begin{definition}
