@@ -1765,13 +1765,14 @@ Spectrahedra form a strict generalization of polyhedra:
   Spectrahedra in $K^n$ are semialgebraic sets. 
 \end{proposition}
 \begin{proof}
-  Let $\mathcal{S}_A \subset K^n$ be a spectrahedron, for some linear matrix $A = A_0+\sum_{i=1}^n x_i A_i$. 
+  Let $\mathcal{S}_A \subset K^n$ be a spectrahedron,
+  for some linear matrix $A = A_0+\sum_{i=1}^n x_i A_i$. 
   Denote by $p_i \in K[x]$ the $i$-th coefficient of $\chi_{A}$, $i=0,\ldots,d$.
   By \Cref{caracsdp} one has:
-  $$
+  \begin{equation}\label{reprspec}
   \mathcal{S}_A = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
   = \bigcap_{i=0}^{d-1} \{x \in K^n : \val(p_i(x)) \geq 0\}.
-  $$
+  \end{equation}
 \end{proof}
 
 %\corentin{ Une autre définition qu'il pourrait être intéressant d'explorer. Attention! Pas les mêmes propriétés.}
@@ -1779,13 +1780,9 @@ Spectrahedra form a strict generalization of polyhedra:
 %  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$.  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$.   The set $S_A,B \coloneq S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
 %\end{definition}
 
-When $n=1$, we can give a more precise
-characterization of the geometry of spectrahedra
-using the notion of diskoid
-defined in Rüth's PhD thesis \cite{ruth_models_2015},
-the set $\{ x \in K : \val(a_i(x)) \geq 0 \}$
-is denoted by $\mathrm{Disk}(a_i,0)$ and is called 
-a diskoid.
+When $n=1$, we can give a more precise characterization of the geometry of spectrahedra
+from the representation in \eqref{reprspec}, using the notion of \emph{diskoid} defined
+in Rüth's PhD thesis \cite{ruth_models_2015}.
 
 \begin{definition}
 A diskoid of $K$ is a set of the form
@@ -1800,12 +1797,11 @@ Spectrahedra of $K$ are diskoids. \label{prop_spectrahedra_dim1_are_diskoids}
 By \Cref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
 can be defined as the set $\{x \in K : A_0+x A_1 \succeq 0\}$
 for some integer $d$ and matrices $A_0$ and $A_1$ in $K^{d \times d}$.
-Thanks to Theorem \ref{caracsdp},
-this set corresponds to an intersection of the form
-$\cap_{i=0}^{d-1} \{x \in K : \val(a_i(x)) \geq 0\},$
-for some polynomials $a_i$, univariate over $K$.
+Thanks to Theorem \ref{caracsdp}, this set corresponds to an intersection of the form
+$\cap_{i=0}^{d-1} \{x \in K : \val(p_i(x)) \geq 0\},$
+for some polynomials $p_i$, univariate over $K$.
 As such, this set is the intersection of the diskoids
-$\mathrm{Disk}(a_i,0).$
+$\mathrm{Disk}(p_i,0).$
 By \cite[Lemma 4.44]{ruth_models_2015}, the intersection
 of two diskoids is either empty or a diskoid.
 Consequently, spectrahedra of $K$ are diskoids.
