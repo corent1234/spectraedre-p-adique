@@ -34,7 +34,7 @@ The paper is written in a straight-forward fashion, and should be of interest to
 
 Typos/small commentsL
 
-p3 proof of 3.4. "is enough to conclude". "suffices" would be more idiomatic. I THINK IT IS OK
+p3 proof of 3.4. "is enough to conclude". "suffices" would be more idiomatic. DONE
 
 p5 proof of 3.11, 
 
