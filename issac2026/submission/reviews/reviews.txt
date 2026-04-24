@@ -40,21 +40,22 @@ p5 proof of 3.11,
 
 line 2. "there exists". DONE
 
-Inside definition of D, val(s_ix_i-b_i) (add () ). TODO
+Inside definition of D, val(s_ix_i-b_i) (add () ). DONE
 
-Later in the proof, in the displayed equation for D, exponent of \pi is \val(b_i)-\val(s_i) ( \val(b_i) missing, and \ on val). TODO
+Later in the proof, in the displayed equation for D, exponent of \pi is \val(b_i)-\val(s_i) ( \val(b_i) missing, and \ on val). DONE
 
 
 p5 Algorithm. Line 15 - parentheses would make this clearer.  DONE
-Line 19. s_i is not defined at this point (S was set to be the Smith Normal Form online 10, but then the function is called again, so the current A is in Smith Normal Form - I think s_i should be a_i. TODO
+
+Line 19. s_i is not defined at this point (S was set to be the Smith Normal Form online 10, but then the function is called again, so the current A is in Smith Normal Form - I think s_i should be a_i. DONE
+
 Line 26. Xi_j is not defined here (this is the notation from Lemma 4.5). DONE
 
-p6 line -7. "last coefficients of b' are zero". Should that not be "have nonnegative valuation"? TODO
+p6 line -7. "last coefficients of b' are zero". Should that not be "have nonnegative valuation"? DONE
 
-p7 Theorem 5.2. This is a really a statement about roots of polynomials, not about matrices. I would have expected a reference
-rather than a proof. I THINK IT IS OK
+p7 Theorem 5.2. This is a really a statement about roots of polynomials, not about matrices. I would have expected a reference rather than a proof. I THINK IT IS OK
 
-p8 Discussion of R\"uth's thesis. What are a_i - is that the p_i above? TODO
+p8 Discussion of R\"uth's thesis. What are a_i - is that the p_i above? DONE
 
 
 ----------------------- REVIEW 3 ---------------------
@@ -65,4 +66,4 @@ TITLE: On semidefinite-representable sets over valued fields
 ----------- Overall evaluation -----------
 SCORE: 2 (accept)
 ----- TEXT:
-This paper extends notions about linear and semidefinite representability of convex sets from the real numbers to more general (discretely) valued fields, including algorithms in the linear case. This is a very natural line of research and makes the paper, in my opinion, a very good contribution to ISSAC. A more detailed review will follow. 
+This paper extends notions about linear and semidefinite representability of convex sets from the real numbers to more general (discretely) valued fields, including algorithms in the linear case. This is a very natural line of research and makes the paper, in my opinion, a very good contribution to ISSAC. A more detailed review will follow.

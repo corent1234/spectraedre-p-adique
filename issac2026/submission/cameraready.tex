@@ -1223,18 +1223,18 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
 \end{corollary}
 
 \begin{proof}
-    Let $\PP \subset K$ be a non-empty polyhedron. By \Cref{prop:carac} there exists a polydisc $D = \{x \in K^n : \val s_i x_i - b_i \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\PP = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, without loss of generality, that the $a_i$'s are nonzero. 
+    Let $\PP \subset K$ be a non-empty polyhedron. By \Cref{prop:carac} there exists a polydisc $D = \{x \in K^n : \val(s_i x_i - b_i) \ge 0, i=1,\ldots,n \}$ for some $s_1,\ldots,s_n, b_1,\ldots,b_n \in K ^n$ and an affine map $f : K^n \to K$ such that $\PP = f(D)$. Let $a_0,a_1,\ldots,a_n \in K$ such that $f(x) = a_0 + a_1 x_1 + \ldots + a_n x_n$. We can assume, without loss of generality, that the $a_i$'s are nonzero. 
 
     If there exists $i_0 \in \{1,\ldots,n\}$ such that $s_{i_0} = 0$ then $\PP = f(D) = K$ and $\PP$ is a ball of infinite radius. Otherwise, we have
     $$
-    D = \left\{x \in K^n : x_i = \frac{b_i}{s_i} + O\left( \pi^{-val s_i} \right), i=1,\ldots,n\right\}
+    D = \left\{x \in K^n : x_i = \frac{b_i}{s_i} + O\left( \pi^{\val(b_i/s_i)} \right), i=1,\ldots,n\right\}
     $$
     and therefore for all $x \in K$, one has $x \in P$ if and only if
     $$
-    x = a_0 + \sum_{i=1}^{n}\left(\frac{a_i b_i}{s_i} + O( \pi^{\val a_i - \val s_i}) \right)
+    x = a_0 + \sum_{i=1}^{n}\left(\frac{a_i b_i}{s_i} + O( \pi^{\val(a_i b_i/s_i)}) \right)
     = a_0  + \sum_{i=1}^{n} \frac{a_i b_i}{s_i} + O(\pi^d)
     $$
-    where $d = \min \limits_{i = 1,\ldots,n} \val a_i - \val s_i$. Thus
+    where $d = \min \limits_{i = 1,\ldots,n} \val(a_i b_i/s_i)$. Thus
     $\PP$ is the ball described by
     $$
     \PP = \left\{x \in K : \val\left(x - a_0 - \sum_{i=1}^{n} \frac{a_i b_i}{s_i}\right) \ge d\right\}.
@@ -1318,18 +1318,18 @@ in the reduced problem.
       \STATE $[\mathrm{TYPE}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
       \RETURN $[\mathrm{TYPE}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
       \ENDIF
-      \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin}
+      \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin} 
       \IF{$\bigwedge_{i=r+1}^d (\val(b_{i}) \geq 0)$} \label{step:condition}
       \IF{$\bigvee_{i=r+1}^n (c_i \neq 0)$}
       \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
       \ELSE %\STATE STATUS $\leftarrow$ FEAS
-      \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
-      \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
+      \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / a_{ii}$
+      \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/a_{ii})$
       \IF{$\val \lambda < v$}
-      \STATE choose $y \in K^n$ s.\,t. $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
+      \STATE choose $y \in K^n$ s.\,t. $y_i \in (-b_i+\OK)/a_{ii}, i=1,\ldots,r$
       \RETURN [FEAS, $y$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it1}}
       \ELSE
-      \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
+      \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/a_{ii})\}$
       %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
       %and $\langle c,y\rangle = \pi^v\OK$
       \STATE $\xi_j = (0,\ldots,0,1,0,\ldots,0)$, with $1$ at coordinate $j$
@@ -1433,7 +1433,8 @@ to checking the valuations of input data:
   However $s_i = 0$ for $n-r \leq i\leq n$. Therefore, if \eqref{LP} with data $(S,b,c,{\bf 0},0)$
   is feasible,
   necessarily the $d-r$ last coefficients of $b$ have nonnegative valuation.
-  Conversely, if the $d-r$ last coefficients of $b$ are zero, the vector $y \in K^n$ such that
+  Conversely, if the $d-r$ last coefficients of $b$ have nonnegative valuation,
+  the vector $y \in K^n$ such that
   $y_i = {-b_i}/{s_i}$ if $1 \leq i \leq r$, and $y_i =0$ otherwise, is feasible for \eqref{LP}
   with data $(S,b,c,{\bf 0},0)$.
 
