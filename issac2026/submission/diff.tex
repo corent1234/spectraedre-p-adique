@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Tue Apr 28 16:22:40 2026
+%DIF ADD cameraready.tex          Tue Apr 28 16:55:21 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -1414,7 +1414,8 @@ in the reduced problem.
       \STATE $[\mathrm{TYPE}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
       \RETURN $[\mathrm{TYPE}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
       \ENDIF
-      \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin} 
+      \STATE $r \leftarrow \text{rank}(A)$
+      \DIFaddbegin \hfill {\color{olive} \DIFadd{\# $A$ is in $\mathrm{SNF}$, with diagonal elements $s_{i}$}} \DIFaddend \label{step:core:begin}
       \DIFdelbegin %DIFDELCMD < \IF{$\bigwedge_{i=r+1}^d \val(b_{i}) \geq 0$} %%%
 \DIFdelend \DIFaddbegin \IF{$\bigwedge_{i=r+1}^d (\val(b_{i}) \geq 0)$} \DIFaddend \label{step:condition}
       \DIFdelbegin %DIFDELCMD < \IF{$\bigvee_{i=r+1}^n c_i \neq 0$}
@@ -1423,16 +1424,16 @@ in the reduced problem.
       \DIFaddend \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
       \ELSE %\STATE STATUS $\leftarrow$ FEAS
       \STATE \DIFdelbegin \DIFdel{$\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_i$
-      }\DIFdelend \DIFaddbegin \DIFadd{$\lambda \leftarrow -\sum_{i=1}^r c_i b_i / a_{ii}$
+      }\DIFdelend \DIFaddbegin \DIFadd{$\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_{i}$
       }\DIFaddend \STATE \DIFdelbegin \DIFdel{$v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_i)$
-      }\DIFdelend \DIFaddbegin \DIFadd{$v \leftarrow \min_{1 \leq i \leq r} \val (c_i/a_{ii})$
+      }\DIFdelend \DIFaddbegin \DIFadd{$v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_{i})$
       }\DIFaddend \IF{$\val \lambda < v$}
       \STATE choose $y \in K^n$ s.\,t. \DIFdelbegin \DIFdel{$y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
-      }\DIFdelend \DIFaddbegin \DIFadd{$y_i \in (-b_i+\OK)/a_{ii}, i=1,\ldots,r$
+      }\DIFdelend \DIFaddbegin \DIFadd{$y_i \in (-b_i+\OK)/s_{i}, i=1,\ldots,r$
       }\DIFaddend \RETURN [FEAS, $y$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it1}}
       \ELSE
       \STATE \DIFdelbegin \DIFdel{$j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_i)\}$
-      }\DIFdelend \DIFaddbegin \DIFadd{$j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/a_{ii})\}$
+      }\DIFdelend \DIFaddbegin \DIFadd{$j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_{i})\}$
       }\DIFaddend %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
       %and $\langle c,y\rangle = \pi^v\OK$
       \DIFaddbegin \STATE \DIFadd{$\xi_j = (0,\ldots,0,1,0,\ldots,0)$, with $1$ at coordinate $j$
@@ -1827,7 +1828,8 @@ $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = A_0+\span{B_1,\
 and
 $(L_1 \cap \mathcal{S}_A) \cap (L_2 \cap S_B) = (L_1\cap L_2) \cap S_{\diag(A,B)}$ for
 two affine spaces $L_1,L_2 \subset K^n$.
-Moreover this class contains the polyhedra in $K^n$.
+\DIFdelbegin \DIFdel{Moreover this class contains the polyhedra in $K^n$.
+}\DIFdelend %DIF > Moreover this class contains the polyhedra in $K^n$.
 
 \begin{proposition}
   A polyhedron in $K^n$ is a spectrahedron in $K^n$.
@@ -1965,11 +1967,13 @@ Spectrahedra of $K$ are diskoids. \label{prop_spectrahedra_dim1_are_diskoids}
 \end{proposition}
 \begin{proof}
 By \Cref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
-can be defined as the set $\{x \in K : A_0+x A_1 \succeq 0\}$
-for some integer $d$ and matrices $A_0$ and $A_1$ in $K^{d \times d}$.
-Thanks to Theorem \ref{caracsdp}, this set corresponds to an intersection of the form
-\DIFdelbegin \DIFdel{$\cap_{i=0}^{d-1} \{x \in K : \val(a_i(x)) \geq 0\},$
-}\DIFdelend \DIFaddbegin \DIFadd{$\cap_{i=0}^{d-1} \{x \in K : \val(p_i(x)) \geq 0\},$
+can be defined as the set \DIFdelbegin \DIFdel{$\{x \in K : A_0+x A_1 \succeq 0\}$
+}\DIFdelend \DIFaddbegin \DIFadd{$\mathcal{S}=\{x \in K : A_0+x A_1 \succeq 0\}$
+}\DIFaddend for some integer $d$ and matrices $A_0$ and $A_1$ in $K^{d \times d}$.
+Thanks to Theorem \ref{caracsdp},
+\DIFdelbegin \DIFdel{this set corresponds to an intersection of the form
+$\cap_{i=0}^{d-1} \{x \in K : \val(a_i(x)) \geq 0\},$
+}\DIFdelend \DIFaddbegin \DIFadd{$\mathcal{S}=\cap_{i=0}^{d-1} \{x \in K : \val(p_i(x)) \geq 0\},$
 }\DIFaddend for some polynomials \DIFdelbegin \DIFdel{$a_i$}\DIFdelend \DIFaddbegin \DIFadd{$p_i$}\DIFaddend , univariate over $K$.
 As such, this set is the intersection of the diskoids
 \DIFdelbegin \DIFdel{$\mathrm{Disk}(a_i,0).$
@@ -2004,7 +2008,7 @@ Consequently, spectrahedra of $K$ are diskoids.
 \end{definition}
 
 Of course a spectrahedron $\mathcal{S}_A = \varphi_A^{-1}(K^{d \times d})$ is SDR with height $m=0$ and degree
-$d$. In order to distinguish between spectrahedra and possibly non-spectrahedral semidefinite-representable sets
+$d$. In order to distinguish between spectrahedra and possibly non-spectrahedral \DIFdelbegin \DIFdel{semidefinite-representable }\DIFdelend \DIFaddbegin \DIFadd{SDR }\DIFaddend sets
 we usually call {spectrahedral shadows} the SDR sets with height $m>0$.
 
 \begin{theorem}

@@ -1318,18 +1318,19 @@ in the reduced problem.
       \STATE $[\mathrm{TYPE}, y] \leftarrow \textbf{SOLVELPval}(S,Qb,(P^{-1})^Tc,{\bf 0},0)$ \label{step:solsLP:end}
       \RETURN $[\mathrm{TYPE}, P^{-1}y]$ \hfill \color{olive} \# \Cref{solsLP} \label{step:solsLP}
       \ENDIF
-      \STATE $r \leftarrow \text{rank}(A)$ \label{step:core:begin} 
+      \STATE $r \leftarrow \text{rank}(A)$
+      \hfill {\color{olive} \# $A$ is in $\mathrm{SNF}$, with diagonal elements $s_{i}$} \label{step:core:begin}
       \IF{$\bigwedge_{i=r+1}^d (\val(b_{i}) \geq 0)$} \label{step:condition}
       \IF{$\bigvee_{i=r+1}^n (c_i \neq 0)$}
       \RETURN [UNBOUND, []] \hfill {\color{olive} \# \Cref{prop:reduc}, item \ref{prop:reduc_it2}} \label{step:unbound}
       \ELSE %\STATE STATUS $\leftarrow$ FEAS
-      \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / a_{ii}$
-      \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/a_{ii})$
+      \STATE $\lambda \leftarrow -\sum_{i=1}^r c_i b_i / s_{i}$
+      \STATE $v \leftarrow \min_{1 \leq i \leq r} \val (c_i/s_{i})$
       \IF{$\val \lambda < v$}
-      \STATE choose $y \in K^n$ s.\,t. $y_i \in (-b_i+\OK)/a_{ii}, i=1,\ldots,r$
+      \STATE choose $y \in K^n$ s.\,t. $y_i \in (-b_i+\OK)/s_{i}, i=1,\ldots,r$
       \RETURN [FEAS, $y$] \hfill {\color{olive} \# \Cref{solutions}, item \ref{solutions:it1}}
       \ELSE
-      \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/a_{ii})\}$
+      \STATE $j \leftarrow \min_{1 \leq i \leq r} \{i : v = \val (c_i/s_{i})\}$
       %find $y \in K^n$ such that $y_i \in (-b_i+\OK)/s_i, i=1,\ldots,r$
       %and $\langle c,y\rangle = \pi^v\OK$
       \STATE $\xi_j = (0,\ldots,0,1,0,\ldots,0)$, with $1$ at coordinate $j$
@@ -1693,7 +1694,7 @@ $\mathcal{L}_1 = A_0+\span{A_1,\ldots,A_n}$ and $\mathcal{L}_2 = A_0+\span{B_1,\
 and
 $(L_1 \cap \mathcal{S}_A) \cap (L_2 \cap S_B) = (L_1\cap L_2) \cap S_{\diag(A,B)}$ for
 two affine spaces $L_1,L_2 \subset K^n$.
-Moreover this class contains the polyhedra in $K^n$.
+%Moreover this class contains the polyhedra in $K^n$.
 
 \begin{proposition}
   A polyhedron in $K^n$ is a spectrahedron in $K^n$.
@@ -1814,10 +1815,10 @@ Spectrahedra of $K$ are diskoids. \label{prop_spectrahedra_dim1_are_diskoids}
 \end{proposition}
 \begin{proof}
 By \Cref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
-can be defined as the set $\{x \in K : A_0+x A_1 \succeq 0\}$
+can be defined as the set $\mathcal{S}=\{x \in K : A_0+x A_1 \succeq 0\}$
 for some integer $d$ and matrices $A_0$ and $A_1$ in $K^{d \times d}$.
-Thanks to Theorem \ref{caracsdp}, this set corresponds to an intersection of the form
-$\cap_{i=0}^{d-1} \{x \in K : \val(p_i(x)) \geq 0\},$
+Thanks to Theorem \ref{caracsdp},
+$\mathcal{S}=\cap_{i=0}^{d-1} \{x \in K : \val(p_i(x)) \geq 0\},$
 for some polynomials $p_i$, univariate over $K$.
 As such, this set is the intersection of the diskoids
 $\mathrm{Disk}(p_i,0).$
@@ -1850,7 +1851,7 @@ Consequently, spectrahedra of $K$ are diskoids.
 \end{definition}
 
 Of course a spectrahedron $\mathcal{S}_A = \varphi_A^{-1}(K^{d \times d})$ is SDR with height $m=0$ and degree
-$d$. In order to distinguish between spectrahedra and possibly non-spectrahedral semidefinite-representable sets
+$d$. In order to distinguish between spectrahedra and possibly non-spectrahedral SDR sets
 we usually call {spectrahedral shadows} the SDR sets with height $m>0$.
 
 \begin{theorem}
