@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Tue Apr 28 15:16:37 2026
+%DIF ADD cameraready.tex          Tue Apr 28 16:22:40 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -232,7 +232,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \title{On semidefinite-representable sets over valued fields}
 
 \author{Corentin Cornou}
-\DIFaddbegin \orcid{}
+\DIFaddbegin \orcid{0009-0009-0085-4288}
 \DIFaddend \affiliation{
     \institution{ENS Paris-Saclay}
     \city{Gif-sur-Yvette}
@@ -848,8 +848,10 @@ the linear matrix inequality:
 %\]
 Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{r} \val(a_i).$
 We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
+\DIFdelbegin %DIFDELCMD < 
 
-Let us first assume that $\val(a_1) \geq 0$.
+%DIFDELCMD < %%%
+\DIFdelend Let us first assume that $\val(a_1) \geq 0$.
 
 Let $x \in \PP'$.
 Then $x_n=-v'_d+O(1)$
@@ -1284,10 +1286,12 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
     A non-empty polyhedron is the image of a polydisc under an affine map.
 \end{proposition}
 \begin{proof}
-%    Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx = w\}$ be a polyhedron in $K^n$.
+    %DIF <     Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx = w\}$ be a polyhedron in $K^n$.
     Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx + w = 0\}$ be a polyhedron in $K^n$.
+    \DIFdelbegin %DIFDELCMD < 
 
-    If $\PP \neq \emptyset$, then there exists $x_0 \in K^n$ such that $Bx_0+w=0$.
+%DIFDELCMD <     %%%
+\DIFdelend If $\PP \neq \emptyset$, then there exists $x_0 \in K^n$ such that $Bx_0+w=0$.
     Let $J \in K^{n \times R}$ such that \DIFdelbegin \DIFdel{$\textrm{Im}\,J = \ker\,B$ }\DIFdelend \DIFaddbegin \DIFadd{$\mathrm{Im}\,J = \ker\,B$ }\DIFaddend where $R$ denotes
     the dimension of $\ker\,B$. Then $\PP = x_0 + J\PP'$ where
     $A' \coloneq AJ$, $v' \coloneq Ax_0 + v$ and
@@ -1632,7 +1636,9 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
 
   If the condition on step \ref{step:condition} is not satisfied, the problem
   is infeasible by \Cref{prop:reduc} (step \ref{step:core:end}).
-\end{proof}
+  \DIFaddbegin \DIFadd{Note that there are at most two recursive calls, thus
+  the algorithm terminates in a finite number of steps.
+}\DIFaddend \end{proof}
 
 %\begin{remark}
 %  If $\val \lambda \ge v$ and $i_0 \in \{1,\ldots, n\} $ is such that
@@ -1661,9 +1667,9 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
 \newcommand\Mats{positive semidefinite matrices }
 
 \begin{definition}
-  We say that a matrix $M \in K^{d \times d}$ is {positive semidefinite} ($M \succeq 0$)
+  We say that a matrix $M \in K^{d \times d}$ is {positive semidefinite\DIFaddbegin \DIFadd{, or psd}\DIFaddend } ($M \succeq 0$)
   if all its eigenvalues have nonnegative valuation in an algebraic closure of $K$.
-  We denote by $K^{d \times d}_+ \subset K^{d\times d}$ the set of positive semidefinite matrices.
+  We denote by $K^{d \times d}_+ \subset K^{d\times d}$ the set of \DIFdelbegin \DIFdel{positive semidefinite }\DIFdelend \DIFaddbegin \DIFadd{psd }\DIFaddend matrices.
   The characteristic polynomial of a matrix $M \in K^{d\times d}$ is denoted $\chi_M \in K[T]$.
 \end{definition}
 
@@ -1707,7 +1713,7 @@ valued fields reduces to checking whether the coefficients of $\chi_M$ are integ
   the Newton polygon of $\chi_M$ is positive, so that $\chi_M$ has a root with negative valuation.
 \end{proof}
 
-As a consequence, matrices with integral coefficients are positive semidefinite.
+As a consequence, matrices with integral coefficients are \DIFdelbegin \DIFdel{positive semidefinite}\DIFdelend \DIFaddbegin \DIFadd{psd}\DIFaddend .
 
 \begin{corollary}\label{cor_caracsdp}
   $\OK^{d\times d} \subset K^{d\times d}_+$.
@@ -1715,15 +1721,27 @@ As a consequence, matrices with integral coefficients are positive semidefinite.
 \begin{proof}
   $\OK$ is a ring, therefore $\chi_M \in \OK[T]$ if $M \in \OK^{d \times d}$.
 \end{proof}
+\DIFdelbegin %DIFDELCMD < 
 
-The reverse inclusion of \Cref{cor_caracsdp} is false in general:
+%DIFDELCMD < %%%
+\DIFdelend The reverse inclusion of \Cref{cor_caracsdp} is false in general:
+\DIFdelbegin %DIFDELCMD < 
 
-\begin{example}
+%DIFDELCMD < %%%
+\DIFdelend \begin{example}
   Let
-  $$
-  M = \begin{bmatrix} \frac{3}{5}+5 & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{bmatrix}.
-  $$
-  The characteristic polynomial of $M$
+  \DIFdelbegin \begin{displaymath}
+  \DIFdel{M = \begin{bmatrix} \frac{3}{5}+5 & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{bmatrix}.
+  }\end{displaymath}%DIFAUXCMD
+%DIFDELCMD <   %%%
+\DIFdelend \DIFaddbegin \DIFadd{%
+\mbox{%DIFAUXCMD
+$
+%  M = \left[\begin{smallmatrix} \frac{3}{5}+5 & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{smallmatrix}\right].
+  M = \left[\begin{smallmatrix} {3}/{5}+5 & {4}/{5} \\ {4}/{5} & -{3}/{5} \end{smallmatrix}\right].
+  $
+}%DIFAUXCMD
+}\DIFaddend The characteristic polynomial of $M$
   is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$. As such $M \in (\mathbb{Q}_5)^{2 \times 2}_+$, while nevertheless $M \not\in (\mathbb{Z}_5)^{2\times 2}$, and hence
   $(\mathbb{Q}_5)^{2 \times 2}_+ \not\subset (\mathbb{Z}_5)^{2 \times 2}$. 
 \end{example}
@@ -1740,11 +1758,17 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general:
 \begin{proof}
   The fact that $K^{d \times d}_+$ is a cone is immediate from the definition.
   Next, remark that \DIFdelbegin \DIFdel{$\OK[X]$ }\DIFdelend \DIFaddbegin \DIFadd{$\OK[T]$ }\DIFaddend is closed and open in \DIFdelbegin \DIFdel{$K[X]$ }\DIFdelend \DIFaddbegin \DIFadd{$K[T]$ }\DIFaddend equipped with the infinity norm
-  $$
-  \|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k \DIFdelbegin \DIFdel{X}\DIFdelend \DIFaddbegin \DIFadd{T}\DIFaddend ^k \to
+  \DIFdelbegin \begin{displaymath}
+  \DIFdel{\|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k X^k \to
   \max_{1 \leq k \leq n} |a_k|,
-  $$
-  {where $|\cdot|$ is any norm induced by $\val$}:
+  }\end{displaymath}%DIFAUXCMD
+%DIFDELCMD <   %%%
+\DIFdelend %DIF >   $$
+  %DIF >   \|\cdot\|_\infty : P = \sum_{k=0}^{n} a_k T^k \to
+  %DIF >   \max_{0 \leq k \leq n} |a_k|,
+  %DIF >   $$
+  \DIFaddbegin \DIFadd{$\| \sum_{k=0}^{n} a_k T^k \|_\infty = \max_{0 \leq k \leq n} |a_k|$,
+  }\DIFaddend {where $|\cdot|$ is any norm induced by $\val$}:
   $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ that induces a discrete distance for
   which open balls are also closed sets.
   Furthermore, \DIFdelbegin \DIFdel{$K^{d\times d}_+ = \chi^{-1}(\OK[X]) $ }\DIFdelend \DIFaddbegin \DIFadd{$K^{d\times d}_+ = \chi^{-1}(\OK[T]) $ }\DIFaddend where $\chi$ is the function that maps a
@@ -1813,8 +1837,9 @@ Moreover this class contains the polyhedra in $K^n$.
   $L = \{x \in K^n : \val \ell_i(x) \geq 0, i=1, \ldots, d\}$
   and $M = \{x \in K^n : \val m_j(x) = +\infty, j=1, \ldots, e\}$,
   for some $d, e \in \mathbb{N}$.
-  Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$ be such that
-  $$
+  Let \DIFdelbegin \DIFdel{$A_0,A_1,\ldots,A_n \in K^{d \times d}$ be such that
+  }\DIFdelend \DIFaddbegin \DIFadd{$A_0,\ldots,A_n \in K^{d \times d}$ be s.t.
+  }\DIFaddend $$
   \varphi_A(x) \coloneq A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
   $$
   One has $L = \mathcal{S}_A = \varphi_A^{-1}(K^{d \times d}_+)$.
@@ -1871,9 +1896,11 @@ Spectrahedra form a strict generalization of polyhedra:
   thus $\val(x+\pi^{-1})=-1$, that is $\val(x(x+\pi^{-1})) \geq 0$; similarly
   if $x \in \mathcal{B}$ then $\val(x+\pi^{-1}) \geq 1$ and thus $\val(x) = -1$,
   that is $\val(x(x+\pi^{-1})) \geq 0$; this shows $\mathcal{S} \supset \mathcal{A}
-  \cup \mathcal{B}$.
-  }
-
+  \cup \mathcal{B}$. Assume now $x \in \mathcal{S} \setminus (\mathcal{A} \cup
+  \mathcal{B})$. Then $\val(x)+\val(x+\pi^{-1}) \geq 0$ with $\val(x) \leq 0$
+  and $\val(x+\pi^{-1}) \leq 0$, implying $\val(x) = \val(x+\pi^{-1}) = 0$, absurd.
+  Therefore $\mathcal{S} \subset \mathcal{A} \cup \mathcal{B}$, that is,
+  $\mathcal{S} = \mathcal{A} \cup \mathcal{B}$.
 %DIF >   From
 %DIF >   $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ one has that
 %DIF >   $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
@@ -1885,7 +1912,7 @@ Spectrahedra form a strict generalization of polyhedra:
 %DIF >   %$\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x - \pi^{-1}) \ge 1\}$
 %DIF >   $\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x + \pi^{-1}) \ge 1\}$
 %DIF >   which is not a ball. Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
-\DIFaddend \end{proof}
+}\DIFaddend \end{proof}
 
 \begin{definition}
   A subset $S$ of $K^n$ is said \emph{semialgebraic} if it is defined by finite unions and intersections
@@ -1907,7 +1934,8 @@ Spectrahedra form a strict generalization of polyhedra:
   = \bigcap_{i=0}^{d-1} \{x \in K^n : \val(p_i(x)) \geq 0\}.
   }\end{displaymath}%DIFAUXCMD
 \DIFdelend \DIFaddbegin \begin{equation}\DIFadd{\label{reprspec}
-  \mathcal{S}_A = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
+    \mathcal{S}_A
+    = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
   = \bigcap_{i=0}^{d-1} \{x \in K^n : \val(p_i) \geq 0\}.
   }\end{equation}\DIFaddend 
 \end{proof}

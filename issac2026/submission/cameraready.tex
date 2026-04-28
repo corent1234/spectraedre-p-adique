@@ -144,7 +144,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \title{On semidefinite-representable sets over valued fields}
 
 \author{Corentin Cornou}
-\orcid{}
+\orcid{0009-0009-0085-4288}
 \affiliation{
     \institution{ENS Paris-Saclay}
     \city{Gif-sur-Yvette}
@@ -759,7 +759,6 @@ the linear matrix inequality:
 %\]
 Finally, we can also assume that, up to a permutation of the variables, $\val(a_1)= \min_{i=1}^{r} \val(a_i).$
 We distinguish two cases: $\val(a_1) \geq 0$ and $\val(a_1)<0.$
-
 Let us first assume that $\val(a_1) \geq 0$.
 
 Let $x \in \PP'$.
@@ -1195,9 +1194,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
     A non-empty polyhedron is the image of a polydisc under an affine map.
 \end{proposition}
 \begin{proof}
-%    Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx = w\}$ be a polyhedron in $K^n$.
     Let $\PP = \{x \in K^n : Ax+v \succeq 0, Bx + w = 0\}$ be a polyhedron in $K^n$.
-
     If $\PP \neq \emptyset$, then there exists $x_0 \in K^n$ such that $Bx_0+w=0$.
     Let $J \in K^{n \times R}$ such that $\mathrm{Im}\,J = \ker\,B$ where $R$ denotes
     the dimension of $\ker\,B$. Then $\PP = x_0 + J\PP'$ where
@@ -1523,6 +1520,8 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
 
   If the condition on step \ref{step:condition} is not satisfied, the problem
   is infeasible by \Cref{prop:reduc} (step \ref{step:core:end}).
+  Note that there are at most two recursive calls, thus
+  the algorithm terminates in a finite number of steps.
 \end{proof}
 
 %\begin{remark}
@@ -1552,9 +1551,9 @@ We are now able to state a correctness theorem for \Cref{algo_LP}.
 \newcommand\Mats{positive semidefinite matrices }
 
 \begin{definition}
-  We say that a matrix $M \in K^{d \times d}$ is {positive semidefinite} ($M \succeq 0$)
+  We say that a matrix $M \in K^{d \times d}$ is {positive semidefinite, or psd} ($M \succeq 0$)
   if all its eigenvalues have nonnegative valuation in an algebraic closure of $K$.
-  We denote by $K^{d \times d}_+ \subset K^{d\times d}$ the set of positive semidefinite matrices.
+  We denote by $K^{d \times d}_+ \subset K^{d\times d}$ the set of psd matrices.
   The characteristic polynomial of a matrix $M \in K^{d\times d}$ is denoted $\chi_M \in K[T]$.
 \end{definition}
 
@@ -1598,7 +1597,7 @@ valued fields reduces to checking whether the coefficients of $\chi_M$ are integ
   the Newton polygon of $\chi_M$ is positive, so that $\chi_M$ has a root with negative valuation.
 \end{proof}
 
-As a consequence, matrices with integral coefficients are positive semidefinite.
+As a consequence, matrices with integral coefficients are psd.
 
 \begin{corollary}\label{cor_caracsdp}
   $\OK^{d\times d} \subset K^{d\times d}_+$.
@@ -1606,14 +1605,13 @@ As a consequence, matrices with integral coefficients are positive semidefinite.
 \begin{proof}
   $\OK$ is a ring, therefore $\chi_M \in \OK[T]$ if $M \in \OK^{d \times d}$.
 \end{proof}
-
 The reverse inclusion of \Cref{cor_caracsdp} is false in general:
-
 \begin{example}
   Let
-  $$
-  M = \begin{bmatrix} \frac{3}{5}+5 & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{bmatrix}.
-  $$
+  $
+%  M = \left[\begin{smallmatrix} \frac{3}{5}+5 & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{smallmatrix}\right].
+  M = \left[\begin{smallmatrix} {3}/{5}+5 & {4}/{5} \\ {4}/{5} & -{3}/{5} \end{smallmatrix}\right].
+  $
   The characteristic polynomial of $M$
   is $\chi_M = T^2-5T-4$. However when seen as a matrix over $K=\mathbb{Q}_5$, then $\chi_M \in \mathbb{Z}_5[T] = \OK[T]$. As such $M \in (\mathbb{Q}_5)^{2 \times 2}_+$, while nevertheless $M \not\in (\mathbb{Z}_5)^{2\times 2}$, and hence
   $(\mathbb{Q}_5)^{2 \times 2}_+ \not\subset (\mathbb{Z}_5)^{2 \times 2}$. 
@@ -1631,10 +1629,11 @@ The reverse inclusion of \Cref{cor_caracsdp} is false in general:
 \begin{proof}
   The fact that $K^{d \times d}_+$ is a cone is immediate from the definition.
   Next, remark that $\OK[T]$ is closed and open in $K[T]$ equipped with the infinity norm
-  $$
-  \|\cdot\|_\infty : P = \sum_{k=1}^{n} a_k T^k \to
-  \max_{1 \leq k \leq n} |a_k|,
-  $$
+  %  $$
+  %  \|\cdot\|_\infty : P = \sum_{k=0}^{n} a_k T^k \to
+  %  \max_{0 \leq k \leq n} |a_k|,
+  %  $$
+  $\| \sum_{k=0}^{n} a_k T^k \|_\infty = \max_{0 \leq k \leq n} |a_k|$,
   {where $|\cdot|$ is any norm induced by $\val$}:
   $\OK$ is indeed the open unit ball for $\|\cdot \|_\infty$ that induces a discrete distance for
   which open balls are also closed sets.
@@ -1704,7 +1703,7 @@ Moreover this class contains the polyhedra in $K^n$.
   $L = \{x \in K^n : \val \ell_i(x) \geq 0, i=1, \ldots, d\}$
   and $M = \{x \in K^n : \val m_j(x) = +\infty, j=1, \ldots, e\}$,
   for some $d, e \in \mathbb{N}$.
-  Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$ be such that
+  Let $A_0,\ldots,A_n \in K^{d \times d}$ be s.t.
   $$
   \varphi_A(x) \coloneq A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
   $$
@@ -1755,8 +1754,11 @@ Spectrahedra form a strict generalization of polyhedra:
   thus $\val(x+\pi^{-1})=-1$, that is $\val(x(x+\pi^{-1})) \geq 0$; similarly
   if $x \in \mathcal{B}$ then $\val(x+\pi^{-1}) \geq 1$ and thus $\val(x) = -1$,
   that is $\val(x(x+\pi^{-1})) \geq 0$; this shows $\mathcal{S} \supset \mathcal{A}
-  \cup \mathcal{B}$.
-  
+  \cup \mathcal{B}$. Assume now $x \in \mathcal{S} \setminus (\mathcal{A} \cup
+  \mathcal{B})$. Then $\val(x)+\val(x+\pi^{-1}) \geq 0$ with $\val(x) \leq 0$
+  and $\val(x+\pi^{-1}) \leq 0$, implying $\val(x) = \val(x+\pi^{-1}) = 0$, absurd.
+  Therefore $\mathcal{S} \subset \mathcal{A} \cup \mathcal{B}$, that is,
+  $\mathcal{S} = \mathcal{A} \cup \mathcal{B}$.
 %  From
 %  $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ one has that
 %  $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
@@ -1786,7 +1788,8 @@ Spectrahedra form a strict generalization of polyhedra:
   Denote by $p_i \in K[x]$ the $i$-th coefficient of $\chi_{A}$, $i=0,\ldots,d$.
   By \Cref{caracsdp} one has:
   \begin{equation}\label{reprspec}
-  \mathcal{S}_A = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
+    \mathcal{S}_A
+    = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
   = \bigcap_{i=0}^{d-1} \{x \in K^n : \val(p_i) \geq 0\}.
   \end{equation}
 \end{proof}
