@@ -144,6 +144,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \title{On semidefinite-representable sets over valued fields}
 
 \author{Corentin Cornou}
+\orcid{}
 \affiliation{
     \institution{ENS Paris-Saclay}
     \city{Gif-sur-Yvette}
@@ -151,6 +152,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 }
 
 \author{Simone Naldi}
+\orcid{0000-0002-4556-6935}
 \affiliation{Universit\'e de Limoges;
   \institution{CNRS, XLIM UMR 7252}
   \city{Limoges}
@@ -159,6 +161,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 }
 
 \author{Tristan Vaccon}
+\orcid{0000-0003-4208-8349}
 \affiliation{Universit\'e de Limoges;
   \institution{CNRS, XLIM UMR 7252}
   \city{Limoges}
@@ -1744,17 +1747,27 @@ Spectrahedra form a strict generalization of polyhedra:
   Note that
   $\chi_M(T) = T^2-x(x+\pi^{-1})$, therefore by \Cref{caracsdp},
   $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\}$.
-  From
-  $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ one has that
-  $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
-  $\val (x + \pi^{-1}) \ge 1$: indeed, if $\val(x) \geq 1$, then
-  $\val (x + \pi^{-1}) = -1$ and $\val(x(x + \pi^{-1})) \geq 0$ so $x \in \mathcal{S}$;
-  if $\val(x) < -1$ or $\val(x) = 0$, then $\val (x + \pi^{-1}) \leq -1$
-  and $x \not\in\mathcal{S}$; or $\val(x) = -1$
-  Thus
-  %$\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x - \pi^{-1}) \ge 1\}$
-  $\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x + \pi^{-1}) \ge 1\}$
-  which is not a ball. Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
+  Let $\mathcal{A} = \{x \in K : \val(x) \geq 1\}$ and
+  $\mathcal{B} = \{x \in K : \val(x+\pi^{-1}) \geq 1\}$.
+  We claim that $\mathcal{S} = \mathcal{A} \cup \mathcal{B}$, which is not
+  a ball: therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
+  We prove now the claim. If $x \in \mathcal{A}$, then $\val(x)\geq 1$ and
+  thus $\val(x+\pi^{-1})=-1$, that is $\val(x(x+\pi^{-1})) \geq 0$; similarly
+  if $x \in \mathcal{B}$ then $\val(x+\pi^{-1}) \geq 1$ and thus $\val(x) = -1$,
+  that is $\val(x(x+\pi^{-1})) \geq 0$; this shows $\mathcal{S} \supset \mathcal{A}
+  \cup \mathcal{B}$.
+  
+%  From
+%  $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ one has that
+%  $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
+%  $\val (x + \pi^{-1}) \ge 1$: indeed, if $\val(x) \geq 1$, then
+%  $\val (x + \pi^{-1}) = -1$ and $\val(x(x + \pi^{-1})) \geq 0$ so $x \in \mathcal{S}$;
+%  if $\val(x) < -1$ or $\val(x) = 0$, then $\val (x + \pi^{-1}) \leq -1$
+%  and $x \not\in\mathcal{S}$; or $\val(x) = -1$
+%  Thus
+%  %$\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x - \pi^{-1}) \ge 1\}$
+%  $\mathcal{S}=\{x \in K: \val x \ge 1\} \cup \{x \in K: \val(x + \pi^{-1}) \ge 1\}$
+%  which is not a ball. Therefore, by \Cref{cor:caracdim1}, $\mathcal{S}$ is not a polyhedron.
 \end{proof}
 
 \begin{definition}
