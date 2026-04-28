@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Tue Apr 28 10:27:07 2026
+%DIF ADD cameraready.tex          Tue Apr 28 11:20:30 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -1846,18 +1846,19 @@ Spectrahedra form a strict generalization of polyhedra:
 \begin{example}
   The following spectrahedron is not a polyhedron:
   \[
-  \mathcal{S} = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}.
+  \mathcal{S}\DIFaddbegin \DIFadd{_M }\DIFaddend = \left\{x \in K : \DIFaddbegin \DIFadd{M := }\DIFaddend \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}.
   \] 
 \end{example}
 \begin{proof}
   \DIFdelbegin \DIFdel{By \mbox{%DIFAUXCMD
 \Cref{caracsdp}}\hskip0pt%DIFAUXCMD
-, one has $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
-  \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$ }\DIFdelend \DIFaddbegin \DIFadd{Note that the characteristic polynomial of the defining matrix is
-  $T^2-x(x+\pi^{-1})$.
-  Therefore by \mbox{%DIFAUXCMD
+,
+  one has $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
+  \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$ }\DIFdelend \DIFaddbegin \DIFadd{Note that
+  $\chi_M(T) = T^2-x(x+\pi^{-1})$, therefore by \mbox{%DIFAUXCMD
 \Cref{caracsdp}}\hskip0pt%DIFAUXCMD
-, $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\}$.
+,
+  $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\}$.
   From
   $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ one has that
   $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
@@ -1892,7 +1893,7 @@ Spectrahedra form a strict generalization of polyhedra:
   }\end{displaymath}%DIFAUXCMD
 \DIFdelend \DIFaddbegin \begin{equation}\DIFadd{\label{reprspec}
   \mathcal{S}_A = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
-  = \bigcap_{i=0}^{d-1} \{x \in K^n : \val(p_i(x)) \geq 0\}.
+  = \bigcap_{i=0}^{d-1} \{x \in K^n : \val(p_i) \geq 0\}.
   }\end{equation}\DIFaddend 
 \end{proof}
 
@@ -1938,10 +1939,11 @@ Consequently, spectrahedra of $K$ are diskoids.
 
 \subsection{Polyannuli}
 
-Denote by $\R^*_+$ the set of positive real numbers.
+\DIFdelbegin \DIFdel{Denote by $\R^*_+$ the set of positive real numbers.
+}\DIFdelend %DIF > Denote by $\R^*_+$ the set of positive real numbers.
 
 \begin{definition}[Polyannulus]\label{def_annuli}
-  A set of the form $\mathcal{C} = \{x \in K \,|\, a \le \val(x) \le b\}$, for $a,b \in \R^*_+$,
+  A set of the form $\mathcal{C} = \{x \in K \,|\, a \le \val(x) \le b\}$, for \DIFdelbegin \DIFdel{$a,b \in \R^*_+$}\DIFdelend \DIFaddbegin \DIFadd{$a,b \in \R^*_+ = \{x \in \R : x>0\}$}\DIFaddend ,
   is called an \emph{annulus}. A product $\mathcal{C}_1 \times \mathcal{C}_2 \times \cdots \times \mathcal{C}_n \subset K^n$,
   where each $C_i \subset K$ is an annulus, is called a \emph{polyannulus}.
 \end{definition}

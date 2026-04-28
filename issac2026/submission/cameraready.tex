@@ -1737,13 +1737,13 @@ Spectrahedra form a strict generalization of polyhedra:
 \begin{example}
   The following spectrahedron is not a polyhedron:
   \[
-  \mathcal{S} = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}.
+  \mathcal{S}_M = \left\{x \in K : M := \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}.
   \] 
 \end{example}
 \begin{proof}
-  Note that the characteristic polynomial of the defining matrix is
-  $T^2-x(x+\pi^{-1})$.
-  Therefore by \Cref{caracsdp}, $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\}$.
+  Note that
+  $\chi_M(T) = T^2-x(x+\pi^{-1})$, therefore by \Cref{caracsdp},
+  $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\}$.
   From
   $\val(x(x + \pi^{-1})) = \val(x)+ \val(x+\pi^{-1})$ one has that
   $x \in \mathcal{S}$ if and only if either $\val(x) \geq 1$ or
@@ -1774,7 +1774,7 @@ Spectrahedra form a strict generalization of polyhedra:
   By \Cref{caracsdp} one has:
   \begin{equation}\label{reprspec}
   \mathcal{S}_A = \left\{x \in K^n : \chi_{A} \in \OK[T]\right\}
-  = \bigcap_{i=0}^{d-1} \{x \in K^n : \val(p_i(x)) \geq 0\}.
+  = \bigcap_{i=0}^{d-1} \{x \in K^n : \val(p_i) \geq 0\}.
   \end{equation}
 \end{proof}
 
@@ -1813,10 +1813,10 @@ Consequently, spectrahedra of $K$ are diskoids.
 
 \subsection{Polyannuli}
 
-Denote by $\R^*_+$ the set of positive real numbers.
+%Denote by $\R^*_+$ the set of positive real numbers.
 
 \begin{definition}[Polyannulus]\label{def_annuli}
-  A set of the form $\mathcal{C} = \{x \in K \,|\, a \le \val(x) \le b\}$, for $a,b \in \R^*_+$,
+  A set of the form $\mathcal{C} = \{x \in K \,|\, a \le \val(x) \le b\}$, for $a,b \in \R^*_+ = \{x \in \R : x>0\}$,
   is called an \emph{annulus}. A product $\mathcal{C}_1 \times \mathcal{C}_2 \times \cdots \times \mathcal{C}_n \subset K^n$,
   where each $C_i \subset K$ is an annulus, is called a \emph{polyannulus}.
 \end{definition}
