@@ -1811,7 +1811,7 @@ for some polynomial $f \in K[x]$ and some rational number $r \geq 0.$
 \end{definition}
 
 \begin{proposition}
-Spectrahedra of $K$ are diskoids. \label{prop_spectrahedra_dim1_are_diskoids}
+Spectrahedra of $K$ are finite union of balls. \label{prop_spectrahedra_dim1_are_diskoids}
 \end{proposition}
 \begin{proof}
 By \Cref{def_spectrahedra_Kn}, a spectrahedron in $K$ 
@@ -1822,9 +1822,11 @@ $\mathcal{S}=\cap_{i=0}^{d-1} \{x \in K : \val(p_i(x)) \geq 0\},$
 for some polynomials $p_i$, univariate over $K$.
 As such, this set is the intersection of the diskoids
 $\mathrm{Disk}(p_i,0).$
-By \cite[Lemma 4.44]{ruth_models_2015}, the intersection
-of two diskoids is either empty or a diskoid.
-Consequently, spectrahedra of $K$ are diskoids.
+By \cite[Lemma 6.9]{ABL_2021}, diskoids are finite union of balls.
+Since the intersection of two balls is either empty
+or the smallest of the two, we get that intersection of diskoids
+are also finite union of balls.
+It is thus the case for spectrahedra of $K$.
 \end{proof}
 
 
@@ -1909,11 +1911,7 @@ We prove now that, in general, annuli are not spectrahedra.
 
 \begin{proof}[{Proof of \Cref{main_2}}]
 Assume that $\kappa = \OK/\mathfrak{m}_K$, the residue field of $K$, is infinite.
-By Proposition \ref{prop_spectrahedra_dim1_are_diskoids} spectrahedra of $K$ are diskoids.
-By \cite[Lemma 4.43]{ruth_models_2015}, if $K$
-contains the roots of $\Phi$ then the diskoid
-$D=\mathrm{Disk}(\Phi, \lambda)$ is the finite union
-of closed balls of equal radius centered at the roots of $\Phi$ (and their common radius can be made explicit).
+By Proposition \ref{prop_spectrahedra_dim1_are_diskoids} spectrahedra of $K$ are finite union of balls.
 
 In addition, if $\kappa$ is infinite, one can remark that the sphere
 $\{x \in K \,|\,  \val(x) =0\}$ is equal to the infinite disjoint union $\amalg_{l \in \kappa} B(b_l, \vert \pi \vert)$ for some representatives $b_l \in \OK$ of the classes of $\OK / \pi\OK = \kappa.$
@@ -1923,7 +1921,7 @@ $B(0,1).$
 
 A direct generalization of this argument proves that
 if $\kappa$ is infinite, no (non trivial) annulus can be equal to
-a finite union of balls. Thus, no (non trivial) annulus can be a diskoid and finally, no (non trivial) annulus can be a spectrahedron.
+a finite union of balls. Thus, by Prop. \ref{prop_spectrahedra_dim1_are_diskoids} no (non trivial) annulus can be a spectrahedron.
 \end{proof}
 
 
