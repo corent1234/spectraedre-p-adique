@@ -691,9 +691,7 @@ Polyhedra are Spectrahedra, since $x \in \poly \Leftrightarrow A(x) \coloneqq \t
 \pause
 
 {\bf\color{blue} Fact:}
-They are {\bf basic semi-algebraic} sets:
-$$\det(A(x)+t I_m) = f_{m}(x)+f_{m-1}(x)t+\cdots+f_{1}(x)t^{m-1}+t^m$$
-then $\spec=\{x \in \RR^n \mymid f_i(x) \geq 0, i=1,\ldots,m\}$.
+They are {\bf basic semi-algebraic} sets: $A(x) \succeq 0$ if and only if all the principal minors of $A(x)$ are $\geq 0.$
 
 \end{frame}
 
@@ -811,10 +809,10 @@ Let $K$ be a field with:
 \pause
 \begin{expl}
 \begin{enumerate}
-\item $\QQ_p$, $p$-adic valuation, $\ZZ_p$, $\kappa = \FF_p$, $\pi = p.$
-\item $\FF_q((t))$, $t$-adic valuation, $\FF_q[[t]]$, $\kappa = \FF_q$, $\pi = t.$
-\item $\QQ((t))$, $t$-adic valuation, $\QQ[[t]]$, $\kappa = \QQ$, $\pi = t.$
-\item their finite extensions.
+\item $\QQ_p$, $p$-adic valuation, $\ZZ_p$, $\kappa = \FF_p$, $\pi = p.$ \pause
+\item $\FF_q((t))$, $t$-adic valuation, $\FF_q[[t]]$, $\kappa = \FF_q$, $\pi = t.$ \pause
+\item $\QQ((t))$, $t$-adic valuation, $\QQ[[t]]$, $\kappa = \QQ$, $\pi = t.$ \pause
+\item their finite extensions. \pause
 \end{enumerate}
 \end{expl}
 \pause
@@ -835,13 +833,13 @@ Topology somehow in-between discrete and continuous mathematics.
 D_K(\alpha; \lambda) :=\left\lbrace x \in K : \: v_K(x-\alpha) \geq \lambda \right\rbrace.\]
 \end{deftn}
 
-
+\pause
 
 \begin{deftn}[Polydisks]
 \[
 D_{K^n}(\alpha_1,\dots,\alpha_n; \lambda_1,\dots,\lambda_n) :=\left\lbrace x \in K^n : \: \forall i, \: v_K(x_i-\alpha_i) \geq \lambda_i \right\rbrace.\]
 \end{deftn}
-
+\pause
 \begin{prop}
 \begin{itemize}
 \item Any point of $D_K(\alpha; \lambda) $  is a center of this disk.
@@ -859,7 +857,7 @@ D_{K^n}(\alpha_1,\dots,\alpha_n; \lambda_1,\dots,\lambda_n) :=\left\lbrace x \in
 \begin{deftn}[Annulus]
 \[\mathcal{C}_{K}(\alpha, a,b) = \{x \in K \,|\, a \le \val(x-\alpha) \le b\},\]
 for $x \in K$,  $a \leq b \in \RR.$
-\end{deftn}
+\end{deftn} \pause
 \begin{center}
 \begin{tikzpicture}
 \usetikzlibrary{calc}
@@ -878,7 +876,7 @@ for $x \in K$,  $a \leq b \in \RR.$
 \draw[<->] (0,0) -- (0,-2) node[midway, right] {$b$};
 \end{tikzpicture}
 \end{center}
-
+\pause
 \begin{rmk}
 Central object in $p$-adic differential equations
 or in non-archimedean analytic geometry. 
@@ -898,10 +896,11 @@ D_K(\phi; \lambda) :=\left\lbrace x \in K : \: v_K(\phi(x)) \geq \lambda \right\
 is the \textbf{discoid} with center $\phi$ and radius $\lambda$ over $K$.
 \end{deftn}
 
+\pause
 
 
 \begin{rmk}
-Discoids play a central role in the family of OM factorization algorithms.
+Discoids play a central role in the family of OM factorization algorithms. \pause
 
 Thanks to recent works with A. Poteaux and M. Weimann, they appear in the clusterization of the roots of polynomials over fields with valuations.
 \end{rmk}
@@ -916,7 +915,7 @@ Thanks to recent works with A. Poteaux and M. Weimann, they appear in the cluste
 If $\phi$ is irreducible over $K$, then $D_{\overline{K}}(\phi; \lambda)$ is the union
 of balls of same radius centered around the roots of $\phi.$ The Galois group of $\overline{K}/K$ acts on those balls.
 \end{prop}
-
+\pause
 \begin{center}
 \begin{tikzpicture}[scale=0.8]
 	    % Mark the origin at (0,0) and label it "O"
@@ -1062,7 +1061,7 @@ of balls of same radius centered around the roots of $\phi.$ The Galois group of
     \right\},
   \end{equation}
   for some $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$ (polynomials of degree $1$).
-\end{deftn}
+\end{deftn} \pause
 
 This can be written in matrix form:
 
@@ -1072,7 +1071,7 @@ This can be written in matrix form:
 for $A \in K^{d \times n}$, $v \in K^d$, $B \in K^{e \times n}$, and
 $w \in K^e$ such that $Ax+v = (\ell_1,\ldots,\ell_d)^T$
 and $Bx+w = (m_1,\ldots,m_e)^T$.
-
+\pause
 \begin{expl}
 \[ D(c, \alpha) = \left\lbrace x \in K^n : val \left( x-c  \right) \geq \alpha= \right\rbrace= \left\lbrace x \in K^n : val \left( \pi^{-\alpha} (x-c)  \right) \right\rbrace.\]
 As such, balls are polyhedron, and similarly for polydisks.
@@ -1089,7 +1088,7 @@ As such, balls are polyhedron, and similarly for polydisks.
 \begin{thm}[direct image (DI)] \label{theo:DI}
 Let $f : K^n \to K^m$ be an affine map and $\PP$ a polyhedron in $K^n.$
 Then $f(\PP)$ is a polyhedron in $K^m$.
-\end{thm}
+\end{thm} \pause
 \begin{proof}[Idea of proof]
 
 Use the Smith Normal Form of the linear part $f_0$ of $f.$
@@ -1115,11 +1114,11 @@ Reduce to the case of: translation, isometry, projection.
 
 \begin{frame}
 \frametitle{Applications}
-
+\pause
 \begin{prop}[Characterization of polyhedra]
     A non-empty polyhedron is the image of a polydisc under an affine map.
 \end{prop}
-
+ \pause
 \begin{prop} 
    Polyhedra in $K$ are either the empty set or balls, possibly with infinite radius.
 \end{prop}
@@ -1139,18 +1138,18 @@ Reduce to the case of: translation, isometry, projection.
 \begin{frame}
 \frametitle{Definition and characterization}
 \begin{definition}
-  We say that a matrix $M \in K^{d \times d}$ is {positive semidefinite} ($M \succeq 0$)
+  We say that a matrix $M \in K^{d \times d}$ is {positive semidefinite} ($M \succeq 0$) \pause
   if \[\texttt{Spec}_{\overline{K}}(M)  \subset O_{\overline{K}}.\]
   We denote by $K^{d \times d}_+ \subset K^{d\times d}$ the set of positive semidefinite matrices.
 \end{definition}
-
+\pause
 \begin{theorem}
   \label{caracsdp}
   $M \in K^{d\times d}_+$ if and only if $\chi_M \in O_K[T]$.
-\end{theorem}
+\end{theorem}\pause
 \begin{proof}
 Use Newton polygons.
-\end{proof}
+\end{proof}\pause
 \begin{cor}
 \[ O_K^{d \times d} \subset K^{d \times d}_+.\]
 \end{cor}
@@ -1161,9 +1160,9 @@ Use Newton polygons.
 \begin{example}
   Let
   $$
-  M = \begin{bmatrix} \frac{3}{5}+5 & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{bmatrix} \in \mathbb{Q}_5)^{2 \times 2}.
-  $$
-  Then \[ \chi_M(T)=T^2-5T-4,\]
+  M = \begin{bmatrix} \frac{3}{5}+5 & \frac{4}{5} \\ \frac{4}{5} & -\frac{3}{5} \end{bmatrix} \in \mathbb{Q}_5^{2 \times 2}.
+  $$\pause
+  Then \[ \chi_M(T)=T^2-5T-4,\] \pause
 	Hence \begin{align*}
 	M &\in  (\mathbb{Q}_5)^{2 \times 2}_+ \\
 	M & \notin (\mathbb{Z}_5)^{2 \times 2}.
@@ -1175,10 +1174,10 @@ Use Newton polygons.
 \subsection{Definitions and first examples}
 
 \begin{frame}
-\frametitle{What is a spectrahedron}
+\frametitle{What is a spectrahedron?}
 \begin{definition}
   \label{def_spectrahedra}
-  A \emph{spectrahedron in $K^{d\times d}$} is a set of the form
+  A \emph{spectrahedron in $K^{d\times d}$} \pause is a set of the form
   $$
   \mathcal{S} = \mathcal{L} \cap K^{d\times d}_+ = \left\{X \in K^{d \times d} :
   \exists \, x \in K^n, X = A_0 + \sum_{i=1}^n x_i A_i, X \succeq 0\right\}
@@ -1187,10 +1186,10 @@ Use Newton polygons.
   is an affine space, for some
   $A_0,A_1,\ldots,A_n \in K^{d\times d}$.
 \end{definition}
-
+\pause
 \begin{definition}
   \label{def_spectrahedra_Kn}
-  A \emph{spectrahedron in $K^n$} is any affine section of a set of the form
+  A \emph{spectrahedron in $K^n$} \pause is any affine section of a set of the form
   $$
   \mathcal{S}_A = \varphi_A^{-1}(K^{d \times d}_+) = \{x \in K^n : A_0+x_1A_1+\cdots+x_nA_n \succeq 0\}
   $$
@@ -1206,16 +1205,17 @@ Use Newton polygons.
 
 \begin{prop}
   A polyhedron in $K^n$ is a spectrahedron in $K^n$.
-\end{prop}
+\end{prop} \pause
 \begin{proof}
   Assume $\PP = L \cap M$ be a polyhedron in $K^n$, with
   $L = \{x \in K^n : \val \ell_i(x) \geq 0, i=1, \ldots, d\}$
   and $M = \{x \in K^n : \val m_j(x) = +\infty, j=1, \ldots, e\}$,
-  for some $d, e \in \mathbb{N}$.
+  for some $d, e \in \mathbb{N}$. \pause
+  
   Let $A_0,A_1,\ldots,A_n \in K^{d \times d}$ be such that
   $$
   \varphi_A(x) \coloneq A_0+x_1A_1+\cdots+x_nA_n = \texttt{diag}(\ell_1(x), \ldots, \ell_d(x)).
-  $$
+  $$ \pause
   One has $L = \mathcal{S}_A = \varphi_A^{-1}(K^{d \times d}_+)$.
   Since $M \subset K^n$ is affine, then $\PP$ is a spectrahedron in $K^n$.
 \end{proof}
@@ -1223,16 +1223,16 @@ Use Newton polygons.
 \end{frame}
 
 \begin{frame}
-\frametitle{Some spectrahedron are not polyhedron}
+\frametitle{Some spectrahedron are not polyhedron} \pause
 \begin{example}
   The following spectrahedron is not a polyhedron:
   \[
   \mathcal{S} = \left\{x \in K : \begin{bmatrix} 0 & x + \pi^{-1} \\ x & 0 \end{bmatrix} \succeq 0\right\}.
   \] 
-\end{example}
-\begin{proof}
-  By characterization of positive semi-definite matrices, one has $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
-  \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$ which is not a ball in $K$.
+\end{example} \pause
+\begin{proof} \pause
+  By characterization of positive semi-definite matrices, one has \pause $\mathcal{S} = \{x \in K : \val(x(x + \pi^{-1})) \geq 0\} =
+  \{x \in K: \val x \ge 1\} \cup \{x \in K: \val (x - \pi^{-1}) \ge 1\}$ \pause which is not a ball in $K$. \pause
   Therefore, $\mathcal{S}$ is not a polyhedron.
 \end{proof}
 
@@ -1243,17 +1243,17 @@ Use Newton polygons.
 \frametitle{Spectrahedron in $K$}
 
 \begin{prop}
-Spectrahedra of $K$ are diskoids. 
-\end{prop}
+Spectrahedra of $K$ \pause are diskoids. 
+\end{prop} \pause
 \begin{proof}
-If $S$ is a spectrahedra of $K$ not reduced to a point, then
+If $S$ is a spectrahedra of $K$ not reduced to a point, then \pause
 \begin{align*}
 S &= \{x \in K : A_0+x A_1 \succeq 0\} \\
   &= \cap_{i=0}^{d-1} \{x \in K : \val(a_i(x)) \geq 0\}\\
-\end{align*}
-for some integer $d$, matrices $A_0$ and $A_1$ in $K^{d \times d}$,
+\end{align*} \pause
+for some integer $d$, matrices $A_0$ and $A_1$ in $K^{d \times d}$, and $a_i$ the coefficient of the corresponding characteristic polynomial. \pause
 The intersection
-of two diskoids is either empty or a diskoid.
+of two diskoids is either empty or a diskoid. \pause
 Consequently, spectrahedra of $K$ are diskoids.
 \end{proof}
 \end{frame}
@@ -1269,7 +1269,7 @@ Consequently, spectrahedra of $K$ are diskoids.
 	and a spectrahedron $\mathcal{S} \subset K^{n+m}$
 	such that \[\mathcal{R} = \texttt{proj}_{\leq n}(\mathcal{S})\]
 	with $  \texttt{proj}_{\leq n}: \: K^{n+m} \rightarrow K^n$ the projection on the first $n$ components.
-\end{deftn}
+\end{deftn}\pause
 
 If $m\geq 1$, we can also write that $\mathcal{R}$ is a spectrahedral shadow.
 \end{frame}
@@ -1280,7 +1280,7 @@ If $m\geq 1$, we can also write that $\mathcal{R}$ is a spectrahedral shadow.
 
 \begin{thm}
 Annuli in $K$ such as $\mathcal{C}_{K}(0, a,b) = \{x \in K \,|\, a \le \val(x) \le b\}$ are spectrahedral shadows.
-\end{thm}
+\end{thm} \pause
 \begin{proof} \vspace{-.5cm}
   $$
   M(x,y) \coloneq \left(
@@ -1290,9 +1290,9 @@ Annuli in $K$ such as $\mathcal{C}_{K}(0, a,b) = \{x \in K \,|\, a \le \val(x) \
     0 & 0 & \pi^{-1} & -\pi^{-1} x  \\
     0 & 0 & \pi^{-1} y & - \pi^{-1} \\
   \end{bmatrix}\right) \succeq 0.
-  $$
+  $$ \pause
   Then $M \succeq 0$ if and only if $(x,y)$ is a solution of the system
-  of inequalities:
+  of inequalities: \pause
   \begin{equation}
     \label{eq:annulussyst}
     \begin{cases}
@@ -1308,9 +1308,9 @@ Annuli in $K$ such as $\mathcal{C}_{K}(0, a,b) = \{x \in K \,|\, a \le \val(x) \
   \val\left(xy-1 \right) \ge 2
 \end{cases}
 \end{equation} 
-
+\pause
   Thus $\val\left(x\right)+\val\left(y\right)=\val\left(xy\right) = \val\left(-1\right) =0$.
-  Therefore $\val\left(x\right)=-\val\left(y\right)\le -(-b) = b$ and $x \in \mathcal{C}_K(0,a,b)$. 
+  Therefore $\val\left(x\right)=-\val\left(y\right)\le -(-b) = b$ and $x \in \mathcal{C}_K(0,a,b)$. \pause
 The converse is clear and $\mathcal{C}_K(0,a,b)$ is the proj. of the spectrahedra defined by $M.$
 \end{proof}
 
@@ -1321,19 +1321,19 @@ The converse is clear and $\mathcal{C}_K(0,a,b)$ is the proj. of the spectrahedr
 
 \begin{thm}
 If the residue field of $K$ is infinite, no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
-\end{thm}
+\end{thm} \pause
 \begin{proof}
-Spectrahedron of $K$ are diskoids and thus are finite union of balls.
+Spectrahedron of $K$ are diskoids and thus are finite union of balls. \pause
 
 If the residue field of $K$ is infinite, no annulus
-can be finite union of balls.
+can be finite union of balls. \pause
 
 For example: 
-\[ \{x \in K \,|\,  \val(x) =0\}=\amalg_{l \in \kappa} B(b_l, \vert \pi \vert)\] for some representatives $b_l \in O_K$ of the classes of $O_K / \pi O_K = \kappa.$
+\[ \{x \in K \,|\,  \val(x) =0\}=\amalg_{l \in \kappa} B(b_l, \vert \pi \vert)\] \pause for some representatives $b_l \in O_K$ of the classes of $O_K / \pi O_K = \kappa.$ \pause
 It thus can not be covered by a finite amount of balls of radius $\vert \pi \vert$
 and if one take any ball of radius $1$ centered at a point of the sphere, then one gets the whole
 $B(0,1).$
-
+\pause
 One can generalize this argument to annuli.
 \end{proof}
 \end{frame}
