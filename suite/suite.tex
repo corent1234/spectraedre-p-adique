@@ -94,6 +94,32 @@ This note is about further questions concerning the paper \cite{cornou2026}.
 %\begin{thebibliography}{99}
 %\end{thebibliography}
 
+
+\section{From reviews}
+
+\begin{itemize}
+\item
+  Lemma 3.5 (DIproj): The proof uses the term ``coarsest'' (or ``coarse'') to describe the
+ball that results from intersecting several valuation inequalities. Since this is a technical
+notion specific to ultrametric geometry, it should be explicitly defined. The proof relies
+on the ultrametric property that the intersection of a nested family of balls is the smallest
+ball; the wording should be adjusted accordingly to avoid confusion.
+\item
+  Theorem 4.6: I recommend to add a brief discussion of termination and complexity.
+\item
+  Theorem 1.2: The result assumes the residue field $\kappa$ is infinite. It would be helpful to
+  add a remark or a small example discussing what happens when $\kappa$ is finite
+  (e.g., $\kappa = \mathbb{F}_p$). Does the statement still hold, or are there counterexamples?
+  A short comment would guide readers who work with fields like $\mathbb{Q}_p$.
+\item
+  Introduction (motivation): The paper would be stronger if the introduction provided
+more concrete motivation. For instance, what is the geometric or algorithmic significance
+of inequalities of the form $val(\ell(x)) \geq 0$? Are there applications in non-Archimedean
+geometry, p-adic optimization, or coding theory? Or is the work primarily a formal
+analogue of real linear/semidefinite programming? Clarifying the ``why'' would help the
+reader appreciate the results.
+\end{itemize}
+
 \section{Combinatorial aspects of polyhedra/spectrahedra}
 
 Recall from \cite[Def.\,3.1]{cornou2026} that polyhedra in $K^n$, for a valued field $(K, \val)$,
@@ -143,22 +169,19 @@ in the <<boundary>> of $\PP$. This leads to the following definition:
 Rank and corank of $x \in\PP$ depend on the description \eqref{eq_def_polyhedra}.
 
 
-\newpage
 \section{The case $K=\QQ_p$}
 
 In this section we fix $K=\QQ_p$, the field of $p$-adic numbers, equipped with
 the $p$-adic valuation $\val_p$. \\
 
-%{\bf Question.} Assume a polyhedron $\PP$ is defined by some data over $K$
-%as in \cite[Def.\,3.1]{cornou2026}. \\
-
 {\bf Question.} Assume a LP program is defined by some data over $K$ as in
 \cite[Sec.\,4]{cornou2026}, and assume that this program has a feasible solution.
 What precision should we expect for this solution, as a function of the input precision? \\
 
-%{\bf Question.}
+\section{The case $K=k(\!(t)\!)$}
 
-\newpage
+$K$ is the field of rational functions over a field $k$ equipped with the natural valuation.
+
 \section{Valued-simplex algorithm}
 
 The simplex algorithm is a boundary algorithm for solving a linear program,
@@ -177,9 +200,11 @@ that essentially can be phrased as follows.
 necessary for step 2.
 
 
-\newpage
+
+
+
 %\bibliographystyle{ACM-Reference-Format}
 \bibliographystyle{acm}
-\bibliography{../issac2026/refs}
+\bibliography{../issac2026/submission/refs}
 
 \end{document}
