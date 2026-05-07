@@ -1,7 +1,7 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Thu May  7 08:00:33 2026
+%DIF ADD cameraready.tex          Thu May  7 20:13:54 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
@@ -957,11 +957,16 @@ $K^r \rightarrow K^r$ sending
 $(x_1,\dots,x_r)\mapsto (\delta_1 x_1,\dots,\delta_r x_r)$,
 and the projections
 \begin{equation*}
-  \begin{aligned}
-    (x_1,\dots,x_{r+1}) &\mapsto (x_1,\dots,x_{r})   \\
+  \DIFdelbegin %DIFDELCMD < \begin{aligned}
+%DIFDELCMD <     (x_1,\dots,x_{r+1}) &\mapsto (x_1,\dots,x_{r})   \\
+%DIFDELCMD <     & \,\,\,\, \vdots \\
+%DIFDELCMD <     (x_1,\dots,x_{n}) &\mapsto (x_1,\dots,x_{n-1}).
+%DIFDELCMD <   \end{aligned}%%%
+\DIFdelend \DIFaddbegin \begin{aligned}
+    (x_1,\dots,x_{r+1}) &\mapsto (x_1,\dots,x_{r}),   \\
     & \,\,\,\, \vdots \\
     (x_1,\dots,x_{n}) &\mapsto (x_1,\dots,x_{n-1}).
-  \end{aligned}
+  \end{aligned}\DIFaddend 
 \end{equation*}
 %$(x_1,\dots,x_{r+1})\mapsto (x_1,\dots,x_{r}),$
 %$(x_1,\dots,x_{r+2})\mapsto (x_1,\dots,x_{r+1}),$
@@ -1004,8 +1009,11 @@ map of $f$ to $\PP_E$.
 Up to a translation, we can assume that $\PP_E$ is a linear vector space:
 we are reduced to proving that, if $\tilde{f}: \PP_E \to K^m$ is an affine map
 and $\PP_I$ is a polyhedron in the vector space $\PP_E$ defined only by inequalities,
-then $\tilde{f}(\PP_I)$ is a polyhedron. This is the case thanks to \Cref{prop:DIi}
-and the theorem is proven.
+then $\tilde{f}(\PP_I)$ is a polyhedron. This is the case thanks to \DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
+\Cref{prop:DIi}
+}\hskip0pt%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{Proposition \ref{prop:DIi}
+}\DIFaddend and the theorem is proven.
 \end{proof}
 
 
@@ -1688,7 +1696,7 @@ valued fields reduces to checking whether the coefficients of $\chi_M$ are integ
   $M \in K^{d\times d}_+$ if and only if $\chi_M \in \OK[T]$.
 \end{theorem}
 \begin{proof}
-  Both senses of the equivalence will be proven by contraposition.
+  Both \DIFdelbegin \DIFdel{senses of the equivalence }\DIFdelend \DIFaddbegin \DIFadd{implications }\DIFaddend will be proven by contraposition.
   Let $M \in K^{d\times d}$ with characteristic polynomial $\chi_M = T^d + \sum_{i=0}^{d-1} a_i T^i$ for $a_0,...,a_{d-1} \in K$.
   First suppose $M \not \in K^{d\times d}_+$, thus $\chi_M$ has a root $\rho$ with $\val\,\rho<0$.
   It follows that
