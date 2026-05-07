@@ -866,7 +866,7 @@ $(x_1,\dots,x_r)\mapsto (\delta_1 x_1,\dots,\delta_r x_r)$,
 and the projections
 \begin{equation*}
   \begin{aligned}
-    (x_1,\dots,x_{r+1}) &\mapsto (x_1,\dots,x_{r})   \\
+    (x_1,\dots,x_{r+1}) &\mapsto (x_1,\dots,x_{r}),   \\
     & \,\,\,\, \vdots \\
     (x_1,\dots,x_{n}) &\mapsto (x_1,\dots,x_{n-1}).
   \end{aligned}
@@ -912,7 +912,7 @@ map of $f$ to $\PP_E$.
 Up to a translation, we can assume that $\PP_E$ is a linear vector space:
 we are reduced to proving that, if $\tilde{f}: \PP_E \to K^m$ is an affine map
 and $\PP_I$ is a polyhedron in the vector space $\PP_E$ defined only by inequalities,
-then $\tilde{f}(\PP_I)$ is a polyhedron. This is the case thanks to \Cref{prop:DIi}
+then $\tilde{f}(\PP_I)$ is a polyhedron. This is the case thanks to Proposition \ref{prop:DIi}
 and the theorem is proven.
 \end{proof}
 
@@ -1572,7 +1572,7 @@ valued fields reduces to checking whether the coefficients of $\chi_M$ are integ
   $M \in K^{d\times d}_+$ if and only if $\chi_M \in \OK[T]$.
 \end{theorem}
 \begin{proof}
-  Both senses of the equivalence will be proven by contraposition.
+  Both implications will be proven by contraposition.
   Let $M \in K^{d\times d}$ with characteristic polynomial $\chi_M = T^d + \sum_{i=0}^{d-1} a_i T^i$ for $a_0,...,a_{d-1} \in K$.
   First suppose $M \not \in K^{d\times d}_+$, thus $\chi_M$ has a root $\rho$ with $\val\,\rho<0$.
   It follows that
