@@ -141,79 +141,85 @@ In our context, one could ask, for instance, the following: \\
  equipped with the natural valuation $\val_t(p/q) = \deg(p)-\deg(q)$.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Valued-simplex algorithm}
-
-The simplex algorithm is a boundary algorithm for solving a linear program,
-that essentially can be phrased as follows.
-
-\begin{itemize}
-\item Assume the feasible polyhedron has a vertex which is known or can be computed easily.
-\item Either this vertex is optimal, in the sense that along every edge containing the input
-  vertex, the objective function does not decrease (this relies on convexity though).
-\item Or there is an edge containing the input vertex where the objective function decreases.
-  In this case either we find a new vertex at the end of the edge (and we repeat the process)
-  or the edge is unbounded, and the LP is unbounded.
-\end{itemize}
-
-{\bf Question.} Can we have a valued-simplex algorithm? We should prove that convexity is not
-necessary for step 2.
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Deciding SDP feasibility over valued fields}
+Let $K$ be a valued field with valuation $\val$, and let $A_0,A_1,\ldots,A_n \in K^{m \times m}$.
+In \cite[Def.5.8]{cornou2026}, we defined the spectrahedron associated with
+$A(x) := A_0+\sum_{i=1}^n x_iA_i$ as the set
+\begin{equation}\label{spectrahedron}
+  \mathcal{S}_A = \left\{x \in K^n : A(x) \succeq 0\right\}.
+\end{equation}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
-\section{Combinatorial aspects of polyhedra/spectrahedra}
-
-Recall from \cite[Def.\,3.1]{cornou2026} that polyhedra in $K^n$, for a valued field $(K, \val)$,
-are defined as the set of vectors such that some linear combinations of their entries have nonnegative
-or infinite valuation, {\it i.e.} subsets of the form
-\begin{equation}\label{eq_def_polyhedra}
-  \PP =
-  \left\{
-  x \in K^n :
-  \begin{array}{ll}
-    \val(\ell_i(x)) \geq 0 & i=1,\ldots,d \\
-    \val(m_j(x)) = +\infty & j=1,\ldots,e
-  \end{array}
-  \right\},
-\end{equation}
-for some affine forms $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
-We say that a form $m$ vanishes on $x$ if $\val(m(x))=+\infty$.
-
-Note that a given polyhedron $\PP$ might have different formulations
-of type \eqref{eq_def_polyhedra}. To make it slightly more canonical
-one can make the following assumptions about formulation \eqref{eq_def_polyhedra}
-(which is what we do from now on):
-
-\begin{assumption}\label{assumpt}
-  For every $i \in \{1,\ldots,d\}$, there exists an element $x \in \PP$
-  such that $\val(\ell_i(x)) < +\infty$; that is, $\ell_1,\ldots,\ell_d$
-  do not vanish identically on $\PP$.
-%\item[B.]
-%    For every  $i \in \{1,\ldots,d\}$, the form $\ell_i$ is not an affine
-%    combination of forms in $\{\ell_j : j \neq i\}$; that is (thanks to
-%    ultrametricity) $\ell_1,\ldots,\ell_d$ are irredundant.
-\end{assumption}
-
-Nevertheless the linear forms $\ell_i$ will vanish at some $x$
-in the <<boundary>> of $\PP$. This leads to the following definition:
-
-\begin{definition}
-  Let $\PP$ be defined as in \eqref{eq_def_polyhedra}, and let $x \in\PP$.
-  The \emph{corank} of $x$ is
-  $$
-  \mathrm{corank}(x) = \#\Big\{i \in \{1,\ldots,d\} : \val(\ell_i(x)) = +\infty\Big\}.
-  $$
-  Its \emph{rank} is $d-\mathrm{corank}(x)$, the number of forms $\ell_i$ such
-  that $\val(\ell_i(x)) < +\infty$. By \Cref{assumpt} $\mathrm{rank}(x)$
-\end{definition}
-
-Rank and corank of $x \in\PP$ depend on the description \eqref{eq_def_polyhedra}.
+%\section{Valued-simplex algorithm}
+%
+%The simplex algorithm is a boundary algorithm for solving a linear program,
+%that essentially can be phrased as follows.
+%
+%\begin{itemize}
+%\item Assume the feasible polyhedron has a vertex which is known or can be computed easily.
+%\item Either this vertex is optimal, in the sense that along every edge containing the input
+%  vertex, the objective function does not decrease (this relies on convexity though).
+%\item Or there is an edge containing the input vertex where the objective function decreases.
+%  In this case either we find a new vertex at the end of the edge (and we repeat the process)
+%  or the edge is unbounded, and the LP is unbounded.
+%\end{itemize}
+%
+%{\bf Question.} Can we have a valued-simplex algorithm? We should prove that convexity is not
+%necessary for step 2.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\section{Combinatorial aspects of polyhedra/spectrahedra}
+%
+%Recall from \cite[Def.\,3.1]{cornou2026} that polyhedra in $K^n$, for a valued field $(K, \val)$,
+%are defined as the set of vectors such that some linear combinations of their entries have nonnegative
+%or infinite valuation, {\it i.e.} subsets of the form
+%\begin{equation}\label{eq_def_polyhedra}
+%  \PP =
+%  \left\{
+%  x \in K^n :
+%  \begin{array}{ll}
+%    \val(\ell_i(x)) \geq 0 & i=1,\ldots,d \\
+%    \val(m_j(x)) = +\infty & j=1,\ldots,e
+%  \end{array}
+%  \right\},
+%\end{equation}
+%for some affine forms $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
+%We say that a form $m$ vanishes on $x$ if $\val(m(x))=+\infty$.
+%
+%Note that a given polyhedron $\PP$ might have different formulations
+%of type \eqref{eq_def_polyhedra}. To make it slightly more canonical
+%one can make the following assumptions about formulation \eqref{eq_def_polyhedra}
+%(which is what we do from now on):
+%
+%\begin{assumption}\label{assumpt}
+%  For every $i \in \{1,\ldots,d\}$, there exists an element $x \in \PP$
+%  such that $\val(\ell_i(x)) < +\infty$; that is, $\ell_1,\ldots,\ell_d$
+%  do not vanish identically on $\PP$.
+%%\item[B.]
+%%    For every  $i \in \{1,\ldots,d\}$, the form $\ell_i$ is not an affine
+%%    combination of forms in $\{\ell_j : j \neq i\}$; that is (thanks to
+%%    ultrametricity) $\ell_1,\ldots,\ell_d$ are irredundant.
+%\end{assumption}
+%
+%Nevertheless the linear forms $\ell_i$ will vanish at some $x$
+%in the <<boundary>> of $\PP$. This leads to the following definition:
+%
+%\begin{definition}
+%  Let $\PP$ be defined as in \eqref{eq_def_polyhedra}, and let $x \in\PP$.
+%  The \emph{corank} of $x$ is
+%  $$
+%  \mathrm{corank}(x) = \#\Big\{i \in \{1,\ldots,d\} : \val(\ell_i(x)) = +\infty\Big\}.
+%  $$
+%  Its \emph{rank} is $d-\mathrm{corank}(x)$, the number of forms $\ell_i$ such
+%  that $\val(\ell_i(x)) < +\infty$. By \Cref{assumpt} $\mathrm{rank}(x)$
+%\end{definition}
+%
+%Rank and corank of $x \in\PP$ depend on the description \eqref{eq_def_polyhedra}.
 
 
 
