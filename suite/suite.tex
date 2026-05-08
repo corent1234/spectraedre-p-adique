@@ -144,13 +144,17 @@ In our context, one could ask, for instance, the following: \\
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Deciding SDP feasibility over valued fields}
-Let $K$ be a valued field with valuation $\val$, and let $A_0,A_1,\ldots,A_n \in K^{m \times m}$.
-In \cite[Def.5.8]{cornou2026}, we defined the spectrahedron associated with
-$A(x) := A_0+\sum_{i=1}^n x_iA_i$ as the set
-\begin{equation}\label{spectrahedron}
-  \mathcal{S}_A = \left\{x \in K^n : A(x) \succeq 0\right\}.
+Let $K$ be a valued field with valuation $\val$, and let $A_0,A_1,\ldots,A_n \in K^{d \times d}$.
+In \cite[Def.5.8]{cornou2026}, we defined the spectrahedron associated with the pencil
+\begin{equation}\label{pencil}
+  A := A_0+\sum_{i=1}^n x_iA_i \in K[x]^{d \times d},
 \end{equation}
-
+as the set
+\begin{equation}\label{spectrahedron}
+  \mathcal{S}_A = \left\{x \in K^n : A(x) \in K^{d \times d}_+\right\}.
+\end{equation}
+Note that $\chi_A \in K[x][T]$ and for a fixed $x \in K^n$, $\chi_A$ evaluates to a polynomial in
+$K[T]$. By \cite[Thm.5.2]{cornou2026}, we know that $\mathcal{S}_A = \{x \in K^n : \chi_{A} \in \OK[T]\}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Valued-simplex algorithm}
@@ -223,7 +227,7 @@ $A(x) := A_0+\sum_{i=1}^n x_iA_i$ as the set
 
 
 
-%\bibliographystyle{ACM-Reference-Format}
+\newpage
 \bibliographystyle{acm}
 \bibliography{../issac2026/submission/refs}
 
