@@ -48,7 +48,7 @@
 \newcommand{\relint}[1]{{\text{relint}(#1)}} % simone's comments
 \newcommand{\calL}{\mathcal{L}} % simone's comments
 
-\newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
+\newcommand{\simone}[1]{{\color{blue} {\sc Simone}: #1}} % simone's comments
 \newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
 \newcommand{\tristan}[1]{{\color{red} #1}} % tristan's comments
 \newcommand{\todo}[1]{{\color{blue}\bf \text{TODO: } #1}} % TODOs
@@ -85,7 +85,8 @@
 \maketitle
 
 \begin{abstract}
-This note is about further questions concerning the paper \cite{cornou2026}.
+  This note is about further questions concerning the paper \cite{cornou2026}
+  to be addressed in an extended version.
 \end{abstract}
 
 %
@@ -107,6 +108,7 @@ on the ultrametric property that the intersection of a nested family of balls is
 ball; the wording should be adjusted accordingly to avoid confusion.
 \item
   Theorem 4.6: I recommend to add a brief discussion of termination and complexity.
+  \simone{Discussion on termination has been added in the camera ready version}. 
 \item
   Theorem 1.2: The result assumes the residue field $\kappa$ is infinite. It would be helpful to
   add a remark or a small example discussing what happens when $\kappa$ is finite
@@ -137,8 +139,9 @@ In our context, one could ask, for instance, the following: \\
  \cite[Sec.\,4]{cornou2026}, and assume that this program has a feasible solution.
  What precision should we expect for this solution, as a function of the input precision? \\
 
- The same with $K = k((t))$, the field of rational functions over a field $k$
- equipped with the natural valuation $\val_t(p/q) = \deg(p)-\deg(q)$.
+ The same with the field of Laurent series $K = k(\!(t)\!)$ over a field $k$
+ equipped with the natural $t$-adic valuation $\val_t(\sum_{k}^{\infty} a_i t^i) = k$, with
+ $a_k \neq 0$.
 
 
 \newpage
