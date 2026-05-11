@@ -73,6 +73,7 @@
 \def\ZZ{\ensuremath{\mathbb{Z}}}
 \newcommand{\OK}{\mathcal{O}_K}
 \def\diag{\mathrm{diag}}
+\def\size{\mathrm{size}}
 
 \newcommand{\GL}{\mathrm{GL}}
 
@@ -125,23 +126,42 @@ reader appreciate the results.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Precision in LP}
+\section{Size/precision in LP}
 
-\subsection{}
+\subsection{Real case}
+This material is from \cite[Ch.4]{korte2008combinatorial}.
+Define $\size(n) = 1+\lceil\log(|n|+1)\rceil$ for $n \in \ZZ$ and
+$\size(r) = \size(p)+\size(q)$ for $r=\frac{p}q \in \QQ$ with $p,q \in \ZZ$ coprime.
+For a vector $x = (x_1,\ldots,x_n) \in \QQ^n$ define $\size(x) = n+\sum_i \size(x_i)$
+and for a matrix $A \in \QQ^{m \times n}$, define $\size(A) = mn+\sum_{ij} \size(a_{ij})$.
 
+Consider a dual LP in standard form:
+\begin{equation}\label{dualLP}
+d^* = \sup b^Ty, \,\,\,\, A^Ty \leq c
+\end{equation}
+for some matrix $A \in \QQ^{m \times n}$ and vectors $b \in \QQ^m$, $c \in \QQ^n$.
 
-\subsection{Our context}
+\begin{theorem}[{\cite[Thm.4.4]{korte2008combinatorial}}]
+  Assume that the linear program in \eqref{dualLP} has an optimal solution.
+  Then it has an optimal solution $x$ such that $\size(x) \leq 4n(\size(A)+\size(c))$
+  with components of size at most $4(\size(A)+\size(c))$.
+\end{theorem}
+
+Note that the feasibility problem asking whether problem \eqref{dualLP} is feasible
+has the same size estimates (take $b=0$).
+
+\subsection{Valued LP}
 In our context, one could ask, for instance, the following: \\
 
- {\it Question.}
- Fix $K=\QQ_p$, the field of $p$-adic numbers, equipped with
- the $p$-adic valuation $\val_p$. Assume a LP program is defined by some data over $K$ as in
- \cite[Sec.\,4]{cornou2026}, and assume that this program has a feasible solution.
- What precision should we expect for this solution, as a function of the input precision? \\
+{\it Question.}
+Fix $K=\QQ_p$, the field of $p$-adic numbers, equipped with
+the $p$-adic valuation $\val_p$. Assume a LP program is defined by some data over $K$ as in
+\cite[Sec.\,4]{cornou2026}, and assume that this program has a feasible solution.
+What precision should we expect for this solution, as a function of the input precision? \\
 
- The same with the field of Laurent series $K = k(\!(t)\!)$ over a field $k$
- equipped with the natural $t$-adic valuation $\val_t(\sum_{k}^{\infty} a_i t^i) = k$, with
- $a_k \neq 0$.
+The same with the field of Laurent series $K = k(\!(t)\!)$ over a field $k$
+equipped with the natural $t$-adic valuation $\val_t(\sum_{k}^{\infty} a_i t^i) = k$, with
+$a_k \neq 0$.
 
 
 \newpage
