@@ -164,7 +164,6 @@ equipped with the natural $t$-adic valuation $\val_t(\sum_{k}^{\infty} a_i t^i) 
 $a_k \neq 0$.
 
 
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Deciding SDP feasibility over valued fields}
 Let $K$ be a valued field with valuation $\val$, and let $A_0,A_1,\ldots,A_n \in K^{d \times d}$.
@@ -178,6 +177,13 @@ as the set
 \end{equation}
 Note that $\chi_A \in K[x][T]$ and for a fixed $x \in K^n$, $\chi_A$ evaluates to a polynomial in
 $K[T]$. By \cite[Thm.5.2]{cornou2026}, we know that $\mathcal{S}_A = \{x \in K^n : \chi_{A} \in \OK[T]\}$.
+
+Let us recall that the coefficients of the characteristic polynomial $\chi_A$ are
+symmetric polynomials in the eigenvalues of $A$: for
+$$
+\chi_A(T) = \det(T I_d - A) = (T-\lambda_1(A)) \cdots (T-\lambda_d(A))
+$$
+with $\lambda_1(A),\ldots,\lambda_d(A)$ in some algebraic closure of $K$, then
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Valued-simplex algorithm}
