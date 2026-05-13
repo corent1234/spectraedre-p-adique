@@ -1,25 +1,36 @@
 \documentclass[sigconf]{acmart}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submitted_to_ISSAC.tex   Sat Feb  7 08:28:50 2026
-%DIF ADD cameraready.tex          Mon May 11 14:23:16 2026
+%DIF ADD cameraready.tex          Tue May 12 11:15:48 2026
 %%
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
 %% values in them; it is your responsibility as an author to replace
 %% the commands and values with those provided to you when you
 %% complete the rights form.
-\setcopyright{acmlicensed}
+%DIF 8c8-9
+%DIF < \setcopyright{acmlicensed}
+%DIF -------
+ %DIF > 
+ %DIF > 
+%DIF -------
 \copyrightyear{2026}
 \acmYear{2026}
-%DIF 11c11
+%DIF 11-15c12-18
 %DIF < \acmDOI{XXXXXXX.XXXXXXX}
+%DIF < %% These commands are for a PROCEEDINGS abstract or paper.
+%DIF < \acmConference[ISSAC 2026]{the International Symposium
+%DIF < on Symbolic and Algebraic Computation}{July 13--17,
+%DIF <   2026}{Oldenburg, Germany}
 %DIF -------
-\acmDOI{3815436.3815464} %DIF > 
+%\setcopyright{cc} %DIF > 
+\setcctype{by} %DIF > 
+\acmConference[ISSAC '26]{51st International Symposium on Symbolic and Algebraic Computation}{July 13--17, 2026}{Oldenburg, Germany} %DIF > 
+\acmBooktitle{51st International Symposium on Symbolic and Algebraic Computation (ISSAC '26), July 13--17, 2026, Oldenburg, Germany} %DIF > 
+\acmDOI{10.1145/3815436.3815464} %DIF > 
+\acmISBN{979-8-4007-2595-1/2026/07} %DIF > 
+ %DIF > 
 %DIF -------
-%% These commands are for a PROCEEDINGS abstract or paper.
-\acmConference[ISSAC 2026]{the International Symposium
-on Symbolic and Algebraic Computation}{July 13--17,
-  2026}{Oldenburg, Germany}
 %%
 %%  Uncomment \acmBooktitle if the title of the proceedings is different
 %%  from ``Proceedings of ...''!
@@ -106,7 +117,7 @@ on Symbolic and Algebraic Computation}{July 13--17,
 \newcommand{\sym}{\mathbb{S}} % matrices symétriques
 \newcommand{\PP}{\mathcal{P}}
 \newcommand{\Qc}{\mathcal{Q}}
-%DIF 102c102
+%DIF 102c105
 %DIF < \renewcommand{\span}[1]{{\text{span}(#1)}} % simone's comments
 %DIF -------
 \renewcommand{\span}[1]{{\mathrm{span}(#1)}} % simone's comments %DIF > 
