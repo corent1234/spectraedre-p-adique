@@ -90,6 +90,8 @@
   to be addressed in an extended version.
 \end{abstract}
 
+\setcounter{section}{1}
+
 %
 % ---- Bibliography ----
 %
@@ -98,7 +100,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Questions from the reviews}
+\subsection{Questions from the reviews}
 
 \begin{itemize}
 \item
@@ -126,9 +128,9 @@ reader appreciate the results.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Size/precision in LP}
+\subsection{Size/precision in LP}
 
-\subsection{Real case}
+\paragraph{\it Real case.}
 This material is from \cite[Ch.4]{korte2008combinatorial}.
 Define $\size(n) = 1+\lceil\log(|n|+1)\rceil$ for $n \in \ZZ$ and
 $\size(r) = \size(p)+\size(q)$ for $r=\frac{p}q \in \QQ$ with $p,q \in \ZZ$ coprime.
@@ -150,10 +152,8 @@ for some matrix $A \in \QQ^{m \times n}$ and vectors $b \in \QQ^m$, $c \in \QQ^n
 Note that the feasibility problem asking whether problem \eqref{dualLP} is feasible
 has the same size estimates (take $b=0$).
 
-\subsection{Valued LP}
-In our context, one could ask, for instance, the following: \\
-
-{\it Question.}
+\pargraph{\it Valued LP.}
+In our context, one could ask, for instance, the following question.
 Fix $K=\QQ_p$, the field of $p$-adic numbers, equipped with
 the $p$-adic valuation $\val_p$. Assume a LP program is defined by some data over $K$ as in
 \cite[Sec.\,4]{cornou2026}, and assume that this program has a feasible solution.
@@ -165,7 +165,21 @@ $a_k \neq 0$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Deciding SDP feasibility over valued fields}
+\subsection{Size in SDP}
+
+For a standard primal semidefinite program over $\RR$:
+$$
+p^* = \inf \mathrm{Tr}(CX), \,\,\,\, \mathrm{ s.t. } \, X \succeq 0, \, \mathrm{Tr}(A_iX) = b_i, \, i=1,\ldots,m
+$$
+one has the following estimates relying on Khachiyan's ellipsoid algorithm \cite{khachiyan1979polynomial}.
+
+\begin{theorem}
+\end{theorem}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Deciding SDP feasibility over valued fields}
 Let $K$ be a valued field with valuation $\val$, and let $A_0,A_1,\ldots,A_n \in K^{d \times d}$.
 In \cite[Def.5.8]{cornou2026}, we defined the spectrahedron associated with the pencil
 \begin{equation}\label{pencil}
@@ -180,9 +194,12 @@ $K[T]$. By \cite[Thm.5.2]{cornou2026}, we know that $\mathcal{S}_A = \{x \in K^n
 
 Let us recall that the coefficients of the characteristic polynomial $\chi_A$ are
 symmetric polynomials in the eigenvalues of $A$: for
-$$
-\chi_A(T) = \det(T I_d - A) = (T-\lambda_1(A)) \cdots (T-\lambda_d(A))
-$$
+\begin{equation}
+  \begin{aligned}
+    \chi_A(T) & = \det(T I_d - A) = (T-\lambda_1(A)) \cdots (T-\lambda_d(A)) \\
+    & = T^d + \chi_{d-1} T^{d-1} + \cdots + \chi_1 T + \chi_0
+  \end{aligned}
+\end{equation}
 with $\lambda_1(A),\ldots,\lambda_d(A)$ in some algebraic closure of $K$, then
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
