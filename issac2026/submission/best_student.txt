@@ -1,0 +1,18 @@
+Dear members of the program committee of ISSAC 2026
+
+We would like to nominate Corentin Cornou (currently master student at ENS Paris-Saclay) for his key contributions to our joint paper “On semidefinite-representable sets over valued fields”.
+
+This work deals with geometrical and algorithmic aspects of linear and semidefinite programming. In particular, in the paper we define polyhedra and spectrahedra over fields with valuation and develop an algorithm for linear programming in this setting. We also on the extension of properties of classical polyhedra and spectrahedra to the valued case.
+
+Corentin Cornou's contributions have been decisive almost everywhere in this paper. This project started in the summer 2023 when Corentin Cornou was appointed as L3 internship student at XLIM, University of Limoges, advised by us, Tristan Vaccon and Simone Naldi. After studying various works concerning the classical theory of semidefinite-representable sets, at the interplay of real algebraic geometry, discrete geometry and
+(following our supervision), he managed to 
+
+algebraic elimination
+>> , he managed to generalize an algorithm
+>> for solving Linear Matrix Inequalities to the parametric case. He
+>> also succeeded in performing its complexity analysis, which was very
+>> technical due to the complicated objects this topic involves.
+>> Finally, he is the unique architect and author of the (publicly
+>> available) prototype implementation, which he is currently
+>> improving, that numerical analysts and optimizers might start to use
+>> for algorithmic analysis.
