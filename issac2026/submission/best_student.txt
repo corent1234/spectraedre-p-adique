@@ -1,18 +1,9 @@
-Dear members of the program committee of ISSAC 2026
+Dear members of the committee,
 
-We would like to nominate Corentin Cornou (currently master student at ENS Paris-Saclay) for his key contributions to our joint paper “On semidefinite-representable sets over valued fields”.
+we would like to nominate Corentin Cornou for his key contributions to our joint paper “On semidefinite-representable sets over valued fields”. Corentin is currently a master student at ENS Paris-Saclay.
 
-This work deals with geometrical and algorithmic aspects of linear and semidefinite programming. In particular, in the paper we define polyhedra and spectrahedra over fields with valuation and develop an algorithm for linear programming in this setting. We also on the extension of properties of classical polyhedra and spectrahedra to the valued case.
+This work deals with geometrical and algorithmic aspects of linear and semidefinite programming over valued fields. In particular, in the paper we define polyhedra and spectrahedra over fields with valuation and develop an algorithm for linear programming in this setting. We also prove that some fundamental properties of real semidefinite representable sets extend to valued fields.
 
-Corentin Cornou's contributions have been decisive almost everywhere in this paper. This project started in the summer 2023 when Corentin Cornou was appointed as L3 internship student at XLIM, University of Limoges, advised by us, Tristan Vaccon and Simone Naldi. After studying various works concerning the classical theory of semidefinite-representable sets, at the interplay of real algebraic geometry, discrete geometry and
-(following our supervision), he managed to 
+Corentin Cornou's contributions have been decisive almost everywhere in this paper. This project started in the summer 2023 when Corentin Cornou was appointed as L3 internship student at XLIM, University of Limoges, advised by us. After studying various works concerning the classical theory of semidefinite-representable sets, at the interplay of real algebraic geometry and optimization, and gaining confidence with the non-Archimedean setting both from a theoretical and from an algorithmical viewpoint, following our supervision, he managed to develop an algorithm for valued LP based on computation of Smith normal form.
 
-algebraic elimination
->> , he managed to generalize an algorithm
->> for solving Linear Matrix Inequalities to the parametric case. He
->> also succeeded in performing its complexity analysis, which was very
->> technical due to the complicated objects this topic involves.
->> Finally, he is the unique architect and author of the (publicly
->> available) prototype implementation, which he is currently
->> improving, that numerical analysts and optimizers might start to use
->> for algorithmic analysis.
+He also succeeded in
