@@ -9,7 +9,7 @@
 
 \copyrightyear{2026}
 \acmYear{2026}
-%\setcopyright{cc}
+\setcopyright{cc}
 \setcctype{by}
 \acmConference[ISSAC '26]{51st International Symposium on Symbolic and Algebraic Computation}{July 13--17, 2026}{Oldenburg, Germany}
 \acmBooktitle{51st International Symposium on Symbolic and Algebraic Computation (ISSAC '26), July 13--17, 2026, Oldenburg, Germany}
@@ -22,7 +22,6 @@
 %%
 %%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
 %%  June 03--05, 2018, Woodstock, NY}
-\acmISBN{978-1-4503-XXXX-X/2018/06}
 
 
 %%
@@ -65,20 +64,11 @@
 \usepackage{amsthm}
 %\usepackage{amssymb} %%% ça ne fait pas compiler en acmart
 \usepackage{amsfonts}
-\usepackage{mathrsfs} 
+%\usepackage{mathrsfs}
 \usepackage{graphicx}
 \usepackage{color,xcolor}
 %\usepackage{ulem}
 \usepackage{bm}
-
-%%%% pour le "def" sur \leftrightarrow
-\makeatletter
-\newcommand\xleftrightarrow[2][]{%
-  \ext@arrow 9999{\Leftrightarrowfill@}{#1}{#2}}
-\newcommand\longleftrightarrowfill@{%
-  \arrowfill@\leftarrow\relbar\rightarrow}
-\makeatother
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning}
@@ -107,11 +97,6 @@
 \newcommand{\relint}[1]{{\text{relint}(#1)}} % simone's comments
 \newcommand{\calL}{\mathcal{L}} % simone's comments
 
-\newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
-\newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
-\newcommand{\tristan}[1]{{\color{red} #1}} % tristan's comments
-\newcommand{\todo}[1]{{\color{blue}\bf \text{TODO: } #1}} % TODOs
-\newcommand{\rev}[1]{{\color{blue} #1}} % TODOs
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -138,6 +123,8 @@
 
 %%
 %% end of the preamble, start of the body of the document source.
+
+
 
 \begin{document}
 
@@ -355,7 +342,7 @@ We recall the definition of Smith Normal Form, in our context.
   $a_1 \leq \cdots \leq a_r$, and
   matrices $P \in \GL_n(\OK)$ and $Q \in \GL_m(\OK)$, such that
   $$
-  \mathrm{SNF}(M) \coloneq QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{m-r,n-r}).
+  \mathrm{SNF}(M) := QMP^{-1} = \diag(\pi^{a_1}, \pi^{a_2}, \ldots, \pi^{a_r}, {\bf 0}_{m-r,n-r}).
   $$
   The matrix $\mathrm{SNF}(M)$ is called the \emph{Smith Normal Form (SNF)} of $M$, and the elements $\pi^{a_i}$ the
   \emph{invariant factors}.
@@ -379,7 +366,7 @@ Let $A_0,A_1,\ldots,A_n \in \sym_d(\R)$, and let $\calL = A_0+\span{A_1,\ldots,A
 containing $A_0$ with direction the vector space spanned by $A_1,\ldots,A_n$ (which we may assume
 to be linearly independent). The intersection
 $$
-\calL \cap \sym_d^+(\R) = \left\{A(x) \coloneq A_0+\sum_i x_i A_i \in \sym_d(\R) :
+\calL \cap \sym_d^+(\R) = \left\{A(x) := A_0+\sum_i x_i A_i \in \sym_d(\R) :
 A(x) \succeq 0\right\},
 $$
 or equivalently, its pre-image $S = \{x \in \R^n : A(x) \succeq 0\}$ under the map $x \mapsto A(x)$, is called
@@ -505,13 +492,7 @@ linear transformations, as in the real case.
 \end{definition}
 
 Below we use the following notation for $z = (z_1,\ldots,z_d) \in K^d$:
-$$
-z \succeq 0
-\,\,\,\,
-\xleftrightarrow{\text{def}}
-\,\,\,\,
-\forall i=1,\ldots,d, \, \val(z_i)\geq 0.
-$$
+$z \succeq 0$ if, by definition, $\val(z_i)\geq 0$ for $i=1,\ldots,d$,
 yielding the following matrix form for $\PP$ (according to notation of
 \Cref{def_polyhedra}):
 \begin{equation}\label{eq_def_polyhedra_compact}
@@ -525,7 +506,7 @@ Moreover by definition the class of polyhedra is closed under intersection.
 
 \begin{example}
   The {closed unit ball} $\OK^n=B_\infty(K^n)$ in $K^n$ for the supremum norm $||\cdot||_{\infty}$ is the
-  polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} \coloneq
+  polyhedron defined as the set of $x=(x_1,\ldots,x_n) \in K^n$ such that $||x||_{\infty} :=
   \max_i\{\vert x_i \vert\} \leq 1$, in other words, such that $\val(x_i) \geq 0$, for all $i=1, \ldots, n$.
   As such, $\OK^n$ is the polyhedron in $K^n$ defined by the affine polynomials
   $\ell_i(x)=x_i$, $i=1,\ldots, n$, and $e=0$, that is $\OK^n = \{x \in K^n : x \succeq 0\}$.
@@ -776,7 +757,7 @@ We define the polyhedron $\Qc \subset K^{n-1}$ by the following inequalities:
 $\val(x_i-a_iv'_d+v'_i) \geq 0$. Then the previous computations prove that $f(\PP')\subset \Qc.$
 
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-Then let $x_n \coloneq -v'_d.$
+Then let $x_n := -v'_d.$
 We check that for $i \in \llbracket 1,r \rrbracket,$
 $x_i+a_ix_n+v'_i=x_i-a_iv'_d+v'_i=O(1).$
 In addition $x_n+v'_d=O(1)$ is satisfied
@@ -810,7 +791,7 @@ $\val(x_i-a_1^{-1}a_i(x_1+v'_1)+v'_i) \geq 0.$
 Then the previous computations prove that $f(\PP')\subset \Qc.$
 
 Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-Let $x_n \coloneq -a_1^{-1}(x_1+v'_1).$
+Let $x_n := -a_1^{-1}(x_1+v'_1).$
 Then
 $x_1+a_1 x_n+v'_1=0=O(1).$
 Let $i \in \llbracket 2,r \rrbracket,$
@@ -906,8 +887,8 @@ We conclude with the proof of the main result of this section.
 \begin{proof}[Proof of \Cref{theo:DI}]
 Recall that here $f : K^n \to K^m$ is an affine map and $\PP \subset K^n$ is a polyhedron.
 Let us write $\PP = \PP_I \cap \PP_E$
-with $\PP_I \coloneq \left\lbrace x \in K^n,  Ax+v \succeq 0 \right\rbrace$
-and $\PP_E \coloneq \left\lbrace x \in K^n,  Bx+w=0 \right\rbrace$.
+with $\PP_I := \left\lbrace x \in K^n,  Ax+v \succeq 0 \right\rbrace$
+and $\PP_E := \left\lbrace x \in K^n,  Bx+w=0 \right\rbrace$.
 %%\overrightarrow{\PP_E}
 Then $f(\PP) = f_{\PP_E}(\PP_I)$, {\it i.e.}, the image of $\PP_I$ through the restriction
 map of $f$ to $\PP_E$.
@@ -931,8 +912,8 @@ and the theorem is proven.
 %\begin{remark}
 %  Let $f : K^n \to K^m$ be a linear map and let
 %  $P = \{x \in K^n : \val(l_i(x)) \geq 0, m_i(x) = 0, 1 \leq i \leq d, 1 \leq j \leq e\}$.
-%  Then $P = P_I \cap P_E$ where $P_I \coloneq \{x \in K^n : \val(l_i(x)) \geq 0, 1 \leq i \leq d\}$
-%  and $P_E \coloneq \{x \in K^n : m_j(x) = 0, 1 \leq j \leq e\}$.
+%  Then $P = P_I \cap P_E$ where $P_I := \{x \in K^n : \val(l_i(x)) \geq 0, 1 \leq i \leq d\}$
+%  and $P_E := \{x \in K^n : m_j(x) = 0, 1 \leq j \leq e\}$.
 %
 %  Thus we have\footnote{\simone{Ça n'est pas vrai en général, il faut que $f$ soit injective.
 %    Il faut peut être d'abord factoriser $f = g \circ h$ avec $h : K^n \to im(f)$ et
@@ -1078,7 +1059,7 @@ and the theorem is proven.
 %
 %Then the previous computations prove that $p(\PP_2)\subset \Qc.$
 %Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-%Then let $x_n \coloneq -b_n.$
+%Then let $x_n := -b_n.$
 %
 %We check that for $i \in \llbracket 1,n-1 \rrbracket,$
 %$x_i+a_ix_n+b_i=x_i-a_ib_n+b_i=O(1),$
@@ -1105,7 +1086,7 @@ and the theorem is proven.
 %
 %Then the previous computations prove that $p(\PP_2)\subset \Qc.$
 %Conversely, let $(x_1,\dots,x_{n-1}) \in \Qc.$
-%Let $x_n \coloneq -a_1^{-1}(x_1+b_1).$
+%Let $x_n := -a_1^{-1}(x_1+b_1).$
 %Then
 %$x_1+a_1 x_n+b_1=0=O(1).$
 %Let $i \in \llbracket 2,n-1 \rrbracket,$
@@ -1201,8 +1182,8 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
     If $\PP \neq \emptyset$, then there exists $x_0 \in K^n$ such that $Bx_0+w=0$.
     Let $J \in K^{n \times R}$ such that $\mathrm{Im}\,J = \ker\,B$ where $R$ denotes
     the dimension of $\ker\,B$. Then $\PP = x_0 + J\PP'$ where
-    $A' \coloneq AJ$, $v' \coloneq Ax_0 + v$ and
-    $\PP' \coloneq \{y \in K^R : A'y + v' \succeq 0 \}$.
+    $A' := AJ$, $v' := Ax_0 + v$ and
+    $\PP' := \{y \in K^R : A'y + v' \succeq 0 \}$.
 
     Now let $S \in K^{n\times R}$ be the SNF of $A'$ and $Q \in \GL_n\left(\mathcal{O}_K\right)$
     and $P \in \GL_R(\mathcal{O}_K)$ such that $A'= Q S P^{-1}$.
@@ -1211,7 +1192,7 @@ The Minkowski sum of two polyhedra in $K^n$ is a polyhedron in $K^n$.
     \PP' = \{y \in K^R : QSP^{-1}y + v' \succeq 0\} = P \mathcal{Q},
     $$
     with $\mathcal{Q} := \{z \in K^R : Sz + Q^{-1}v' \succeq 0 \}$.
-    Let $v'' \coloneq Q^{-1}v'$ then the set
+    Let $v'' := Q^{-1}v'$ then the set
     $\mathcal{Q} = \{z \in K^R : s_i z_i + v''_i \succeq 0, i= 1,\ldots,R\}$
     is either empty or a polydisc (possibly with infinite radius).
     Thus $\PP = x_0+JP\mathcal{Q}$ is empty or the image of a polydisc by an affine map.
@@ -1258,13 +1239,13 @@ A {linear programming problem} (or {linear program})
 \begin{equation}
   \tag{LP}\label{LP}
 \begin{array}{rcll}
-  p^* & \coloneq & \inf_{x \in K^n} & \val \left\langle c, x \right\rangle \\
+  p^* & := & \inf_{x \in K^n} & \val \left\langle c, x \right\rangle \\
   &    & \text{s.t.}         & A x + b \succeq 0\\
   & & & D x = e
 \end{array}
 \end{equation}
 for a vector $c \in K^n$ defining a cost function $\val\left\langle c, x \right\rangle$,
-with $\left\langle c, x \right\rangle \coloneq c_1 x_1+\cdots +c_n x_n$,
+with $\left\langle c, x \right\rangle := c_1 x_1+\cdots +c_n x_n$,
 $A \in K^{d \times n}$, $b \in K^d$, $D \in K^{m\times n}$, and $e \in K^m$.
 When $d=n$ and $A$ is diagonal, %%%%%%%%%%%%%%%%%% ARRIVATO QUI
 we refer to \eqref{LP} as a {diagonal} linear program.
@@ -1709,7 +1690,7 @@ two affine spaces $L_1,L_2 \subset K^n$.
   for some $d, e \in \mathbb{N}$.
   Let $A_0,\ldots,A_n \in K^{d \times d}$ be s.t.
   $$
-  \varphi_A(x) \coloneq A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
+  \varphi_A(x) := A_0+x_1A_1+\cdots+x_nA_n = \diag(\ell_1(x), \ldots, \ell_d(x)).
   $$
   One has $L = \mathcal{S}_A = \varphi_A^{-1}(K^{d \times d}_+)$.
   Since $M \subset K^n$ is affine, then $\PP$ is a spectrahedron in $K^n$.
@@ -1800,7 +1781,7 @@ Spectrahedra form a strict generalization of polyhedra:
 
 %\corentin{ Une autre définition qu'il pourrait être intéressant d'explorer. Attention! Pas les mêmes propriétés.}
 %\begin{definition}[Alternative definition]
-%  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$.  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$.   The set $S_A,B \coloneq S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
+%  Let $A_0, ..., A_n, B_0, ..., B_n \in M_{d,d}(K)$.  We denote as $S^+_A$ the set $S_{A}^+ = \left\{ x \in K^n : A_0 + x_1 A_1+ ...+x_nA_n \succeq 0  \right\}$ and $S^-_B$ denotes the set $S^-_B = \left\{ x \in K^n : B_0 + x_1 B_1+ ...+x_nB_n \preceq 0\right\}$.   The set $S_A,B := S_A^+ \cup S_B^-$ is called a \emph{spectrahedron}.
 %\end{definition}
 
 When $n=1$, we can give a more precise characterization of the geometry of spectrahedra
@@ -1869,7 +1850,7 @@ Polyannuli in $K^n$ are spectrahedral shadows with height $m=n$ and degree $d=4n
   for some $a_i, b_i \in \R^*_+$ with $a_i < b_i$. Consider the spectrahedron
   $\mathcal{S}_{M^{(i)}} \subset K^2$ defined by $M^{(i)} \succeq 0$ with
   $$
-  M^{(i)}(x_i,y_i) \coloneq \diag\left(\pi^{-a} x_i, \pi^{b} y_i,
+  M^{(i)}(x_i,y_i) := \diag\left(\pi^{-a} x_i, \pi^{b} y_i,
   \begin{bmatrix}
     \pi^{-1} & -\pi^{-1} x_i  \\
     \pi^{-1} y_i & - \pi^{-1} \\
