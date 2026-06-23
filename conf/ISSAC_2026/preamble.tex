@@ -1,0 +1,362 @@
+\PassOptionsToPackage{final}{graphicx}
+\documentclass[xcolor=table,8pt]{beamer}
+% \usepackage{etex}
+
+\newif\ifmydraft
+%\mydrafttrue
+\mydraftfalse
+%\usepackage{pgfpages}
+
+%\newcommand{\WIP}{\framesubtitle{Draft version of this slide}}
+\newcommand{\WIP}{}
+
+
+\usepackage{expl3}
+
+% \usepackage{polyglossia}
+% \setmainlanguage{english}
+
+\usepackage[english]{babel}
+
+\usepackage{csquotes}
+
+\usepackage{fontawesome}
+
+% \usepackage{iflang}
+
+\usepackage{ifthenx}
+\usepackage{xstring}
+
+\usepackage{hhline}
+
+% \newcommand{\st}{\textsuperscript{st}}
+% \newcommand{\nd}{\textsuperscript{nd}}
+% \newcommand{\rd}{\textsuperscript{rd}}
+%\newcommand{\th}{\textsuperscript{th}}
+
+
+%\usepackage[oldenum,olditem]{paralist}
+
+%\addtolength{\parskip}{0.3\baselineskip}
+%\addtolength{\topsep}{-5.7\baselineskip}
+
+%\usepackage[backend=biber,style=authoryear,maxnames=5]{biblatex}
+% \newcommand{\mytextcite}[1]{%
+%   {\structure{\citeauthor{#1}} \citeyear{#1}}}
+% \newcommand{\myfootcite}[1]{%
+%   \AtNextCite{\DeclareNameAlias{labelname}{first-last}}%
+%   \footnote{\structure{\citeauthor*{#1} (\citeyear{#1})}. \citetitle{#1}}%
+% }
+
+\newcommand{\poormancite}[2]{%
+  {\small% \structure
+    {#1}, #2}%
+}
+
+\usepackage{import}
+
+%%% Ces packages sont chargés par beamer, mais les ajouter force auctex à les reconnaître
+\usepackage{amsfonts, amssymb, amsthm}
+\usepackage{amsmath}
+
+\usepackage{mathtools}
+
+%\usepackage{graphicx}
+
+\usepackage{booktabs}
+\usepackage{subfigure}
+\usepackage{array}
+\usepackage{tabu}
+\usepackage[justification=centering]{caption}
+\usepackage{collcell}
+
+\usepackage{calc} % Pour widthof
+
+\newcommand{\pbox}[2][l]{%
+  %\extrarowheight=2pt
+  \begin{tabular}[c]{@{}#1@{}}#2\end{tabular}%
+  %\extrarowheight=6pt
+}
+
+\newcommand{\pfrac}[2]{\frac{\partial #1}{\partial #2}}
+
+
+% \rowcolors{1}{white}{structure.fg!20!white}
+
+\taburowcolors[2] 2{white .. color1!10!white}
+
+\tabulinesep=_1.5pt^1.5pt
+%\def\arraystretch{1.5}
+
+\makeatletter
+\AtBeginDocument{
+  \renewcommand{\@thesubfigure}{}
+  \addtolength\abovedisplayskip{-0.2\abovedisplayskip}%
+  \addtolength\belowdisplayskip{-0.2\belowdisplayskip}%
+}
+\makeatother
+
+% Beamer list spacing
+\addtobeamertemplate{itemize/enumerate body begin}{}{\vspace{-0.5em}}
+
+\newcommand\ds{\displaystyle}
+
+\newcommand{\mycovered}[1]{{\color{black!30}#1}}
+
+\usepackage{pdfpages}
+
+\usepackage{pgfplots}
+%\usepackage{tikz}
+\usetikzlibrary{fpu,arrows ,arrows.meta,bending,
+  calc,matrix,shapes.geometric,decorations.pathmorphing,
+  intersections,fit,external,backgrounds,
+  spy,patterns,tikzmark}
+
+%% Fix pour le souci de bounding box dans pgfplots
+\pgfplotsset{compat=1.8}
+
+% \usepackage{forest}
+% \forestset{MNRtree/.style={for tree={align=center,child anchor=north, calign=midpoint, anchor=north}}}
+
+\tikzset{
+  alerted/.style={color=color2},
+  alerted on/.style={alt=#1{alerted}{}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+% \forestset{
+%   alerted on/.style={
+%     for tree={
+%       /tikz/alerted on={#1},
+%       edge={/tikz/alerted on={#1}}}}}
+
+\usepackage{xspace}
+\usepackage{multirow}
+%\usepackage[lined,noend]{algorithm2e}
+% \SetArgSty{textsf} % Style pour le texte dans les algorithmes
+% \SetKw{KwNot}{not}
+
+\usepackage{comment}
+
+\usepackage{ifdraft}
+%\usepackage{datetime2}
+\usepackage{siunitx}
+
+
+
+% Traductions
+
+\newcommand{\ifnonempty}[3]{% Teste si le premier argument est vide, si oui renvoie le 3e, sinon le 2e
+  \def\tempa{}%
+  \def\tempb{#1}%
+  \ifx\tempa\tempb % Cas vide
+  #3 
+  \else % Cas non vide
+  #2
+  \fi}
+
+\newcommand{\texttodo}{\textcolor{red}{TODO}}
+
+%\newcommand{\lang}{english} % Language choice
+% \newcommand{\lang}{french} % Language choice
+% \newcommand{\translation}[2]{\IfLanguageName{#1}{#2}{}}
+% \newcommand{\en}[1]{\translation{english}{#1}}
+% \newcommand{\fr}[1]{\translation{french}{#1}}
+% \newcommand{\m}[2]{\translation{english}{\ifnonempty{#1}{#1}{\texttodo}}\translation{french}{\ifnonempty{#2}{#2}{\texttodo}}}
+
+%\expandafter\selectlanguage\expandafter{\lang}
+
+
+
+% Command definitions
+
+
+%\setbeamercolor{alerted text}{fg=myred}
+
+
+\newcommand{\bigO}{O}
+
+\newcommand{\CC}{\mathbb{C}} 
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}} 
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}} 
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\FF}{\mathbb{F}} % \F est déjà utilisé pour F5
+
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\Ker}{Ker}         % Noyau
+
+\newcommand{\divides}{\mid}
+\newcommand{\setof}[1]{\left\{ #1 \right\}}
+
+%\renewcommand{\tilde}[1]{\widetilde{#1}}
+\let\tildeold\tilde
+\renewcommand{\tilde}[1]{\skew{3}{\tildeold}{#1}}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\setminus}{\smallsetminus}
+
+\newcommand{\grevlex}{\textsc{GRevLex}\xspace}
+\newcommand{\lex}{\textsc{Lex}\xspace}
+\newcommand{\Wgrevlex}{$W$-\grevlex}
+\newcommand{\elim}{\textsc{Elim}\xspace}
+
+\newcommand{\ltgrevlex}{<_\mathsf{grevlex}}
+\newcommand{\ltWgrevlex}{<_\mathsf{$W$-grevlex}}
+
+\newcommand{\LT}{\mathsf{LT}}
+\newcommand{\LM}{\mathsf{LM}}
+\newcommand{\LC}{\mathsf{LC}}
+\newcommand{\Spol}{\mathsf{S\text{-}Pol}}
+
+\newcommand{\F}[1]{\ifmmode\mathsf{F_{#1}}\else F$_{#1}$\fi\xspace}
+\newcommand{\FGLM}{\ifmmode\mathsf{FGLM}\else FGLM\fi\xspace}
+
+\newcommand{\algo}[1]{\structure{#1}}
+
+\newcommand{\HS}{\mathsf{HS}}
+\newcommand{\HI}{i_{\mathsf{reg}}}
+\newcommand{\ireg}{\HI}
+%\newcommand{\dreg}{d_{\mathsf{reg}}}
+\newcommand{\dreg}{\dmax}
+\newcommand{\dmax}{d_{\mathsf{max}}}
+%\newcommand{\dmaxW}{d_{W,\mathsf{max}}}
+%\newcommand{\dmax}{\dreg}
+\newcommand{\dmaxW}{d_{W,\mathsf{reg}}}
+
+\newcommand{\sign}{\mathsf{sign}}
+
+\newcommand{\Fext}{F_{\mathsf{ext}}}
+\newcommand{\Wdeg}{\deg_{W}}
+
+\newcommand{\pgcdfam}[1]{\mathsf{gcd}\left(#1\right)}
+
+\newcommand{\with}{\text{ with }}
+
+\newcommand{\ordre}[1]{<_{#1}}
+
+\newcommand{\append}{\,\cup} % Ajout d'une ligne à une matrice
+
+\newcommand{\lcm}{\mathsf{lcm}}
+
+\newcommand{\bfe}{\mathbf{e}}
+\newcommand{\bff}{\mathbf{f}}
+\newcommand{\bfg}{\mathbf{g}}
+\newcommand{\bfh}{\mathbf{h}}
+\newcommand{\bfp}{\mathbf{p}}
+\newcommand{\bfq}{\mathbf{q}}
+\newcommand{\bfs}{\mathbf{s}}
+\newcommand{\bft}{\mathbf{t}}
+\newcommand{\bfz}{\mathbf{z}}
+\newcommand{\bfT}{\mathbf{T}}
+\newcommand{\bfeps}{\mathbf{\varepsilon}}
+
+\newcommand{\Mon}{\mathsf{Mon}}
+\newcommand{\Syz}{\mathsf{Syz}}
+
+\newcommand{\II}{\mathcal{I}}
+\newcommand{\GG}{\mathcal{G}}
+
+
+\renewcommand{\hom}[2][]{%
+  \hspace{0.1em}%
+  \mathsf{hom}_{#2}^{\ifnonempty{#1}{#1}{\phantom{-1}}}
+  \ifnonempty{#1}{\hspace{-0.1em}}{\hspace{-0.2em}}%
+}
+
+\newcommand{\truncseries}[1]{\left\lfloor #1\right\rfloor_{\raisebox{0.3ex}{+}}}
+
+\newcommand{\D}{\mathbf{D}}
+
+\newcommand{\merge}[1]{\multirow{2}{*}{#1}}
+\newcommand{\QH}{\text{QH}}
+\newcommand{\Homo}{\text{$\hom{W}$}}
+
+
+\newcommand{\lt}{\LT}
+\newcommand{\lm}{\LM}
+\newcommand{\lc}{\LC}
+\newcommand{\sig}{\textsf{sig}}
+
+\newcommand{\lcmlm}{\mathsf{lcmlm}}
+\newcommand{\gcdlc}{\mathsf{gcdlc}}
+\newcommand{\lcmlt}{\mathsf{lcmlt}}
+
+\newcommand{\Ocomp}[1]{\ensuremath{\operatorname{O}\left(#1\right)}}
+
+\newcommand\paramcolor[1]{{\color{teal}#1}}
+\newcommand\varcolor[1]{{\color{violet}#1}}
+
+\newcommand{\paramg}[1]{\paramcolor{\gamma_{#1}}}
+\newcommand{\paramG}[1]{\paramcolor{\Gamma_{#1}}}
+\newcommand{\paramgg}[1]{\paramcolor{g_{#1}}}
+\newcommand{\paramGG}[1]{\paramcolor{G_{#1}}}
+\newcommand{\vary}[1]{\varcolor{y_{#1}}}
+\newcommand{\varz}[1]{\varcolor{z_{#1}}}
+\newcommand{\varq}[1]{\varcolor{q_{#1}}}
+\newcommand{\varp}[1]{p_{#1}}
+\newcommand{\varXX}{\varcolor{X}}
+\newcommand{\varxx}{\varcolor{x}}
+
+\newcommand{\answer}[2][0.3cm]{\textcolor{mygreen}{\hspace{#1}$\rightarrow$ #2}}
+\newcommand{\mycitekey}[1]{\structure{#1}}
+\newcommand{\strongstructure}[1]{\structure{\textbf{#1}}}
+
+
+\newcommand{\fracpart}[2]{\frac{\partial #1}{\partial #2}}
+%\newcommand{\rk}{\mathrm{rank}}
+\DeclareMathOperator{\rk}{rank}
+%\DeclareMathOperator{\det}{det}
+\DeclareMathOperator{\disc}{disc}
+
+\newcommand{\abs}[1]{\left|#1\right|}
+
+\newcommand{\Sing}{\mathsf{Sing}}
+\newcommand{\Crit}{\mathsf{Crit}}
+\newcommand{\Jac}{\mathsf{Jac}}
+\newcommand{\critval}{\mathsf{CritVal}}
+
+\newcommand{\SingCrit}[2]{K(#1,#2)}
+%\newcommand{\SingCrit}[2]{\Sing(#2) \cup \Crit(#1,#2)}
+\newcommand{\VarV}{\mathcal{V}}
+\newcommand{\VarB}{\mathcal{B}}
+
+\tikzset{annot/.style={draw=darkgreen,thick,rounded corners,anchor=base}}
+\newcommand{\ilds}[1]{$\displaystyle #1$}
+\colorlet{contourplotscolor}{black}
+
+% \newcommand{\itemdot}{{\usebeamercolor{itemize item}\color{fg}{\usebeamertemplate{itemize item}{}}}\xspace}
+
+\newcommand{\itemdot}{
+  \leavevmode\usebeamerfont*{itemize subitem}\raisebox{1.25pt}{\scalebox{0.8}
+    {\hbox{\textcolor{color1}{\donotcoloroutermaths$\blacktriangleright$}}}\hspace{0.8ex}}
+  % \tikz[baseline=(node.base)]{
+  % \node[inner sep=0pt,text height=1.2ex,text width={},circle] (node) {} ;
+  % \fill[color1] (node.-120) -- (node.east) -- (node.120) -- cycle; 
+  % }
+  %   \hspace{0.8ex}
+}
+
+
+\newcommand{\XX}{\,\mathbf{X}}
+
+% For debug:
+% \makeatletter
+% \newcommand*{\overlaynumber}{\number\beamer@slideinframe}
+% \makeatother
+
+% Removed for metropolis
+% \setbeamertemplate{itemize item}{\raisebox{1.25pt}{\scalebox{0.8}{$\blacktriangleright$}}}   % Third level item
+% \setbeamertemplate{itemize subitem}{\raisebox{1.25pt}{\scalebox{0.8}{$\blacktriangleright$}}}   % Third level item
+% \setbeamertemplate{itemize subsubitem}{\raisebox{1.25pt}{\scalebox{0.8}{$\blacktriangleright$}}}   % Third level item
+% \setbeamertemplace{itemize item}{\itemdot}
+
+\input{tvbeamerenv}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,104 @@
+%%%% Tikz settings for this presentation
+
+%%%% Tikz settings for this presentation
+
+\tikzset{operation/.style={fill=myblue!10,thick,ellipse,text=black,align=center}}
+\tikzset{basis/.style={fill=myblue!10,thick,rectangle,text=black,inner sep=7pt}}
+\tikzset{pol/.style={draw,thick,rectangle,inner sep=5pt}}
+\tikzset{->/.style={-latex,thick}}
+\tikzset{<->/.style={latex-latex,thick}}
+\tikzset{reduction/.style={thick,decorate, decoration=snake}}
+\tikzset{property left/.style={fill=myblue!10,text width=4.5cm, align=left}}
+\tikzset{property right/.style={fill=myred!10,text width=4cm, align=left}}
+
+\pgfdeclaredecoration{simple line}{start}
+{
+  \state{start}[width = +0pt,
+  next state=step]{
+    \pgfpathmoveto{\pgfpoint{0pt}{0pt}}
+  }
+  \state{step}[auto end on length    = 3pt,
+  auto corner on length = 3pt,               
+  width=+1pt]
+  {
+    \pgfpathlineto{\pgfpoint{1pt}{0pt}}
+  }
+  \state{final}
+  {}
+}
+
+% \colorlet{sigcolor}{brown!70!black}
+\colorlet{sigcolor}{color2}
+\newcommand<>{\sigemph}[1]{\textcolor#2{sigcolor}{#1}}
+% \tikzset{sigarrow/.style={sigcolor}}
+
+% \def\sigdist{0.3em}
+\def\sigdist{0em}
+\tikzset{
+  polpath/.style={draw, thick},
+  sigpath/.style={draw, thick, sigcolor!70!white},
+  sigpolpath/.style={draw=none,
+    preaction={polpath, decorate,decoration={simple line, raise=-\sigdist}},
+    % postaction={sigpath, decorate, decoration={simple line, raise=\sigdist}}
+  },
+  sigarrow/.style={sigcolor}
+}
+
+\tikzset{highlight/.style={%fill=yellow!70!white
+    fill=green!20!white
+    , rectangle, rounded corners},
+  alerthighlight/.style={%fill=yellow!70!white
+    fill=red!20!white
+    , rectangle, rounded corners},
+}
+
+
+\newcommand{\shiftedstart}[3][]{
+  ($(#2)!#1*\sigdist!90:(#3)$)
+}
+
+\newcommand{\shiftedend}[3][]{
+  ($(#2)!#1*\sigdist!90:(#3)$)
+}
+
+
+\tikzset{
+  Application/.style={},
+  System/.style={rounded corners,thick,draw=none,text=myblue,fill=myblue1,inner sep=5pt},
+  Meta/.style={ellipse,draw=none,text=black,fill=myblue2,inner sep=5pt},
+  Example/.style={rounded corners, draw=none, fill=mygreen1, inner sep=5pt},
+  Software/.style={ellipse,fill=myred1,inner xsep=1pt,inner ysep=7pt},
+  highlight generic/.style={shape=rectangle, rounded corners, inner sep=1pt}
+}
+
+% todo: define an arrow tip to avoid repetition
+\tikzset{
+  myarrow/.style={line width=4pt,-{Stealth[length=11pt,width=13pt,flex'=1]},color2},
+  mydoublearrow/.style={line width=4pt,{Stealth[length=11pt,width=13pt,flex'=1]}-{Stealth[length=11pt,width=13pt,flex'=1]},color2},
+  sndarrow/.style={myarrow,line width=2pt},
+  myarrownode/.style={draw=color2,thick,rounded corners,
+    fill=normal text.bg,text=color2},
+  textnode/.style={preaction={draw=white, line width=4pt}, draw=normal text.fg, line width=1.5pt,rounded corners,fill=normal text.bg, align=left},
+  contribnode/.style={textnode, draw=mLightGreen},
+  beforenode/.style={textnode, draw=color2},
+  statenode/.style={% inner sep=12pt,
+    align=center,shape=ellipse},
+  pagesep/.style={line width=4pt,color=color1,
+    % decoration={saw ,amplitude=5pt, segment length=1cm}
+    decoration={random steps, amplitude=4pt},
+    decorate},
+  titlenode/.style={preaction={draw=white, line width=4pt},rounded corners, node font=\scshape,fill=mLightGreen,text=white},
+  tagnode/.style={draw,thick,rounded corners,fill=white,text=color1, draw=color3,
+    fill opacity=0.85,text opacity=1}
+}
+
+\tikzset{teamtag/.style={text=white,rounded corners, inner ysep=2pt, inner xsep=3pt}}
+\newcommand{\mathexptag}[2][mLightGreen]{\tikz[baseline=(a.base)]{
+    \node[teamtag,draw=white, line width=2pt, fill=#1] (a) {\vphantom{liq}#2};
+    % \path[use as bounding box] (a.south west) rectangle (a.south west);
+  }}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:

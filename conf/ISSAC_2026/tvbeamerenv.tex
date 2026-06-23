@@ -1,0 +1,51 @@
+% \makeatletter
+% \renewcommand{\tikz@align@newline@}{%  The default definition had 0pt here VVV
+%   \unskip \pgfutil@ifnextchar [\tikz@@align@newline {\tikz@@align@newline [5pt]}%
+% }
+% % For nodes with text width
+% \renewcommand{\@xcentercr}[1][5pt]{%
+%   \addvspace{-\parskip}\vskip#1\ignorespaces
+% }
+% \makeatother
+
+\tikzset{
+  blocknode/.style={thick,  
+    text width=0.95\linewidth},
+  defnode/.style={blocknode,draw=color3 ,fill=color3!5!white,
+  },
+  thmnode/.style={blocknode,draw=color2, fill=color2!5!white}
+}
+
+\renewenvironment{theorem}[1][]{%
+  \addtobeamertemplate{itemize/enumerate body begin}{}{\vspace{0.5em}}
+  \begin{center}
+  \begin{tikzpicture}
+    \node[thmnode] (thm) \bgroup
+      \textcolor{color2}{\textbf{Theorem} #1}\\
+    }{%
+      \egroup;
+      %\draw[thick,color2] (thm.north west) -- (thm.south west);
+    \end{tikzpicture}
+  \end{center}
+}
+
+\renewenvironment{definition}[1][Definition]{%
+  \addtobeamertemplate{itemize/enumerate body begin}{}{\vspace{0.5em}}
+  %\setbeamercolor{alerted text}{fg=color3}
+  \begin{center}
+  \begin{tikzpicture}
+    \node[defnode] (def) \bgroup
+      \textcolor{color3}{\textbf{#1}}\\
+    }{
+      \egroup;
+      % \draw[thick,color2] (def.south west) -- (def.north west) % --++ (2,0)
+      % ;
+    \end{tikzpicture}
+  \end{center}
+}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

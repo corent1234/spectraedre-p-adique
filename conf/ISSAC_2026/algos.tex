@@ -1,0 +1,79 @@
+\begin{enumerate}
+    \only<11-20,31-50>{
+      \inditem{$Q \leftarrow (f_{1},\dots,f_{m})$}
+      \inditem{$G \leftarrow \emptyset$}
+      \alt<-40>{
+        \inditem{For $f \in Q$}
+        \pushindent
+        % \inditem{[ ]}
+      }{
+        \inditem{ While $\exists f \in Q$ \subnode{sig-vopot}{with smallest valuation}: }
+        \pushindent
+        % \inditem[3b.] Pop $f$ from $Q$ with smallest valuation
+      }
+    }
+    \only<-10>{
+      \inditem{$\incG \leftarrow \{f_{1},\dots,f_{m}\}$}
+      \inditem{$B \leftarrow \{\text{S-pol of $g_1$ and $g_2$ for $g_1,g_2 \in \incG$}\}$}
+    }
+    \only<11-20>{
+      \inditem{$\incG \leftarrow \incG \cup \{f\}$}
+      \inditem{$B \leftarrow \{\text{S-pol of $f$ and $g$ for $g \in \incG$}\}$}
+    }
+    \only<21-30>{
+      \inditem{$\incG \leftarrow \{(\bfe_{1},f_{1}),\dots,(\bfe_{m},f_{m})\}$}
+      \inditem{$B \leftarrow \{\text{S-pol of $p_{1}$ and $p_{2}$ for $p_{1},p_{2} \in \incG$}\}$}
+    }
+    \only<31->{
+      \inditem{$\incG \leftarrow \{(0,g) : g \in \incG\} \cup \{(\subnode{sig-increm}{1},f)\}$}
+      \inditem{$B \leftarrow \{ \text{S-pol of $(1,f)$ and $p$ for $p \in \incG$} \}$}
+    }
+    
+    \inditem{While $B \neq \emptyset$:}
+    \pushindent
+    \alt<-20>{
+      \inditem{Pop $v$ from $B$}
+    }{%<21->
+      \inditem{Pop $(\sigu,v)$ from $B$ \subnode{sig-order}{with smallest $\sigu$}}
+    }
+    
+    \inditem{\alt<-20>{%
+      $w \leftarrow \text{reduction of $v$ modulo $\incG$}$
+    }{% <21->
+      $w \leftarrow \text{\alert<22-23>{regular} reduction of $(\sigu,v)$ modulo $\incG$}$
+    }}
+    \alt<-40>{\inditem{If $w = 0$:}
+      \pushindent
+      \inditem{Pass}
+    }{
+      \inditem{If \subnode{sig-vopot-2}{$\val(w) > \val(f)$}:}
+      \pushindent
+      \inditem{$Q \leftarrow Q \cup \{w\}$}
+    }
+    \pullindent
+    \inditem{Else:}
+    \pushindent
+    \alt<-20>{%
+      \inditem{%
+        $B \leftarrow B \cup \{\text{S-pol of $w$ and $g$ for $g \in \incG$}\}$}
+      \inditem{$\incG \leftarrow \incG \cup \{w\}$}
+    }{%<21->
+      \inditem{$B \leftarrow B \cup \{\text{\alert<22-23>{regular} S-pol of $(\sigu,w)$ and $p$ for $p \in \incG$}\}$}
+      \inditem{$\incG \leftarrow \incG \cup \{(\sigu,w)\}$}
+    }
+
+    \pullindent
+    \pullindent
+    \only<11-20,31-50>{
+      \only<31->{\inditem{\subnode{sig-away}{$G \leftarrow \{ v : (\sigu,v) \in G_{S}\}$}}}
+      \pullindent
+    }
+    \inditem{Return $G$}
+  \end{enumerate}
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "main"
+%%% End:
