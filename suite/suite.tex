@@ -48,7 +48,7 @@
 \newcommand{\relint}[1]{{\text{relint}(#1)}} % simone's comments
 \newcommand{\calL}{\mathcal{L}} % simone's comments
 
-\newcommand{\simone}[1]{{\color{blue} #1}} % simone's comments
+\newcommand{\simone}[1]{{\color{blue} {\sc Simone}: #1}} % simone's comments
 \newcommand{\corentin}[1]{{\color{red} #1}} % corentin's comments
 \newcommand{\tristan}[1]{{\color{red} #1}} % tristan's comments
 \newcommand{\todo}[1]{{\color{blue}\bf \text{TODO: } #1}} % TODOs
@@ -73,6 +73,7 @@
 \def\ZZ{\ensuremath{\mathbb{Z}}}
 \newcommand{\OK}{\mathcal{O}_K}
 \def\diag{\mathrm{diag}}
+\def\size{\mathrm{size}}
 
 \newcommand{\GL}{\mathrm{GL}}
 
@@ -85,8 +86,11 @@
 \maketitle
 
 \begin{abstract}
-This note is about further questions concerning the paper \cite{cornou2026}.
+  This note is about further questions concerning the paper \cite{cornou2026}
+  to be addressed in an extended version.
 \end{abstract}
+
+\setcounter{section}{1}
 
 %
 % ---- Bibliography ----
@@ -95,7 +99,8 @@ This note is about further questions concerning the paper \cite{cornou2026}.
 %\end{thebibliography}
 
 
-\section{From reviews}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Questions from the reviews}
 
 \begin{itemize}
 \item
@@ -106,6 +111,7 @@ on the ultrametric property that the intersection of a nested family of balls is
 ball; the wording should be adjusted accordingly to avoid confusion.
 \item
   Theorem 4.6: I recommend to add a brief discussion of termination and complexity.
+  \simone{Discussion on termination has been added in the camera ready version}. 
 \item
   Theorem 1.2: The result assumes the residue field $\kappa$ is infinite. It would be helpful to
   add a remark or a small example discussing what happens when $\kappa$ is finite
@@ -120,90 +126,154 @@ analogue of real linear/semidefinite programming? Clarifying the ``why'' would h
 reader appreciate the results.
 \end{itemize}
 
-\section{Combinatorial aspects of polyhedra/spectrahedra}
 
-Recall from \cite[Def.\,3.1]{cornou2026} that polyhedra in $K^n$, for a valued field $(K, \val)$,
-are defined as the set of vectors such that some linear combinations of their entries have nonnegative
-or infinite valuation, {\it i.e.} subsets of the form
-\begin{equation}\label{eq_def_polyhedra}
-  \PP =
-  \left\{
-  x \in K^n :
-  \begin{array}{ll}
-    \val(\ell_i(x)) \geq 0 & i=1,\ldots,d \\
-    \val(m_j(x)) = +\infty & j=1,\ldots,e
-  \end{array}
-  \right\},
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Size/precision in LP}
+
+\paragraph{\it Real case.}
+This material is from \cite[Ch.4]{korte2008combinatorial}.
+Define $\size(n) = 1+\lceil\log(|n|+1)\rceil$ for $n \in \ZZ$ and
+$\size(r) = \size(p)+\size(q)$ for $r=\frac{p}q \in \QQ$ with $p,q \in \ZZ$ coprime.
+For a vector $x = (x_1,\ldots,x_n) \in \QQ^n$ define $\size(x) = n+\sum_i \size(x_i)$
+and for a matrix $A \in \QQ^{m \times n}$, define $\size(A) = mn+\sum_{ij} \size(a_{ij})$.
+
+Consider a dual LP in standard form:
+\begin{equation}\label{dualLP}
+d^* = \sup b^Ty, \,\,\,\, A^Ty \leq c
 \end{equation}
-for some affine forms $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
-We say that a form $m$ vanishes on $x$ if $\val(m(x))=+\infty$.
+for some matrix $A \in \QQ^{m \times n}$ and vectors $b \in \QQ^m$, $c \in \QQ^n$.
 
-Note that a given polyhedron $\PP$ might have different formulations
-of type \eqref{eq_def_polyhedra}. To make it slightly more canonical
-one can make the following assumptions about formulation \eqref{eq_def_polyhedra}
-(which is what we do from now on):
+\begin{theorem}[{\cite[Thm.4.4]{korte2008combinatorial}}]
+  Assume that the linear program in \eqref{dualLP} has an optimal solution.
+  Then it has an optimal solution $x$ such that $\size(x) \leq 4n(\size(A)+\size(c))$
+  with components of size at most $4(\size(A)+\size(c))$.
+\end{theorem}
 
-\begin{assumption}\label{assumpt}
-  For every $i \in \{1,\ldots,d\}$, there exists an element $x \in \PP$
-  such that $\val(\ell_i(x)) < +\infty$; that is, $\ell_1,\ldots,\ell_d$
-  do not vanish identically on $\PP$.
-%\item[B.]
-%    For every  $i \in \{1,\ldots,d\}$, the form $\ell_i$ is not an affine
-%    combination of forms in $\{\ell_j : j \neq i\}$; that is (thanks to
-%    ultrametricity) $\ell_1,\ldots,\ell_d$ are irredundant.
-\end{assumption}
+Note that the feasibility problem asking whether problem \eqref{dualLP} is feasible
+has the same size estimates (take $b=0$).
 
-Nevertheless the linear forms $\ell_i$ will vanish at some $x$
-in the <<boundary>> of $\PP$. This leads to the following definition:
-
-\begin{definition}
-  Let $\PP$ be defined as in \eqref{eq_def_polyhedra}, and let $x \in\PP$.
-  The \emph{corank} of $x$ is
-  $$
-  \mathrm{corank}(x) = \#\Big\{i \in \{1,\ldots,d\} : \val(\ell_i(x)) = +\infty\Big\}.
-  $$
-  Its \emph{rank} is $d-\mathrm{corank}(x)$, the number of forms $\ell_i$ such
-  that $\val(\ell_i(x)) < +\infty$. By \Cref{assumpt} $\mathrm{rank}(x)$
-\end{definition}
-
-Rank and corank of $x \in\PP$ depend on the description \eqref{eq_def_polyhedra}.
-
-
-\section{The case $K=\QQ_p$}
-
-In this section we fix $K=\QQ_p$, the field of $p$-adic numbers, equipped with
-the $p$-adic valuation $\val_p$. \\
-
-{\bf Question.} Assume a LP program is defined by some data over $K$ as in
+\pargraph{\it Valued LP.}
+In our context, one could ask, for instance, the following question.
+Fix $K=\QQ_p$, the field of $p$-adic numbers, equipped with
+the $p$-adic valuation $\val_p$. Assume a LP program is defined by some data over $K$ as in
 \cite[Sec.\,4]{cornou2026}, and assume that this program has a feasible solution.
 What precision should we expect for this solution, as a function of the input precision? \\
 
-\section{The case $K=k(\!(t)\!)$}
+The same with the field of Laurent series $K = k(\!(t)\!)$ over a field $k$
+equipped with the natural $t$-adic valuation $\val_t(\sum_{k}^{\infty} a_i t^i) = k$, with
+$a_k \neq 0$.
 
-$K$ is the field of rational functions over a field $k$ equipped with the natural valuation.
 
-\section{Valued-simplex algorithm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Size in SDP}
 
-The simplex algorithm is a boundary algorithm for solving a linear program,
-that essentially can be phrased as follows.
+For a standard primal semidefinite program over $\RR$:
+$$
+p^* = \inf \mathrm{Tr}(CX), \,\,\,\, \mathrm{ s.t. } \, X \succeq 0, \, \mathrm{Tr}(A_iX) = b_i, \, i=1,\ldots,m
+$$
+one has the following estimates relying on Khachiyan's ellipsoid algorithm \cite{khachiyan1979polynomial}.
 
-\begin{itemize}
-\item Assume the feasible polyhedron has a vertex which is known or can be computed easily.
-\item Either this vertex is optimal, in the sense that along every edge containing the input
-  vertex, the objective function does not decrease (this relies on convexity though).
-\item Or there is an edge containing the input vertex where the objective function decreases.
-  In this case either we find a new vertex at the end of the edge (and we repeat the process)
-  or the edge is unbounded, and the LP is unbounded.
-\end{itemize}
-
-{\bf Question.} Can we have a valued-simplex algorithm? We should prove that convexity is not
-necessary for step 2.
+\begin{theorem}
+\end{theorem}
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Deciding SDP feasibility over valued fields}
+Let $K$ be a valued field with valuation $\val$, and let $A_0,A_1,\ldots,A_n \in K^{d \times d}$.
+In \cite[Def.5.8]{cornou2026}, we defined the spectrahedron associated with the pencil
+\begin{equation}\label{pencil}
+  A := A_0+\sum_{i=1}^n x_iA_i \in K[x]^{d \times d},
+\end{equation}
+as the set
+\begin{equation}\label{spectrahedron}
+  \mathcal{S}_A = \left\{x \in K^n : A(x) \in K^{d \times d}_+\right\}.
+\end{equation}
+Note that $\chi_A \in K[x][T]$ and for a fixed $x \in K^n$, $\chi_A$ evaluates to a polynomial in
+$K[T]$. By \cite[Thm.5.2]{cornou2026}, we know that $\mathcal{S}_A = \{x \in K^n : \chi_{A} \in \OK[T]\}$.
+
+Let us recall that the coefficients of the characteristic polynomial $\chi_A$ are
+symmetric polynomials in the eigenvalues of $A$: for
+\begin{equation}
+  \begin{aligned}
+    \chi_A(T) & = \det(T I_d - A) = (T-\lambda_1(A)) \cdots (T-\lambda_d(A)) \\
+    & = T^d + \chi_{d-1} T^{d-1} + \cdots + \chi_1 T + \chi_0
+  \end{aligned}
+\end{equation}
+with $\lambda_1(A),\ldots,\lambda_d(A)$ in some algebraic closure of $K$, then
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Valued-simplex algorithm}
+%
+%The simplex algorithm is a boundary algorithm for solving a linear program,
+%that essentially can be phrased as follows.
+%
+%\begin{itemize}
+%\item Assume the feasible polyhedron has a vertex which is known or can be computed easily.
+%\item Either this vertex is optimal, in the sense that along every edge containing the input
+%  vertex, the objective function does not decrease (this relies on convexity though).
+%\item Or there is an edge containing the input vertex where the objective function decreases.
+%  In this case either we find a new vertex at the end of the edge (and we repeat the process)
+%  or the edge is unbounded, and the LP is unbounded.
+%\end{itemize}
+%
+%{\bf Question.} Can we have a valued-simplex algorithm? We should prove that convexity is not
+%necessary for step 2.
 
 
-%\bibliographystyle{ACM-Reference-Format}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newpage
+%\section{Combinatorial aspects of polyhedra/spectrahedra}
+%
+%Recall from \cite[Def.\,3.1]{cornou2026} that polyhedra in $K^n$, for a valued field $(K, \val)$,
+%are defined as the set of vectors such that some linear combinations of their entries have nonnegative
+%or infinite valuation, {\it i.e.} subsets of the form
+%\begin{equation}\label{eq_def_polyhedra}
+%  \PP =
+%  \left\{
+%  x \in K^n :
+%  \begin{array}{ll}
+%    \val(\ell_i(x)) \geq 0 & i=1,\ldots,d \\
+%    \val(m_j(x)) = +\infty & j=1,\ldots,e
+%  \end{array}
+%  \right\},
+%\end{equation}
+%for some affine forms $\ell_1,\ldots,\ell_d,m_1,\ldots,m_e \in K[x]_1$.
+%We say that a form $m$ vanishes on $x$ if $\val(m(x))=+\infty$.
+%
+%Note that a given polyhedron $\PP$ might have different formulations
+%of type \eqref{eq_def_polyhedra}. To make it slightly more canonical
+%one can make the following assumptions about formulation \eqref{eq_def_polyhedra}
+%(which is what we do from now on):
+%
+%\begin{assumption}\label{assumpt}
+%  For every $i \in \{1,\ldots,d\}$, there exists an element $x \in \PP$
+%  such that $\val(\ell_i(x)) < +\infty$; that is, $\ell_1,\ldots,\ell_d$
+%  do not vanish identically on $\PP$.
+%%\item[B.]
+%%    For every  $i \in \{1,\ldots,d\}$, the form $\ell_i$ is not an affine
+%%    combination of forms in $\{\ell_j : j \neq i\}$; that is (thanks to
+%%    ultrametricity) $\ell_1,\ldots,\ell_d$ are irredundant.
+%\end{assumption}
+%
+%Nevertheless the linear forms $\ell_i$ will vanish at some $x$
+%in the <<boundary>> of $\PP$. This leads to the following definition:
+%
+%\begin{definition}
+%  Let $\PP$ be defined as in \eqref{eq_def_polyhedra}, and let $x \in\PP$.
+%  The \emph{corank} of $x$ is
+%  $$
+%  \mathrm{corank}(x) = \#\Big\{i \in \{1,\ldots,d\} : \val(\ell_i(x)) = +\infty\Big\}.
+%  $$
+%  Its \emph{rank} is $d-\mathrm{corank}(x)$, the number of forms $\ell_i$ such
+%  that $\val(\ell_i(x)) < +\infty$. By \Cref{assumpt} $\mathrm{rank}(x)$
+%\end{definition}
+%
+%Rank and corank of $x \in\PP$ depend on the description \eqref{eq_def_polyhedra}.
+
+
+
+\newpage
 \bibliographystyle{acm}
 \bibliography{../issac2026/submission/refs}
 
