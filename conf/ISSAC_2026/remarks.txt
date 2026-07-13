@@ -1,0 +1,11 @@
+Salut, j'ai regardé les transparents. Juste quelques remarques (surtout autour du singulier-plurier de spectrahedron) :
+
+* titre : "Polyhedron" et "Spectrahedron" sont au singulier, on utilise normalement le pluriel dans ce cas, donc je mettrais plutôt "Polyhedra and spectrahedra on fields with valuations".
+* il semble y avoir une pause en plus après l'environnement "Example" dans le slide "Setting"
+* dans "Example" du transparent "Non archimedean polyhedron" il y a un typo "=}"
+* "Some spectrahedron are not polyhedron" ---> "Some spectrahedra are not polyhedra"
+* Proof of Proposition in slide "Spectrahedron in K" : "If S is a spectrahedra" --> "If S is a spectrahedron"
+* "Are all spectrahedron diskoids" --> "Are all spectrahedra diskoids"
+* Proof of slide 30 : "is the proj. of the spectrahedra" --> "is the proj. of the spectrahedron"
+* proof of slide 31 : "Spectrahedron of K" --> "Spectrahedra of K"
+* dans les references à changer également en pluriel
