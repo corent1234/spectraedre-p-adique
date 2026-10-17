@@ -1,12 +1,21 @@
 \documentclass{elsarticle}
 
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}          % Condivide il contatore con Theorem
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newdefinition{definition}{Definition}[section]
+\newdefinition{remark}{Remark}[section]
+\newdefinition{example}{Example}[section]
+
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{amsthm}
+
 \usepackage{bm}
-\usepackage{hyperref}
 \usepackage{tikz}
 \usepackage{stmaryrd}
 \usepackage{xspace}
@@ -49,11 +58,11 @@
 
 \newcommand{\GL}{\mathrm{GL}}
 
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newdefinition{definition}[theorem]{Definition}
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newdefinition{definition}[theorem]{Definition}
 
 
 \author{Corentin Cornou}
