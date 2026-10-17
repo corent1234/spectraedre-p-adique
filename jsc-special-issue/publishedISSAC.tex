@@ -1,14 +1,18 @@
 \documentclass{elsarticle}
 
 \usepackage{amsthm}
+% --- Italic ---
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}          % Condivide il contatore con Theorem
-\newtheorem{proposition}{Proposition}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newdefinition{definition}{Definition}[section]
-\newdefinition{remark}{Remark}[section]
-\newdefinition{example}{Example}[section]
+\newtheorem{theorem}{Theorem}[section]      
+\newtheorem{lemma}[theorem]{Lemma}          
+\newtheorem{proposition}[theorem]{Proposition} 
+\newtheorem{corollary}[theorem]{Corollary}    
+
+% --- Normal text ---
+\theoremstyle{definition}
+\newdefinition{definition}[theorem]{Definition} 
+\newdefinition{remark}[theorem]{Remark}         
+\newdefinition{example}[theorem]{Example}       
 
 \usepackage{algorithm}
 \usepackage{algorithmic}
