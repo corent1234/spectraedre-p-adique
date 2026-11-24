@@ -1,7 +1,7 @@
 \documentclass{elsarticle}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL publishedISSAC.tex   Fri Nov 20 15:16:55 2026
-%DIF ADD extendedJSC.tex      Fri Nov 20 15:21:25 2026
+%DIF ADD extendedJSC.tex      Tue Nov 24 22:40:13 2026
 
 \usepackage{amsthm}
 % --- Italic ---
@@ -210,8 +210,9 @@ non-Archimedean SDP \cite{allamigeon2016solving}. Notably, tropical spectrahedra
 the Helton-Nie property \cite{allamigeon2019tropical}. More recently, linear matrix inequalities with parametric coefficients
 have been investigated in \cite{naldi2025solving}.
 
-\paragraph{Main contributions.}
-In this paper, we consider the setting in which the input data are defined over $(K,\val)$, where $K$ is a field and
+\paragraph{Main contributions\DIFdelbegin \DIFdel{.}\DIFdelend }
+In this paper, we consider the setting in which the input data are defined over $(K,\val)$,
+where $K$ is a field and
 $\val$ is a valuation on $K$. For simplicity, we assume throughout that $\val$ is discrete and that $(K,\val)$ is complete, although some results do not require this assumption. The prototype of valued field we target is the field $K=\QQ_p$ of $p$-adic numbers, equipped with its $p$-adic valuation.
 
 %We define and study properties of polyhedra over valued fields and their images through affine maps in \Cref{sec:polyhedra}; these sets lay the foundations of valued linear programming, for which an al\-go\-ri\-thm is described in \Cref{sec:LP}. More general sets are valued spectrahedra and their shadows, i.e. their images under affine maps, analyzed in \Cref{sec:spectrahedra}; these represent a richer class of sets that are not polyhedral. Let us give now an overview of the main results.
@@ -242,6 +243,12 @@ under mild assumptions:
 \begin{theorem}\label{main_2}
 Annuli of $K$ are semidefinite-representable but if the residue field of $K$ is infinite, no (non-trivial) annulus of $K$ can be a spectrahedron of $K.$
 \end{theorem}
+\DIFaddbegin 
+
+\paragraph{\DIFadd{Further contributions}}
+\DIFadd{This is an extended version of a paper published in the Proceedings of ISSAC 2026.
+TO BE WRITTEN AT THE END.
+}\DIFaddend 
 
 
 \section{Preliminaries}
